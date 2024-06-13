@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(GymMobileAppGui)
+project(MobileApp)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -16,5 +16,5 @@ set(PROJECT_SOURCES
     main.cpp
 )
 
-add_executable(GymMobileAppGui ${PROJECT_SOURCES} )
-target_link_libraries(GymMobileAppGui PRIVATE Qt6::Core Qt6::Gui)
+add_executable(MobileApp ${PROJECT_SOURCES} )
+target_link_libraries(MobileApp PRIVATE Qt6::Core Qt6::Gui)
