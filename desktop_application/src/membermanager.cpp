@@ -16,8 +16,8 @@ MemberManager::MemberManager() {
     QByteArray jsonData = file.readAll();
     file.close();
 
-    documented_members = QJsonDocument::fromJson(jsonData);
-    if (documented_members.isNull() || !documented_members.isObject()) {
+    documented_member = QJsonDocument::fromJson(jsonData);
+    if (documented_member.isNull() || !documented_member.isObject()) {
         qWarning() << "Invalid JSON format";
     }
 

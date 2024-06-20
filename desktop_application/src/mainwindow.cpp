@@ -8,9 +8,9 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     //////// TEST & DEBUG SECTION /////////
-    Member test_member("test", 20);
     Measurement test_measurement(1, 2, 3, 4, 5, 6, 7);
-    test_member.AddMeasurement(test_measurement);
+    Member test_member("test", 20, test_measurement);
+    //test_member.AddMeasurement(test_measurement);
 
     ///////////////////////////////////////
 }

@@ -18,7 +18,7 @@ public:
     // delete a member
 
 private:
-    QJsonDocument documented_members;
+    QJsonDocument documented_member;
     QString file_path{"../../members.json"};
 };
 
