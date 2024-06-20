@@ -1,7 +1,7 @@
 #include "../inc/member.h"
 
-Member::Member(const QString &name, int age, float weight)
-    : name_(name), age_(age), weight_(weight) {
+Member::Member(const QString &name, int age)
+    : name_(name), age_(age) {
 
 }
 
@@ -12,10 +12,6 @@ void Member::SetSubscriptionStartDate(const QDate &start_date, const QDate &end_
 
 void Member::SetSubscriptionEndDate(const QDate &end_date){
     end_date_ = end_date;
-}
-
-void Member::SetWeight(float weight){
-    weight_ = weight;
 }
 
 void Member::AddMeasurement(Measurement &new_measurement){
