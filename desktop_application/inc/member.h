@@ -2,7 +2,6 @@
 #define MEMBER_H
 
 #include <QString>
-#include <QDate>
 #include "measurement.h"
 
 class Member
