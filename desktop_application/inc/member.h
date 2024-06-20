@@ -2,6 +2,8 @@
 #define MEMBER_H
 
 #include <QString>
+#include <QJsonObject>
+#include <QJsonArray>
 #include "measurement.h"
 
 class Member : public Measurement
@@ -11,6 +13,7 @@ public:
     void SetSubscriptionStartDate(const QDate &start_date, const QDate &end_date);
     void SetSubscriptionEndDate(const QDate &end_date);
     void AddMeasurement(Measurement &new_measurement);
+    QJsonObject toJson() const;
 
 private:
     QString name_;

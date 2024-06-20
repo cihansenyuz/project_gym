@@ -2,6 +2,8 @@
 #define MEASUREMENT_H
 
 #include <QDate>
+#include <QJsonObject>
+#include <QJsonArray>
 
 class Measurement
 {
@@ -24,6 +26,8 @@ public:
     void setBelly(float belly);
     void setHip(float hip);
     void setLeg(float leg);
+
+    QJsonObject toJson() const;
 
 private:
     QDate taken_date_{QDate::currentDate()};

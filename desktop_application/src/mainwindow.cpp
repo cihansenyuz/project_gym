@@ -8,9 +8,14 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     //////// TEST & DEBUG SECTION /////////
-    Measurement test_measurement(1, 2, 3, 4, 5, 6, 7);
-    Member test_member("test", 20, test_measurement);
-    //test_member.AddMeasurement(test_measurement);
+
+    Measurement test_measurement(15, 25, 35, 45, 55, 65, 75);
+    Measurement test_measurement2(115, 225, 335, 445, 555, 665, 775);
+    Member test_member("test3", 40, test_measurement);
+    /*test_member.AddMeasurement(test_measurement2);
+    test_member.SetSubscriptionStartDate(QDate::currentDate(), QDate::currentDate());*/
+
+    member_manager.SaveMemberToJson(test_member);
 
     ///////////////////////////////////////
 }

@@ -6,19 +6,21 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <QDebug>
 
 class MemberManager
 {
 public:
     MemberManager();
     void RegisterNewMember(Member &new_member);
+    void SaveMemberToJson(const Member &member);
     // unsubscribe a member
     // start subscription of a member
     // get/find a member
     // delete a member
 
 private:
-    QJsonDocument documented_member;
+    QJsonArray members_json;
     QString file_path{"../../members.json"};
 };
 

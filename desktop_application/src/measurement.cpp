@@ -21,3 +21,18 @@ void Measurement::setArm(float arm) { arm_ = arm; }
 void Measurement::setBelly(float belly) { belly_ = belly; }
 void Measurement::setHip(float hip) { hip_ = hip; }
 void Measurement::setLeg(float leg) { leg_ = leg; }
+
+QJsonObject Measurement::toJson() const
+{
+    QJsonObject json;
+    json["weight"] = weight_;
+    json["shoulder"] = shoulder_;
+    json["chest"] = chest_;
+    json["arm"] = arm_;
+    json["belly"] = belly_;
+    json["hip"] = hip_;
+    json["leg"] = leg_;
+    json["taken_date"] = taken_date_.toString(Qt::ISODate); // Serialize QDate to string
+
+    return json;
+}
