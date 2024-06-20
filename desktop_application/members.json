@@ -1,239 +1,222 @@
 [
-    {
-        "age": 25,
-        "measurements": [
-            {
-                "arm": 32,
-                "belly": 44,
-                "chest": 38,
-                "hip": 40,
-                "leg": 50,
-                "shoulder": 20,
-                "taken_date": "2024-06-01",
-                "weight": 70
-            }
-        ],
-        "name": "John Doe",
-        "subscription": true,
-        "subscription_end_date": "2024-07-01",
-        "subscription_start_date": "2023-07-01"
-    },
-    {
-        "age": 30,
-        "measurements": [
-            {
-                "arm": 30,
-                "belly": 50,
-                "chest": 42,
-                "hip": 42,
-                "leg": 52,
-                "shoulder": 22,
-                "taken_date": "2024-06-03",
-                "weight": 75
-            },
-            {
-                "arm": 31,
-                "belly": 51,
-                "chest": 43,
-                "hip": 43,
-                "leg": 53,
-                "shoulder": 23,
-                "taken_date": "2024-06-10",
-                "weight": 76
-            }
-        ],
-        "name": "Jane Smith",
-        "subscription": true,
-        "subscription_end_date": "2023-08-01",
-        "subscription_start_date": "2022-08-01"
-    },
-    {
-        "age": 35,
-        "measurements": [
-            {
-                "arm": 29,
-                "belly": 45,
-                "chest": 41,
-                "hip": 41,
-                "leg": 51,
-                "shoulder": 21,
-                "taken_date": "2024-06-05",
-                "weight": 72
-            }
-        ],
-        "name": "Michael Brown",
-        "subscription": false,
-        "subscription_end_date": null,
-        "subscription_start_date": null
-    },
-    {
-        "age": 28,
-        "measurements": [
-            {
-                "arm": 35,
-                "belly": 48,
-                "chest": 40,
-                "hip": 45,
-                "leg": 55,
-                "shoulder": 25,
-                "taken_date": "2024-06-07",
-                "weight": 78
-            },
-            {
-                "arm": 36,
-                "belly": 49,
-                "chest": 41,
-                "hip": 46,
-                "leg": 56,
-                "shoulder": 26,
-                "taken_date": "2024-06-14",
-                "weight": 79
-            }
-        ],
-        "name": "Emily Davis",
-        "subscription": true,
-        "subscription_end_date": "2024-05-15",
-        "subscription_start_date": "2023-05-15"
-    },
-    {
-        "age": 32,
-        "measurements": [
-            {
-                "arm": 33,
-                "belly": 47,
-                "chest": 39,
-                "hip": 43,
-                "leg": 53,
-                "shoulder": 23,
-                "taken_date": "2024-06-09",
-                "weight": 74
-            }
-        ],
-        "name": "Chris Johnson",
-        "subscription": false,
-        "subscription_end_date": null,
-        "subscription_start_date": null
-    },
-    {
-        "age": 29,
-        "measurements": [
-            {
-                "arm": 34,
-                "belly": 46,
-                "chest": 38,
-                "hip": 44,
-                "leg": 54,
-                "shoulder": 24,
-                "taken_date": "2024-06-11",
-                "weight": 73
-            },
-            {
-                "arm": 35,
-                "belly": 47,
-                "chest": 39,
-                "hip": 45,
-                "leg": 55,
-                "shoulder": 25,
-                "taken_date": "2024-06-18",
-                "weight": 74
-            }
-        ],
-        "name": "Sarah Wilson",
-        "subscription": true,
-        "subscription_end_date": "2023-06-01",
-        "subscription_start_date": "2022-06-01"
-    },
-    {
-        "age": 40,
-        "measurements": [
-            {
-                "arm": 31,
-                "belly": 49,
-                "chest": 40,
-                "hip": 45,
-                "leg": 52,
-                "shoulder": 21,
-                "taken_date": "2024-06-13",
-                "weight": 72
-            }
-        ],
-        "name": "David Martinez",
-        "subscription": true,
-        "subscription_end_date": "2024-01-10",
-        "subscription_start_date": "2023-01-10"
-    },
-    {
-        "age": 27,
-        "measurements": [
-            {
-                "arm": 32,
-                "belly": 46,
-                "chest": 39,
-                "hip": 42,
-                "leg": 51,
-                "shoulder": 22,
-                "taken_date": "2024-06-15",
-                "weight": 71
-            }
-        ],
-        "name": "Laura Thompson",
-        "subscription": false,
-        "subscription_end_date": null,
-        "subscription_start_date": null
-    },
-    {
-        "age": 31,
-        "measurements": [
-            {
-                "arm": 30,
-                "belly": 50,
-                "chest": 42,
-                "hip": 44,
-                "leg": 54,
-                "shoulder": 23,
-                "taken_date": "2024-06-17",
-                "weight": 75
-            }
-        ],
-        "name": "Robert Garcia",
-        "subscription": true,
-        "subscription_end_date": "2024-03-20",
-        "subscription_start_date": "2023-03-20"
-    },
-    {
-        "age": 33,
-        "measurements": [
-            {
-                "arm": 34,
-                "belly": 48,
-                "chest": 40,
-                "hip": 44,
-                "leg": 53,
-                "shoulder": 24,
-                "taken_date": "2024-06-19",
-                "weight": 76
-            }
-        ],
-        "name": "Jessica Lee",
-        "subscription": true,
-        "subscription_end_date": "2023-11-05",
-        "subscription_start_date": "2022-11-05"
-    },
-    {
-        "age": 40,
-        "measurements": [
-            {
-                "arm": 45,
-                "belly": 55,
-                "chest": 35,
-                "hip": 65,
-                "leg": 75,
-                "shoulder": 25,
-                "taken_date": "2024-06-20",
-                "weight": 15
-            }
-        ],
-        "name": "test3",
-        "subscription": false
-    }
+  {
+    "age": 25,
+    "measurements": [
+      {
+        "arm": 32,
+        "belly": 44,
+        "chest": 38,
+        "hip": 40,
+        "leg": 50,
+        "shoulder": 20,
+        "taken_date": "2024-06-01",
+        "weight": 70
+      }
+    ],
+    "name": "John Doe",
+    "subscription": true,
+    "subscription_start_date": "2023-07-01",
+    "subscription_end_date": "2024-07-01"
+  },
+  {
+    "age": 30,
+    "measurements": [
+      {
+        "arm": 30,
+        "belly": 50,
+        "chest": 42,
+        "hip": 42,
+        "leg": 52,
+        "shoulder": 22,
+        "taken_date": "2024-06-03",
+        "weight": 75
+      },
+      {
+        "arm": 31,
+        "belly": 51,
+        "chest": 43,
+        "hip": 43,
+        "leg": 53,
+        "shoulder": 23,
+        "taken_date": "2024-06-10",
+        "weight": 76
+      }
+    ],
+    "name": "Jane Smith",
+    "subscription": false,
+    "subscription_start_date": "2022-08-01",
+    "subscription_end_date": "2023-08-01"
+  },
+  {
+    "age": 35,
+    "measurements": [
+      {
+        "arm": 29,
+        "belly": 45,
+        "chest": 41,
+        "hip": 41,
+        "leg": 51,
+        "shoulder": 21,
+        "taken_date": "2024-06-05",
+        "weight": 72
+      }
+    ],
+    "name": "Michael Brown",
+    "subscription": false,
+    "subscription_start_date": "2023-08-01",
+    "subscription_end_date": "2024-04-01"
+  },
+  {
+    "age": 28,
+    "measurements": [
+      {
+        "arm": 35,
+        "belly": 48,
+        "chest": 40,
+        "hip": 45,
+        "leg": 55,
+        "shoulder": 25,
+        "taken_date": "2024-06-07",
+        "weight": 78
+      },
+      {
+        "arm": 36,
+        "belly": 49,
+        "chest": 41,
+        "hip": 46,
+        "leg": 56,
+        "shoulder": 26,
+        "taken_date": "2024-06-14",
+        "weight": 79
+      }
+    ],
+    "name": "Emily Davis",
+    "subscription": false,
+    "subscription_start_date": "2023-05-15",
+    "subscription_end_date": "2024-05-15"
+  },
+  {
+    "age": 32,
+    "measurements": [
+      {
+        "arm": 33,
+        "belly": 47,
+        "chest": 39,
+        "hip": 43,
+        "leg": 53,
+        "shoulder": 23,
+        "taken_date": "2024-06-09",
+        "weight": 74
+      }
+    ],
+    "name": "Chris Johnson",
+    "subscription": false,
+    "subscription_start_date": "2023-02-01",
+    "subscription_end_date": "2024-02-01"
+  },
+  {
+    "age": 29,
+    "measurements": [
+      {
+        "arm": 34,
+        "belly": 46,
+        "chest": 38,
+        "hip": 44,
+        "leg": 54,
+        "shoulder": 24,
+        "taken_date": "2024-06-11",
+        "weight": 73
+      },
+      {
+        "arm": 35,
+        "belly": 47,
+        "chest": 39,
+        "hip": 45,
+        "leg": 55,
+        "shoulder": 25,
+        "taken_date": "2024-06-18",
+        "weight": 74
+      }
+    ],
+    "name": "Sarah Wilson",
+    "subscription": false,
+    "subscription_start_date": "2022-06-01",
+    "subscription_end_date": "2023-06-01"
+  },
+  {
+    "age": 40,
+    "measurements": [
+      {
+        "arm": 31,
+        "belly": 49,
+        "chest": 40,
+        "hip": 45,
+        "leg": 52,
+        "shoulder": 21,
+        "taken_date": "2024-06-13",
+        "weight": 72
+      }
+    ],
+    "name": "David Martinez",
+    "subscription": true,
+    "subscription_start_date": "2023-01-10",
+    "subscription_end_date": "2024-07-10"
+  },
+  {
+    "age": 27,
+    "measurements": [
+      {
+        "arm": 32,
+        "belly": 46,
+        "chest": 39,
+        "hip": 42,
+        "leg": 51,
+        "shoulder": 22,
+        "taken_date": "2024-06-15",
+        "weight": 71
+      }
+    ],
+    "name": "Laura Thompson",
+    "subscription": false,
+    "subscription_start_date": "2023-06-01",
+    "subscription_end_date": "2024-06-01"
+  },
+  {
+    "age": 31,
+    "measurements": [
+      {
+        "arm": 30,
+        "belly": 50,
+        "chest": 42,
+        "hip": 44,
+        "leg": 54,
+        "shoulder": 23,
+        "taken_date": "2024-06-17",
+        "weight": 75
+      }
+    ],
+    "name": "Robert Garcia",
+    "subscription": true,
+    "subscription_start_date": "2023-03-20",
+    "subscription_end_date": "2024-09-20"
+  },
+  {
+    "age": 33,
+    "measurements": [
+      {
+        "arm": 34,
+        "belly": 48,
+        "chest": 40,
+        "hip": 44,
+        "leg": 53,
+        "shoulder": 24,
+        "taken_date": "2024-06-19",
+        "weight": 76
+      }
+    ],
+    "name": "Jessica Lee",
+    "subscription": false,
+    "subscription_start_date": "2022-11-05",
+    "subscription_end_date": "2023-11-05"
+  }
 ]

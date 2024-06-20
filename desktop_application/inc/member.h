@@ -11,7 +11,8 @@ class Member : public Measurement
 public:
     Member(const QString &name, int age, Measurement &first_measurement);
     void SetSubscriptionStartDate(const QDate &start_date, const QDate &end_date);
-    void SetSubscriptionEndDate(const QDate &end_date);
+    void ExtendSubscriptionEndDate(const QDate &end_date);
+    void EndSubscription();
     void AddMeasurement(Measurement &new_measurement);
     QJsonObject toJson() const;
 
