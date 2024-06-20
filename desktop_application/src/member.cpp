@@ -17,3 +17,7 @@ void Member::SetSubscriptionEndDate(const QDate &end_date){
 void Member::SetWeight(float weight){
     weight_ = weight;
 }
+
+void Member::AddMeasurement(Measurement &new_measurement){
+    all_measurements_.push_back(new_measurement);
+}
