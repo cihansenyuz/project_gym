@@ -23,6 +23,7 @@ set(PROJECT_SOURCES
         inc/measurement.h
         inc/membermanager.h
         ui/mainwindow.ui
+        members.json
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

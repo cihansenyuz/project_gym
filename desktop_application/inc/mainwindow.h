@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "member.h"
+#include "membermanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -20,5 +21,6 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    MemberManager member_manager;
 };
 #endif // MAINWINDOW_H
