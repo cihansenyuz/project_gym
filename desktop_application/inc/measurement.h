@@ -8,26 +8,29 @@
 class Measurement
 {
 public:
+    Measurement() = default;
     Measurement(float weight, float shoulder, float chest,
                 float arm, float belly, float hip, float leg);
-    QDate getTakenDate() const;
-    float getWeight() const;
-    float getShoulder() const;
-    float getChest() const;
-    float getArm() const;
-    float getBelly() const;
-    float getHip() const;
-    float getLeg() const;
-
-    void setWeight(float weight);
-    void setShoulder(float shoulder);
-    void setChest(float chest);
-    void setArm(float arm);
-    void setBelly(float belly);
-    void setHip(float hip);
-    void setLeg(float leg);
+    float GetWeight() const;
+    float GetShoulder() const;
+    float GetChest() const;
+    float GetArm() const;
+    float GetBelly() const;
+    float GetHip() const;
+    float GetLeg() const;
+    QDate GetTakenDate() const;
 
     QJsonObject toJson() const;
+
+protected:
+    void SetWeight(float weight);
+    void SetShoulder(float shoulder);
+    void SetChest(float chest);
+    void SetArm(float arm);
+    void SetBelly(float belly);
+    void SetHip(float hip);
+    void SetLeg(float leg);
+    void SetTakenDate(QDate taken_date);
 
 private:
     QDate taken_date_{QDate::currentDate()};

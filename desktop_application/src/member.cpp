@@ -8,7 +8,7 @@ Member::Member(const QString &name, int age, Measurement &first_measurement)
         EndSubscription();
 }
 
-void Member::SetSubscriptionStartDate(const QDate &start_date, const QDate &end_date){
+void Member::SetSubscriptionPeriod(const QDate &start_date, const QDate &end_date){
     subscription_start_date_ = start_date;
     subscription_end_date_ = end_date;
     subscription_ = true;
@@ -35,7 +35,6 @@ QJsonObject Member::toJson() const{
     json["subscription_start_date"] = subscription_start_date_.toString(Qt::ISODate);
     json["subscription_end_date"] = subscription_end_date_.toString(Qt::ISODate);
 
-
     QJsonArray measurementsArray;
     for (const auto &measurement : all_measurements_) {
         measurementsArray.append(measurement.toJson());
@@ -43,4 +42,36 @@ QJsonObject Member::toJson() const{
     json["measurements"] = measurementsArray;
 
     return json;
+}
+
+float Member::GetWeight(int measurement_no) const {
+    return all_measurements_.at(--measurement_no).GetWeight();
+}
+
+float Member::GetShoulder(int measurement_no) const {
+    return all_measurements_.at(--measurement_no).GetShoulder();
+}
+
+float Member::GetChest(int measurement_no) const {
+    return all_measurements_.at(--measurement_no).GetChest();
+}
+
+float Member::GetArm(int measurement_no) const {
+    return all_measurements_.at(--measurement_no).GetArm();
+}
+
+float Member::GetBelly(int measurement_no) const {
+    return all_measurements_.at(--measurement_no).GetBelly();
+}
+
+float Member::GetHip(int measurement_no) const {
+    return all_measurements_.at(--measurement_no).GetHip();
+}
+
+float Member::GetLeg(int measurement_no) const {
+    return all_measurements_.at(--measurement_no).GetLeg();
+}
+
+QDate Member::GetTakenDate(int measurement_no) const{
+    return all_measurements_.at(--measurement_no).GetTakenDate();
 }

@@ -12,14 +12,17 @@ class MemberManager
 {
 public:
     MemberManager();
-    void RegisterNewMember(Member &new_member);
+    void RegisterNewMember(const Member &new_member);
     void SaveMemberToJson(const Member &member);
+    bool GetMemberByName(const QString &name);
     // unsubscribe a member
     // start subscription of a member
-    // get/find a member
     // delete a member
+    Member *current_member;
 
 private:
+    Member* fromJsonObject(QJsonObject &member_json);
+
     QJsonArray members_json;
     QString file_path{"../../members.json"};
 };

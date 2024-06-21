@@ -5,22 +5,23 @@ Measurement::Measurement(float weight, float shoulder, float chest,
     : weight_(weight), shoulder_(shoulder), chest_(chest),
       arm_(arm), belly_(belly), hip_(hip), leg_(leg) {}
 
-float Measurement::getWeight() const { return weight_; }
-float Measurement::getShoulder() const { return shoulder_; }
-float Measurement::getChest() const { return chest_; }
-float Measurement::getArm() const { return arm_; }
-float Measurement::getBelly() const { return belly_; }
-float Measurement::getHip() const { return hip_; }
-float Measurement::getLeg() const { return leg_; }
-QDate Measurement::getTakenDate() const { return taken_date_; }
+float Measurement::GetWeight() const { return weight_; }
+float Measurement::GetShoulder() const { return shoulder_; }
+float Measurement::GetChest() const { return chest_; }
+float Measurement::GetArm() const { return arm_; }
+float Measurement::GetBelly() const { return belly_; }
+float Measurement::GetHip() const { return hip_; }
+float Measurement::GetLeg() const { return leg_; }
+QDate Measurement::GetTakenDate() const { return taken_date_; }
 
-void Measurement::setWeight(float weight) { weight_ = weight; }
-void Measurement::setShoulder(float shoulder) { shoulder_ = shoulder; }
-void Measurement::setChest(float chest) { chest_ = chest; }
-void Measurement::setArm(float arm) { arm_ = arm; }
-void Measurement::setBelly(float belly) { belly_ = belly; }
-void Measurement::setHip(float hip) { hip_ = hip; }
-void Measurement::setLeg(float leg) { leg_ = leg; }
+void Measurement::SetWeight(float weight) { weight_ = weight; }
+void Measurement::SetShoulder(float shoulder) { shoulder_ = shoulder; }
+void Measurement::SetChest(float chest) { chest_ = chest; }
+void Measurement::SetArm(float arm) { arm_ = arm; }
+void Measurement::SetBelly(float belly) { belly_ = belly; }
+void Measurement::SetHip(float hip) { hip_ = hip; }
+void Measurement::SetLeg(float leg) { leg_ = leg; }
+void Measurement::SetTakenDate(QDate taken_date) { taken_date_ = taken_date; }
 
 QJsonObject Measurement::toJson() const
 {
