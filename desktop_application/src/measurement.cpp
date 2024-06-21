@@ -14,14 +14,14 @@ float Measurement::GetHip() const { return hip_; }
 float Measurement::GetLeg() const { return leg_; }
 QDate Measurement::GetTakenDate() const { return taken_date_; }
 
-void Measurement::SetWeight(float weight) { weight_ = weight; }
+/*void Measurement::SetWeight(float weight) { weight_ = weight; }
 void Measurement::SetShoulder(float shoulder) { shoulder_ = shoulder; }
 void Measurement::SetChest(float chest) { chest_ = chest; }
 void Measurement::SetArm(float arm) { arm_ = arm; }
 void Measurement::SetBelly(float belly) { belly_ = belly; }
 void Measurement::SetHip(float hip) { hip_ = hip; }
 void Measurement::SetLeg(float leg) { leg_ = leg; }
-void Measurement::SetTakenDate(QDate taken_date) { taken_date_ = taken_date; }
+void Measurement::SetTakenDate(QDate taken_date) { taken_date_ = taken_date; }*/
 
 QJsonObject Measurement::toJson() const
 {

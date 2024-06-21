@@ -35,7 +35,7 @@ public:
 
     QJsonObject toJson() const;
 
-protected:
+/*protected:
     void SetWeight(float weight);
     void SetShoulder(float shoulder);
     void SetChest(float chest);
@@ -43,7 +43,7 @@ protected:
     void SetBelly(float belly);
     void SetHip(float hip);
     void SetLeg(float leg);
-    void SetTakenDate(QDate taken_date);
+    void SetTakenDate(QDate taken_date);*/
 
 private:
     QDate taken_date_;

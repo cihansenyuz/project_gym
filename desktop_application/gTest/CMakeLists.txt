@@ -11,10 +11,12 @@ find_package(GTest REQUIRED)
 find_package(Qt6 REQUIRED COMPONENTS Core)
 
 set (PROJECT_SOURCES
-  # add fixtures and source files
   measurements_fixture.cpp
   ../src/measurement.cpp
   ../inc/measurement.h
+  member_fixture.cpp
+  ../src/member.cpp
+  ../inc/member.h
 )
 
 add_executable(desktop_app_test ${PROJECT_SOURCES})
