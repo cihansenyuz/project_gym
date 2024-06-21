@@ -84,3 +84,7 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
     }
     return member_ptr;
 }
+
+Member* MemberManager::GetCurrentMember() const{
+    return current_member;
+}
