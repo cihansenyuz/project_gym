@@ -25,20 +25,19 @@ class MemberManager
 {
 public:
     MemberManager();
-    const Member* GetCurrentMember() const;
-    void RegisterNewMember(const Member &new_member);
-    bool GetMemberByName(const QString &name);
-    // unsubscribe a member
-    // start subscription of a member
+    Member* GetCurrentMember() const;
+    bool SetCurrentMemberByName(const QString &name);
+    void RegisterNewMember(const Member &member);
+    void SaveUpdatedCurrentMember();
     // delete a member
 
 private:
     Member* fromJsonObject(QJsonObject &member_json);
-    void SaveMemberToJson(const Member &member);
+    bool SaveToFile();
 
     QJsonArray members_json;
     QString file_path{"../../members.json"};
-    Member *current_member;
+    Member *current_member; /** points to the member ready to be manipulated */
 };
 
 #endif // MEMBERMANAGER_H

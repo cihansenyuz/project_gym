@@ -33,26 +33,13 @@ MemberManager::MemberManager() {
     }*/
 }
 
-void MemberManager::RegisterNewMember(const Member &new_member){
-    SaveMemberToJson(new_member);
-}
-
-void MemberManager::SaveMemberToJson(const Member &member){
+void MemberManager::RegisterNewMember(const Member &member){
     QJsonObject member_json = member.toJson();
     members_json.append(member_json);
-    QJsonDocument document(members_json);
-
-    QFile file(file_path);
-    if (!file.open(QIODevice::WriteOnly)) {
-        qDebug() << "Failed to open file for writing:" << file.errorString();
-        return;
-    }
-
-    file.write(document.toJson());
-    file.close();
+    SaveToFile();
 }
 
-bool MemberManager::GetMemberByName(const QString &name) {
+bool MemberManager::SetCurrentMemberByName(const QString &name) {
     for(const QJsonValue &value : members_json) {
         QJsonObject member_json = value.toObject();
         if (member_json["name"].toString() == name){
@@ -87,4 +74,27 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
 
 Member* MemberManager::GetCurrentMember() const{
     return current_member;
+}
+
+void MemberManager::SaveUpdatedCurrentMember(){
+    for (int i = 0; i < members_json.size(); ++i) {
+        QJsonObject member_json = members_json[i].toObject();
+        if (member_json["name"].toString() == current_member->GetName()) {
+            members_json[i] = QJsonValue(current_member->toJson());
+        }
+    }
+    SaveToFile();
+}
+
+bool MemberManager::SaveToFile(){
+    QJsonDocument document(members_json);
+    QFile file(file_path);
+    if (!file.open(QIODevice::WriteOnly)) {
+        qDebug() << "Failed to open file for writing:" << file.errorString();
+        return false;
+    }
+
+    file.write(document.toJson());
+    file.close();
+    return true;
 }

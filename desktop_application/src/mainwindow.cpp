@@ -9,9 +9,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     //////// TEST & DEBUG SECTION /////////
 
-    if(member_manager.GetMemberByName("John Doe")){
+    if(member_manager.SetCurrentMemberByName("John Doe")){
         qDebug() << "name: " << member_manager.GetCurrentMember()->GetName();
-        qDebug() << "measurement taken date: " << member_manager.GetCurrentMember()->GetTakenDate(1);
+        //Measurement temp;
+        //temp = member_manager.GetCurrentMember()->GetLastMeasurements();
+        //member_manager.GetCurrentMember()->AddMeasurement(temp);
+        //member_manager.SaveUpdatedCurrentMember();
     }
     else
         qDebug() << "no member found";

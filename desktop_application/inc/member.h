@@ -20,6 +20,12 @@
 #include <QJsonArray>
 #include "measurement.h"
 
+/**
+ *  NOTE: In case any property changes done to the class,
+ *  toJson behaviour must be revised. Also,
+ *  fromJsonObject, SaveUpdatedCurrentMember behaviours of
+ *  MemberManager class must be revised!
+ */
 class Member : public Measurement
 {
 public:
