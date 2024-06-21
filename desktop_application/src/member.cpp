@@ -81,25 +81,11 @@ QDate Member::GetTakenDate(int measurement_no) const{
     return all_measurements_.at(--measurement_no).GetTakenDate();
 }
 
-QString Member::GetName() const {
-    return name_;
-}
-
-int Member::GetAge() const {
-    return age_;
-}
-
-bool Member::HasSubscription() const {
-    return subscription_;
-}
-
-QDate Member::GetSubscriptionStartDate() const {
-    return subscription_start_date_;
-}
-
-QDate Member::GetSubscriptionEndDate() const {
-    return subscription_end_date_;
-}
+QString Member::GetName() const { return name_; }
+int Member::GetAge() const { return age_; }
+bool Member::HasSubscription() const { return subscription_; }
+QDate Member::GetSubscriptionStartDate() const { return subscription_start_date_; }
+QDate Member::GetSubscriptionEndDate() const { return subscription_end_date_; }
 
 std::vector<Measurement> Member::GetAllMeasurements() const {
     return all_measurements_;

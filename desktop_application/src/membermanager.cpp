@@ -22,15 +22,6 @@ MemberManager::MemberManager() {
     }
 
     members_json = json_document.array();
-    /*for(const QJsonValue &value : members_json){
-        QJsonObject member = value.toObject();
-        qDebug() << member["name"].toString();
-
-        for(const QJsonValue &value : member["measurements"].toArray()){
-            QJsonObject measurement = value.toObject();
-            qDebug() << measurement["arm"].toDouble();
-        }
-    }*/
 }
 
 void MemberManager::RegisterNewMember(const Member &member){
