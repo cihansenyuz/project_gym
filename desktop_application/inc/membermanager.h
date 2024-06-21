@@ -1,3 +1,16 @@
+/**
+  ******************************************************************************
+  * @file    membermanager.hpp
+  * @author  Cihan Senyuz
+  * @date    20.06.2024
+  * @brief   Header for membermanager.cpp file.
+  *                 This file contains the class to manage members saved in a Json
+  *          file. Upon creation of instance, reads saved member datas, then using
+  *          behaviours, data is manipulated as desired.
+  *
+  ******************************************************************************
+  */
+
 #ifndef MEMBERMANAGER_H
 #define MEMBERMANAGER_H
 

@@ -1,3 +1,16 @@
+/**
+  ******************************************************************************
+  * @file    measurement.hpp
+  * @author  Cihan Senyuz
+  * @date    19.06.2024
+  * @brief   Header for measurement.cpp file.
+  *                 This file contains the class for measurements. Encapsulates
+  *          all measured data and date information of the measurements. Also,
+  *          provides a method to convert all data to JSON format using QJsonObject
+  *
+  ******************************************************************************
+  */
+
 #ifndef MEASUREMENT_H
 #define MEASUREMENT_H
 
