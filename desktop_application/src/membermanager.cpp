@@ -65,21 +65,21 @@ bool MemberManager::GetMemberByName(const QString &name) {
 
 Member* MemberManager::fromJsonObject(QJsonObject &member_json){
     Member *member_ptr = new Member();
-    /*member_ptr->SetName(member_json["name"].toString());
+    member_ptr->SetName(member_json["name"].toString());
     member_ptr->SetAge(member_json["age"].toInt());
-    member_ptr->SetSubscription(QDate::fromString(member_json["subscription_start_date"].toString(), Qt::ISODate));
-    member_ptr->SetSubscriptionStartDate(QDate::fromString(member_json["subscription_end_date"].toString(), Qt::ISODate));
-    */
+    member_ptr->SetSubscriptionPeriod(QDate::fromString(member_json["subscription_start_date"].toString(), Qt::ISODate),
+                                      QDate::fromString(member_json["subscription_end_date"].toString(), Qt::ISODate));
+
     for(const QJsonValue &value : member_json["measurements"].toArray()){
         QJsonObject measurement_json = value.toObject();
-        Measurement recorded_measurement(measurement_json["weight"].toDouble(),
-                                        measurement_json["shoulder"].toDouble(),
-                                        measurement_json["chest"].toDouble(),
-                                        measurement_json["arm"].toDouble(),
-                                        measurement_json["belly"].toDouble(),
-                                        measurement_json["hip"].toDouble(),
-                                        measurement_json["leg"].toDouble());
-        recorded_measurement.SetTakenDate(QDate::fromString(measurement_json["taken_date"].toString(), Qt::ISODate));
+        Measurement recorded_measurement(QDate::fromString(measurement_json["taken_date"].toString(), Qt::ISODate),
+                                         measurement_json["weight"].toDouble(),
+                                         measurement_json["shoulder"].toDouble(),
+                                         measurement_json["chest"].toDouble(),
+                                         measurement_json["arm"].toDouble(),
+                                         measurement_json["belly"].toDouble(),
+                                         measurement_json["hip"].toDouble(),
+                                         measurement_json["leg"].toDouble());
         member_ptr->AddMeasurement(recorded_measurement);
     }
     return member_ptr;

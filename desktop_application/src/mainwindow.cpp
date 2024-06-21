@@ -10,8 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
     //////// TEST & DEBUG SECTION /////////
 
     if(member_manager.GetMemberByName("John Doe")){
-        qDebug() << "leg: " << member_manager.current_member->GetLeg(1);
-        qDebug() << "taken date: " << member_manager.current_member->GetTakenDate(1);
+        qDebug() << "name: " << member_manager.current_member->GetName();
+        qDebug() << "measurement taken date: " << member_manager.current_member->GetTakenDate(1);
     }
     else
         qDebug() << "no member found";

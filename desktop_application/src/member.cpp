@@ -8,10 +8,15 @@ Member::Member(const QString &name, int age, Measurement &first_measurement)
         EndSubscription();
 }
 
+void Member::SetName(const QString &name){ name_ = name; }
+
+void Member::SetAge(int age){ age_ = age; }
+
 void Member::SetSubscriptionPeriod(const QDate &start_date, const QDate &end_date){
     subscription_start_date_ = start_date;
     subscription_end_date_ = end_date;
-    subscription_ = true;
+    if(end_date > QDate::currentDate())
+        subscription_ = true;
 }
 
 void Member::ExtendSubscriptionEndDate(const QDate &end_date){
@@ -74,4 +79,32 @@ float Member::GetLeg(int measurement_no) const {
 
 QDate Member::GetTakenDate(int measurement_no) const{
     return all_measurements_.at(--measurement_no).GetTakenDate();
+}
+
+QString Member::GetName() const {
+    return name_;
+}
+
+int Member::GetAge() const {
+    return age_;
+}
+
+bool Member::HasSubscription() const {
+    return subscription_;
+}
+
+QDate Member::GetSubscriptionStartDate() const {
+    return subscription_start_date_;
+}
+
+QDate Member::GetSubscriptionEndDate() const {
+    return subscription_end_date_;
+}
+
+std::vector<Measurement> Member::GetAllMeasurements() const {
+    return all_measurements_;
+}
+
+Measurement Member::GetLastMeasurements() const {
+    return all_measurements_.back();
 }

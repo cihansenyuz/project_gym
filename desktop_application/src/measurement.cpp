@@ -1,8 +1,8 @@
 #include "../inc/measurement.h"
 
-Measurement::Measurement(float weight, float shoulder, float chest,
+Measurement::Measurement(QDate date, float weight, float shoulder, float chest,
                          float arm, float belly, float hip, float leg)
-    : weight_(weight), shoulder_(shoulder), chest_(chest),
+    : taken_date_(date), weight_(weight), shoulder_(shoulder), chest_(chest),
       arm_(arm), belly_(belly), hip_(hip), leg_(leg) {}
 
 float Measurement::GetWeight() const { return weight_; }

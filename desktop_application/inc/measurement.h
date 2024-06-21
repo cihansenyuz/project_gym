@@ -9,7 +9,7 @@ class Measurement
 {
 public:
     Measurement() = default;
-    Measurement(float weight, float shoulder, float chest,
+    Measurement(QDate date, float weight, float shoulder, float chest,
                 float arm, float belly, float hip, float leg);
     float GetWeight() const;
     float GetShoulder() const;
@@ -33,7 +33,7 @@ protected:
     void SetTakenDate(QDate taken_date);
 
 private:
-    QDate taken_date_{QDate::currentDate()};
+    QDate taken_date_;
     float weight_;
     float shoulder_;
     float chest_;
