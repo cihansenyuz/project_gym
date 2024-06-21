@@ -40,13 +40,15 @@ void MemberManager::RegisterNewMember(const Member &member){
 }
 
 bool MemberManager::SetCurrentMemberByName(const QString &name) {
-    for(const QJsonValue &value : members_json) {
-        QJsonObject member_json = value.toObject();
-        if (member_json["name"].toString() == name){
+    for (int i = 0; i < members_json.size(); ++i) {
+        QJsonObject member_json = members_json[i].toObject();
+        if (member_json["name"].toString() == name) {
             current_member = fromJsonObject(member_json);
             return true;
         }
     }
+    return false;
+
     return false; // member not found
 }
 
@@ -57,8 +59,9 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
     member_ptr->SetSubscriptionPeriod(QDate::fromString(member_json["subscription_start_date"].toString(), Qt::ISODate),
                                       QDate::fromString(member_json["subscription_end_date"].toString(), Qt::ISODate));
 
-    for(const QJsonValue &value : member_json["measurements"].toArray()){
-        QJsonObject measurement_json = value.toObject();
+    QJsonArray measurementsArray = member_json["measurements"].toArray();
+    for (int i = 0; i < measurementsArray.size(); ++i) {
+        QJsonObject measurement_json = measurementsArray[i].toObject();
         Measurement recorded_measurement(QDate::fromString(measurement_json["taken_date"].toString(), Qt::ISODate),
                                          measurement_json["weight"].toDouble(),
                                          measurement_json["shoulder"].toDouble(),
