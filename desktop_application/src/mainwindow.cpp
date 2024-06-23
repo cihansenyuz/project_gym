@@ -9,8 +9,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     //////// TEST & DEBUG SECTION /////////
 
-    if(member_manager.SetCurrentMemberByName("John Doe")){
-        qDebug() << "name: " << member_manager.GetCurrentMember()->GetName();
+    if(member_manager.SetCurrentMemberByName("Chris Johnson")){
+        qDebug() << "current selected member: " << member_manager.GetCurrentMember()->GetName();
+        //member_manager.DeleteCurrentMember();
     }
     else
         qDebug() << "no member found";

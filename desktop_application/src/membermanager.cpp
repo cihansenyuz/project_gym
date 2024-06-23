@@ -70,7 +70,7 @@ Member* MemberManager::GetCurrentMember() const{
     return current_member;
 }
 
-void MemberManager::SaveUpdatedCurrentMember(){
+void MemberManager::SaveChangesOnCurrentMember(){
     for (int i = 0; i < members_json.size(); ++i) {
         QJsonObject member_json = members_json[i].toObject();
         if (member_json["name"].toString() == current_member->GetName()) {
@@ -91,4 +91,14 @@ bool MemberManager::SaveToFile(){
     file.write(document.toJson());
     file.close();
     return true;
+}
+
+void MemberManager::DeleteCurrentMember(){
+    for (int i = 0; i < members_json.size(); ++i) {
+        QJsonObject member_json = members_json[i].toObject();
+        if (member_json["name"].toString() == current_member->GetName()) {
+            members_json.removeAt(i);
+        }
+    }
+    SaveToFile();
 }

@@ -28,8 +28,8 @@ public:
     Member* GetCurrentMember() const;
     bool SetCurrentMemberByName(const QString &name);
     void RegisterNewMember(const Member &member);
-    void SaveUpdatedCurrentMember();
-    // delete a member
+    void SaveChangesOnCurrentMember();
+    void DeleteCurrentMember();
 
 private:
     Member* fromJsonObject(QJsonObject &member_json);
