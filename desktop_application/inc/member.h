@@ -51,6 +51,7 @@ public:
     Measurement GetLastMeasurements() const;
     void AddArchivedSubscription(const Subscription &archived);
     void EndSubscription();
+    std::vector<Subscription> GetAllArchivedSubscriptions();
 
 private:
     QString name_;

@@ -4,8 +4,6 @@ Member::Member(const QString &name, int age, Measurement &first_measurement)
     : name_(name), age_(age), Measurement(first_measurement) {
 
     all_measurements_.push_back(first_measurement);
-    if(GetSubscriptionEndDate() < QDate::currentDate())
-        EndSubscription();
 }
 
 void Member::SetName(const QString &name){ name_ = name; }
@@ -96,4 +94,8 @@ void Member::EndSubscription(){
     last_subscription.SetSubscriptionPeriod(GetSubscriptionStartDate(), GetSubscriptionEndDate());
     last_subscription.EndSubscription();
     archived_subscriptions_.push_back(last_subscription);
+}
+
+std::vector<Subscription> Member::GetAllArchivedSubscriptions(){
+    return archived_subscriptions_;
 }

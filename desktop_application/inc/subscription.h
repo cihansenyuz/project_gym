@@ -20,7 +20,7 @@ public:
 private:
     QDate start_date_;
     QDate end_date_;
-    bool status_;
+    bool status_{false};
     //int price_;
 };
 

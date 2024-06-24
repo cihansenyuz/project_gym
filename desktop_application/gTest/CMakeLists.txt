@@ -17,6 +17,8 @@ set (PROJECT_SOURCES
   member_fixture.cpp
   ../src/member.cpp
   ../inc/member.h
+  ../src/subscription.cpp
+  ../inc/subscription.h
 )
 
 add_executable(desktop_app_test ${PROJECT_SOURCES})

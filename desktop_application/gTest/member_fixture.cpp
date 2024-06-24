@@ -15,6 +15,10 @@ protected:
         delete member;
     }
 
+    void debug(){
+        std::cout << "size: " << member->GetAllArchivedSubscriptions().size() << std::endl;
+    }
+
     Member *member;
     Measurement initial_measurement;
 };
@@ -61,14 +65,6 @@ TEST_F(MemberFixture, TestExtendSubscriptionEndDate) {
     QDate new_end_date(2024, 12, 31);
     member->ExtendSubscriptionEndDate(new_end_date);
     EXPECT_EQ(member->GetSubscriptionEndDate(), new_end_date);
-}
-
-TEST_F(MemberFixture, TestEndSubscription) {
-    QDate start_date(2023, 1, 1);
-    QDate end_date(2023, 12, 31);
-    member->SetSubscriptionPeriod(start_date, end_date);
-    member->EndSubscription();
-    EXPECT_FALSE(member->HasSubscription());
 }
 
 TEST_F(MemberFixture, TestToJson) {
@@ -145,6 +141,26 @@ TEST_F(MemberFixture, TestGetSubscriptionEndDate) {
     QDate end_date(2023, 12, 31);
     member->SetSubscriptionPeriod(start_date, end_date);
     EXPECT_EQ(member->GetSubscriptionEndDate(), end_date);
+}
+
+TEST_F(MemberFixture, TestEndSubscription){
+    QDate start_date(2024, 1, 1);
+    QDate end_date(2024, 12, 31);
+    member->SetSubscriptionPeriod(start_date, end_date);
+    EXPECT_TRUE(member->HasSubscription());
+    member->EndSubscription();
+    EXPECT_FALSE(member->HasSubscription());
+}
+
+TEST_F(MemberFixture, TestAddArchivedSubscription){
+    QDate start_date(2024, 1, 1);
+    QDate end_date(2024, 12, 31);
+    member->SetSubscriptionPeriod(start_date, end_date);
+    EXPECT_TRUE(member->HasSubscription());
+    EXPECT_EQ(member->GetAllArchivedSubscriptions().size(), 0);
+    member->EndSubscription();
+    EXPECT_EQ(member->GetAllArchivedSubscriptions().size(), 1);
+    EXPECT_EQ(member->GetAllArchivedSubscriptions().back().GetSubscriptionEndDate(), QDate::currentDate());
 }
 
 TEST_F(MemberFixture, TestGetAllMeasurements) {
