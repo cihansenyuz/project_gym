@@ -74,14 +74,14 @@ TEST_F(MemberFixture, TestToJson) {
 }
 
 TEST_F(MemberFixture, TestGetMeasurementFunctions) {
-    EXPECT_FLOAT_EQ(member->GetWeight(1), 70.5);
-    EXPECT_FLOAT_EQ(member->GetShoulder(1), 40.0);
-    EXPECT_FLOAT_EQ(member->GetChest(1), 100.0);
-    EXPECT_FLOAT_EQ(member->GetArm(1), 30.0);
-    EXPECT_FLOAT_EQ(member->GetBelly(1), 90.0);
-    EXPECT_FLOAT_EQ(member->GetHip(1), 95.0);
-    EXPECT_FLOAT_EQ(member->GetLeg(1), 60.0);
-    EXPECT_EQ(member->GetTakenDate(1), QDate(2023, 1, 1));
+    EXPECT_FLOAT_EQ(member->GetWeight(), 70.5);
+    EXPECT_FLOAT_EQ(member->GetShoulder(), 40.0);
+    EXPECT_FLOAT_EQ(member->GetChest(), 100.0);
+    EXPECT_FLOAT_EQ(member->GetArm(), 30.0);
+    EXPECT_FLOAT_EQ(member->GetBelly(), 90.0);
+    EXPECT_FLOAT_EQ(member->GetHip(), 95.0);
+    EXPECT_FLOAT_EQ(member->GetLeg(), 60.0);
+    EXPECT_EQ(member->GetTakenDate(), QDate(2023, 1, 1));
 }
 
 TEST_F(MemberFixture, TestAddMeasurement) {
@@ -91,26 +91,28 @@ TEST_F(MemberFixture, TestAddMeasurement) {
 }
 
 TEST_F(MemberFixture, TestGetMeasurementFunctionsWhenAddMeasurementUsed) {
+    // first measurements
+    EXPECT_FLOAT_EQ(member->GetWeight(), 70.5);
+    EXPECT_FLOAT_EQ(member->GetShoulder(), 40.0);
+    EXPECT_FLOAT_EQ(member->GetChest(), 100.0);
+    EXPECT_FLOAT_EQ(member->GetArm(), 30.0);
+    EXPECT_FLOAT_EQ(member->GetBelly(), 90.0);
+    EXPECT_FLOAT_EQ(member->GetHip(), 95.0);
+    EXPECT_FLOAT_EQ(member->GetLeg(), 60.0);
+    EXPECT_EQ(member->GetTakenDate(), QDate(2023, 1, 1));
+    
     Measurement new_measurement(QDate(2023, 2, 2), 71.5, 40.6, 101.0, 32.2, 89.3, 95.0, 60.0);
     member->AddMeasurement(new_measurement);
 
-    EXPECT_FLOAT_EQ(member->GetWeight(1), 70.5);
-    EXPECT_FLOAT_EQ(member->GetShoulder(1), 40.0);
-    EXPECT_FLOAT_EQ(member->GetChest(1), 100.0);
-    EXPECT_FLOAT_EQ(member->GetArm(1), 30.0);
-    EXPECT_FLOAT_EQ(member->GetBelly(1), 90.0);
-    EXPECT_FLOAT_EQ(member->GetHip(1), 95.0);
-    EXPECT_FLOAT_EQ(member->GetLeg(1), 60.0);
-    EXPECT_EQ(member->GetTakenDate(1), QDate(2023, 1, 1));
-
-    EXPECT_FLOAT_EQ(member->GetWeight(2), 71.5);
-    EXPECT_FLOAT_EQ(member->GetShoulder(2), 40.6);
-    EXPECT_FLOAT_EQ(member->GetChest(2), 101.0);
-    EXPECT_FLOAT_EQ(member->GetArm(2), 32.2);
-    EXPECT_FLOAT_EQ(member->GetBelly(2), 89.3);
-    EXPECT_FLOAT_EQ(member->GetHip(2), 95.0);
-    EXPECT_FLOAT_EQ(member->GetLeg(2), 60.0);
-    EXPECT_EQ(member->GetTakenDate(2), QDate(2023, 2, 2));
+    // last measurement as a new ones
+    EXPECT_FLOAT_EQ(member->GetWeight(), 71.5);
+    EXPECT_FLOAT_EQ(member->GetShoulder(), 40.6);
+    EXPECT_FLOAT_EQ(member->GetChest(), 101.0);
+    EXPECT_FLOAT_EQ(member->GetArm(), 32.2);
+    EXPECT_FLOAT_EQ(member->GetBelly(), 89.3);
+    EXPECT_FLOAT_EQ(member->GetHip(), 95.0);
+    EXPECT_FLOAT_EQ(member->GetLeg(), 60.0);
+    EXPECT_EQ(member->GetTakenDate(), QDate(2023, 2, 2));
 }
 
 TEST_F(MemberFixture, TestGetName) {
@@ -174,12 +176,12 @@ TEST_F(MemberFixture, TestGetLastMeasurements) {
     member->AddMeasurement(another_measurement);
     Measurement last_measurement = member->GetLastMeasurements();
 
-    EXPECT_FLOAT_EQ(member->GetWeight(3), last_measurement.GetWeight());
-    EXPECT_FLOAT_EQ(member->GetShoulder(3), last_measurement.GetShoulder());
-    EXPECT_FLOAT_EQ(member->GetChest(3), last_measurement.GetChest());
-    EXPECT_FLOAT_EQ(member->GetArm(3), last_measurement.GetArm());
-    EXPECT_FLOAT_EQ(member->GetBelly(3), last_measurement.GetBelly());
-    EXPECT_FLOAT_EQ(member->GetHip(3), last_measurement.GetHip());
-    EXPECT_FLOAT_EQ(member->GetLeg(3), last_measurement.GetLeg());
-    EXPECT_EQ(member->GetTakenDate(3), last_measurement.GetTakenDate());
+    EXPECT_FLOAT_EQ(member->GetWeight(), last_measurement.GetWeight());
+    EXPECT_FLOAT_EQ(member->GetShoulder(), last_measurement.GetShoulder());
+    EXPECT_FLOAT_EQ(member->GetChest(), last_measurement.GetChest());
+    EXPECT_FLOAT_EQ(member->GetArm(), last_measurement.GetArm());
+    EXPECT_FLOAT_EQ(member->GetBelly(), last_measurement.GetBelly());
+    EXPECT_FLOAT_EQ(member->GetHip(), last_measurement.GetHip());
+    EXPECT_FLOAT_EQ(member->GetLeg(), last_measurement.GetLeg());
+    EXPECT_EQ(member->GetTakenDate(), last_measurement.GetTakenDate());
 }

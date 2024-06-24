@@ -37,14 +37,14 @@ public:
     void AddMeasurement(Measurement &new_measurement);
     QJsonObject toJson() const;
 
-    float GetWeight(int measurement_no) const;
-    float GetShoulder(int measurement_no) const;
-    float GetChest(int measurement_no) const;
-    float GetArm(int measurement_no) const;
-    float GetBelly(int measurement_no) const;
-    float GetHip(int measurement_no) const;
-    float GetLeg(int measurement_no) const;
-    QDate GetTakenDate(int measurement_no) const;
+    float GetWeight() const;
+    float GetShoulder() const;
+    float GetChest() const;
+    float GetArm() const;
+    float GetBelly() const;
+    float GetHip() const;
+    float GetLeg() const;
+    QDate GetTakenDate() const;
     QString GetName() const;
     int GetAge() const;
     std::vector<Measurement> GetAllMeasurements() const;

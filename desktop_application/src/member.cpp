@@ -40,49 +40,18 @@ QJsonObject Member::toJson() const{
     return json;
 }
 
-float Member::GetWeight(int measurement_no) const {
-    return all_measurements_.at(--measurement_no).GetWeight();
-}
-
-float Member::GetShoulder(int measurement_no) const {
-    return all_measurements_.at(--measurement_no).GetShoulder();
-}
-
-float Member::GetChest(int measurement_no) const {
-    return all_measurements_.at(--measurement_no).GetChest();
-}
-
-float Member::GetArm(int measurement_no) const {
-    return all_measurements_.at(--measurement_no).GetArm();
-}
-
-float Member::GetBelly(int measurement_no) const {
-    return all_measurements_.at(--measurement_no).GetBelly();
-}
-
-float Member::GetHip(int measurement_no) const {
-    return all_measurements_.at(--measurement_no).GetHip();
-}
-
-float Member::GetLeg(int measurement_no) const {
-    return all_measurements_.at(--measurement_no).GetLeg();
-}
-
-QDate Member::GetTakenDate(int measurement_no) const{
-    return all_measurements_.at(--measurement_no).GetTakenDate();
-}
-
+float Member::GetWeight() const { return all_measurements_.back().GetWeight(); }
+float Member::GetShoulder() const { return all_measurements_.back().GetShoulder(); }
+float Member::GetChest() const { return all_measurements_.back().GetChest(); }
+float Member::GetArm() const { return all_measurements_.back().GetArm(); }
+float Member::GetBelly() const { return all_measurements_.back().GetBelly(); }
+float Member::GetHip() const { return all_measurements_.back().GetHip(); }
+float Member::GetLeg() const { return all_measurements_.back().GetLeg(); }
+QDate Member::GetTakenDate() const{ return all_measurements_.back().GetTakenDate(); }
 QString Member::GetName() const { return name_; }
 int Member::GetAge() const { return age_; }
-
-
-std::vector<Measurement> Member::GetAllMeasurements() const {
-    return all_measurements_;
-}
-
-Measurement Member::GetLastMeasurements() const {
-    return all_measurements_.back();
-}
+std::vector<Measurement> Member::GetAllMeasurements() const { return all_measurements_; }
+Measurement Member::GetLastMeasurements() const { return all_measurements_.back(); }
 
 void Member::AddArchivedSubscription(const Subscription &archived){
     archived_subscriptions_.push_back(archived);
