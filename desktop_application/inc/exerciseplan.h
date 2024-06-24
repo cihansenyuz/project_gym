@@ -24,6 +24,7 @@ class ExercisePlan
 public:
     ExercisePlan() = default;
     void AddNewExercise(const Exercise::Exercise_t &new_exercise, short cooldown_days);
+    std::map<QString, Exercise::Exercise_t> GetExercisePlan();
     void SetTargetDate(const QDate &end_day);
     short RemaningDays();
     void PrintPlan();

@@ -4,6 +4,10 @@ void ExercisePlan::AddNewExercise(const Exercise::Exercise_t &new_exercise,  sho
     weekly_plan_["T+"+QString::number(cooldown_days)] = new_exercise;
 }
 
+std::map<QString, Exercise::Exercise_t> ExercisePlan::GetExercisePlan(){
+    return weekly_plan_;
+}
+
 void ExercisePlan::SetTargetDate(const QDate &end_day){
     start_day_ = QDate::currentDate();
     end_day_ = end_day;

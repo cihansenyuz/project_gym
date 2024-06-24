@@ -19,8 +19,11 @@ set (PROJECT_SOURCES
   ../inc/member.h
   ../src/subscription.cpp
   ../inc/subscription.h
+  exerciseplan_fixture.cpp
+  ../src/exerciseplan.cpp
+  ../inc/exerciseplan.h
 )
 
 add_executable(desktop_app_test ${PROJECT_SOURCES})
 target_link_libraries(desktop_app_test PRIVATE Qt6::Core GTest::GTest GTest::Main)
-add_test(Measurements_Unit_Test desktop_app_test)
+add_test(All_Unit_Test desktop_app_test)
