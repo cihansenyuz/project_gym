@@ -19,6 +19,7 @@
 #include <QJsonObject>
 #include <QJsonArray>
 #include "measurement.h"
+#include "subscription.h"
 
 /**
  *  NOTE: In case any property changes done to the class,
@@ -26,16 +27,13 @@
  *  fromJsonObject, SaveUpdatedCurrentMember behaviours of
  *  MemberManager class must be revised!
  */
-class Member : public Measurement
+class Member : public Measurement, public Subscription
 {
 public:
     Member() = default;
     Member(const QString &name, int age, Measurement &first_measurement);
     void SetName(const QString &name);
     void SetAge(int age);
-    void SetSubscriptionPeriod(const QDate &start_date, const QDate &end_date);
-    void ExtendSubscriptionEndDate(const QDate &end_date);
-    void EndSubscription();
     void AddMeasurement(Measurement &new_measurement);
     QJsonObject toJson() const;
 
@@ -49,19 +47,16 @@ public:
     QDate GetTakenDate(int measurement_no) const;
     QString GetName() const;
     int GetAge() const;
-    bool HasSubscription() const;
-    QDate GetSubscriptionStartDate() const;
-    QDate GetSubscriptionEndDate() const;
     std::vector<Measurement> GetAllMeasurements() const;
     Measurement GetLastMeasurements() const;
+    void AddArchivedSubscription(const Subscription &archived);
+    void EndSubscription();
 
 private:
     QString name_;
     int age_;
-    bool subscription_{false};
-    QDate subscription_start_date_;
-    QDate subscription_end_date_;
     std::vector<Measurement> all_measurements_;
+    std::vector<Subscription> archived_subscriptions_;
 };
 
 #endif // MEMBER_H

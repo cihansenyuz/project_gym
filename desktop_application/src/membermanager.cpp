@@ -47,8 +47,6 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
     Member *member_ptr = new Member();
     member_ptr->SetName(member_json["name"].toString());
     member_ptr->SetAge(member_json["age"].toInt());
-    member_ptr->SetSubscriptionPeriod(QDate::fromString(member_json["subscription_start_date"].toString(), Qt::ISODate),
-                                      QDate::fromString(member_json["subscription_end_date"].toString(), Qt::ISODate));
 
     QJsonArray measurementsArray = member_json["measurements"].toArray();
     for (int i = 0; i < measurementsArray.size(); ++i) {
@@ -63,6 +61,19 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
                                          measurement_json["leg"].toDouble());
         member_ptr->AddMeasurement(recorded_measurement);
     }
+
+    member_ptr->SetSubscriptionPeriod(QDate::fromString(member_json["subscription_start_date"].toString(), Qt::ISODate),
+                                      QDate::fromString(member_json["subscription_end_date"].toString(), Qt::ISODate));
+
+    QJsonArray subscriptions_array = member_json["archived_subscriptions"].toArray();
+    for (int i = 0; i < subscriptions_array.size(); ++i) {
+        QJsonObject subscription_json = subscriptions_array[i].toObject();
+        Subscription archived_subscription(QDate::fromString(subscription_json["subscription_start_date"].toString(), Qt::ISODate),
+                                         QDate::fromString(subscription_json["subscription_end_date"].toString(), Qt::ISODate),
+                                         subscription_json["subscription"].toBool());
+        member_ptr->AddArchivedSubscription(archived_subscription);
+    }
+
     return member_ptr;
 }
 

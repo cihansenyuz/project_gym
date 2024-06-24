@@ -18,18 +18,22 @@ set(PROJECT_SOURCES
         src/member.cpp
         src/measurement.cpp
         src/membermanager.cpp
+        src/subscription.cpp
+
         inc/mainwindow.h
         inc/member.h
         inc/measurement.h
         inc/membermanager.h
+        inc/subscription.h
+
         ui/mainwindow.ui
-        members.json
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(desktop_application
         MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}   
+        ${PROJECT_SOURCES}
+        members.json
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET desktop_application APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
