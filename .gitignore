@@ -1,3 +1,4 @@
 mobile_application/build/
 desktop_application/build/
 desktop_application/test_build/
+desktop_application/gTest/build/
