@@ -71,9 +71,57 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
         Subscription archived_subscription(QDate::fromString(subscription_json["subscription_start_date"].toString(), Qt::ISODate),
                                          QDate::fromString(subscription_json["subscription_end_date"].toString(), Qt::ISODate),
                                          subscription_json["subscription"].toBool());
-        member_ptr->AddArchivedSubscription(archived_subscription);
+        member_ptr->AddSubscriptionToArchive(archived_subscription);
     }
 
+    if (member_json.contains("exercise_plan")) {
+        QJsonObject exercise_plan_json = member_json["exercise_plan"].toObject();
+        member_ptr->SetTargetDate(QDate::fromString(exercise_plan_json["end_day"].toString(), Qt::ISODate),
+                                             QDate::fromString(exercise_plan_json["start_day"].toString(), Qt::ISODate));
+
+        QJsonArray current_weekly_plan_array = exercise_plan_json["weekly_plan"].toArray();
+        std::map<QString, Exercise::Exercise_t> current_exercises;
+        for (int i = 0; i < current_weekly_plan_array.size(); ++i){
+            QJsonObject current_weekly_plan_json = current_weekly_plan_array[i].toObject();
+            QString valor = current_weekly_plan_json["valor"].toString();
+            QJsonObject current_exercise_json = current_weekly_plan_json["exercise"].toObject();
+
+            Exercise::Exercise_t current_exercise;
+            current_exercise.type = Exercise::fromStringExerciseType(current_exercise_json["type"].toString());
+            current_exercise.name = Exercise::fromStringExerciseName(current_exercise_json["name"].toString());
+            current_exercise.set = current_exercise_json["set"].toInt();
+            current_exercise.repeat = current_exercise_json["repeat"].toInt();
+
+            current_exercises.insert(std::make_pair(valor, current_exercise));
+        }
+        member_ptr->SetWeeklyPlan(current_exercises);
+    }
+
+    QJsonArray exercise_plans_array = member_json["archived_exercise_plans"].toArray();
+    for (int i = 0; i < exercise_plans_array.size(); ++i) {
+        QJsonObject exercise_plan_json = exercise_plans_array[i].toObject();
+        ExercisePlan archived_exercise_plan;
+        archived_exercise_plan.SetTargetDate(QDate::fromString(exercise_plan_json["end_day"].toString(), Qt::ISODate),
+                                            QDate::fromString(exercise_plan_json["start_day"].toString(), Qt::ISODate));
+
+        QJsonArray weekly_plan_array = exercise_plan_json["weekly_plan"].toArray();
+        std::map<QString, Exercise::Exercise_t> archived_exercises;
+        for (int i = 0; i < weekly_plan_array.size(); ++i){
+            QJsonObject weekly_plan_json = weekly_plan_array[i].toObject();
+            QString valor = weekly_plan_json["valor"].toString();
+            QJsonObject exercise_json = weekly_plan_json["exercise"].toObject();
+
+            Exercise::Exercise_t exercise;
+            exercise.type = Exercise::fromStringExerciseType(exercise_json["type"].toString());
+            exercise.name = Exercise::fromStringExerciseName(exercise_json["name"].toString());
+            exercise.set = exercise_json["set"].toInt();
+            exercise.repeat = exercise_json["repeat"].toInt();
+
+            archived_exercises.insert(std::make_pair(valor, exercise));
+        }
+        archived_exercise_plan.SetWeeklyPlan(archived_exercises);
+        member_ptr->AddExercisePlanToArchive(archived_exercise_plan);
+    }
     return member_ptr;
 }
 

@@ -1,298 +1,846 @@
 [
     {
-        "age": 22,
-        "archived_subscriptions": [
-            {
-                "subscription": false,
-                "subscription_end_date": "2022-07-01",
-                "subscription_start_date": "2021-07-01"
-            },
-            {
-                "subscription": false,
-                "subscription_end_date": "2020-07-01",
-                "subscription_start_date": "2019-07-01"
-            }
-        ],
-        "measurements": [
-            {
-                "arm": 32,
-                "belly": 44,
-                "chest": 38,
-                "hip": 40,
-                "leg": 50,
-                "shoulder": 20,
-                "taken_date": "2024-05-01",
-                "weight": 70
-            },
-            {
-                "arm": 33,
-                "belly": 45,
-                "chest": 39,
-                "hip": 41,
-                "leg": 51,
-                "shoulder": 21,
-                "taken_date": "2024-06-01",
-                "weight": 72
-            }
-        ],
-        "name": "John Doe",
-        "subscription": true,
-        "subscription_end_date": "2024-07-01",
-        "subscription_start_date": "2023-07-01"
-    },
-    {
         "age": 30,
+        "archived_exercise_plans": [
+            {
+                "end_day": "2022-12-31",
+                "start_day": "2022-01-01",
+                "weekly_plan": [
+                    {
+                        "exercise": {
+                            "name": "Lat Pull Down",
+                            "repeat": 10,
+                            "set": 3,
+                            "type": "cardio"
+                        },
+                        "valor": "T+2"
+                    },
+                    {
+                        "exercise": {
+                            "name": "Barbell Row",
+                            "repeat": 8,
+                            "set": 3,
+                            "type": "back"
+                        },
+                        "valor": "T+3"
+                    }
+                ]
+            }
+        ],
         "archived_subscriptions": [
             {
-                "subscription": false,
-                "subscription_end_date": "2023-08-01",
-                "subscription_start_date": "2022-08-01"
+                "subscription": true,
+                "subscription_end_date": "2022-12-31",
+                "subscription_start_date": "2022-01-01"
             }
         ],
-        "measurements": [
-            {
-                "arm": 30,
-                "belly": 50,
-                "chest": 42,
-                "hip": 42,
-                "leg": 52,
-                "shoulder": 22,
-                "taken_date": "2024-06-03",
-                "weight": 75
-            },
-            {
-                "arm": 31,
-                "belly": 51,
-                "chest": 43,
-                "hip": 43,
-                "leg": 53,
-                "shoulder": 23,
-                "taken_date": "2024-06-10",
-                "weight": 76
-            }
-        ],
-        "name": "Jane Smith",
-        "subscription": false,
-        "subscription_end_date": "2023-08-01",
-        "subscription_start_date": "2022-08-01"
-    },
-    {
-        "age": 35,
-        "archived_subscriptions": [
-            {
-                "subscription": false,
-                "subscription_end_date": "2024-04-01",
-                "subscription_start_date": "2023-08-01"
-            }
-        ],
-        "measurements": [
-            {
-                "arm": 29,
-                "belly": 45,
-                "chest": 41,
-                "hip": 41,
-                "leg": 51,
-                "shoulder": 21,
-                "taken_date": "2024-06-05",
-                "weight": 72
-            }
-        ],
-        "name": "Michael Brown",
-        "subscription": false,
-        "subscription_end_date": "2024-04-01",
-        "subscription_start_date": "2023-08-01"
-    },
-    {
-        "age": 28,
-        "archived_subscriptions": [
-            {
-                "subscription": false,
-                "subscription_end_date": "2024-05-15",
-                "subscription_start_date": "2023-05-15"
-            }
-        ],
+        "exercise_plan": {
+            "end_day": "2023-12-31",
+            "start_day": "2023-01-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 6,
+                        "set": 2,
+                        "type": "chest"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Dumbbell Lateral Raise",
+                        "repeat": 10,
+                        "set": 2,
+                        "type": "shoulder"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
         "measurements": [
             {
                 "arm": 35,
-                "belly": 48,
-                "chest": 40,
-                "hip": 45,
-                "leg": 55,
-                "shoulder": 25,
-                "taken_date": "2024-06-07",
-                "weight": 78
+                "belly": 85,
+                "chest": 90,
+                "hip": 95,
+                "leg": 45,
+                "shoulder": 40,
+                "taken_date": "2023-06-01",
+                "weight": 80.5
             },
             {
                 "arm": 36,
-                "belly": 49,
-                "chest": 41,
-                "hip": 46,
-                "leg": 56,
-                "shoulder": 26,
-                "taken_date": "2024-06-14",
-                "weight": 79
+                "belly": 86,
+                "chest": 92,
+                "hip": 96,
+                "leg": 46,
+                "shoulder": 41,
+                "taken_date": "2023-07-01",
+                "weight": 82
             }
         ],
-        "name": "Emily Davis",
+        "name": "John Doe",
         "subscription": false,
-        "subscription_end_date": "2024-05-15",
-        "subscription_start_date": "2023-05-15"
+        "subscription_end_date": "2023-12-31",
+        "subscription_start_date": "2023-01-01"
     },
     {
-        "age": 32,
+        "age": 25,
+        "archived_exercise_plans": [
+        ],
         "archived_subscriptions": [
-            {
-                "subscription": false,
-                "subscription_end_date": "2024-02-01",
-                "subscription_start_date": "2023-02-01"
-            }
         ],
-        "measurements": [
-            {
-                "arm": 33,
-                "belly": 47,
-                "chest": 39,
-                "hip": 43,
-                "leg": 53,
-                "shoulder": 23,
-                "taken_date": "2024-06-09",
-                "weight": 74
-            }
-        ],
-        "name": "Chris Johnson",
-        "subscription": false,
-        "subscription_end_date": "2024-02-01",
-        "subscription_start_date": "2023-02-01"
-    },
-    {
-        "age": 29,
-        "archived_subscriptions": [
-            {
-                "subscription": false,
-                "subscription_end_date": "2023-06-01",
-                "subscription_start_date": "2022-06-01"
-            }
-        ],
-        "measurements": [
-            {
-                "arm": 34,
-                "belly": 46,
-                "chest": 38,
-                "hip": 44,
-                "leg": 54,
-                "shoulder": 24,
-                "taken_date": "2024-06-11",
-                "weight": 73
-            },
-            {
-                "arm": 35,
-                "belly": 47,
-                "chest": 39,
-                "hip": 45,
-                "leg": 55,
-                "shoulder": 25,
-                "taken_date": "2024-06-18",
-                "weight": 74
-            }
-        ],
-        "name": "Sarah Wilson",
-        "subscription": false,
-        "subscription_end_date": "2023-06-01",
-        "subscription_start_date": "2022-06-01"
-    },
-    {
-        "age": 40,
-        "measurements": [
-            {
-                "arm": 31,
-                "belly": 49,
-                "chest": 40,
-                "hip": 45,
-                "leg": 52,
-                "shoulder": 21,
-                "taken_date": "2024-06-13",
-                "weight": 72
-            }
-        ],
-        "name": "David Martinez",
-        "subscription": true,
-        "subscription_end_date": "2024-07-10",
-        "subscription_start_date": "2023-01-10"
-    },
-    {
-        "age": 27,
-        "archived_subscriptions": [
-            {
-                "subscription": false,
-                "subscription_end_date": "2024-06-01",
-                "subscription_start_date": "2023-06-01"
-            }
-        ],
-        "measurements": [
-            {
-                "arm": 32,
-                "belly": 46,
-                "chest": 39,
-                "hip": 42,
-                "leg": 51,
-                "shoulder": 22,
-                "taken_date": "2024-06-15",
-                "weight": 71
-            }
-        ],
-        "name": "Laura Thompson",
-        "subscription": false,
-        "subscription_end_date": "2024-06-01",
-        "subscription_start_date": "2023-06-01"
-    },
-    {
-        "age": 31,
+        "exercise_plan": {
+            "end_day": "2023-09-01",
+            "start_day": "2023-03-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 5,
+                        "set": 2,
+                        "type": "chest"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Dumbbell Incline Press",
+                        "repeat": 20,
+                        "set": 3,
+                        "type": "chest"
+                    },
+                    "valor": "T+3"
+                },
+                {
+                    "exercise": {
+                        "name": "Overhead Press",
+                        "repeat": 8,
+                        "set": 4,
+                        "type": "cardio"
+                    },
+                    "valor": "T+2"
+                }
+            ]
+        },
         "measurements": [
             {
                 "arm": 30,
-                "belly": 50,
-                "chest": 42,
-                "hip": 44,
-                "leg": 54,
-                "shoulder": 23,
-                "taken_date": "2024-06-17",
-                "weight": 75
+                "belly": 75,
+                "chest": 85,
+                "hip": 90,
+                "leg": 40,
+                "shoulder": 38,
+                "taken_date": "2023-05-01",
+                "weight": 65
             }
         ],
-        "name": "Robert Garcia",
-        "subscription": true,
-        "subscription_end_date": "2024-09-20",
-        "subscription_start_date": "2023-03-20"
+        "name": "Jane Smith",
+        "subscription_end_date": "2023-09-01",
+        "subscription_start_date": "2023-03-01"
     },
     {
-        "age": 33,
+        "age": 40,
+        "archived_exercise_plans": [
+            {
+                "end_day": "2022-06-01",
+                "start_day": "2021-12-01",
+                "weekly_plan": [
+                    {
+                        "exercise": {
+                            "name": "Dumbbell Lateral Raise",
+                            "repeat": 10,
+                            "set": 3,
+                            "type": "shoulder"
+                        },
+                        "valor": "T+3"
+                    }
+                ]
+            }
+        ],
         "archived_subscriptions": [
             {
-                "subscription": false,
-                "subscription_end_date": "2023-11-05",
-                "subscription_start_date": "2022-11-05"
+                "subscription": true,
+                "subscription_end_date": "2021-12-01",
+                "subscription_start_date": "2021-06-01"
             },
             {
                 "subscription": false,
-                "subscription_end_date": "2024-06-24",
-                "subscription_start_date": "2024-05-05"
+                "subscription_end_date": "2022-06-01",
+                "subscription_start_date": "2022-01-01"
             }
         ],
+        "exercise_plan": {
+        },
+        "measurements": [
+        ],
+        "name": "Alice Johnson",
+        "subscription_end_date": "2023-08-01",
+        "subscription_start_date": "2023-02-01"
+    },
+    {
+        "age": 28,
+        "archived_exercise_plans": [
+            {
+                "end_day": "2022-10-01",
+                "start_day": "2022-05-01",
+                "weekly_plan": [
+                    {
+                        "exercise": {
+                            "name": "Lat Pull Down",
+                            "repeat": 10,
+                            "set": 3,
+                            "type": "cardio"
+                        },
+                        "valor": "T+2"
+                    }
+                ]
+            }
+        ],
+        "archived_subscriptions": [
+            {
+                "subscription": true,
+                "subscription_end_date": "2022-10-01",
+                "subscription_start_date": "2022-05-01"
+            }
+        ],
+        "exercise_plan": {
+            "end_day": "2023-05-01",
+            "start_day": "2022-11-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Overhead Press",
+                        "repeat": 15,
+                        "set": 4,
+                        "type": "cardio"
+                    },
+                    "valor": "T+2"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Bob Brown",
+        "subscription_end_date": "2023-05-01",
+        "subscription_start_date": "2022-11-01"
+    },
+    {
+        "age": 32,
+        "archived_exercise_plans": [
+            {
+                "end_day": "2023-12-31",
+                "start_day": "2023-01-01",
+                "weekly_plan": [
+                    {
+                        "exercise": {
+                            "name": "Bench Press",
+                            "repeat": 10,
+                            "set": 3,
+                            "type": "chest"
+                        },
+                        "valor": "T+3"
+                    },
+                    {
+                        "exercise": {
+                            "name": "Dumbbell Lateral Raise",
+                            "repeat": 12,
+                            "set": 4,
+                            "type": "shoulder"
+                        },
+                        "valor": "T+2"
+                    }
+                ]
+            }
+        ],
+        "archived_subscriptions": [
+            {
+                "subscription": true,
+                "subscription_end_date": "2023-12-31",
+                "subscription_start_date": "2023-01-01"
+            }
+        ],
+        "exercise_plan": {
+            "end_day": "2024-12-31",
+            "start_day": "2024-01-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Barbell Row",
+                        "repeat": 10,
+                        "set": 3,
+                        "type": "back"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Lat Pull Down",
+                        "repeat": 8,
+                        "set": 4,
+                        "type": "cardio"
+                    },
+                    "valor": "T+3"
+                },
+                {
+                    "exercise": {
+                        "name": "Dumbbell Lateral Raise",
+                        "repeat": 5,
+                        "set": 2,
+                        "type": "shoulder"
+                    },
+                    "valor": "T+2"
+                }
+            ]
+        },
         "measurements": [
             {
                 "arm": 34,
-                "belly": 48,
-                "chest": 40,
-                "hip": 44,
-                "leg": 53,
-                "shoulder": 24,
-                "taken_date": "2024-06-19",
-                "weight": 76
+                "belly": 80,
+                "chest": 88,
+                "hip": 92,
+                "leg": 43,
+                "shoulder": 39,
+                "taken_date": "2024-01-01",
+                "weight": 75
             }
         ],
-        "name": "Jessica Lee",
-        "subscription": false,
-        "subscription_end_date": "2024-06-24",
-        "subscription_start_date": "2024-05-05"
+        "name": "Charlie Davis",
+        "subscription_end_date": "2024-12-31",
+        "subscription_start_date": "2024-01-01"
+    },
+    {
+        "age": 35,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+        },
+        "measurements": [
+        ],
+        "name": "David Evans",
+        "subscription_end_date": "2023-10-01",
+        "subscription_start_date": "2023-04-01"
+    },
+    {
+        "age": 29,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2023-09-01",
+            "start_day": "2023-03-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 12,
+                        "set": 3,
+                        "type": "arm"
+                    },
+                    "valor": "T+3"
+                },
+                {
+                    "exercise": {
+                        "name": "Lat Pull Down",
+                        "repeat": 15,
+                        "set": 4,
+                        "type": "leg"
+                    },
+                    "valor": "T+2"
+                }
+            ]
+        },
+        "measurements": [
+            {
+                "arm": 32,
+                "belly": 78,
+                "chest": 82,
+                "hip": 92,
+                "leg": 41,
+                "shoulder": 37,
+                "taken_date": "2023-03-15",
+                "weight": 68
+            }
+        ],
+        "name": "Eva Green",
+        "subscription_end_date": "2023-09-01",
+        "subscription_start_date": "2023-03-01"
+    },
+    {
+        "age": 45,
+        "archived_exercise_plans": [
+            {
+                "end_day": "2022-02-01",
+                "start_day": "2021-08-01",
+                "weekly_plan": [
+                    {
+                        "exercise": {
+                            "name": "Lat Pull Down",
+                            "repeat": 10,
+                            "set": 3,
+                            "type": "cardio"
+                        },
+                        "valor": "T+2"
+                    }
+                ]
+            }
+        ],
+        "archived_subscriptions": [
+            {
+                "subscription": false,
+                "subscription_end_date": "2022-02-01",
+                "subscription_start_date": "2021-08-01"
+            }
+        ],
+        "exercise_plan": {
+        },
+        "measurements": [
+        ],
+        "name": "Frank Harris",
+        "subscription_end_date": "2023-02-01",
+        "subscription_start_date": "2022-08-01"
+    },
+    {
+        "age": 31,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2024-01-01",
+            "start_day": "2023-07-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Dumbbell Incline Press",
+                        "repeat": 15,
+                        "set": 3,
+                        "type": "chest"
+                    },
+                    "valor": "T+3"
+                },
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 10,
+                        "set": 4,
+                        "type": "cardio"
+                    },
+                    "valor": "T+2"
+                }
+            ]
+        },
+        "measurements": [
+            {
+                "arm": 33,
+                "belly": 77,
+                "chest": 80,
+                "hip": 90,
+                "leg": 40,
+                "shoulder": 36,
+                "taken_date": "2023-07-10",
+                "weight": 70
+            }
+        ],
+        "name": "Grace Jackson",
+        "subscription_end_date": "2024-01-01",
+        "subscription_start_date": "2023-07-01"
+    },
+    {
+        "age": 27,
+        "archived_exercise_plans": [
+            {
+                "end_day": "2022-11-01",
+                "start_day": "2022-05-01",
+                "weekly_plan": [
+                    {
+                        "exercise": {
+                            "name": "Lat Pull Down",
+                            "repeat": 10,
+                            "set": 3,
+                            "type": "cardio"
+                        },
+                        "valor": "T+2"
+                    }
+                ]
+            }
+        ],
+        "archived_subscriptions": [
+            {
+                "subscription": true,
+                "subscription_end_date": "2022-11-01",
+                "subscription_start_date": "2022-05-01"
+            }
+        ],
+        "exercise_plan": {
+            "end_day": "2023-11-01",
+            "start_day": "2023-05-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Barbell Row",
+                        "repeat": 15,
+                        "set": 4,
+                        "type": "back"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Dumbbell Lateral Raise",
+                        "repeat": 12,
+                        "set": 3,
+                        "type": "shoulder"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Henry Kelly",
+        "subscription_end_date": "2023-11-01",
+        "subscription_start_date": "2023-05-01"
+    },
+    {
+        "age": 26,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+        },
+        "measurements": [
+        ],
+        "name": "Ivy Lee",
+        "subscription_end_date": "2023-12-01",
+        "subscription_start_date": "2023-06-01"
+    },
+    {
+        "age": 34,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2023-07-01",
+            "start_day": "2023-01-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 10,
+                        "set": 3,
+                        "type": "chest"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Overhead Press",
+                        "repeat": 12,
+                        "set": 4,
+                        "type": "arm"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Jack Martin",
+        "subscription_end_date": "2023-07-01",
+        "subscription_start_date": "2023-01-01"
+    },
+    {
+        "age": 28,
+        "archived_exercise_plans": [
+            {
+                "end_day": "2022-09-01",
+                "start_day": "2022-03-01",
+                "weekly_plan": [
+                    {
+                        "exercise": {
+                            "name": "Barbell Row",
+                            "repeat": 10,
+                            "set": 3,
+                            "type": "back"
+                        },
+                        "valor": "T+2"
+                    }
+                ]
+            }
+        ],
+        "archived_subscriptions": [
+            {
+                "subscription": true,
+                "subscription_end_date": "2022-09-01",
+                "subscription_start_date": "2022-03-01"
+            }
+        ],
+        "exercise_plan": {
+            "end_day": "2023-09-01",
+            "start_day": "2023-03-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 10,
+                        "set": 3,
+                        "type": "chest"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Dumbbell Incline Press",
+                        "repeat": 15,
+                        "set": 4,
+                        "type": "chest"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Karen Nelson",
+        "subscription_end_date": "2023-09-01",
+        "subscription_start_date": "2023-03-01"
+    },
+    {
+        "age": 37,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2024-06-01",
+            "start_day": "2024-01-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Dumbbell Lateral Raise",
+                        "repeat": 12,
+                        "set": 3,
+                        "type": "shoulder"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Lat Pull Down",
+                        "repeat": 15,
+                        "set": 4,
+                        "type": "cardio"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
+        "measurements": [
+            {
+                "arm": 33,
+                "belly": 79,
+                "chest": 86,
+                "hip": 91,
+                "leg": 42,
+                "shoulder": 38,
+                "taken_date": "2024-02-01",
+                "weight": 72
+            }
+        ],
+        "name": "Leo Parker",
+        "subscription_end_date": "2024-06-01",
+        "subscription_start_date": "2024-01-01"
+    },
+    {
+        "age": 33,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2023-10-01",
+            "start_day": "2023-04-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 10,
+                        "set": 3,
+                        "type": "chest"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Dumbbell Lateral Raise",
+                        "repeat": 12,
+                        "set": 4,
+                        "type": "shoulder"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Mia Roberts",
+        "subscription_end_date": "2023-10-01",
+        "subscription_start_date": "2023-04-01"
+    },
+    {
+        "age": 27,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2023-12-01",
+            "start_day": "2023-06-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 10,
+                        "set": 3,
+                        "type": "chest"
+                    },
+                    "valor": "T+2"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Nina Scott",
+        "subscription_end_date": "2023-12-01",
+        "subscription_start_date": "2023-06-01"
+    },
+    {
+        "age": 30,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2024-01-01",
+            "start_day": "2023-07-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Barbell Row",
+                        "repeat": 12,
+                        "set": 3,
+                        "type": "back"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Lat Pull Down",
+                        "repeat": 10,
+                        "set": 4,
+                        "type": "cardio"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Oscar Turner",
+        "subscription_end_date": "2024-01-01",
+        "subscription_start_date": "2023-07-01"
+    },
+    {
+        "age": 42,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+        },
+        "measurements": [
+        ],
+        "name": "Pauline Walker",
+        "subscription_end_date": "2023-07-01",
+        "subscription_start_date": "2023-01-01"
+    },
+    {
+        "age": 39,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2024-02-01",
+            "start_day": "2023-08-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Dumbbell Lateral Raise",
+                        "repeat": 12,
+                        "set": 3,
+                        "type": "shoulder"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Lat Pull Down",
+                        "repeat": 10,
+                        "set": 4,
+                        "type": "cardio"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Quinn Young",
+        "subscription_end_date": "2024-02-01",
+        "subscription_start_date": "2023-08-01"
+    },
+    {
+        "age": 29,
+        "archived_exercise_plans": [
+        ],
+        "archived_subscriptions": [
+        ],
+        "exercise_plan": {
+            "end_day": "2024-03-01",
+            "start_day": "2023-09-01",
+            "weekly_plan": [
+                {
+                    "exercise": {
+                        "name": "Bench Press",
+                        "repeat": 10,
+                        "set": 3,
+                        "type": "chest"
+                    },
+                    "valor": "T+2"
+                },
+                {
+                    "exercise": {
+                        "name": "Dumbbell Lateral Raise",
+                        "repeat": 12,
+                        "set": 4,
+                        "type": "shoulder"
+                    },
+                    "valor": "T+3"
+                }
+            ]
+        },
+        "measurements": [
+        ],
+        "name": "Rachel Adams",
+        "subscription_end_date": "2024-03-01",
+        "subscription_start_date": "2023-09-01"
     }
 ]

@@ -17,6 +17,8 @@
 #include <QString>
 #include <QDate>
 #include <QDebug>
+#include <QJsonObject>
+#include <QJsonArray>
 #include "exercise.h"
 
 class ExercisePlan
@@ -24,10 +26,14 @@ class ExercisePlan
 public:
     ExercisePlan() = default;
     void AddNewExercise(const Exercise::Exercise_t &new_exercise, short cooldown_days);
-    std::map<QString, Exercise::Exercise_t> GetExercisePlan();
-    void SetTargetDate(const QDate &end_day);
+    std::map<QString, Exercise::Exercise_t> GetWeeklyPlan() const;
+    void SetTargetDate(const QDate &end_day, const QDate &start_day = QDate::currentDate());
+    void SetWeeklyPlan(const std::map<QString, Exercise::Exercise_t> &weekly_plan);
     short RemaningDays();
     void PrintPlan();
+    std::pair<QDate, QDate> GetExercisePeriod();
+    void ClearExercisePlan();
+    QJsonObject toJson() const;
 
 private:
     std::map<QString, Exercise::Exercise_t> weekly_plan_;

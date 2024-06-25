@@ -20,14 +20,15 @@
 #include <QJsonArray>
 #include "measurement.h"
 #include "subscription.h"
+#include "exerciseplan.h"
 
 /**
  *  NOTE: In case any property changes done to the class,
- *  toJson behaviour must be revised. Also,
- *  fromJsonObject, SaveUpdatedCurrentMember behaviours of
- *  MemberManager class must be revised!
+ *  toJson behaviour must be revised. Also, fromJsonObject
+ *  behaviour of MemberManager class must be revised!
+ *
  */
-class Member : public Measurement, public Subscription
+class Member : public Measurement, public Subscription, public ExercisePlan
 {
 public:
     Member() = default;
@@ -49,15 +50,18 @@ public:
     int GetAge() const;
     std::vector<Measurement> GetAllMeasurements() const;
     Measurement GetLastMeasurements() const;
-    void AddArchivedSubscription(const Subscription &archived);
+    void AddSubscriptionToArchive(const Subscription &archived);
     void EndSubscription();
     std::vector<Subscription> GetAllArchivedSubscriptions();
+    void AddExercisePlanToArchive(const ExercisePlan &archived);
+    void ArchiveCurrentExercisePlan();
 
 private:
     QString name_;
     int age_;
     std::vector<Measurement> all_measurements_;
     std::vector<Subscription> archived_subscriptions_;
+    std::vector<ExercisePlan> archived_exercise_plans_;
 };
 
 #endif // MEMBER_H

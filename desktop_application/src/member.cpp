@@ -37,6 +37,18 @@ QJsonObject Member::toJson() const{
         json["archived_subscriptions"] = subscriptions_array;
     }
 
+    if(GetWeeklyPlan().size() != 0){
+        json["exercise_plan"] = ExercisePlan::toJson();
+    }
+
+    if(archived_exercise_plans_.size()){  /* for archived ones */
+        QJsonArray exercise_plans_array;
+        for (const auto &exercise_plan : archived_exercise_plans_) {
+            exercise_plans_array.append(exercise_plan.toJson());
+        }
+        json["archived_exercise_plans"] = exercise_plans_array;
+    }
+
     return json;
 }
 
@@ -53,7 +65,7 @@ int Member::GetAge() const { return age_; }
 std::vector<Measurement> Member::GetAllMeasurements() const { return all_measurements_; }
 Measurement Member::GetLastMeasurements() const { return all_measurements_.back(); }
 
-void Member::AddArchivedSubscription(const Subscription &archived){
+void Member::AddSubscriptionToArchive(const Subscription &archived){
     archived_subscriptions_.push_back(archived);
 }
 
@@ -67,4 +79,16 @@ void Member::EndSubscription(){
 
 std::vector<Subscription> Member::GetAllArchivedSubscriptions(){
     return archived_subscriptions_;
+}
+
+void Member::ArchiveCurrentExercisePlan(){
+    ExercisePlan last_exercise_plan;
+    last_exercise_plan.SetWeeklyPlan(GetWeeklyPlan());
+    last_exercise_plan.SetTargetDate(GetExercisePeriod().second, GetExercisePeriod().first);
+    AddExercisePlanToArchive(last_exercise_plan);
+    ClearExercisePlan();
+}
+
+void Member::AddExercisePlanToArchive(const ExercisePlan &archived){
+    archived_exercise_plans_.push_back(archived);
 }

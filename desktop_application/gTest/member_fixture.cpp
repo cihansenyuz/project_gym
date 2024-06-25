@@ -154,7 +154,7 @@ TEST_F(MemberFixture, TestEndSubscription){
     EXPECT_FALSE(member->HasSubscription());
 }
 
-TEST_F(MemberFixture, TestAddArchivedSubscription){
+TEST_F(MemberFixture, TestArchivedSubscriptions){
     QDate start_date(2024, 1, 1);
     QDate end_date(2024, 12, 31);
     member->SetSubscriptionPeriod(start_date, end_date);
