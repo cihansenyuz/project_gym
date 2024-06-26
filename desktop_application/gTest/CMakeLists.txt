@@ -22,6 +22,9 @@ set (PROJECT_SOURCES
   exerciseplan_fixture.cpp
   ../src/exerciseplan.cpp
   ../inc/exerciseplan.h
+  exercise_fixture.cpp
+  ../src/exercise.cpp
+  ../inc/exercise.h
 )
 
 add_executable(desktop_app_test ${PROJECT_SOURCES})

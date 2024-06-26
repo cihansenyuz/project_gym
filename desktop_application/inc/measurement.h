@@ -4,9 +4,9 @@
   * @author  Cihan Senyuz
   * @date    19.06.2024
   * @brief   Header for measurement.cpp file.
-  *                 This file contains the class for measurements. Encapsulates
-  *          all measured data and date information of the measurements. Also,
-  *          provides a method to convert all data to JSON format using QJsonObject
+  *                 Stores physical measurements of a member including arm, belly,
+  *          chest, hip, leg, shoulder, and weight, taken on a specific date.
+  *          Provides methods for managing and accessing measurement data.
   *
   ******************************************************************************
   */
@@ -34,16 +34,6 @@ public:
     QDate GetTakenDate() const;
 
     QJsonObject toJson() const;
-
-/*protected:
-    void SetWeight(float weight);
-    void SetShoulder(float shoulder);
-    void SetChest(float chest);
-    void SetArm(float arm);
-    void SetBelly(float belly);
-    void SetHip(float hip);
-    void SetLeg(float leg);
-    void SetTakenDate(QDate taken_date);*/
 
 private:
     QDate taken_date_;

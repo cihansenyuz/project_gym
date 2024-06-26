@@ -3,8 +3,11 @@
   * @file    exercise.hpp
   * @author  Cihan Senyuz
   * @date    24.06.2024
-  * @brief   Header for Exercise namespace
-  *                 This file contains struct Exercise, and releated enums.
+  * @brief   Header for exercise.cpp file.
+  *                 Represents a specific exercise within an exercise plan,
+  *          detailing its name, cooldown period, repetitions, sets, and type
+  *          (e.g., chest, back, leg). Provides methods for managing exercise
+  *          details and tracking completion.
   *
   ******************************************************************************
   */
@@ -82,23 +85,35 @@ inline ExerciseName fromStringExerciseName(const QString &str) {
     else return unknownName;
 }
 
+class Exercise{
+public:
+    Exercise() = default;
+    Exercise(ExerciseType type, ExerciseName name, short set,
+             short repeat, short cooldown_period,
+             const QDate &last_done_date = QDate::currentDate());
+    void MarkExerciseDone();
+    bool IsReady();
 
-struct Exercise_t{
-    ExerciseType type;
-    ExerciseName name;
-    short set;
-    short repeat;
+    ExerciseType GetType() const;
+    ExerciseName GetName() const;
+    short GetSet() const;
+    short GetRepeat() const;
+    short GetCoolDownPeriod() const;
+    QDate GetLastDoneDate() const;
 
-    QJsonObject toJson() const {
-        QJsonObject json;
-        json["type"] = ToString(type);
-        json["name"] = ToString(name);
-        json["set"] = set;
-        json["repeat"] = repeat;
-        return json;
-    }
+    QJsonObject toJson() const;
+
+private:
+    ExerciseType type_;
+    ExerciseName name_;
+    short set_;
+    short repeat_;
+    short cooldown_period_;
+    QDate last_done_date_;
 };
 
 }
+
+
 
 #endif // EXERCISE_H

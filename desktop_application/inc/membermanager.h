@@ -4,9 +4,11 @@
   * @author  Cihan Senyuz
   * @date    20.06.2024
   * @brief   Header for membermanager.cpp file.
-  *                 This file contains the class to manage members saved in a Json
-  *          file. Upon creation of instance, reads saved member datas, then using
-  *          behaviours, data is manipulated as desired.
+  *                 Manages members within a fitness club, including their personal
+  *          details, subscription status, measurements, exercise plans, and
+  *          archived data. Provides methods for adding new members, updating
+  *          member information, handling subscriptions, managing exercise plans,
+  *          and accessing archived data.
   *
   ******************************************************************************
   */

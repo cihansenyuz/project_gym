@@ -1,10 +1,10 @@
 #include "../inc/exerciseplan.h"
 
-void ExercisePlan::AddNewExercise(const Exercise::Exercise_t &new_exercise,  short cooldown_days){
-    weekly_plan_["T+"+QString::number(cooldown_days)] = new_exercise;
+void ExercisePlan::AddNewExercise(const Exercise::Exercise &new_exercise){
+    weekly_plan_.push_back(new_exercise);
 }
 
-std::map<QString, Exercise::Exercise_t> ExercisePlan::GetWeeklyPlan() const{
+std::vector<Exercise::Exercise> ExercisePlan::GetWeeklyPlan() const{
     return weekly_plan_;
 }
 
@@ -19,10 +19,11 @@ short ExercisePlan::RemaningDays(){
 
 void ExercisePlan::PrintPlan(){
     qDebug() << "Remaining: " << RemaningDays() << " days";
-    for(auto &[key, value] : weekly_plan_){
+    for(auto &exercise : weekly_plan_){
         qDebug() << "## Exercise details ##";
-        qDebug() << "valor:" << key << "type: " << Exercise::ToString(value.type);
-        qDebug() << Exercise::ToString(value.name) << ": " << value.set << "sets, " << value.repeat << "repeats.";
+        qDebug() << "cooldown:" << exercise.GetCoolDownPeriod() << "type: " << Exercise::ToString(exercise.GetType());
+        qDebug() << Exercise::ToString(exercise.GetName()) << ": " << exercise.GetSet() << "sets, " << exercise.GetRepeat() << "repeats.";
+        qDebug() << "Last exercise date: " << exercise.GetLastDoneDate().toString();
     }
 }
 
@@ -36,7 +37,7 @@ void ExercisePlan::ClearExercisePlan(){
     end_day_ = QDate::currentDate();
 }
 
-void ExercisePlan::SetWeeklyPlan(const std::map<QString, Exercise::Exercise_t> &weekly_plan){
+void ExercisePlan::SetWeeklyPlan(const std::vector<Exercise::Exercise> &weekly_plan){
     weekly_plan_ = weekly_plan;
 }
 
@@ -47,9 +48,7 @@ QJsonObject ExercisePlan::toJson() const{
 
     QJsonArray weekly_plan_array;
     for(auto &plan : weekly_plan_){
-        QJsonObject exercise_json;
-        exercise_json["valor"] = plan.first;
-        exercise_json["exercise"] = plan.second.toJson();
+        QJsonObject exercise_json = plan.toJson();
         weekly_plan_array.append(exercise_json);
     }
 

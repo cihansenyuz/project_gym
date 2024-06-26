@@ -20,6 +20,7 @@ set(PROJECT_SOURCES
         src/membermanager.cpp
         src/subscription.cpp
         src/exerciseplan.cpp
+        src/exercise.cpp
 
         inc/mainwindow.h
         inc/member.h
@@ -27,6 +28,7 @@ set(PROJECT_SOURCES
         inc/membermanager.h
         inc/subscription.h
         inc/exerciseplan.h
+        inc/exercise.h
 
         ui/mainwindow.ui
 )
@@ -36,7 +38,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         members.json
-        inc/exercise.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET desktop_application APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

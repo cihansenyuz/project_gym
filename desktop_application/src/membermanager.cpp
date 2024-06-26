@@ -80,19 +80,18 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
                                              QDate::fromString(exercise_plan_json["start_day"].toString(), Qt::ISODate));
 
         QJsonArray current_weekly_plan_array = exercise_plan_json["weekly_plan"].toArray();
-        std::map<QString, Exercise::Exercise_t> current_exercises;
+        std::vector<Exercise::Exercise> current_exercises;
         for (int i = 0; i < current_weekly_plan_array.size(); ++i){
-            QJsonObject current_weekly_plan_json = current_weekly_plan_array[i].toObject();
-            QString valor = current_weekly_plan_json["valor"].toString();
-            QJsonObject current_exercise_json = current_weekly_plan_json["exercise"].toObject();
+            QJsonObject current_exercise_json = current_weekly_plan_array[i].toObject();
 
-            Exercise::Exercise_t current_exercise;
-            current_exercise.type = Exercise::fromStringExerciseType(current_exercise_json["type"].toString());
-            current_exercise.name = Exercise::fromStringExerciseName(current_exercise_json["name"].toString());
-            current_exercise.set = current_exercise_json["set"].toInt();
-            current_exercise.repeat = current_exercise_json["repeat"].toInt();
+            Exercise::Exercise current_exercise(Exercise::fromStringExerciseType(current_exercise_json["type"].toString()),
+                                                Exercise::fromStringExerciseName(current_exercise_json["name"].toString()),
+                                                current_exercise_json["set"].toInt(),
+                                                current_exercise_json["repeat"].toInt(),
+                                                current_exercise_json["cooldown_period"].toInt(),
+                                                QDate::fromString(current_exercise_json["last_done_date"].toString(), Qt::ISODate));
 
-            current_exercises.insert(std::make_pair(valor, current_exercise));
+            current_exercises.push_back(current_exercise);
         }
         member_ptr->SetWeeklyPlan(current_exercises);
     }
@@ -105,19 +104,18 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
                                             QDate::fromString(exercise_plan_json["start_day"].toString(), Qt::ISODate));
 
         QJsonArray weekly_plan_array = exercise_plan_json["weekly_plan"].toArray();
-        std::map<QString, Exercise::Exercise_t> archived_exercises;
+        std::vector<Exercise::Exercise> archived_exercises;
         for (int i = 0; i < weekly_plan_array.size(); ++i){
-            QJsonObject weekly_plan_json = weekly_plan_array[i].toObject();
-            QString valor = weekly_plan_json["valor"].toString();
-            QJsonObject exercise_json = weekly_plan_json["exercise"].toObject();
+            QJsonObject exercise_json = weekly_plan_array[i].toObject();
 
-            Exercise::Exercise_t exercise;
-            exercise.type = Exercise::fromStringExerciseType(exercise_json["type"].toString());
-            exercise.name = Exercise::fromStringExerciseName(exercise_json["name"].toString());
-            exercise.set = exercise_json["set"].toInt();
-            exercise.repeat = exercise_json["repeat"].toInt();
+            Exercise::Exercise exercise(Exercise::fromStringExerciseType(exercise_json["type"].toString()),
+                                                Exercise::fromStringExerciseName(exercise_json["name"].toString()),
+                                                exercise_json["set"].toInt(),
+                                                exercise_json["repeat"].toInt(),
+                                                exercise_json["cooldown_period"].toInt(),
+                                        QDate::fromString(exercise_json["last_done_date"].toString(), Qt::ISODate));
 
-            archived_exercises.insert(std::make_pair(valor, exercise));
+            archived_exercises.push_back(exercise);
         }
         archived_exercise_plan.SetWeeklyPlan(archived_exercises);
         member_ptr->AddExercisePlanToArchive(archived_exercise_plan);
