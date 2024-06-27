@@ -15,62 +15,77 @@
 #ifndef EXERCISE_H
 #define EXERCISE_H
 
-#include <QJsonObject>
-
-/*enum ExerciseName{
-    unknownName,
-    benchPress,
-    dumbbellInclinePress,
-    latPulldown,
-    barbellRow,
-    overheadPress,
-    dumbbellLateralRaise
-};*/
-
-
-enum ExerciseType{
-    unknownType,
-    cardio,
-    strength,
-    strecting
-};
-
-/*inline QString ToString(const ExerciseName &name){
-    switch(name) {
-    case benchPress: return "Bench Press";
-    case dumbbellInclinePress: return "Dumbbell Incline Press";
-    case latPulldown: return "Lat Pull Down";
-    case barbellRow: return "Barbell Row";
-    case overheadPress: return "Overhead Press";
-    case dumbbellLateralRaise: return "Dumbbell Lateral Raise";
-    default: return "unknownName";
-    }
-}
-
-inline ExerciseName fromStringExerciseName(const QString &str) {
-    if (str == "Bench Press") return benchPress;
-    else if (str == "Dumbbell Incline Press") return dumbbellInclinePress;
-    else if (str == "Lat Pull Down") return latPulldown;
-    else if (str == "Barbell Row") return barbellRow;
-    else if (str == "Overhead Press") return overheadPress;
-    else if (str == "Dumbbell Lateral Raise") return dumbbellLateralRaise;
-    else return unknownName;
-}*/
-
+#include <map>
+#include <QString>
 
 class Exercise{
 public:
-    Exercise() = default;
-    ExerciseType GetType() const;
+    Exercise() = delete;
+    Exercise(ExerciseType type, ExerciseName name);
     virtual QJsonObject toJson() const = 0;
-    ExerciseType fromStringExerciseType(const QString &str);
-    QString ToString(const ExerciseType &type);
+    ExerciseType GetType() const;
+
+    ExerciseType::Cardio fromStringCardio(const QString &str);
+    ExerciseType::Strength fromStringStrength(const QString &str);
+    ExerciseType::Stretching fromStringStretching(const QString &str);
+    QString toString(const ExerciseType::Cardio &type);
+    QString toString(const ExerciseType::Strength &type);
+    QString toString(const ExerciseType::Stretching &type);
+
+    ExerciseName::Cardio fromStringExerciseNameCardio(const QString &str);
+    ExerciseName::Strength fromStringExerciseNameStrength(const QString &str);
+    ExerciseName::Stretching fromStringExerciseNameStretching(const QString &str);
+    QString toString(const ExerciseName::Cardio &type);
+    QString toString(const ExerciseName::Strength &type);
+    QString toString(const ExerciseName::Stretching &type);
+
+    struct ExerciseType{
+        enum class Cardio{
+            Cardio
+        };
+
+        enum class Strength{
+            Shoulder,
+            Chest,
+            Back,
+            Arm,
+            Belly,
+            Hip,
+            Leg
+        };
+
+        enum class Stretching{
+            Stretching
+        };
+    };
+
+    struct ExerciseName{
+        enum class Cardio{
+            TreadmillRunning,
+            TreadmillWalking,
+            StationaryBike,
+            StairClimber
+        };
+
+        enum class Strength{
+            BenchPress,
+            DumbbellInclinePress,
+            LatPulldown,
+            BarbellRow,
+            OverheadPress,
+            DumbbellLateralRaise
+        };
+
+        enum class Stretching{
+            Hamstring,
+            Quadriceps,
+            HipFlexor
+        };
+    };
 
 private:
     ExerciseType type_;
+    ExerciseName name_;
 };
-
-
-
 
 #endif // EXERCISE_H
