@@ -24,6 +24,7 @@ public:
     Exercise(ExerciseType type, ExerciseName name);
     virtual QJsonObject toJson() const = 0;
     ExerciseType GetType() const;
+    ExerciseType GetName() const;
 
     ExerciseType::Cardio fromStringCardio(const QString &str);
     ExerciseType::Strength fromStringStrength(const QString &str);

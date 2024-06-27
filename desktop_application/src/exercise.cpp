@@ -192,6 +192,5 @@ QString Exercise::toString(const ExerciseName::Stretching &type) {
     return stretching_map[type];
 }
 
-Exercise::ExerciseType Exercise::GetType() const{
-    return type_;
-}
+Exercise::ExerciseType Exercise::GetType() const{ return type_; }
+Exercise::ExerciseName Exercise::GetType() const{ return name_; }
