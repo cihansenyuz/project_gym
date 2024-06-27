@@ -9,7 +9,7 @@ class StrengthWorkout : public Exercise
 public:
     StrengthWorkout() = delete;
     StrengthWorkout(ExerciseType type, ExerciseName name, short set, short repeat);
-    QJsonObject toJson() const;
+    QJsonObject toJson() const override;
 
     short GetSet() const;
     short GetRepeat() const;
