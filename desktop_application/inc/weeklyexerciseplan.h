@@ -15,6 +15,7 @@ public:
 
     void AddNewDailyExercisePlan(const DailyExercisePlan &new_daily_plan);
     void ClearWeeklyExercisePlan();
+    void SetWeeklyExercisePlan(const DailyExercisePlan &new_weekly_plan);
 
     short GetRemaningDays();
     std::pair<QDate, QDate> GetWeeklyExercisePlanPeriod();

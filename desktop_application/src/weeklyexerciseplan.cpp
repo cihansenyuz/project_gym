@@ -26,6 +26,10 @@ void WeeklyExercisePlan::ClearWeeklyExercisePlan(){
     weekly_plan_.clear();
 }
 
+void WeeklyExercisePlan::SetWeeklyExercisePlan(const DailyExercisePlan &new_weekly_plan){
+    weekly_plan_ = new_weekly_plan;
+}
+
 short WeeklyExercisePlan::GetRemaningDays(){
     return QDate::currentDate().daysTo(end_date_);
 }

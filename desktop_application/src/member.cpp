@@ -38,7 +38,7 @@ QJsonObject Member::toJson() const{
     }
 
     if(GetWeeklyPlan().size() != 0){
-        json["exercise_plan"] = ExercisePlan::toJson();
+        json["exercise_plan"] = WeeklyExercisePlan::toJson();
     }
 
     if(archived_exercise_plans_.size()){  /* for archived ones */
@@ -82,13 +82,13 @@ std::vector<Subscription> Member::GetAllArchivedSubscriptions(){
 }
 
 void Member::ArchiveCurrentExercisePlan(){
-    ExercisePlan last_exercise_plan;
-    last_exercise_plan.SetWeeklyPlan(GetWeeklyPlan());
-    last_exercise_plan.SetTargetDate(GetExercisePeriod().second, GetExercisePeriod().first);
+    WeeklyExercisePlan last_exercise_plan(GetExercisePeriod().second,
+                                            GetExercisePeriod().first);
+    last_exercise_plan.SetWeeklyExercisePlan(GetWeeklyPlan());
     AddExercisePlanToArchive(last_exercise_plan);
     ClearExercisePlan();
 }
 
-void Member::AddExercisePlanToArchive(const ExercisePlan &archived){
+void Member::AddExercisePlanToArchive(const WeeklyExercisePlan &archived){
     archived_exercise_plans_.push_back(archived);
 }

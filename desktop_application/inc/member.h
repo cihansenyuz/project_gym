@@ -19,7 +19,7 @@
 #include <QJsonArray>
 #include "measurement.h"
 #include "subscription.h"
-#include "exerciseplan.h"
+#include "weeklyexerciseplan.h"
 
 /**
  *  NOTE: In case any property changes done to the class,
@@ -27,15 +27,20 @@
  *  behaviour of MemberManager class must be revised!
  *
  */
-class Member : public Measurement, public Subscription, public ExercisePlan
+class Member : public Measurement, public Subscription, public WeeklyExercisePlan
 {
 public:
     Member() = default;
     Member(const QString &name, int age, Measurement &first_measurement);
+    QJsonObject toJson() const;
+
     void SetName(const QString &name);
     void SetAge(int age);
     void AddMeasurement(Measurement &new_measurement);
-    QJsonObject toJson() const;
+    void AddSubscriptionToArchive(const Subscription &archived);
+    void EndSubscription();
+    void AddExercisePlanToArchive(const WeeklyExercisePlan &archived);
+    void ArchiveCurrentExercisePlan();
 
     float GetWeight() const;
     float GetShoulder() const;
@@ -47,20 +52,16 @@ public:
     QDate GetTakenDate() const;
     QString GetName() const;
     int GetAge() const;
-    std::vector<Measurement> GetAllMeasurements() const;
     Measurement GetLastMeasurements() const;
-    void AddSubscriptionToArchive(const Subscription &archived);
-    void EndSubscription();
+    std::vector<Measurement> GetAllMeasurements() const;
     std::vector<Subscription> GetAllArchivedSubscriptions();
-    void AddExercisePlanToArchive(const ExercisePlan &archived);
-    void ArchiveCurrentExercisePlan();
 
 private:
     QString name_;
     int age_;
     std::vector<Measurement> all_measurements_;
     std::vector<Subscription> archived_subscriptions_;
-    std::vector<ExercisePlan> archived_exercise_plans_;
+    std::vector<WeeklyExercisePlan> archived_exercise_plans_;
 };
 
 #endif // MEMBER_H
