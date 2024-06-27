@@ -4,10 +4,10 @@
   * @author  Cihan Senyuz
   * @date    24.06.2024
   * @brief   Header for exercise.cpp file.
-  *                 Represents a specific exercise within an exercise plan,
-  *          detailing its name, cooldown period, repetitions, sets, and type
-  *          (e.g., chest, back, leg). Provides methods for managing exercise
-  *          details and tracking completion.
+  *                 This file contains the definition of the Exercise class which
+  *         represents various types and names of exercises, including Cardio,
+  *         Strength, and Stretching. The class provides methods to convert
+  *         between enum values and strings for these exercise types and names.
   *
   ******************************************************************************
   */

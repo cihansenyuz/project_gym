@@ -1,3 +1,19 @@
+/**
+  ******************************************************************************
+  * @file    weeklyexerciseplan.hpp
+  * @author  Cihan Senyuz
+  * @date    27.06.2024
+  * @brief   Header for weeklyexerciseplan.cpp file.
+  *
+  *             This file contains the definition of the WeeklyExercisePlan class,
+  *         which represents a plan for exercises over a week. The class includes
+  *         methods to add and manage daily exercise plans within the weekly plan,
+  *         convert the plan to a JSON representation, and get the remaining days
+  *         in the plan period.
+  *
+  ******************************************************************************
+  */
+
 #ifndef WEEKLYEXERCISEPLAN_H
 #define WEEKLYEXERCISEPLAN_H
 

@@ -4,9 +4,14 @@
   * @author  Cihan Senyuz
   * @date    16.06.2024
   * @brief   Header for member.cpp file.
-  *                 Represents a member with age, measurements, exercise plans,
-  *          and subscription details. Provides methods for managing member data
-  *          and subscriptions.
+  *             This file contains the definition of the Member class, which
+  *         represents a member of a fitness program. The class includes properties
+  *         and methods for managing the member's personal information, measurements,
+  *         subscriptions, and exercise plans.
+  *
+  * @note   In case any property changes are made to the class, the toJson behavior
+  *         must be revised. Also, the fromJsonObject behavior of the MemberManager
+  *         class must be revised!
   *
   ******************************************************************************
   */
@@ -22,7 +27,7 @@
 #include "weeklyexerciseplan.h"
 
 /**
- *  NOTE: In case any property changes done to the class,
+ *  @note In case any property changes done to the class,
  *  toJson behaviour must be revised. Also, fromJsonObject
  *  behaviour of MemberManager class must be revised!
  *
