@@ -21,6 +21,9 @@ set(PROJECT_SOURCES
         src/subscription.cpp
         src/exerciseplan.cpp
         src/exercise.cpp
+        src/strengthworkout.cpp
+        src/cardioworkout.cpp
+        src/dailyexerciseplan.cpp
 
         inc/mainwindow.h
         inc/member.h
@@ -29,6 +32,9 @@ set(PROJECT_SOURCES
         inc/subscription.h
         inc/exerciseplan.h
         inc/exercise.h
+        inc/strengthworkout.h
+        inc/cardioworkout.h
+        inc/dailyexerciseplan.h
 
         ui/mainwindow.ui
 )

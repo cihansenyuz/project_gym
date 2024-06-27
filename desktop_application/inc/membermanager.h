@@ -10,6 +10,11 @@
   *          member information, handling subscriptions, managing exercise plans,
   *          and accessing archived data.
   *
+  *          Reads from a json file, and keeps all members in a QJsonArray. The
+  *          member to be edited is chosen by SetCurrentMemberByName(), then using
+  *          methods of the object, member is manupilated. Finally, all changes
+  *          saved to the QJsonArray upon SaveChangesOnCurrentMember() method.
+  *
   ******************************************************************************
   */
 
