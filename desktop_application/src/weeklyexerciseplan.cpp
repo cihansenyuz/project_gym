@@ -35,7 +35,7 @@ void WeeklyExercisePlan::SetWeeklyExercisePlanPeriod(QDate start_date, QDate end
     end_date_ = end_date;
 }
 
-short WeeklyExercisePlan::GetRemaningDays(){
+short WeeklyExercisePlan::GetRemainingDays(){
     return QDate::currentDate().daysTo(end_date_);
 }
 

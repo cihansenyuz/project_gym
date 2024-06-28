@@ -36,7 +36,7 @@ public:
     void SetWeeklyExercisePlanPeriod(QDate start_date, QDate end_date);
     bool HasWeeklyExercisePlan() const;
 
-    short GetRemaningDays();
+    short GetRemainingDays();
     std::pair<QDate, QDate> GetWeeklyExercisePlanPeriod();
     std::vector<DailyExercisePlan> GetWeeklyExercisePlan();
 
