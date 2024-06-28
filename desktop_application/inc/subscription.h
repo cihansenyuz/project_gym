@@ -20,7 +20,7 @@
 class Subscription
 {
 public:
-    Subscription() = default;
+    Subscription() = default; // no use
     Subscription(const QDate &start_date, const QDate &end_date, bool status);
     void SetSubscriptionPeriod(const QDate &start_date, const QDate &end_date);
     void ExtendSubscriptionEndDate(const QDate &end_date);

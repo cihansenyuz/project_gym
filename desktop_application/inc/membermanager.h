@@ -22,6 +22,9 @@
 #define MEMBERMANAGER_H
 
 #include "member.h"
+#include "cardioworkout.h"
+#include "strengthworkout.h"
+
 #include <QFile>
 #include <QJsonDocument>
 #include <QJsonObject>

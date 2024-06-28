@@ -18,19 +18,22 @@
 
 #include <vector>
 #include <QJsonObject>
+#include <QJsonArray>
 #include "exercise.h"
 
 class DailyExercisePlan
 {
 public:
     DailyExercisePlan() = default;
-    void AddNewExercise(const Exercise &new_exercise);
+    void AddNewExercise(Exercise *new_exercise);
+    void SetCooldownPeriod(short days);
+    void SetDailyExecisePlan(const std::vector<Exercise*> &new_plan);
     QJsonObject toJson() const;
 
-    void GetCooldownPeriod() const;
+    short GetCooldownPeriod() const;
 
 private:
-    std::vector<Exercise> daily_plan_;
+    std::vector<Exercise*> daily_plan_;
     short cooldown_period_;
 };
 

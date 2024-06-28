@@ -76,50 +76,80 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
 
     if (member_json.contains("exercise_plan")) {
         QJsonObject exercise_plan_json = member_json["exercise_plan"].toObject();
-        member_ptr->SetTargetDate(QDate::fromString(exercise_plan_json["end_day"].toString(), Qt::ISODate),
+        member_ptr->SetWeeklyExercisePlanPeriod(QDate::fromString(exercise_plan_json["end_day"].toString(), Qt::ISODate),
                                              QDate::fromString(exercise_plan_json["start_day"].toString(), Qt::ISODate));
 
-        QJsonArray current_weekly_plan_array = exercise_plan_json["weekly_plan"].toArray();
-        std::vector<Exercise::Exercise> current_exercises;
+        QJsonArray current_weekly_plan_array = exercise_plan_json["weekly_exercise_plan"].toArray();
+        std::vector<DailyExercisePlan> current_weekly_exercises;
+
         for (int i = 0; i < current_weekly_plan_array.size(); ++i){
-            QJsonObject current_exercise_json = current_weekly_plan_array[i].toObject();
+            QJsonObject current_daily_exercise_json = current_weekly_plan_array[i].toObject();
 
-            Exercise::Exercise current_exercise(Exercise::fromStringExerciseType(current_exercise_json["type"].toString()),
-                                                Exercise::fromStringExerciseName(current_exercise_json["name"].toString()),
-                                                current_exercise_json["set"].toInt(),
-                                                current_exercise_json["repeat"].toInt(),
-                                                current_exercise_json["cooldown_period"].toInt(),
-                                                QDate::fromString(current_exercise_json["last_done_date"].toString(), Qt::ISODate));
+            std::vector<Exercise*> current_daily_exercises;
+            DailyExercisePlan current_daily_exercise;
+            current_daily_exercise.SetCooldownPeriod(current_daily_exercise_json["cooldown_period"].toInt());
 
-            current_exercises.push_back(current_exercise);
+            QJsonArray current_daily_plan_array = current_daily_exercise_json["daily_exercise"].toArray();
+            for (int j = 0; j < current_daily_plan_array.size(); ++j){
+                QJsonObject current_daily_plan_json = current_daily_plan_array[i].toObject();
+                if(Exercise::fromStringToExerciseType(current_daily_plan_json["type"].toString()) == ExerciseType::Cardio){
+                    CardioWorkout *current_exercise = new CardioWorkout(Exercise::fromStringToExerciseType(current_daily_plan_json["type"].toString()),
+                                                   Exercise::fromStringToExerciseName(current_daily_plan_json["name"].toString()),
+                                                   current_daily_plan_json["durition"].toInt());
+                    current_daily_exercises.push_back(current_exercise);
+                }
+                else{
+                    StrengthWorkout *current_exercise = new StrengthWorkout(Exercise::fromStringToExerciseType(current_daily_plan_json["type"].toString()),
+                                                     Exercise::fromStringToExerciseName(current_daily_plan_json["name"].toString()),
+                                                     current_daily_plan_json["set"].toInt(),
+                                                     current_daily_plan_json["repeat"].toInt());
+                    current_daily_exercises.push_back(current_exercise);
+                }
+            }
+            current_daily_exercise.SetDailyExecisePlan(current_daily_exercises);
+            current_weekly_exercises.push_back(current_daily_exercise);
         }
-        member_ptr->SetWeeklyPlan(current_exercises);
+        member_ptr->SetWeeklyExercisePlan(current_weekly_exercises);
     }
 
-    QJsonArray exercise_plans_array = member_json["archived_exercise_plans"].toArray();
-    for (int i = 0; i < exercise_plans_array.size(); ++i) {
-        QJsonObject exercise_plan_json = exercise_plans_array[i].toObject();
-        ExercisePlan archived_exercise_plan;
-        archived_exercise_plan.SetTargetDate(QDate::fromString(exercise_plan_json["end_day"].toString(), Qt::ISODate),
+    QJsonObject exercise_plan_json = member_json["archived_exercise_plans"].toObject();
+    WeeklyExercisePlan archivedWeeklyExercisePlan;
+    archivedWeeklyExercisePlan.SetWeeklyExercisePlanPeriod(QDate::fromString(exercise_plan_json["end_day"].toString(), Qt::ISODate),
                                             QDate::fromString(exercise_plan_json["start_day"].toString(), Qt::ISODate));
 
-        QJsonArray weekly_plan_array = exercise_plan_json["weekly_plan"].toArray();
-        std::vector<Exercise::Exercise> archived_exercises;
-        for (int i = 0; i < weekly_plan_array.size(); ++i){
-            QJsonObject exercise_json = weekly_plan_array[i].toObject();
+    QJsonArray weekly_plan_array = exercise_plan_json["weekly_exercise_plan"].toArray();
+    std::vector<DailyExercisePlan> weekly_exercises;
 
-            Exercise::Exercise exercise(Exercise::fromStringExerciseType(exercise_json["type"].toString()),
-                                                Exercise::fromStringExerciseName(exercise_json["name"].toString()),
-                                                exercise_json["set"].toInt(),
-                                                exercise_json["repeat"].toInt(),
-                                                exercise_json["cooldown_period"].toInt(),
-                                        QDate::fromString(exercise_json["last_done_date"].toString(), Qt::ISODate));
+    for (int i = 0; i < weekly_plan_array.size(); ++i){
+        QJsonObject daily_exercise_json = weekly_plan_array[i].toObject();
 
-            archived_exercises.push_back(exercise);
+        std::vector<Exercise*> daily_exercises;
+        DailyExercisePlan daily_exercise;
+        daily_exercise.SetCooldownPeriod(daily_exercise_json["cooldown_period"].toInt());
+
+        QJsonArray daily_plan_array = daily_exercise_json["daily_exercise"].toArray();
+        for (int j = 0; j < daily_plan_array.size(); ++j){
+            QJsonObject daily_plan_json = daily_plan_array[i].toObject();
+            if(Exercise::fromStringToExerciseType(daily_plan_json["type"].toString()) == ExerciseType::Cardio){
+                CardioWorkout *exercise = new CardioWorkout(Exercise::fromStringToExerciseType(daily_plan_json["type"].toString()),
+                                               Exercise::fromStringToExerciseName(daily_plan_json["name"].toString()),
+                                               daily_plan_json["durition"].toInt());
+                daily_exercises.push_back(exercise);
+            }
+            else{
+                StrengthWorkout *exercise = new StrengthWorkout(Exercise::fromStringToExerciseType(daily_plan_json["type"].toString()),
+                                                 Exercise::fromStringToExerciseName(daily_plan_json["name"].toString()),
+                                                 daily_plan_json["set"].toInt(),
+                                                 daily_plan_json["repeat"].toInt());
+                daily_exercises.push_back(exercise);
+            }
         }
-        archived_exercise_plan.SetWeeklyPlan(archived_exercises);
-        member_ptr->AddExercisePlanToArchive(archived_exercise_plan);
+        daily_exercise.SetDailyExecisePlan(daily_exercises);
+        weekly_exercises.push_back(daily_exercise);
     }
+    archivedWeeklyExercisePlan.SetWeeklyExercisePlan(weekly_exercises);
+    member_ptr->AddExercisePlanToArchive(archivedWeeklyExercisePlan);
+
     return member_ptr;
 }
 

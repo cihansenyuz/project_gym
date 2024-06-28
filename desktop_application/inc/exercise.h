@@ -17,72 +17,48 @@
 
 #include <map>
 #include <QString>
+#include <QJsonObject>
+
+enum ExerciseType{
+    Cardio,
+    Shoulder,
+    Chest,
+    Back,
+    Arm,
+    Belly,
+    Hip,
+    Leg
+};
+
+enum ExerciseName{
+    TreadmillRunning,
+    TreadmillWalking,
+    StationaryBike,
+    StairClimber,
+    BenchPress,
+    DumbbellInclinePress,
+    LatPulldown,
+    BarbellRow,
+    OverheadPress,
+    DumbbellLateralRaise
+};
 
 class Exercise{
 public:
-    Exercise() = delete;
+    Exercise() = default;
     Exercise(ExerciseType type, ExerciseName name);
+    Exercise(const Exercise &other){
+        this->type_ = other.GetType();
+        this->name_ = other.GetName();
+    }
     virtual QJsonObject toJson() const = 0;
+    static QString toString(ExerciseType type);
+    static QString toString(ExerciseName name);
+    static ExerciseType fromStringToExerciseType(const QString& str);
+    static ExerciseName fromStringToExerciseName(const QString& str);
+
     ExerciseType GetType() const;
-    ExerciseType GetName() const;
-
-    ExerciseType::Cardio fromStringCardio(const QString &str);
-    ExerciseType::Strength fromStringStrength(const QString &str);
-    ExerciseType::Stretching fromStringStretching(const QString &str);
-    QString toString(const ExerciseType::Cardio &type);
-    QString toString(const ExerciseType::Strength &type);
-    QString toString(const ExerciseType::Stretching &type);
-
-    ExerciseName::Cardio fromStringExerciseNameCardio(const QString &str);
-    ExerciseName::Strength fromStringExerciseNameStrength(const QString &str);
-    ExerciseName::Stretching fromStringExerciseNameStretching(const QString &str);
-    QString toString(const ExerciseName::Cardio &type);
-    QString toString(const ExerciseName::Strength &type);
-    QString toString(const ExerciseName::Stretching &type);
-
-    struct ExerciseType{
-        enum class Cardio{
-            Cardio
-        };
-
-        enum class Strength{
-            Shoulder,
-            Chest,
-            Back,
-            Arm,
-            Belly,
-            Hip,
-            Leg
-        };
-
-        enum class Stretching{
-            Stretching
-        };
-    };
-
-    struct ExerciseName{
-        enum class Cardio{
-            TreadmillRunning,
-            TreadmillWalking,
-            StationaryBike,
-            StairClimber
-        };
-
-        enum class Strength{
-            BenchPress,
-            DumbbellInclinePress,
-            LatPulldown,
-            BarbellRow,
-            OverheadPress,
-            DumbbellLateralRaise
-        };
-
-        enum class Stretching{
-            Hamstring,
-            Quadriceps,
-            HipFlexor
-        };
-    };
+    ExerciseName GetName() const;
 
 private:
     ExerciseType type_;

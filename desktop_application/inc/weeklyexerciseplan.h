@@ -19,22 +19,26 @@
 
 #include <vector>
 #include <QJsonObject>
+#include <QJsonArray>
 #include <QDate>
 #include "dailyexerciseplan.h"
 
 class WeeklyExercisePlan
 {
 public:
-    WeeklyExercisePlan() = delete;
+    WeeklyExercisePlan() = default;
     WeeklyExercisePlan(const QDate &end_date, const QDate &start_date = QDate::currentDate());
     QJsonObject toJson() const;
 
     void AddNewDailyExercisePlan(const DailyExercisePlan &new_daily_plan);
     void ClearWeeklyExercisePlan();
-    void SetWeeklyExercisePlan(const DailyExercisePlan &new_weekly_plan);
+    void SetWeeklyExercisePlan(const std::vector<DailyExercisePlan> &new_weekly_plan);
+    void SetWeeklyExercisePlanPeriod(QDate start_date, QDate end_date);
+    bool HasWeeklyExercisePlan() const;
 
     short GetRemaningDays();
     std::pair<QDate, QDate> GetWeeklyExercisePlanPeriod();
+    std::vector<DailyExercisePlan> GetWeeklyExercisePlan();
 
 private:
     std::vector<DailyExercisePlan> weekly_plan_;

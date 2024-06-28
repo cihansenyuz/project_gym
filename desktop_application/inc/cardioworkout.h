@@ -22,7 +22,7 @@
 class CardioWorkout : public Exercise
 {
 public:
-    CardioWorkout() = delete;
+    CardioWorkout() = default;
     CardioWorkout(ExerciseType type, ExerciseName name, short durition);
     QJsonObject toJson() const override;
 

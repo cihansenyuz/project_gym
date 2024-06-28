@@ -22,7 +22,7 @@
 class StrengthWorkout : public Exercise
 {
 public:
-    StrengthWorkout() = delete;
+    StrengthWorkout() = default;
     StrengthWorkout(ExerciseType type, ExerciseName name, short set, short repeat);
     QJsonObject toJson() const override;
 
