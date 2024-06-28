@@ -45,13 +45,10 @@ enum ExerciseName{
 
 class Exercise{
 public:
-    Exercise() = default;
+    Exercise() = delete;
     Exercise(ExerciseType type, ExerciseName name);
-    Exercise(const Exercise &other){
-        this->type_ = other.GetType();
-        this->name_ = other.GetName();
-    }
     virtual QJsonObject toJson() const = 0;
+
     static QString toString(ExerciseType type);
     static QString toString(ExerciseName name);
     static ExerciseType fromStringToExerciseType(const QString& str);
