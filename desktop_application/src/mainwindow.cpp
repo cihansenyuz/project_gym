@@ -19,10 +19,8 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "no member found";*/
 
     member_manager.SetCurrentMemberByName("cihan");
-    /*member_manager.GetCurrentMember()->ClearWeeklyExercisePlan();
-    member_manager.SaveChangesOnCurrentMember();
 
-    DailyExercisePlan daily_plan;
+    /*DailyExercisePlan daily_plan;
     CardioWorkout *exercise = new CardioWorkout(ExerciseType::Cardio, ExerciseName::TreadmillRunning, 20);
     CardioWorkout *exercise2 = new CardioWorkout(ExerciseType::Cardio, ExerciseName::StairClimber, 10);
     StrengthWorkout *exercise3 = new StrengthWorkout(ExerciseType::Chest, ExerciseName::BenchPress, 3, 8);
@@ -30,10 +28,10 @@ MainWindow::MainWindow(QWidget *parent)
     daily_plan.AddNewExercise(exercise);
     daily_plan.AddNewExercise(exercise2);
     daily_plan.AddNewExercise(exercise3);
-    daily_plan.SetCooldownPeriod(2);
+    daily_plan.SetCooldownPeriod(3);
 
     member_manager.GetCurrentMember()->AddNewDailyExercisePlan(daily_plan);
-    member_manager.GetCurrentMember()->SetWeeklyExercisePlanPeriod(QDate::currentDate(), QDate::currentDate().addMonths(1));
+    member_manager.GetCurrentMember()->SetWeeklyExercisePlanPeriod(QDate::currentDate(), QDate::currentDate().addMonths(2));
     member_manager.SaveChangesOnCurrentMember();*/
 
     qDebug() << "chest: " << member_manager.GetCurrentMember()->GetChest();

@@ -82,9 +82,10 @@ std::vector<Subscription> Member::GetAllArchivedSubscriptions(){
     return archived_subscriptions_;
 }
 
-void Member::ArchiveCurrentExercisePlan(){
+void Member::EndExercisePlan(){
+    WeeklyExercisePlan::EndWeeklyExercisePlan();
     WeeklyExercisePlan last_exercise_plan(GetWeeklyExercisePlanPeriod().second,
-                                            GetWeeklyExercisePlanPeriod().first);
+                                          GetWeeklyExercisePlanPeriod().first);
     last_exercise_plan.SetWeeklyExercisePlan(GetWeeklyExercisePlan());
     AddExercisePlanToArchive(last_exercise_plan);
     ClearWeeklyExercisePlan();

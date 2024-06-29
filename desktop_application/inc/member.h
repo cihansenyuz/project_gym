@@ -46,7 +46,7 @@ public:
     void AddSubscriptionToArchive(const Subscription &archived);
     void EndSubscription();
     void AddExercisePlanToArchive(const WeeklyExercisePlan &archived);
-    void ArchiveCurrentExercisePlan();
+    void EndExercisePlan();
 
     float GetWeight() const;
     float GetShoulder() const;

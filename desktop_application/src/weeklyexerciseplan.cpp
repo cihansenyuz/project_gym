@@ -50,3 +50,7 @@ std::pair<QDate, QDate> WeeklyExercisePlan::GetWeeklyExercisePlanPeriod(){
 std::vector<DailyExercisePlan> WeeklyExercisePlan::GetWeeklyExercisePlan(){
     return weekly_plan_;
 }
+
+void WeeklyExercisePlan::EndWeeklyExercisePlan(){
+    end_date_ = QDate::currentDate();
+}
