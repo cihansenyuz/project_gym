@@ -24,7 +24,7 @@ QJsonObject Measurement::toJson() const
     json["belly"] = belly_;
     json["hip"] = hip_;
     json["leg"] = leg_;
-    json["taken_date"] = taken_date_.toString(Qt::ISODate); // Serialize QDate to string
+    json["taken_date"] = taken_date_.toString(Qt::ISODate);
 
     return json;
 }

@@ -31,6 +31,7 @@ public:
     QJsonObject toJson() const;
 
     short GetCooldownPeriod() const;
+    std::vector<Exercise*> GetDailyExercisePlan();
 
 private:
     std::vector<Exercise*> daily_plan_;

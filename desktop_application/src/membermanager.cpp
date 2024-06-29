@@ -55,10 +55,7 @@ Member* MemberManager::fromJsonObject(QJsonObject &member_json){
     ParseSubscriptions(member_ptr, member_json["archived_subscriptions"].toArray());
 
     if (member_json.contains("exercise_plan")) {
-        QJsonObject exercise_plan_json = member_json["exercise_plan"].toObject();
-        member_ptr->SetWeeklyExercisePlanPeriod(QDate::fromString(exercise_plan_json["end_day"].toString(), Qt::ISODate),
-                                             QDate::fromString(exercise_plan_json["start_day"].toString(), Qt::ISODate));
-        ParseWeeklyExercisePlan(member_ptr, exercise_plan_json["weekly_exercise_plan"].toArray());
+        ParseWeeklyExercisePlan(member_ptr, member_json["exercise_plan"].toObject());
     }
 
     QJsonObject exercise_plan_json = member_json["archived_exercise_plans"].toObject();
@@ -131,11 +128,14 @@ void MemberManager::ParseSubscriptions(Member *member, const QJsonArray &subscri
     }
 }
 
-void MemberManager::ParseWeeklyExercisePlan(Member *member, const QJsonArray &weekly_exercise_plan_array){
+void MemberManager::ParseWeeklyExercisePlan(Member *member, const QJsonObject &weekly_exercise_plan_json){
     std::vector<DailyExercisePlan> current_weekly_exercises;
+    member->SetWeeklyExercisePlanPeriod(QDate::fromString(weekly_exercise_plan_json["start_date"].toString(), Qt::ISODate),
+                                        QDate::fromString(weekly_exercise_plan_json["end_date"].toString(), Qt::ISODate));
 
-    for (int i = 0; i < weekly_exercise_plan_array.size(); ++i){
-        QJsonObject current_daily_exercise_json = weekly_exercise_plan_array[i].toObject();
+    QJsonArray daily_exercise_plan_array = weekly_exercise_plan_json["weekly_exercise_plan"].toArray();
+    for (int k = 0; k < daily_exercise_plan_array.size(); ++k){
+        QJsonObject current_daily_exercise_json = daily_exercise_plan_array[k].toObject();
 
         std::vector<Exercise*> current_daily_exercises;
         DailyExercisePlan current_daily_exercise;
@@ -143,7 +143,7 @@ void MemberManager::ParseWeeklyExercisePlan(Member *member, const QJsonArray &we
 
         QJsonArray current_daily_plan_array = current_daily_exercise_json["daily_exercise"].toArray();
         for (int j = 0; j < current_daily_plan_array.size(); ++j){
-            current_daily_exercises.push_back(ParseExercise(current_daily_plan_array[i].toObject()));
+            current_daily_exercises.push_back(ParseExercise(current_daily_plan_array[j].toObject()));
         }
         current_daily_exercise.SetDailyExecisePlan(current_daily_exercises);
         current_weekly_exercises.push_back(current_daily_exercise);

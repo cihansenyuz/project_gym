@@ -29,3 +29,7 @@ void DailyExercisePlan::SetDailyExecisePlan(const std::vector<Exercise*> &new_pl
 short DailyExercisePlan::GetCooldownPeriod() const{
     return cooldown_period_;
 }
+
+std::vector<Exercise*> DailyExercisePlan::GetDailyExercisePlan(){
+    return daily_plan_;
+}

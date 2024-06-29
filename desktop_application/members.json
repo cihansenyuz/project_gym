@@ -849,5 +849,68 @@
         "subscription": true,
         "subscription_end_date": "2024-12-01",
         "subscription_start_date": "2023-12-01"
+    },
+    {
+        "age": 36,
+        "archived_subscriptions": [
+            {
+                "subscription": false,
+                "subscription_end_date": "2024-06-29",
+                "subscription_start_date": "2024-06-28"
+            }
+        ],
+        "exercise_plan": {
+            "end_date": "2024-07-28",
+            "start_date": "2024-06-28",
+            "weekly_exercise_plan": [
+                {
+                    "cooldown_period": 2,
+                    "daily_exercise": [
+                        {
+                            "durition": 20,
+                            "name": "TreadmillRunning",
+                            "type": "Cardio"
+                        },
+                        {
+                            "durition": 10,
+                            "name": "StairClimber",
+                            "type": "Cardio"
+                        },
+                        {
+                            "name": "BenchPress",
+                            "repeat": 8,
+                            "set": 3,
+                            "type": "Chest"
+                        }
+                    ]
+                }
+            ]
+        },
+        "measurements": [
+            {
+                "arm": 4,
+                "belly": 5,
+                "chest": 3,
+                "hip": 6,
+                "leg": 7,
+                "shoulder": 2,
+                "taken_date": "2024-06-28",
+                "weight": 1
+            },
+            {
+                "arm": 44,
+                "belly": 55,
+                "chest": 33,
+                "hip": 66,
+                "leg": 77,
+                "shoulder": 22,
+                "taken_date": "2024-07-18",
+                "weight": 11
+            }
+        ],
+        "name": "cihan",
+        "subscription": true,
+        "subscription_end_date": "2024-08-29",
+        "subscription_start_date": "2024-06-29"
     }
 ]

@@ -30,12 +30,12 @@ void WeeklyExercisePlan::SetWeeklyExercisePlan(const std::vector<DailyExercisePl
     weekly_plan_ = new_weekly_plan;
 }
 
-void WeeklyExercisePlan::SetWeeklyExercisePlanPeriod(QDate start_date, QDate end_date){
+void WeeklyExercisePlan::SetWeeklyExercisePlanPeriod(const QDate start_date,const QDate end_date){
     start_date_ = start_date;
     end_date_ = end_date;
 }
 
-short WeeklyExercisePlan::GetRemainingDays(){
+int WeeklyExercisePlan::GetRemainingDays(){
     return QDate::currentDate().daysTo(end_date_);
 }
 
