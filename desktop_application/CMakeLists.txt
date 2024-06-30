@@ -24,6 +24,7 @@ set(PROJECT_SOURCES
         src/cardioworkout.cpp
         src/dailyexerciseplan.cpp
         src/weeklyexerciseplan.cpp
+        src/jsonparser.cpp
 
         inc/mainwindow.h
         inc/member.h
@@ -35,6 +36,7 @@ set(PROJECT_SOURCES
         inc/cardioworkout.h
         inc/dailyexerciseplan.h
         inc/weeklyexerciseplan.h
+        inc/jsonparser.h
 
         ui/mainwindow.ui
 )
@@ -43,7 +45,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(desktop_application
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        members.json 
+        members.json
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET desktop_application APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
