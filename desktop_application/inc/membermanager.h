@@ -22,28 +22,21 @@
 #define MEMBERMANAGER_H
 
 #include "member.h"
-#include "cardioworkout.h"
-#include "strengthworkout.h"
+#include "jsonparser.h"
+#include "jsoncontainer.h"
 
-#include <QFile>
-#include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QDebug>
 
-class MemberManager
+class MemberManager : public JsonParser, public JsonContainer
 {
 public:
     MemberManager();
 
-
-
-private:
-
-
-
-    QJsonArray members_json;
-    QString file_path{"../../members.json"};
+    void RegisterNewMember(const Member &member) override;
+    void SaveChangesOnMember() override;
+    void DeleteMember() override;
 };
 
 #endif // MEMBERMANAGER_H

@@ -10,13 +10,6 @@ void MemberManager::RegisterNewMember(const Member &member){
     SaveToFile();
 }
 
-
-
-
-Member* MemberManager::GetCurrentMember() const{
-    return current_member;
-}
-
 void MemberManager::SaveChangesOnCurrentMember(){
     for (int i = 0; i < members_json.size(); ++i) {
         QJsonObject member_json = members_json[i].toObject();
@@ -26,8 +19,6 @@ void MemberManager::SaveChangesOnCurrentMember(){
     }
     SaveToFile();
 }
-
-
 
 void MemberManager::DeleteCurrentMember(){
     for (int i = 0; i < members_json.size(); ++i) {

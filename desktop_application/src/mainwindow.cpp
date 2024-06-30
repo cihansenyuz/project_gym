@@ -18,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     else
         qDebug() << "no member found";*/
 
-    member_manager.SetCurrentMemberByName("cihan");
+    //member_manager.SetCurrentMemberByName("cihan");
 
     /*DailyExercisePlan daily_plan;
     CardioWorkout *exercise = new CardioWorkout(ExerciseType::Cardio, ExerciseName::TreadmillRunning, 20);
@@ -34,11 +34,11 @@ MainWindow::MainWindow(QWidget *parent)
     member_manager.GetCurrentMember()->SetWeeklyExercisePlanPeriod(QDate::currentDate(), QDate::currentDate().addMonths(2));
     member_manager.SaveChangesOnCurrentMember();*/
 
-    qDebug() << "chest: " << member_manager.GetCurrentMember()->GetChest();
+    /*qDebug() << "chest: " << member_manager.GetCurrentMember()->GetChest();
     qDebug() << "subs: " << member_manager.GetCurrentMember()->HasSubscription();
     qDebug() << "remaining: " << member_manager.GetCurrentMember()->GetRemainingDays();
     qDebug() << "cooldown: " << member_manager.GetCurrentMember()->GetWeeklyExercisePlan().back().GetCooldownPeriod();
-    qDebug() << "name: " << Exercise::toString(member_manager.GetCurrentMember()->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());
+    qDebug() << "name: " << Exercise::toString(member_manager.GetCurrentMember()->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());*/
 
     ///////////////////////////////////////
 }
