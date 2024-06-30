@@ -25,6 +25,7 @@ set(PROJECT_SOURCES
         src/dailyexerciseplan.cpp
         src/weeklyexerciseplan.cpp
         src/jsonparser.cpp
+        src/jsoncontainer.cpp
 
         inc/mainwindow.h
         inc/member.h
@@ -37,6 +38,7 @@ set(PROJECT_SOURCES
         inc/dailyexerciseplan.h
         inc/weeklyexerciseplan.h
         inc/jsonparser.h
+        inc/jsoncontainer.h
 
         ui/mainwindow.ui
 )

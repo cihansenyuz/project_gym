@@ -35,19 +35,15 @@ class MemberManager
 {
 public:
     MemberManager();
-    Member* GetCurrentMember() const;
 
-    void RegisterNewMember(const Member &member);
-    void SaveChangesOnCurrentMember();
-    void DeleteCurrentMember();
+
 
 private:
 
-    bool SaveToFile();
+
 
     QJsonArray members_json;
     QString file_path{"../../members.json"};
-    Member *current_member; /** points to the member ready to be manipulated */
 };
 
 #endif // MEMBERMANAGER_H
