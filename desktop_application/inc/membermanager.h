@@ -1,19 +1,12 @@
 /**
   ******************************************************************************
-  * @file    membermanager.hpp
+  * @file    membermanager.h
   * @author  Cihan Senyuz
   * @date    20.06.2024
   * @brief   Header for membermanager.cpp file.
-  *                 Manages members within a fitness club, including their personal
-  *          details, subscription status, measurements, exercise plans, and
-  *          archived data. Provides methods for adding new members, updating
-  *          member information, handling subscriptions, managing exercise plans,
-  *          and accessing archived data.
-  *
-  *          Reads from a json file, and keeps all members in a QJsonArray. The
-  *          member to be edited is chosen by SetCurrentMemberByName(), then using
-  *          methods of the object, member is manupilated. Finally, all changes
-  *          saved to the QJsonArray upon SaveChangesOnCurrentMember() method.
+  *                 Implements member management functionalities including
+  *          retrieving, registering, updating, and deleting members. Inherits
+  *          from JsonContainer to manage JSON-based member data.
   *
   ******************************************************************************
   */

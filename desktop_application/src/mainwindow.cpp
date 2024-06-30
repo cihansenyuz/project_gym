@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent)
     member_manager.GetCurrentMember()->SetWeeklyExercisePlanPeriod(QDate::currentDate(), QDate::currentDate().addMonths(2));
     member_manager.SaveChangesOnCurrentMember();*/
 
+    qDebug() << "name: " << current_member->GetName();
+    qDebug() << "age: " << current_member->GetAge();
     qDebug() << "chest: " << current_member->GetChest();
     qDebug() << "subs: " << current_member->HasSubscription();
     qDebug() << "remaining: " << current_member->GetRemainingDays();

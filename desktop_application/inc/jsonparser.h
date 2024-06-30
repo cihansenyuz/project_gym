@@ -1,3 +1,17 @@
+/**
+  ******************************************************************************
+  * @file    jsonparser.h
+  * @author  Cihan Senyuz
+  * @date    30.06.2024
+  * @brief   Header for jsonparser.cpp file.
+  *                 Provides methods to parse JSON data into Member objects,
+  *          including measurements, subscriptions, and exercise plans. Contains
+  *          functions to parse various JSON structures and connvert them into
+  *          appropriate objects.
+  *
+  ******************************************************************************
+  */
+
 #ifndef JSONPARSER_H
 #define JSONPARSER_H
 
@@ -12,9 +26,9 @@
 class JsonParser
 {
 public:
-    JsonParser();
+    JsonParser() = default;
     Member* fromJsonObject(QJsonObject &member_json);
-    virtual Member* GetMember(const QString &name){return nullptr;}
+    virtual Member* GetMember(const QString &name) = 0;
 
 private:
     void ParseMeasurements(Member *member, const QJsonArray &measurements_array);

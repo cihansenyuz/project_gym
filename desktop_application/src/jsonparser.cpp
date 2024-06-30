@@ -1,7 +1,5 @@
 #include "../inc/jsonparser.h"
 
-JsonParser::JsonParser() {}
-
 Member* JsonParser::fromJsonObject(QJsonObject &member_json){
     Member *member_ptr = new Member();
     member_ptr->SetName(member_json["name"].toString());
