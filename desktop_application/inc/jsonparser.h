@@ -27,8 +27,7 @@ class JsonParser
 {
 public:
     JsonParser() = default;
-    Member* fromJsonObject(QJsonObject &member_json);
-    virtual Member* GetMember(const QString &name) = 0;
+    Member* ParseMemberFromJson(QJsonObject &member_json);
 
 private:
     void ParseMeasurements(Member *member, const QJsonArray &measurements_array);

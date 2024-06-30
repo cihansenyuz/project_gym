@@ -4,9 +4,9 @@
   * @author  Cihan Senyuz
   * @date    30.06.2024
   * @brief   Header for jsoncontainer.cpp file.
-  *                 Manages a collection of Member objects, providing methods
-  *          for registering new members, saving changes, and deleting members.
-  *          Inherits from JsonParser to utilize JSON parsing functionality.
+  *                 Provides an interface to manage a collection of Member objects,
+  *          providing methods for registering new members, saving changes, and
+  *          deleting members.
   *
   ******************************************************************************
   */
@@ -21,7 +21,7 @@
 #include <QJsonDocument>
 #include <QFile>
 
-class JsonContainer : public JsonParser
+class JsonContainer
 {
 public:
     JsonContainer();

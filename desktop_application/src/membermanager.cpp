@@ -4,7 +4,7 @@ Member* MemberManager::GetMember(const QString &name){
     for (int i = 0; i < members_array.size(); ++i) {
         QJsonObject member_json = members_array[i].toObject();
         if (member_json["name"].toString() == name) {
-            return fromJsonObject(member_json);
+            return parser.ParseMemberFromJson(member_json);
         }
     }
     return nullptr;

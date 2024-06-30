@@ -1,6 +1,6 @@
 #include "../inc/jsonparser.h"
 
-Member* JsonParser::fromJsonObject(QJsonObject &member_json){
+Member* JsonParser::ParseMemberFromJson(QJsonObject &member_json){
     Member *member_ptr = new Member();
     member_ptr->SetName(member_json["name"].toString());
     member_ptr->SetAge(member_json["age"].toInt());

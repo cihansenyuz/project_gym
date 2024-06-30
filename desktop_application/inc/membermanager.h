@@ -6,7 +6,8 @@
   * @brief   Header for membermanager.cpp file.
   *                 Implements member management functionalities including
   *          retrieving, registering, updating, and deleting members. Inherits
-  *          from JsonContainer to manage JSON-based member data.
+  *          from JsonContainer to read/write data to/from Json file. Includes
+  *          JsonParser to parse Member.
   *
   ******************************************************************************
   */
@@ -25,10 +26,13 @@ class MemberManager : public JsonContainer
 {
 public:
     MemberManager() = default;
-    Member* GetMember(const QString &name) override;
+    Member* GetMember(const QString &name);
     void RegisterNewMember(const Member &member) override;
     void SaveChangesOnMember(const Member &member) override;
     void DeleteMember(const QString &name) override;
+
+private:
+    JsonParser parser;
 };
 
 #endif // MEMBERMANAGER_H
