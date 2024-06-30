@@ -22,21 +22,20 @@
 #define MEMBERMANAGER_H
 
 #include "member.h"
-#include "jsonparser.h"
 #include "jsoncontainer.h"
 
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QDebug>
 
-class MemberManager : public JsonParser, public JsonContainer
+class MemberManager : public JsonContainer
 {
 public:
-    MemberManager();
-
+    MemberManager() = default;
+    Member* GetMember(const QString &name) override;
     void RegisterNewMember(const Member &member) override;
-    void SaveChangesOnMember() override;
-    void DeleteMember() override;
+    void SaveChangesOnMember(const Member &member) override;
+    void DeleteMember(const QString &name) override;
 };
 
 #endif // MEMBERMANAGER_H

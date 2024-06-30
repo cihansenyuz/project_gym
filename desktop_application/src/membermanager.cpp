@@ -1,33 +1,37 @@
 #include "../inc/membermanager.h"
 
-MemberManager::MemberManager() {
-
+Member* MemberManager::GetMember(const QString &name){
+    for (int i = 0; i < members_array.size(); ++i) {
+        QJsonObject member_json = members_array[i].toObject();
+        if (member_json["name"].toString() == name) {
+            return fromJsonObject(member_json);
+        }
+    }
+    return nullptr;
 }
 
 void MemberManager::RegisterNewMember(const Member &member){
     QJsonObject member_json = member.toJson();
-    members_json.append(member_json);
+    members_array.append(member_json);
     SaveToFile();
 }
 
-void MemberManager::SaveChangesOnCurrentMember(){
-    for (int i = 0; i < members_json.size(); ++i) {
-        QJsonObject member_json = members_json[i].toObject();
-        if (member_json["name"].toString() == current_member->GetName()) {
-            members_json[i] = QJsonValue(current_member->toJson());
+void MemberManager::SaveChangesOnMember(const Member &member){
+    for (int i = 0; i < members_array.size(); ++i) {
+        QJsonObject member_json = members_array[i].toObject();
+        if (member_json["name"].toString() == member.GetName()) {
+            members_array[i] = QJsonValue(member.toJson());
         }
     }
     SaveToFile();
 }
 
-void MemberManager::DeleteCurrentMember(){
-    for (int i = 0; i < members_json.size(); ++i) {
-        QJsonObject member_json = members_json[i].toObject();
-        if (member_json["name"].toString() == current_member->GetName()) {
-            members_json.removeAt(i);
+void MemberManager::DeleteMember(const QString &name){
+    for (int i = 0; i < members_array.size(); ++i) {
+        QJsonObject member_json = members_array[i].toObject();
+        if (member_json["name"].toString() == name) {
+            members_array.removeAt(i);
         }
     }
     SaveToFile();
 }
-
-

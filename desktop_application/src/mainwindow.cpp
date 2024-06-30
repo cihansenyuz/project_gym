@@ -9,16 +9,15 @@ MainWindow::MainWindow(QWidget *parent)
 
     //////// TEST & DEBUG SECTION /////////
 
-    /*if(member_manager.SetCurrentMemberByName("Alice")){
-        qDebug() << "current selected member: " << member_manager.GetCurrentMember()->GetName();
+    Member* current_member = member_manager.GetMember("cihan");
+    /*if(current_member){
+        qDebug() << "current selected member: " << current_member->GetName();
 
-        //member_manager.GetCurrentMember()->SetAge(22);
-        //member_manager.SaveChangesOnCurrentMember();
+        current_member->SetAge(22);
+        member_manager.SaveChangesOnMember(*current_member);
     }
     else
         qDebug() << "no member found";*/
-
-    //member_manager.SetCurrentMemberByName("cihan");
 
     /*DailyExercisePlan daily_plan;
     CardioWorkout *exercise = new CardioWorkout(ExerciseType::Cardio, ExerciseName::TreadmillRunning, 20);
@@ -34,11 +33,11 @@ MainWindow::MainWindow(QWidget *parent)
     member_manager.GetCurrentMember()->SetWeeklyExercisePlanPeriod(QDate::currentDate(), QDate::currentDate().addMonths(2));
     member_manager.SaveChangesOnCurrentMember();*/
 
-    /*qDebug() << "chest: " << member_manager.GetCurrentMember()->GetChest();
-    qDebug() << "subs: " << member_manager.GetCurrentMember()->HasSubscription();
-    qDebug() << "remaining: " << member_manager.GetCurrentMember()->GetRemainingDays();
-    qDebug() << "cooldown: " << member_manager.GetCurrentMember()->GetWeeklyExercisePlan().back().GetCooldownPeriod();
-    qDebug() << "name: " << Exercise::toString(member_manager.GetCurrentMember()->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());*/
+    qDebug() << "chest: " << current_member->GetChest();
+    qDebug() << "subs: " << current_member->HasSubscription();
+    qDebug() << "remaining: " << current_member->GetRemainingDays();
+    qDebug() << "cooldown: " << current_member->GetWeeklyExercisePlan().back().GetCooldownPeriod();
+    qDebug() << "name: " << Exercise::toString(current_member->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());
 
     ///////////////////////////////////////
 }

@@ -116,15 +116,3 @@ Exercise* JsonParser::ParseExercise(const QJsonObject &exercise_json){
                                    exercise_json["repeat"].toInt());
     }
 }
-
-Member* JsonParser::GetParsedMember(const QString &name){
-    for (int i = 0; i < members_json.size(); ++i) {
-        QJsonObject member_json = members_json[i].toObject();
-        if (member_json["name"].toString() == name) {
-            parsed_member = fromJsonObject(member_json);
-            return parsed_member;
-        }
-    }
-    parsed_member = nullptr;
-    return parsed_member;
-}

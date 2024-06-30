@@ -6,13 +6,15 @@
 #include <QJsonValue>
 
 #include "member.h"
+#include "cardioworkout.h"
+#include "strengthworkout.h"
 
 class JsonParser
 {
 public:
     JsonParser();
-    Member* fromJsonArray(QJsonObject &member_json);
-    Member* GetParsedMember(const QString &name);
+    Member* fromJsonObject(QJsonObject &member_json);
+    virtual Member* GetMember(const QString &name){return nullptr;}
 
 private:
     void ParseMeasurements(Member *member, const QJsonArray &measurements_array);
@@ -20,8 +22,6 @@ private:
     void ParseWeeklyExercisePlan(Member *member, const QJsonObject &weekly_exercise_plan_json);
     void ParseArchivedWeeklyExercisePlans(Member *member, const QJsonArray &archived_weekly_exercise_plans_array);
     Exercise* ParseExercise(const QJsonObject &exercise_json);
-
-    Member* parsed_member{nullptr};
 };
 
 #endif // JSONPARSER_H
