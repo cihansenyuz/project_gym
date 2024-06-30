@@ -36,18 +36,13 @@ class MemberManager
 public:
     MemberManager();
     Member* GetCurrentMember() const;
-    bool SetCurrentMemberByName(const QString &name);
+
     void RegisterNewMember(const Member &member);
     void SaveChangesOnCurrentMember();
     void DeleteCurrentMember();
 
 private:
-    Member* fromJsonObject(QJsonObject &member_json);
-    void ParseMeasurements(Member *member, const QJsonArray &measurements_array);
-    void ParseSubscriptions(Member *member, const QJsonArray &subscriptions_array);
-    void ParseWeeklyExercisePlan(Member *member, const QJsonObject &weekly_exercise_plan_json);
-    void ParseArchivedWeeklyExercisePlans(Member *member, const QJsonArray &archived_weekly_exercise_plans_array);
-    Exercise* ParseExercise(const QJsonObject &exercise_json);
+
     bool SaveToFile();
 
     QJsonArray members_json;
