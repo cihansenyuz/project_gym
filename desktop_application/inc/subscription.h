@@ -24,7 +24,7 @@ public:
     Subscription(const QDate &start_date, const QDate &end_date, bool status);
     void SetSubscriptionPeriod(const QDate &start_date, const QDate &end_date);
     void ExtendSubscriptionEndDate(const QDate &end_date);
-    void EndSubscription();
+    void EndSubscription(bool update_end_date = true);
     bool HasSubscription() const;
     QDate GetSubscriptionStartDate() const;
     QDate GetSubscriptionEndDate() const;

@@ -74,7 +74,7 @@ void MemberManager::MaintainExpiredSubscriptions(){
         if (member_json["subscription"].toBool() == true) {
             if (QDate::fromString(member_json["subscription_end_date"].toString(), Qt::ISODate) < QDate::currentDate()){
                 Member* member_to_be_updated = parser.ParseMemberFromJson(member_json);
-                member_to_be_updated->EndSubscription();
+                member_to_be_updated->EndSubscription(false);
                 members_array[i] = member_to_be_updated->toJson();
                 has_changes = true;
             }

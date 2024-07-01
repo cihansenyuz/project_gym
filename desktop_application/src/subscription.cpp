@@ -14,9 +14,10 @@ void Subscription::ExtendSubscriptionEndDate(const QDate &end_date){
     end_date_ = end_date;
 }
 
-void Subscription::EndSubscription(){
+void Subscription::EndSubscription(bool update_end_date){
     status_ = false;
-    end_date_ = QDate::currentDate();
+    if(update_end_date)
+        end_date_ = QDate::currentDate();
 }
 
 bool Subscription::HasSubscription() const { return status_; }
