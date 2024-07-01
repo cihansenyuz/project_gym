@@ -21,18 +21,26 @@
 #include <QJsonObject>
 #include <QJsonValue>
 #include <QDebug>
+#include <thread>
+#include <chrono>
+#include <mutex>
 
 class MemberManager : public JsonContainer
 {
 public:
-    MemberManager() = default;
+    MemberManager();
+    ~MemberManager();
     Member* GetMember(const QString &name);
     void RegisterNewMember(const Member &member) override;
     void SaveChangesOnMember(const Member &member) override;
     void DeleteMember(const QString &name) override;
+    void MaintainExpiredSubscriptions();
 
 private:
     JsonParser parser;
+    QDate yesterday{QDate::currentDate()}; // to invoke MaintainExpiredSubscriptions at first run
+    std::thread* subscription_maintain_thread;
+    std::mutex members_array_mutex;
 };
 
 #endif // MEMBERMANAGER_H

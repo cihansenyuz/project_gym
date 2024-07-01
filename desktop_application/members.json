@@ -857,6 +857,11 @@
                 "subscription": false,
                 "subscription_end_date": "2024-06-29",
                 "subscription_start_date": "2024-06-28"
+            },
+            {
+                "subscription": false,
+                "subscription_end_date": "2024-06-30",
+                "subscription_start_date": "2024-06-01"
             }
         ],
         "exercise_plan": {
@@ -898,8 +903,8 @@
             }
         ],
         "name": "cihan",
-        "subscription": true,
-        "subscription_end_date": "2024-08-29",
-        "subscription_start_date": "2024-06-29"
+        "subscription": false,
+        "subscription_end_date": "2024-06-30",
+        "subscription_start_date": "2024-06-01"
     }
 ]

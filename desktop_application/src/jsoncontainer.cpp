@@ -33,6 +33,7 @@ bool JsonContainer::SaveToFile(){
     }
 
     file.write(document.toJson());
+    qDebug() << "Written to the file";
     file.close();
     return true;
 }

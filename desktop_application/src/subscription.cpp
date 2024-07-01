@@ -6,7 +6,7 @@ Subscription::Subscription(const QDate &start_date, const QDate &end_date, bool 
 void Subscription::SetSubscriptionPeriod(const QDate &start_date, const QDate &end_date){
     start_date_ = start_date;
     end_date_ = end_date;
-    if(end_date > QDate::currentDate())
+    if(end_date >= QDate::currentDate())
         status_ = true;
 }
 
