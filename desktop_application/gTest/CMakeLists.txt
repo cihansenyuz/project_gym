@@ -12,19 +12,31 @@ find_package(Qt6 REQUIRED COMPONENTS Core)
 
 set (PROJECT_SOURCES
   measurements_fixture.cpp
-  ../src/measurement.cpp
-  ../inc/measurement.h
-  member_fixture.cpp
-  ../src/member.cpp
-  ../inc/member.h
-  ../src/subscription.cpp
-  ../inc/subscription.h
-  exerciseplan_fixture.cpp
-  ../src/exerciseplan.cpp
-  ../inc/exerciseplan.h
+  ../src/member/measurement.cpp
+  ../inc/member/measurement.h
   exercise_fixture.cpp
-  ../src/exercise.cpp
-  ../inc/exercise.h
+  ../src/member/exercise/exercise.cpp
+  ../inc/member/exercise/exercise.h
+  ../src/member/exercise/cardioworkout.cpp
+  ../inc/member/exercise/cardioworkout.h
+  ../src/member/exercise/strengthworkout.cpp
+  ../inc/member/exercise/strengthworkout.h
+  dailyexerciseplan_fixture.cpp
+  ../src/member/exercise/dailyexerciseplan.cpp
+  ../inc/member/exercise/dailyexerciseplan.h
+  ../src/member/exercise/cardioworkout.cpp
+  ../inc/member/exercise/cardioworkout.h
+  ../src/member/exercise/strengthworkout.cpp
+  ../inc/member/exercise/strengthworkout.h
+  weeklyexerciseplan_fixture.cpp
+  ../src/member/exercise/weeklyexerciseplan.cpp
+  ../inc/member/exercise/weeklyexerciseplan.h
+  subscription_fixture.cpp
+  ../src/member/subscription.cpp
+  ../inc/member/subscription.h
+  member_fixture.cpp
+  ../src/member/member.cpp
+  ../inc/member/member.h
 )
 
 add_executable(desktop_app_test ${PROJECT_SOURCES})

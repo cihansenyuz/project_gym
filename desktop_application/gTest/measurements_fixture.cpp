@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../inc/measurement.h"
+#include "../inc/member/measurement.h"
 #include <QDate>
 #include <QJsonObject>
 

@@ -19,16 +19,16 @@ QString Exercise::toString(ExerciseType type) {
 
 QString Exercise::toString(ExerciseName name) {
     switch (name) {
-    case TreadmillRunning: return "TreadmillRunning";
-    case TreadmillWalking: return "TreadmillWalking";
-    case StationaryBike: return "StationaryBike";
-    case StairClimber: return "StairClimber";
-    case BenchPress: return "BenchPress";
-    case DumbbellInclinePress: return "DumbbellInclinePress";
-    case LatPulldown: return "LatPulldown";
-    case BarbellRow: return "BarbellRow";
-    case OverheadPress: return "OverheadPress";
-    case DumbbellLateralRaise: return "DumbbellLateralRaise";
+    case TreadmillRunning: return "Treadmill Running";
+    case TreadmillWalking: return "Treadmill Walking";
+    case StationaryBike: return "Stationary Bike";
+    case StairClimber: return "Stair Climber";
+    case BenchPress: return "Bench Press";
+    case DumbbellInclinePress: return "Dumbbell Incline Press";
+    case LatPulldown: return "Lat Pulldown";
+    case BarbellRow: return "Barbell Row";
+    case OverheadPress: return "Overhead Press";
+    case DumbbellLateralRaise: return "Dumbbell Lateral Raise";
     default: return "Unknown Name";
     }
 }
@@ -55,16 +55,16 @@ ExerciseType Exercise::fromStringToExerciseType(const QString& str) {
 
 ExerciseName Exercise::fromStringToExerciseName(const QString& str) {
     static const std::unordered_map<QString, ExerciseName> strToExerciseName = {
-        {"TreadmillRunning", TreadmillRunning},
-        {"TreadmillWalking", TreadmillWalking},
-        {"StationaryBike", StationaryBike},
-        {"StairClimber", StairClimber},
-        {"BenchPress", BenchPress},
-        {"DumbbellInclinePress", DumbbellInclinePress},
-        {"LatPulldown", LatPulldown},
-        {"BarbellRow", BarbellRow},
-        {"OverheadPress", OverheadPress},
-        {"DumbbellLateralRaise", DumbbellLateralRaise}
+        {"Treadmill Running", TreadmillRunning},
+        {"Treadmill Walking", TreadmillWalking},
+        {"Stationary Bike", StationaryBike},
+        {"Stair Climber", StairClimber},
+        {"Bench Press", BenchPress},
+        {"Dumbbell Incline Press", DumbbellInclinePress},
+        {"Lat Pulldown", LatPulldown},
+        {"Barbell Row", BarbellRow},
+        {"Overhead Press", OverheadPress},
+        {"Dumbbell Lateral Raise", DumbbellLateralRaise}
     };
 
     auto it = strToExerciseName.find(str);

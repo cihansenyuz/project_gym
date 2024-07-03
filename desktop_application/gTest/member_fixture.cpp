@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include "../inc/member.h"
+#include "../inc/member/member.h"
 
 #include <QDate>
 #include <QJsonObject>
@@ -67,10 +67,16 @@ TEST_F(MemberFixture, TestExtendSubscriptionEndDate) {
     EXPECT_EQ(member->GetSubscriptionEndDate(), new_end_date);
 }
 
-TEST_F(MemberFixture, TestToJson) {
+TEST_F(MemberFixture, ToJson) {
     QJsonObject json = member->toJson();
-    EXPECT_TRUE(json.contains("name"));
-    EXPECT_TRUE(json.contains("age"));
+    EXPECT_EQ(json["name"].toString(), "John Doe");
+    EXPECT_EQ(json["age"].toInt(), 30);
+
+    QJsonArray measurementsArray = json["measurements"].toArray();
+    EXPECT_EQ(measurementsArray.size(), 1);
+    EXPECT_EQ(measurementsArray[0].toObject()["weight"].toDouble(), initial_measurement.GetWeight());
+
+    /* check also subscription and exercise plan json parts */
 }
 
 TEST_F(MemberFixture, TestGetMeasurementFunctions) {
