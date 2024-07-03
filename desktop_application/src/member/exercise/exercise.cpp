@@ -1,4 +1,4 @@
-#include "../inc/exercise.h"
+#include "../../../inc/member/exercise/exercise.h"
 
 Exercise::Exercise(ExerciseType type, ExerciseName name)
     : type_(type), name_(name) {}

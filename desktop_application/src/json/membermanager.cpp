@@ -1,4 +1,4 @@
-#include "../inc/membermanager.h"
+#include "../../inc/json/membermanager.h"
 
 MemberManager::MemberManager(){
     auto IsNextDay = [this](){

@@ -24,8 +24,8 @@
 #include <QJsonArray>
 #include "measurement.h"
 #include "subscription.h"
-#include "weeklyexerciseplan.h"
-#include "exercise.h"
+#include "exercise/weeklyexerciseplan.h"
+#include "exercise/exercise.h"
 
 /**
  *  @note In case any property changes done to the class,
@@ -44,7 +44,7 @@ public:
     void SetAge(int age);
     void AddMeasurement(Measurement &new_measurement);
     void AddSubscriptionToArchive(const Subscription &archived);
-    void EndSubscription();
+    void EndSubscription(bool update_end_date = true);
     void AddExercisePlanToArchive(const WeeklyExercisePlan &archived);
     void EndExercisePlan();
 

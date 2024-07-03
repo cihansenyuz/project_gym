@@ -1,4 +1,4 @@
-#include "../inc/jsoncontainer.h"
+#include "../../inc/json/jsoncontainer.h"
 
 JsonContainer::JsonContainer() {
     QFile file(file_path);

@@ -24,11 +24,11 @@ public:
     Subscription(const QDate &start_date, const QDate &end_date, bool status);
     void SetSubscriptionPeriod(const QDate &start_date, const QDate &end_date);
     void ExtendSubscriptionEndDate(const QDate &end_date);
-    void EndSubscription(bool update_end_date = true);
+    void EndSubscription(bool update_end_date);
     bool HasSubscription() const;
     QDate GetSubscriptionStartDate() const;
     QDate GetSubscriptionEndDate() const;
-    QJsonObject toJson() const;
+    QJsonObject toJson(bool is_archived = false) const;
 
 private:
     QDate start_date_;

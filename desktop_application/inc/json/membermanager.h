@@ -15,8 +15,8 @@
 #ifndef MEMBERMANAGER_H
 #define MEMBERMANAGER_H
 
-#include "member.h"
-#include "jsoncontainer.h"
+#include "../member/member.h"
+#include "../json/jsoncontainer.h"
 
 #include <QJsonObject>
 #include <QJsonValue>

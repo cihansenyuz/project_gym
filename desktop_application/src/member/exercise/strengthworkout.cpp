@@ -1,4 +1,4 @@
-#include "../inc/strengthworkout.h"
+#include "../../../inc/member/exercise/strengthworkout.h"
 
 StrengthWorkout::StrengthWorkout(ExerciseType type, ExerciseName name, short set, short repeat)
     : set_(set), repeat_(repeat), Exercise(type, name) {}

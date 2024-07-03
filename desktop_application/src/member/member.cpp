@@ -1,4 +1,4 @@
-#include "../inc/member.h"
+#include "../../inc/member/member.h"
 
 Member::Member(const QString &name, int age, Measurement &first_measurement)
     : name_(name), age_(age), Measurement(first_measurement) {
@@ -32,7 +32,7 @@ QJsonObject Member::toJson() const{
     if(archived_subscriptions_.size()){  /* for archived ones */
         QJsonArray subscriptions_array;
         for (const auto &subscription : archived_subscriptions_) {
-            subscriptions_array.append(subscription.toJson());
+            subscriptions_array.append(subscription.toJson(true));
         }
         json["archived_subscriptions"] = subscriptions_array;
     }
@@ -70,11 +70,11 @@ void Member::AddSubscriptionToArchive(const Subscription &archived){
     archived_subscriptions_.push_back(archived);
 }
 
-void Member::EndSubscription(){
-    Subscription::EndSubscription();
+void Member::EndSubscription(bool update_end_date){
+    Subscription::EndSubscription(update_end_date);
     Subscription last_subscription;
     last_subscription.SetSubscriptionPeriod(GetSubscriptionStartDate(), GetSubscriptionEndDate());
-    last_subscription.EndSubscription();
+    last_subscription.EndSubscription(update_end_date);
     archived_subscriptions_.push_back(last_subscription);
 }
 

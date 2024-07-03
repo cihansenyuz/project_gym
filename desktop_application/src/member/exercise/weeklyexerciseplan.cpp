@@ -1,4 +1,4 @@
-#include "../inc/weeklyexerciseplan.h"
+#include "../../../inc/member/exercise/weeklyexerciseplan.h"
 
 WeeklyExercisePlan::WeeklyExercisePlan(const QDate &end_date, const QDate &start_date)
     : start_date_(start_date), end_date_(end_date) {}

@@ -19,9 +19,9 @@
 #include <QJsonObject>
 #include <QJsonValue>
 
-#include "member.h"
-#include "cardioworkout.h"
-#include "strengthworkout.h"
+#include "../member/member.h"
+#include "../member/exercise/cardioworkout.h"
+#include "../member/exercise/strengthworkout.h"
 
 class JsonParser
 {

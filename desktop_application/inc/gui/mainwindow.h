@@ -2,8 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "member.h"
-#include "membermanager.h"
+#include "../member/member.h"
+#include "../json/membermanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

@@ -14,8 +14,8 @@
 #ifndef JSONCONTAINER_H
 #define JSONCONTAINER_H
 
-#include "member.h"
-#include "jsonparser.h"
+#include "../member/member.h"
+#include "../json/jsonparser.h"
 
 #include <QJsonArray>
 #include <QJsonDocument>

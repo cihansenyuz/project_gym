@@ -14,31 +14,31 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 set(PROJECT_SOURCES
         src/main.cpp
-        src/mainwindow.cpp
-        src/member.cpp
-        src/measurement.cpp
-        src/membermanager.cpp
-        src/subscription.cpp
-        src/exercise.cpp
-        src/strengthworkout.cpp
-        src/cardioworkout.cpp
-        src/dailyexerciseplan.cpp
-        src/weeklyexerciseplan.cpp
-        src/jsonparser.cpp
-        src/jsoncontainer.cpp
+        src/gui/mainwindow.cpp
+        src/member/member.cpp
+        src/member/measurement.cpp
+        src/member/subscription.cpp
+        src/member/exercise/exercise.cpp
+        src/member/exercise/strengthworkout.cpp
+        src/member/exercise/cardioworkout.cpp
+        src/member/exercise/dailyexerciseplan.cpp
+        src/member/exercise/weeklyexerciseplan.cpp
+        src/json/membermanager.cpp
+        src/json/jsonparser.cpp
+        src/json/jsoncontainer.cpp
 
-        inc/mainwindow.h
-        inc/member.h
-        inc/measurement.h
-        inc/membermanager.h
-        inc/subscription.h
-        inc/exercise.h
-        inc/strengthworkout.h
-        inc/cardioworkout.h
-        inc/dailyexerciseplan.h
-        inc/weeklyexerciseplan.h
-        inc/jsonparser.h
-        inc/jsoncontainer.h
+        inc/gui/mainwindow.h
+        inc/member/member.h
+        inc/member/measurement.h
+        inc/member/subscription.h
+        inc/member/exercise/exercise.h
+        inc/member/exercise/strengthworkout.h
+        inc/member/exercise/cardioworkout.h
+        inc/member/exercise/dailyexerciseplan.h
+        inc/member/exercise/weeklyexerciseplan.h
+        inc/json/membermanager.h
+        inc/json/jsonparser.h
+        inc/json/jsoncontainer.h
 
         ui/mainwindow.ui
 )

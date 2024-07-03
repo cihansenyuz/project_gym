@@ -1,4 +1,4 @@
-#include "../inc/dailyexerciseplan.h"
+#include "../../../inc/member/exercise/dailyexerciseplan.h"
 
 void DailyExercisePlan::AddNewExercise(Exercise *new_exercise){
     daily_plan_.push_back(new_exercise);

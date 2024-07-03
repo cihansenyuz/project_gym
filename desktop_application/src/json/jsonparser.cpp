@@ -1,4 +1,4 @@
-#include "../inc/jsonparser.h"
+#include "../../inc/json/jsonparser.h"
 
 Member* JsonParser::ParseMemberFromJson(QJsonObject &member_json){
     Member *member_ptr = new Member();

@@ -1,4 +1,4 @@
-#include "../inc/measurement.h"
+#include "../../inc/member/measurement.h"
 
 Measurement::Measurement(QDate date, float weight, float shoulder, float chest,
                          float arm, float belly, float hip, float leg)

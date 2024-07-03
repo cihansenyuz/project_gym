@@ -1,4 +1,4 @@
-#include "../inc/cardioworkout.h"
+#include "../../../inc/member/exercise/cardioworkout.h"
 
 CardioWorkout::CardioWorkout(ExerciseType type, ExerciseName name, short durition)
     : durition_(durition), Exercise(type, name) {}
