@@ -10,14 +10,15 @@ MainWindow::MainWindow(QWidget *parent)
     //////// TEST & DEBUG SECTION /////////
 
     Member* current_member = member_manager.GetMember("cihan");
-    /*if(current_member){
+    if(current_member){
         qDebug() << "current selected member: " << current_member->GetName();
 
-        current_member->SetAge(22);
-        member_manager.SaveChangesOnMember(*current_member);
+        //current_member->SetSubscriptionPeriod(QDate::currentDate().addDays(-10), QDate::currentDate().addDays(10));
+        //current_member->EndSubscription();
+        //member_manager.SaveChangesOnMember(*current_member);
     }
     else
-        qDebug() << "no member found";*/
+        qDebug() << "no member found";
 
     /*DailyExercisePlan daily_plan;
     CardioWorkout *exercise = new CardioWorkout(ExerciseType::Cardio, ExerciseName::TreadmillRunning, 20);
@@ -29,8 +30,6 @@ MainWindow::MainWindow(QWidget *parent)
     daily_plan.AddNewExercise(exercise3);
     daily_plan.SetCooldownPeriod(3);
 
-    member_manager.GetCurrentMember()->AddNewDailyExercisePlan(daily_plan);
-    member_manager.GetCurrentMember()->SetWeeklyExercisePlanPeriod(QDate::currentDate(), QDate::currentDate().addMonths(2));
     member_manager.SaveChangesOnCurrentMember();*/
 
     qDebug() << "name: " << current_member->GetName();

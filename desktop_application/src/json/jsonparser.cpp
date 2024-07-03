@@ -42,8 +42,7 @@ void JsonParser::ParseSubscriptions(Member *member, const QJsonArray &subscripti
         Subscription archived_subscription(
             QDate::fromString(subscription_json["subscription_start_date"].toString(), Qt::ISODate),
             QDate::fromString(subscription_json["subscription_end_date"].toString(), Qt::ISODate),
-            subscription_json["subscription"].toBool()
-            );
+            false); // since archived subscriptions are not valid anymore
         member->AddSubscriptionToArchive(archived_subscription);
     }
 }

@@ -758,88 +758,35 @@
     },
     {
         "age": 30,
-        "archived_exercise_plans": [
-            {
-                "end_day": "2023-04-30",
-                "start_day": "2023-04-01",
-                "weekly_plan": [
-                    {
-                        "exercise": {
-                            "cooldown_period": 2,
-                            "last_done_date": "2023-04-29",
-                            "name": "Push-ups",
-                            "repeat": 20,
-                            "set": 4,
-                            "type": "chest"
-                        }
-                    },
-                    {
-                        "exercise": {
-                            "cooldown_period": 3,
-                            "last_done_date": "2023-04-28",
-                            "name": "Pull-ups",
-                            "repeat": 15,
-                            "set": 3,
-                            "type": "back"
-                        }
-                    }
-                ]
-            },
-            {
-                "end_day": "2023-05-31",
-                "start_day": "2023-05-01",
-                "weekly_plan": [
-                    {
-                        "exercise": {
-                            "cooldown_period": 2,
-                            "last_done_date": "2023-05-30",
-                            "name": "Squats",
-                            "repeat": 12,
-                            "set": 5,
-                            "type": "leg"
-                        }
-                    },
-                    {
-                        "exercise": {
-                            "cooldown_period": 1,
-                            "last_done_date": "2023-05-29",
-                            "name": "Lunges",
-                            "repeat": 10,
-                            "set": 3,
-                            "type": "leg"
-                        }
-                    }
-                ]
-            }
-        ],
-        "archived_measurements": [
-            {
-                "arm": 29,
-                "belly": 71,
-                "chest": 86,
-                "hip": 91,
-                "leg": 56,
-                "shoulder": 40,
-                "taken_date": "2023-05-01",
-                "weight": 67
-            }
-        ],
         "archived_subscriptions": [
             {
-                "subscription": true,
                 "subscription_end_date": "2023-05-01",
                 "subscription_start_date": "2022-05-01"
+            },
+            {
+                "subscription_end_date": "2024-07-03",
+                "subscription_start_date": "2024-06-23"
             }
         ],
+        "measurements": [
+        ],
         "name": "Nina",
-        "subscription": false
+        "subscription": false,
+        "subscription_end_date": "2024-07-03",
+        "subscription_start_date": "2024-06-23"
     },
     {
         "age": 26,
+        "archived_subscriptions": [
+            {
+                "subscription_end_date": "2024-07-01",
+                "subscription_start_date": "2023-07-01"
+            }
+        ],
         "measurements": [
         ],
         "name": "Oscar",
-        "subscription": true,
+        "subscription": false,
         "subscription_end_date": "2024-07-01",
         "subscription_start_date": "2023-07-01"
     },
@@ -854,14 +801,20 @@
         "age": 22,
         "archived_subscriptions": [
             {
-                "subscription": false,
                 "subscription_end_date": "2024-06-29",
                 "subscription_start_date": "2024-06-28"
             },
             {
-                "subscription": false,
                 "subscription_end_date": "2024-06-30",
                 "subscription_start_date": "2024-06-01"
+            },
+            {
+                "subscription_end_date": "2024-07-03",
+                "subscription_start_date": "2024-06-23"
+            },
+            {
+                "subscription_end_date": "2024-07-03",
+                "subscription_start_date": "2024-06-23"
             }
         ],
         "exercise_plan": {
@@ -904,7 +857,7 @@
         ],
         "name": "cihan",
         "subscription": false,
-        "subscription_end_date": "2024-06-30",
-        "subscription_start_date": "2024-06-01"
+        "subscription_end_date": "2024-07-03",
+        "subscription_start_date": "2024-06-23"
     }
 ]
