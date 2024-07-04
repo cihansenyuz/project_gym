@@ -1,5 +1,8 @@
 #include <gtest/gtest.h>
 #include "../inc/member/member.h"
+#include "../inc/member/exercise/dailyexerciseplan.h"
+#include "../inc/member/exercise/cardioworkout.h"
+#include "../inc/member/exercise/strengthworkout.h"
 
 #include <QDate>
 #include <QJsonObject>
@@ -9,10 +12,28 @@ protected:
     void SetUp() override {
         initial_measurement = Measurement(QDate(2023, 1, 1), 70.5, 40.0, 100.0, 30.0, 90.0, 95.0, 60.0);
         member = new Member("John Doe", 30, initial_measurement);
-    }
+
+/*         QDate startDate = QDate::currentDate().addDays(-10);
+        QDate endDate = QDate::currentDate().addDays(20);
+        member->SetSubscriptionPeriod(startDate, endDate); */
+
+        cardio1 = new CardioWorkout(ExerciseType::Cardio, ExerciseName::TreadmillRunning, 20);
+        cardio2 = new CardioWorkout(ExerciseType::Cardio, ExerciseName::StairClimber, 10);
+        strength = new StrengthWorkout(ExerciseType::Chest, ExerciseName::BenchPress, 3, 8);
+
+        daily_plan.AddNewExercise(cardio1);
+        daily_plan.AddNewExercise(cardio2);
+        daily_plan.AddNewExercise(strength);
+        daily_plan.SetCooldownPeriod(3);
+
+        member->AddNewDailyExercisePlan(daily_plan);
+        }
 
     void TearDown() override {
         delete member;
+        delete cardio1;
+        delete cardio2;
+        delete strength;
     }
 
     void debug(){
@@ -21,6 +42,10 @@ protected:
 
     Member *member;
     Measurement initial_measurement;
+    CardioWorkout* cardio1;
+    CardioWorkout* cardio2;
+    StrengthWorkout* strength;
+    DailyExercisePlan daily_plan;
 };
 
 TEST_F(MemberFixture, TestConstructor) {
@@ -67,16 +92,25 @@ TEST_F(MemberFixture, TestExtendSubscriptionEndDate) {
     EXPECT_EQ(member->GetSubscriptionEndDate(), new_end_date);
 }
 
+TEST_F(MemberFixture, ToJsonAfterSubscriptionSetPeriod) {
+    member->SetSubscriptionPeriod(QDate::currentDate().addDays(-7), QDate::currentDate().addDays(7));
+    QJsonObject json = member->toJson();
+    EXPECT_EQ(json["subscription_end_date"].toString(), QDate::currentDate().addDays(7).toString(Qt::ISODate));
+    EXPECT_TRUE(json["subscription"].toBool());
+}
+
 TEST_F(MemberFixture, ToJson) {
     QJsonObject json = member->toJson();
     EXPECT_EQ(json["name"].toString(), "John Doe");
     EXPECT_EQ(json["age"].toInt(), 30);
+    EXPECT_EQ(json["subscription_end_date"].toString(), "");
+    EXPECT_FALSE(json["subscription"].toBool());
 
     QJsonArray measurementsArray = json["measurements"].toArray();
     EXPECT_EQ(measurementsArray.size(), 1);
     EXPECT_EQ(measurementsArray[0].toObject()["weight"].toDouble(), initial_measurement.GetWeight());
 
-    /* check also subscription and exercise plan json parts */
+    /* exercise plan json check */
 }
 
 TEST_F(MemberFixture, TestGetMeasurementFunctions) {
@@ -131,9 +165,11 @@ TEST_F(MemberFixture, TestGetAge) {
 
 TEST_F(MemberFixture, TestHasSubscription) {
     EXPECT_FALSE(member->HasSubscription());
-    QDate start_date(2024, 1, 1);
-    QDate end_date(2024, 12, 31);
+    QDate start_date(2023, 1, 1);
+    QDate end_date(2023, 12, 31);
     member->SetSubscriptionPeriod(start_date, end_date);
+    EXPECT_FALSE(member->HasSubscription());
+    member->SetSubscriptionPeriod(QDate::currentDate().addDays(-7), QDate::currentDate().addDays(7));
     EXPECT_TRUE(member->HasSubscription());
 }
 
