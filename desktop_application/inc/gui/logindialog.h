@@ -30,11 +30,9 @@ private slots:
     void OnHttpReplyRecieved();
 
 private:
-    void PostHttpRequest(const QJsonObject &user_info);
+    void PostHttpRequest(const QString &api_adress);
 
     Ui::LoginDialog *ui;
-    QUrl http_url{QString("https://www.cangorkemgunes.com/api/login")};
-    QNetworkRequest http_request{http_url};
     QNetworkAccessManager http_manager;
     QNetworkReply *http_reply;
     QJsonObject user_info;

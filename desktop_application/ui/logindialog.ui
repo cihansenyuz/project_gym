@@ -22,7 +22,7 @@
      <widget class="QWidget" name="page">
       <layout class="QVBoxLayout" name="verticalLayout_2">
        <item>
-        <widget class="QLabel" name="label_3">
+        <widget class="QLabel" name="login_message">
          <property name="text">
           <string>Please enter your email and password, and log in.
 If you do not have any account, register an account clicking on Register button.</string>
@@ -94,6 +94,26 @@ If you do not have any account, register an account clicking on Register button.
           </widget>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QLabel" name="login_fail_message">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="font">
+          <font>
+           <italic>true</italic>
+           <bold>false</bold>
+           <underline>true</underline>
+          </font>
+         </property>
+         <property name="text">
+          <string>User is not registered or wrong password!</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+        </widget>
        </item>
        <item>
         <spacer name="verticalSpacer">

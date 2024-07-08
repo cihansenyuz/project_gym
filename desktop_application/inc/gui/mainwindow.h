@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QtNetwork>
 #include "../member/member.h"
 #include "../json/membermanager.h"
 
