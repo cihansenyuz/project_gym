@@ -98,7 +98,7 @@ If you do not have any account, register an account clicking on Register button.
        <item>
         <widget class="QLabel" name="login_fail_message">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="font">
           <font>
@@ -108,7 +108,7 @@ If you do not have any account, register an account clicking on Register button.
           </font>
          </property>
          <property name="text">
-          <string>User is not registered or wrong password!</string>
+          <string/>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>

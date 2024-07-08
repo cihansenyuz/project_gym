@@ -18,7 +18,7 @@ class LoginDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit LoginDialog(QWidget *parent = nullptr);
+    explicit LoginDialog(HttpManager *http_manager, QWidget *parent = nullptr);
     ~LoginDialog();
 
 private slots:
@@ -30,7 +30,7 @@ private slots:
 
 private:
     Ui::LoginDialog *ui;
-    HttpManager http_manager;
+    HttpManager *http_manager_;
 };
 
 #endif // LOGINDIALOG_H

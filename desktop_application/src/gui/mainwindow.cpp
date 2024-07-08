@@ -1,11 +1,14 @@
 #include "../../inc/gui/mainwindow.h"
 #include "../../ui/ui_mainwindow.h"
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
+MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
+    : http_manager_(http_manager), QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    connect(http_manager_, &HttpManager::LoginAttemptResult,
+            this, &MainWindow::OnLoginAttemptResult);
 
     //////// TEST & DEBUG SECTION /////////
 
@@ -47,4 +50,9 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::OnLoginAttemptResult(bool succes){
+    if(succes)
+        this->show();
 }

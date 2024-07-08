@@ -13,7 +13,7 @@ public:
     void RegisterRequest(const QString &email, const QString password);
 
 signals:
-    void LoginAttempt(bool success);
+    void LoginAttemptResult(bool success);
 
 private slots:
     void OnHttpReplyRecieved();

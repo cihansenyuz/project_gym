@@ -1,8 +1,8 @@
 #include "../../inc/gui/logindialog.h"
 #include "../../ui/ui_logindialog.h"
 
-LoginDialog::LoginDialog(QWidget *parent)
-    : QDialog(parent)
+LoginDialog::LoginDialog(HttpManager *http_manager, QWidget *parent)
+    : http_manager_(http_manager), QDialog(parent)
     , ui(new Ui::LoginDialog)
 {
     ui->setupUi(this);
@@ -25,9 +25,9 @@ LoginDialog::~LoginDialog()
 }
 
 void LoginDialog::OnLoginPushButtonClicked() {
-    http_manager.LoginRequest(ui->email_register_line_edit->text(),
-                              ui->password_register_line_edit->text());
-    connect(&(this->http_manager), &HttpManager::LoginAttempt,
+    http_manager_->LoginRequest(ui->email_line_edit->text(),
+                              ui->password_line_edit->text());
+    connect(this->http_manager_, &HttpManager::LoginAttemptResult,
             this, &LoginDialog::OnLoginAttemptResult);
 }
 
@@ -45,7 +45,7 @@ void LoginDialog::OnCreatePushButtonClicked() {
         ui->password_register_line_edit->text() ==
             ui->confirm_password_register_line_edit->text()) {
 
-        http_manager.RegisterRequest(ui->email_register_line_edit->text(),
+        http_manager_->RegisterRequest(ui->email_register_line_edit->text(),
                                   ui->password_register_line_edit->text());
 
         ui->stacked_login_screens->setCurrentIndex(loginScreen);
@@ -63,6 +63,8 @@ void LoginDialog::OnCreatePushButtonClicked() {
 }
 
 void LoginDialog::OnLoginAttemptResult(bool success){
-    if(!success)
-        ui->login_fail_message->setEnabled(true);
+    if(success)
+        this->destroy();
+    else
+        ui->login_fail_message->setText("User is not registered or wrong password!");
 }

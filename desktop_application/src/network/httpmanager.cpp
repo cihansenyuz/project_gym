@@ -29,5 +29,8 @@ void HttpManager::OnHttpReplyRecieved(){
     QByteArray raw_data(http_reply->readAll());
     qDebug() << raw_data.toStdString();
 
-    emit LoginAttempt(false);
+    if(http_reply->error() == QNetworkReply::NoError)
+        emit LoginAttemptResult(true);
+    else
+        emit LoginAttemptResult(false);
 }

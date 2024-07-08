@@ -5,6 +5,7 @@
 #include <QtNetwork>
 #include "../member/member.h"
 #include "../json/membermanager.h"
+#include "../network/httpmanager.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -17,11 +18,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(HttpManager *http_manager, QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void OnLoginAttemptResult(bool succes);
 
 private:
     Ui::MainWindow *ui;
     MemberManager member_manager;
+    HttpManager *http_manager_;
 };
 #endif // MAINWINDOW_H
