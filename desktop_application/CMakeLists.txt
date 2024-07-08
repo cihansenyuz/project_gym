@@ -27,6 +27,7 @@ set(PROJECT_SOURCES
         src/json/membermanager.cpp
         src/json/jsonparser.cpp
         src/json/jsoncontainer.cpp
+        src/network/httpmanager.cpp
 
         inc/gui/mainwindow.h
         inc/gui/logindialog.h
@@ -41,6 +42,7 @@ set(PROJECT_SOURCES
         inc/json/membermanager.h
         inc/json/jsonparser.h
         inc/json/jsoncontainer.h
+        inc/network/httpmanager.h
 
         ui/mainwindow.ui
         ui/logindialog.ui

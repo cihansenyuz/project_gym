@@ -2,8 +2,7 @@
 #define LOGINDIALOG_H
 
 #include <QDialog>
-#include <QtNetwork>
-#include <QJsonObject>
+#include "../network/httpmanager.h"
 
 enum Screen{
     loginScreen,
@@ -27,15 +26,11 @@ private slots:
     void OnRegisterPushButtonClicked();
     void OnCancelPushButtonClicked();
     void OnCreatePushButtonClicked();
-    void OnHttpReplyRecieved();
+    void OnLoginAttemptResult(bool success);
 
 private:
-    void PostHttpRequest(const QString &api_adress);
-
     Ui::LoginDialog *ui;
-    QNetworkAccessManager http_manager;
-    QNetworkReply *http_reply;
-    QJsonObject user_info;
+    HttpManager http_manager;
 };
 
 #endif // LOGINDIALOG_H
