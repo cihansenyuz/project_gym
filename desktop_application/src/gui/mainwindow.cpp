@@ -16,6 +16,14 @@ MainWindow::MainWindow(QWidget *parent)
         //current_member->SetSubscriptionPeriod(QDate::currentDate().addDays(-10), QDate::currentDate().addDays(10));
         //current_member->EndSubscription();
         //member_manager.SaveChangesOnMember(*current_member);
+
+        qDebug() << "name: " << current_member->GetName();
+        qDebug() << "age: " << current_member->GetAge();
+        qDebug() << "chest: " << current_member->GetChest();
+        qDebug() << "subs: " << current_member->HasSubscription();
+        qDebug() << "remaining: " << current_member->GetRemainingDays();
+        qDebug() << "cooldown: " << current_member->GetWeeklyExercisePlan().back().GetCooldownPeriod();
+        qDebug() << "name: " << Exercise::toString(current_member->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());
     }
     else
         qDebug() << "no member found";
@@ -32,13 +40,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     member_manager.SaveChangesOnCurrentMember();*/
 
-    qDebug() << "name: " << current_member->GetName();
-    qDebug() << "age: " << current_member->GetAge();
-    qDebug() << "chest: " << current_member->GetChest();
-    qDebug() << "subs: " << current_member->HasSubscription();
-    qDebug() << "remaining: " << current_member->GetRemainingDays();
-    qDebug() << "cooldown: " << current_member->GetWeeklyExercisePlan().back().GetCooldownPeriod();
-    qDebug() << "name: " << Exercise::toString(current_member->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());
 
     ///////////////////////////////////////
 }

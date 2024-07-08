@@ -9,12 +9,13 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network)
 
 set(PROJECT_SOURCES
         src/main.cpp
         src/gui/mainwindow.cpp
+        src/gui/logindialog.cpp
         src/member/member.cpp
         src/member/measurement.cpp
         src/member/subscription.cpp
@@ -28,6 +29,7 @@ set(PROJECT_SOURCES
         src/json/jsoncontainer.cpp
 
         inc/gui/mainwindow.h
+        inc/gui/logindialog.h
         inc/member/member.h
         inc/member/measurement.h
         inc/member/subscription.h
@@ -41,6 +43,7 @@ set(PROJECT_SOURCES
         inc/json/jsoncontainer.h
 
         ui/mainwindow.ui
+        ui/logindialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
@@ -67,7 +70,8 @@ else()
     endif()
 endif()
 
-target_link_libraries(desktop_application PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(desktop_application PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
+                                                    Qt${QT_VERSION_MAJOR}::Network)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
