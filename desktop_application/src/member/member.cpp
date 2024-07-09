@@ -1,10 +1,7 @@
 #include "../../inc/member/member.h"
 
-Member::Member(const QString &name, int age, Measurement &first_measurement)
-    : name_(name), age_(age), Measurement(first_measurement) {
-
-    all_measurements_.push_back(first_measurement);
-}
+Member::Member(const QString &name, int age)
+    : name_(name), age_(age) {}
 
 void Member::SetName(const QString &name){ name_ = name; }
 

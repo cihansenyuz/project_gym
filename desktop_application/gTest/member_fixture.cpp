@@ -11,7 +11,8 @@ class MemberFixture : public ::testing::Test {
 protected:
     void SetUp() override {
         initial_measurement = Measurement(QDate(2023, 1, 1), 70.5, 40.0, 100.0, 30.0, 90.0, 95.0, 60.0);
-        member = new Member("John Doe", 30, initial_measurement);
+        member = new Member("John Doe", 30);
+        member->AddMeasurement(initial_measurement);
 
 /*         QDate startDate = QDate::currentDate().addDays(-10);
         QDate endDate = QDate::currentDate().addDays(20);

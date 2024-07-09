@@ -33,11 +33,11 @@
  *  behaviour of MemberManager class must be revised!
  *
  */
-class Member : public Measurement, public Subscription, public WeeklyExercisePlan
+class Member : public Subscription, public WeeklyExercisePlan
 {
 public:
     Member() = default;
-    Member(const QString &name, int age, Measurement &first_measurement);
+    Member(const QString &name, int age);
     QJsonObject toJson() const;
 
     void SetName(const QString &name);
