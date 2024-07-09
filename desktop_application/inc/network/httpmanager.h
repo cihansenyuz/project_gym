@@ -15,6 +15,7 @@ public:
 
 signals:
     void LoginAttempt(bool success);
+    void MemberJsonFetched();
 
 private slots:
     void OnRegisterReplyRecieved();
@@ -24,7 +25,7 @@ private slots:
 private:
     void PostHttpRequest(const QString &api_adress, void (HttpManager::*slot_function)());
 
-    QNetworkAccessManager http_manager;
+    QNetworkAccessManager http_acces_manager;
     QNetworkReply *http_reply;
     QJsonObject user_info;
 };

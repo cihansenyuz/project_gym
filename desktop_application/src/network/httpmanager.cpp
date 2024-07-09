@@ -6,7 +6,7 @@ void HttpManager::PostHttpRequest(const QString &api_adress, void (HttpManager::
     QUrl http_url(QString("https://www.cangorkemgunes.com/api/") + api_adress);
     QNetworkRequest http_request(http_url);
     http_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    http_reply = http_manager.post(http_request, QJsonDocument(user_info).toJson());
+    http_reply = http_acces_manager.post(http_request, QJsonDocument(user_info).toJson());
     qDebug() << "http request posted";
     connect(http_reply, &QNetworkReply::finished,
             this, slot_function);
@@ -49,6 +49,7 @@ void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
             file.write(recieved_member_records.toJson(QJsonDocument::Indented)); // Indented format
             file.close();
             qDebug() << "JSON file created successfully.";
+            emit MemberJsonFetched();
         } else {
             qDebug() << "Unable to open file for writing.";
         }
@@ -59,4 +60,5 @@ void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
 
 void HttpManager::FetchMemberJsonData(){
     PostHttpRequest("address_of_data", &HttpManager::OnFetchMemberJsonDataReplyRecieved);
+    emit http_reply->finished();
 }

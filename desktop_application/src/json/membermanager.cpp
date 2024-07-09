@@ -1,7 +1,6 @@
 #include "../../inc/json/membermanager.h"
 
-MemberManager::MemberManager(HttpManager *http_manager)
-    : http_manager_(http_manager) {
+MemberManager::MemberManager() {
     auto IsNextDay = [this](){
         while(true){
             if(QDate::currentDate() >= yesterday){

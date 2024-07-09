@@ -24,11 +24,12 @@
 class JsonContainer
 {
 public:
-    JsonContainer();
+    JsonContainer() = default;
     virtual void RegisterNewMember(const Member &member) = 0;
     virtual void SaveChangesOnMember(const Member &member) = 0;
     virtual void DeleteMember(const QString &name) = 0;
     friend class MemberManager;
+    void LoadFromFile();
 
 private:
     bool SaveToFile();

@@ -6,10 +6,42 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(http_manager_, &HttpManager::MemberJsonFetched,
+            this, &MainWindow::OnMemberDataFetched);
+    http_manager_->FetchMemberJsonData();
+
+    connect(ui->pushButton, &QPushButton::clicked,
+            this, &MainWindow::OnButtonClicked);
 
     //////// TEST & DEBUG SECTION /////////
 
-    Member* current_member = member_manager.GetMember("cihan");
+    /*DailyExercisePlan daily_plan;
+    CardioWorkout *exercise = new CardioWorkout(ExerciseType::Cardio, ExerciseName::TreadmillRunning, 20);
+    CardioWorkout *exercise2 = new CardioWorkout(ExerciseType::Cardio, ExerciseName::StairClimber, 10);
+    StrengthWorkout *exercise3 = new StrengthWorkout(ExerciseType::Chest, ExerciseName::BenchPress, 3, 8);
+
+    daily_plan.AddNewExercise(exercise);
+    daily_plan.AddNewExercise(exercise2);
+    daily_plan.AddNewExercise(exercise3);
+    daily_plan.SetCooldownPeriod(3);
+
+    member_manager.SaveChangesOnCurrentMember();*/
+
+    ///////////////////////////////////////
+}
+
+MainWindow::~MainWindow(){
+    delete http_manager_;
+    delete ui;
+}
+
+void MainWindow::OnMemberDataFetched(){
+    member_manager.LoadFromFile();
+    this->show();
+}
+
+void MainWindow::OnButtonClicked(){
+    Member* current_member = member_manager.GetMember(ui->lineEdit->text());
     if(current_member){
         qDebug() << "current selected member: " << current_member->GetName();
 
@@ -27,24 +59,4 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
     }
     else
         qDebug() << "no member found";
-
-    /*DailyExercisePlan daily_plan;
-    CardioWorkout *exercise = new CardioWorkout(ExerciseType::Cardio, ExerciseName::TreadmillRunning, 20);
-    CardioWorkout *exercise2 = new CardioWorkout(ExerciseType::Cardio, ExerciseName::StairClimber, 10);
-    StrengthWorkout *exercise3 = new StrengthWorkout(ExerciseType::Chest, ExerciseName::BenchPress, 3, 8);
-
-    daily_plan.AddNewExercise(exercise);
-    daily_plan.AddNewExercise(exercise2);
-    daily_plan.AddNewExercise(exercise3);
-    daily_plan.SetCooldownPeriod(3);
-
-    member_manager.SaveChangesOnCurrentMember();*/
-
-
-    ///////////////////////////////////////
-}
-
-MainWindow::~MainWindow()
-{
-    delete ui;
 }

@@ -29,7 +29,7 @@
 class MemberManager : public JsonContainer
 {
 public:
-    MemberManager(HttpManager *http_manager);
+    MemberManager();
     ~MemberManager();
     Member* GetMember(const QString &name);
     void RegisterNewMember(const Member &member) override;
@@ -39,7 +39,6 @@ public:
 
 private:
     JsonParser parser;
-    HttpManager *http_manager_;
     QDate yesterday{QDate::currentDate()}; // to invoke MaintainExpiredSubscriptions at first run
     std::thread* subscription_maintain_thread;
     std::mutex members_array_mutex;

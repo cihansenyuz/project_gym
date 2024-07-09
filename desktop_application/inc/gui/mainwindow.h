@@ -21,9 +21,13 @@ public:
     MainWindow(HttpManager *http_manager, QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void OnMemberDataFetched();
+    void OnButtonClicked();
+
 private:
     Ui::MainWindow *ui;
     HttpManager *http_manager_;
-    MemberManager member_manager{http_manager_};
+    MemberManager member_manager;
 };
 #endif // MAINWINDOW_H
