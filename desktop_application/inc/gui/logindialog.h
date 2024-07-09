@@ -26,7 +26,7 @@ private slots:
     void OnRegisterPushButtonClicked();
     void OnCancelPushButtonClicked();
     void OnCreatePushButtonClicked();
-    void OnLoginAttemptResult(bool success);
+    void OnLoginAttempt(bool success);
 
 private:
     Ui::LoginDialog *ui;

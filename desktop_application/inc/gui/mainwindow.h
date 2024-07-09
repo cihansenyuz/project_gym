@@ -21,12 +21,9 @@ public:
     MainWindow(HttpManager *http_manager, QWidget *parent = nullptr);
     ~MainWindow();
 
-private slots:
-    void OnLoginAttemptResult(bool succes);
-
 private:
     Ui::MainWindow *ui;
-    MemberManager member_manager;
     HttpManager *http_manager_;
+    MemberManager member_manager{http_manager_};
 };
 #endif // MAINWINDOW_H

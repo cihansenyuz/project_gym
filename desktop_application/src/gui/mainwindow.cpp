@@ -7,9 +7,6 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(http_manager_, &HttpManager::LoginAttemptResult,
-            this, &MainWindow::OnLoginAttemptResult);
-
     //////// TEST & DEBUG SECTION /////////
 
     Member* current_member = member_manager.GetMember("cihan");
@@ -50,9 +47,4 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::OnLoginAttemptResult(bool succes){
-    if(succes)
-        this->show();
 }

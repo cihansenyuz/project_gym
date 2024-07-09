@@ -27,8 +27,8 @@ LoginDialog::~LoginDialog()
 void LoginDialog::OnLoginPushButtonClicked() {
     http_manager_->LoginRequest(ui->email_line_edit->text(),
                               ui->password_line_edit->text());
-    connect(this->http_manager_, &HttpManager::LoginAttemptResult,
-            this, &LoginDialog::OnLoginAttemptResult);
+    connect(this->http_manager_, &HttpManager::LoginAttempt,
+            this, &LoginDialog::OnLoginAttempt);
 }
 
 void LoginDialog::OnRegisterPushButtonClicked() {
@@ -62,9 +62,9 @@ void LoginDialog::OnCreatePushButtonClicked() {
     }
 }
 
-void LoginDialog::OnLoginAttemptResult(bool success){
+void LoginDialog::OnLoginAttempt(bool success){
     if(success)
         this->destroy();
     else
-        ui->login_fail_message->setText("User is not registered or wrong password!");
+        ui->login_fail_message->setText("Invalid email or wrong password!");
 }

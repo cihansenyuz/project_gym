@@ -1,3 +1,4 @@
+#include "../inc/network/httpmanager.h"
 #include "../inc/gui/logindialog.h"
 #include "../inc/gui/mainwindow.h"
 
@@ -9,7 +10,13 @@ int main(int argc, char *argv[])
     HttpManager *http_manager = new HttpManager;
     LoginDialog dialog(http_manager);
     dialog.show();
-    MainWindow window(http_manager);
+
+    auto CreateMainWindow = [&](bool success){
+                    if(success){
+                        MainWindow *window = new MainWindow(http_manager);
+                        window->show();
+                    }};
+    QObject::connect(http_manager, &HttpManager::LoginAttempt, CreateMainWindow);
 
     return application.exec();
 }

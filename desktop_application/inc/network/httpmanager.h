@@ -11,15 +11,18 @@ public:
     HttpManager();
     void LoginRequest(const QString &email, const QString password);
     void RegisterRequest(const QString &email, const QString password);
+    void FetchMemberJsonData();
 
 signals:
-    void LoginAttemptResult(bool success);
+    void LoginAttempt(bool success);
 
 private slots:
-    void OnHttpReplyRecieved();
+    void OnRegisterReplyRecieved();
+    void OnLoginReplyRecieved();
+    void OnFetchMemberJsonDataReplyRecieved();
 
 private:
-    void PostHttpRequest(const QString &api_adress);
+    void PostHttpRequest(const QString &api_adress, void (HttpManager::*slot_function)());
 
     QNetworkAccessManager http_manager;
     QNetworkReply *http_reply;
