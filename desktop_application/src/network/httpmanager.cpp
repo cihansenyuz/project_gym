@@ -33,20 +33,25 @@ void HttpManager::OnRegisterReplyRecieved(){
 
 void HttpManager::OnLoginReplyRecieved(){
     qDebug() << "login reply recieved";
-    if(http_reply->error() == QNetworkReply::NoError)
-        emit LoginAttempt(true);
+    if(http_reply->error() == QNetworkReply::NoError){
+
+        QJsonObject message;
+        message = ReadBody();
+        if(message["code"] == UserFound)
+            emit LoginAttempt(true);
+        else
+            emit LoginAttempt(false);
+    }
     else
-        emit LoginAttempt(false);
+        qDebug() << "network error: " << http_reply->errorString();
 }
 
 void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
     if(http_reply->error() == QNetworkReply::NoError){
-        QByteArray raw_data = http_reply->readAll();
-        QJsonDocument recieved_member_records = QJsonDocument::fromJson(raw_data.data());
-
+        QByteArray reply = http_reply->readAll();
         QFile file("../../members_fetched.json");
         if (file.open(QIODevice::WriteOnly)) {
-            file.write(recieved_member_records.toJson(QJsonDocument::Indented)); // Indented format
+            file.write(reply.data());
             file.close();
             qDebug() << "JSON file created successfully.";
             emit MemberJsonFetched();
@@ -61,4 +66,10 @@ void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
 void HttpManager::FetchMemberJsonData(){
     PostHttpRequest("address_of_data", &HttpManager::OnFetchMemberJsonDataReplyRecieved);
     emit http_reply->finished();
+}
+
+QJsonObject HttpManager::ReadBody(){
+    QByteArray raw_data = http_reply->readAll();
+    QJsonDocument body_message_doc = QJsonDocument::fromJson(raw_data.data());
+    return body_message_doc.object();
 }

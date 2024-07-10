@@ -4,6 +4,14 @@
 #include <QObject>
 #include <QtNetwork>
 
+// http reply codes
+enum Code{
+    BadRequest,
+    UserFound,
+    NoUserFound,
+    IncorrectPassword
+};
+
 class HttpManager : public QObject
 {
     Q_OBJECT
@@ -24,6 +32,7 @@ private slots:
 
 private:
     void PostHttpRequest(const QString &api_adress, void (HttpManager::*slot_function)());
+    QJsonObject ReadBody();
 
     QNetworkAccessManager http_acces_manager;
     QNetworkReply *http_reply;
