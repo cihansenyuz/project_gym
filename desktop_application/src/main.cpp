@@ -10,10 +10,11 @@ int main(int argc, char *argv[])
     HttpManager *http_manager = new HttpManager;
     LoginDialog dialog(http_manager);
     dialog.show();
+    MainWindow *window;
 
     auto CreateMainWindow = [&](bool success){
         if(success)
-            MainWindow *window = new MainWindow(http_manager);
+            window = new MainWindow(http_manager);
     };
 
     QObject::connect(http_manager, &HttpManager::LoginAttempt, CreateMainWindow);

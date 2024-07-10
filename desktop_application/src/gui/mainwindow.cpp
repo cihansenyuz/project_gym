@@ -45,8 +45,9 @@ void MainWindow::OnGetButtonClicked(){
     if(current_member){
         ui->message_text_browser->append("Member info has gotten: "
                                          + current_member->GetName());
-        ui->age_label->setText("Age: "
-                               + QString::number(current_member->GetAge()));
+        ui->age_label->setText(QString::number(current_member->GetAge()));
+        //ui->gender_label->setText();
+        //ui->phone_label->setText();
 
         if(current_member->GetAllMeasurements().size()){
         Measurement last = current_member->GetLastMeasurements();
