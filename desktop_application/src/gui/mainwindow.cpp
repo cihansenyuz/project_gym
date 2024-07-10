@@ -51,6 +51,18 @@ void MainWindow::OnGetButtonClicked(){
                                           + current_member->GetSubscriptionStartDate().toString(Qt::ISODate));
         ui->sub_end_date_label->setText("Subscription end date: "
                                         + current_member->GetSubscriptionEndDate().toString(Qt::ISODate));
+        if(current_member->GetAllMeasurements().size()){
+        Measurement last = current_member->GetLastMeasurements();
+            ui->weight_label->setText(QString::number(last.GetWeight()));
+            ui->shoulder_label->setText(QString::number(last.GetShoulder()));
+            ui->chest_label->setText(QString::number(last.GetChest()));
+            ui->arm_label->setText(QString::number(last.GetArm()));
+            ui->belly_label->setText(QString::number(last.GetBelly()));
+            ui->hip_label->setText(QString::number(last.GetHip()));
+            ui->leg_label->setText(QString::number(last.GetLeg()));
+            ui->taken_date_label->setText(last.GetTakenDate().toString(Qt::ISODate));
+        }
+
         //qDebug() << "chest: " << current_member->GetChest();
         //qDebug() << "subs: " << current_member->HasSubscription();
         //qDebug() << "remaining: " << current_member->GetRemainingDays();
