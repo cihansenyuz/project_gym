@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>698</width>
-    <height>378</height>
+    <width>706</width>
+    <height>466</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,7 +16,7 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0,0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
         <item>
@@ -47,32 +47,58 @@
             </layout>
            </item>
            <item>
-            <widget class="QLabel" name="age_label">
-             <property name="text">
-              <string>Age:</string>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout_15">
+             <item>
+              <widget class="QLabel" name="label_6">
+               <property name="text">
+                <string>Age:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="age_label">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
-            <widget class="QLabel" name="gender_label">
-             <property name="text">
-              <string>Gender:</string>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout_17">
+             <item>
+              <widget class="QLabel" name="label_8">
+               <property name="text">
+                <string>Gender:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="gender_label">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
-            <widget class="QLabel" name="sub_start_date_label">
-             <property name="text">
-              <string>Subscription start date:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="sub_end_date_label">
-             <property name="text">
-              <string>Subscription end date:</string>
-             </property>
-            </widget>
+            <layout class="QHBoxLayout" name="horizontalLayout_18">
+             <item>
+              <widget class="QLabel" name="label_9">
+               <property name="text">
+                <string>Phone:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="phone_label">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+            </layout>
            </item>
            <item>
             <spacer name="verticalSpacer">
@@ -242,11 +268,98 @@
            </item>
           </layout>
          </item>
+         <item>
+          <widget class="QPushButton" name="new_measurements_button">
+           <property name="text">
+            <string>New Measurements</string>
+           </property>
+          </widget>
+         </item>
         </layout>
        </widget>
       </item>
       <item>
        <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>40</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="1,2">
+      <item>
+       <widget class="QGroupBox" name="groupBox_3">
+        <property name="title">
+         <string>Subscription Details</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_14">
+           <item>
+            <widget class="QLabel" name="sub_start_date_label">
+             <property name="text">
+              <string>Start date:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="subs_start_date">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_13">
+           <item>
+            <widget class="QLabel" name="sub_end_date_label">
+             <property name="text">
+              <string>End date:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="subs_end_date">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Remaining Months:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="remaining_months_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
         </property>
@@ -270,7 +383,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>698</width>
+     <width>706</width>
      <height>22</height>
     </rect>
    </property>
@@ -281,17 +394,41 @@
     <addaction name="register_action"/>
     <addaction name="delete_action"/>
    </widget>
+   <widget class="QMenu" name="menuManage_Member">
+    <property name="title">
+     <string>Manage Member</string>
+    </property>
+    <addaction name="actionAdd_new_measurements"/>
+    <addaction name="actionShow_progress_of_the_member"/>
+    <addaction name="actionShow_all_previous_subscriptions"/>
+   </widget>
    <addaction name="manage_database_menu"/>
+   <addaction name="menuManage_Member"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
   <action name="register_action">
    <property name="text">
-    <string>Register New Member</string>
+    <string>Register a new member</string>
    </property>
   </action>
   <action name="delete_action">
    <property name="text">
-    <string>Delete Existing Member</string>
+    <string>Delete an existing member</string>
+   </property>
+  </action>
+  <action name="actionAdd_new_measurements">
+   <property name="text">
+    <string>Add new measurements</string>
+   </property>
+  </action>
+  <action name="actionShow_progress_of_the_member">
+   <property name="text">
+    <string>Show phycisal progress charts</string>
+   </property>
+  </action>
+  <action name="actionShow_all_previous_subscriptions">
+   <property name="text">
+    <string>Show all previous subscriptions</string>
    </property>
   </action>
  </widget>

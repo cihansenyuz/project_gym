@@ -47,10 +47,7 @@ void MainWindow::OnGetButtonClicked(){
                                          + current_member->GetName());
         ui->age_label->setText("Age: "
                                + QString::number(current_member->GetAge()));
-        ui->sub_start_date_label->setText("Subscription start date: "
-                                          + current_member->GetSubscriptionStartDate().toString(Qt::ISODate));
-        ui->sub_end_date_label->setText("Subscription end date: "
-                                        + current_member->GetSubscriptionEndDate().toString(Qt::ISODate));
+
         if(current_member->GetAllMeasurements().size()){
         Measurement last = current_member->GetLastMeasurements();
             ui->weight_label->setText(QString::number(last.GetWeight()));
@@ -63,11 +60,13 @@ void MainWindow::OnGetButtonClicked(){
             ui->taken_date_label->setText(last.GetTakenDate().toString(Qt::ISODate));
         }
 
-        //qDebug() << "chest: " << current_member->GetChest();
-        //qDebug() << "subs: " << current_member->HasSubscription();
-        //qDebug() << "remaining: " << current_member->GetRemainingDays();
-        //qDebug() << "cooldown: " << current_member->GetWeeklyExercisePlan().back().GetCooldownPeriod();
-        //qDebug() << "name: " << Exercise::toString(current_member->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());
+        if(current_member->GetAllArchivedSubscriptions().size()
+            || current_member->HasSubscription()){
+            ui->sub_start_date_label->setText(current_member->GetSubscriptionStartDate().toString(Qt::ISODate));
+            ui->sub_end_date_label->setText(current_member->GetSubscriptionEndDate().toString(Qt::ISODate));
+            ui->remaining_months_label->setText(QString::number(current_member->GetSubscriptionEndDate().month()
+                                                                    - QDate::currentDate().month()));
+        }
     }
     else
         ui->message_text_browser->append("No member found!");
