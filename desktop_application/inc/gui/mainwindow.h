@@ -23,7 +23,7 @@ public:
 
 private slots:
     void OnMemberDataFetched();
-    void OnButtonClicked();
+    void OnGetButtonClicked();
 
 private:
     Ui::MainWindow *ui;

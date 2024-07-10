@@ -10,8 +10,8 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
             this, &MainWindow::OnMemberDataFetched);
     http_manager_->FetchMemberJsonData();
 
-    connect(ui->pushButton, &QPushButton::clicked,
-            this, &MainWindow::OnButtonClicked);
+    connect(ui->get_button, &QPushButton::clicked,
+            this, &MainWindow::OnGetButtonClicked);
 
     //////// TEST & DEBUG SECTION /////////
 
@@ -40,23 +40,23 @@ void MainWindow::OnMemberDataFetched(){
     this->show();
 }
 
-void MainWindow::OnButtonClicked(){
-    Member* current_member = member_manager.GetMember(ui->lineEdit->text());
+void MainWindow::OnGetButtonClicked(){
+    Member* current_member = member_manager.GetMember(ui->member_name_line_edit->text());
     if(current_member){
-        qDebug() << "current selected member: " << current_member->GetName();
-
-        //current_member->SetSubscriptionPeriod(QDate::currentDate().addDays(-10), QDate::currentDate().addDays(10));
-        //current_member->EndSubscription();
-        //member_manager.SaveChangesOnMember(*current_member);
-
-        qDebug() << "name: " << current_member->GetName();
-        qDebug() << "age: " << current_member->GetAge();
-        qDebug() << "chest: " << current_member->GetChest();
-        qDebug() << "subs: " << current_member->HasSubscription();
-        qDebug() << "remaining: " << current_member->GetRemainingDays();
-        qDebug() << "cooldown: " << current_member->GetWeeklyExercisePlan().back().GetCooldownPeriod();
-        qDebug() << "name: " << Exercise::toString(current_member->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());
+        ui->message_text_browser->append("Member info has gotten: "
+                                         + current_member->GetName());
+        ui->age_label->setText("Age: "
+                               + QString::number(current_member->GetAge()));
+        ui->sub_start_date_label->setText("Subscription start date: "
+                                          + current_member->GetSubscriptionStartDate().toString(Qt::ISODate));
+        ui->sub_end_date_label->setText("Subscription end date: "
+                                        + current_member->GetSubscriptionEndDate().toString(Qt::ISODate));
+        //qDebug() << "chest: " << current_member->GetChest();
+        //qDebug() << "subs: " << current_member->HasSubscription();
+        //qDebug() << "remaining: " << current_member->GetRemainingDays();
+        //qDebug() << "cooldown: " << current_member->GetWeeklyExercisePlan().back().GetCooldownPeriod();
+        //qDebug() << "name: " << Exercise::toString(current_member->GetWeeklyExercisePlan().back().GetDailyExercisePlan().back()->GetName());
     }
     else
-        qDebug() << "no member found";
+        ui->message_text_browser->append("No member found!");
 }
