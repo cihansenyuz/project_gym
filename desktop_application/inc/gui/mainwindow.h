@@ -24,6 +24,7 @@ public:
 private slots:
     void OnMemberDataFetched();
     void OnGetButtonClicked();
+    void OnSaveChangesAction();
 
 private:
     Ui::MainWindow *ui;

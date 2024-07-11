@@ -30,6 +30,7 @@ public:
     virtual void DeleteMember(const QString &name) = 0;
     friend class MemberManager;
     void LoadFromFile();
+    QJsonArray* GetMemberArrayData();
 
 private:
     bool SaveToFile();

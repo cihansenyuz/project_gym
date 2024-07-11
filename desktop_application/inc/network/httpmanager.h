@@ -7,8 +7,10 @@
 #define API_ROOT_ADRESS "https://www.cangorkemgunes.com/api/"
 #define API_LOGIN_ADRESS "login"
 #define API_REGISTER_ADRESS "register"
+#define API_FETCH_ADRESS "users"
+#define API_PUSH_ADRESS ""
 
-#define FETCHED_FILE_PATH "../../members_fetched.json"
+#define FETCHED_FILE_PATH "../../members.json"
 
 enum ReplyCode{
     BadRequest,
@@ -31,7 +33,7 @@ public:
     void LoginRequest(const QString &email, const QString password);
     void RegisterRequest(const QString &email, const QString password);
     void FetchMemberJsonData();
-    void PushMemberJsonData();
+    void PushMemberJsonData(const QJsonArray* data_to_push);
 
 signals:
     void LoginAttempt(bool success);
@@ -41,6 +43,7 @@ private slots:
     void OnRegisterReplyRecieved();
     void OnLoginReplyRecieved();
     void OnFetchMemberJsonDataReplyRecieved();
+    void OnPushMemberJsonDataReplyRecieved();
 
 private:
     void PostHttpRequest(const QString &api_adress, RequestOption selection, void (HttpManager::*slot_function)());
@@ -48,7 +51,7 @@ private:
 
     QNetworkAccessManager http_acces_manager;
     QNetworkReply *http_reply;
-    QJsonObject user_info;
+    QJsonDocument http_body_data;
 };
 
 #endif // HTTPMANAGER_H

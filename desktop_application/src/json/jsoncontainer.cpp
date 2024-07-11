@@ -38,3 +38,7 @@ void JsonContainer::LoadFromFile(){
     members_array = json_document.array();
     qDebug() << "JSON file loaded";
 }
+
+QJsonArray* JsonContainer::GetMemberArrayData(){
+    return &members_array;
+}

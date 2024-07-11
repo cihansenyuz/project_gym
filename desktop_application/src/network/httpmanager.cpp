@@ -8,29 +8,40 @@ void HttpManager::PostHttpRequest(const QString &api_adress, RequestOption selec
     http_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
     switch(selection){
-    case Put:
-        http_reply = http_acces_manager.put(http_request, QJsonDocument(user_info).toJson()); break;
-    case Get:
-        http_reply = http_acces_manager.get(http_request, QJsonDocument(user_info).toJson()); break;
-    case Post:
-        http_reply = http_acces_manager.post(http_request, QJsonDocument(user_info).toJson()); break;
+        case Put:{
+            http_reply = http_acces_manager.put(http_request, http_body_data.toJson());
+            qDebug() << "put request done";
+            break;
+        }
+        case Get:{
+            http_reply = http_acces_manager.get(http_request);
+            qDebug() << "get request done";
+            break;
+        }
+        case Post:{
+            http_reply = http_acces_manager.post(http_request, http_body_data.toJson());
+            qDebug() << "post request done";
+            break;
+        }
     }
 
-    http_reply = http_acces_manager.post(http_request, QJsonDocument(user_info).toJson());
-    qDebug() << "http request posted";
     connect(http_reply, &QNetworkReply::finished,
             this, slot_function);
 }
 
 void HttpManager::LoginRequest(const QString &email, const QString password){
+    QJsonObject user_info;
     user_info["email"] = email;
     user_info["password"] = password;
+    http_body_data = QJsonDocument(user_info);
     PostHttpRequest(API_LOGIN_ADRESS, RequestOption::Post, &HttpManager::OnLoginReplyRecieved);
 }
 
 void HttpManager::RegisterRequest(const QString &email, const QString password){
+    QJsonObject user_info;
     user_info["email"] = email;
     user_info["password"] = password;
+    http_body_data = QJsonDocument(user_info);
     PostHttpRequest(API_REGISTER_ADRESS, RequestOption::Post, &HttpManager::OnRegisterReplyRecieved);
 }
 
@@ -42,7 +53,6 @@ void HttpManager::OnRegisterReplyRecieved(){
 }
 
 void HttpManager::OnLoginReplyRecieved(){
-    qDebug() << "login reply recieved";
     if(http_reply->error() == QNetworkReply::NoError){
 
         QJsonObject message;
@@ -53,7 +63,7 @@ void HttpManager::OnLoginReplyRecieved(){
             emit LoginAttempt(false);
     }
     else
-        qDebug() << "network error: " << http_reply->errorString();
+        qDebug() << "login error: " << http_reply->error();
 }
 
 void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
@@ -70,16 +80,24 @@ void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
         }
     }
     else
-        ;
+        qDebug() << "fetch error: " << http_reply->error();
+}
+
+void HttpManager::OnPushMemberJsonDataReplyRecieved(){
+    if(http_reply->error() == QNetworkReply::NoError){
+        qDebug() << "data uploaded to the cloud";
+    }
+    else
+        qDebug() << "push error: " << http_reply->error();
 }
 
 void HttpManager::FetchMemberJsonData(){
-    PostHttpRequest("address_of_data", RequestOption::Get, &HttpManager::OnFetchMemberJsonDataReplyRecieved);
-    emit http_reply->finished();
+    PostHttpRequest(API_FETCH_ADRESS, RequestOption::Get, &HttpManager::OnFetchMemberJsonDataReplyRecieved);
 }
 
-void HttpManager::PushMemberJsonData(){
-
+void HttpManager::PushMemberJsonData(const QJsonArray* data_to_push){
+    http_body_data = QJsonDocument(*data_to_push);
+    PostHttpRequest(API_PUSH_ADRESS, RequestOption::Put, &HttpManager::OnPushMemberJsonDataReplyRecieved);
 }
 
 QJsonObject HttpManager::ReadBody(){

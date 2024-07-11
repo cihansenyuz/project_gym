@@ -12,6 +12,8 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
 
     connect(ui->get_button, &QPushButton::clicked,
             this, &MainWindow::OnGetButtonClicked);
+    connect(ui->save_changes_action, &QAction::triggered,
+            this, &MainWindow::OnSaveChangesAction);
 
     //////// TEST & DEBUG SECTION /////////
 
@@ -71,4 +73,8 @@ void MainWindow::OnGetButtonClicked(){
     }
     else
         ui->message_text_browser->append("No member found!");
+}
+
+void MainWindow::OnSaveChangesAction(){
+    http_manager_->PushMemberJsonData(member_manager.GetMemberArrayData());
 }
