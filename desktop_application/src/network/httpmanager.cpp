@@ -2,10 +2,20 @@
 
 HttpManager::HttpManager() {}
 
-void HttpManager::PostHttpRequest(const QString &api_adress, void (HttpManager::*slot_function)()){
-    QUrl http_url(QString("https://www.cangorkemgunes.com/api/") + api_adress);
+void HttpManager::PostHttpRequest(const QString &api_adress, RequestOption selection, void (HttpManager::*slot_function)()){
+    QUrl http_url(QString(API_ROOT_ADRESS) + api_adress);
     QNetworkRequest http_request(http_url);
     http_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+
+    switch(selection){
+    case Put:
+        http_reply = http_acces_manager.put(http_request, QJsonDocument(user_info).toJson()); break;
+    case Get:
+        http_reply = http_acces_manager.get(http_request, QJsonDocument(user_info).toJson()); break;
+    case Post:
+        http_reply = http_acces_manager.post(http_request, QJsonDocument(user_info).toJson()); break;
+    }
+
     http_reply = http_acces_manager.post(http_request, QJsonDocument(user_info).toJson());
     qDebug() << "http request posted";
     connect(http_reply, &QNetworkReply::finished,
@@ -15,13 +25,13 @@ void HttpManager::PostHttpRequest(const QString &api_adress, void (HttpManager::
 void HttpManager::LoginRequest(const QString &email, const QString password){
     user_info["email"] = email;
     user_info["password"] = password;
-    PostHttpRequest("login", &HttpManager::OnLoginReplyRecieved);
+    PostHttpRequest(API_LOGIN_ADRESS, RequestOption::Post, &HttpManager::OnLoginReplyRecieved);
 }
 
 void HttpManager::RegisterRequest(const QString &email, const QString password){
     user_info["email"] = email;
     user_info["password"] = password;
-    PostHttpRequest("register", &HttpManager::OnRegisterReplyRecieved);
+    PostHttpRequest(API_REGISTER_ADRESS, RequestOption::Post, &HttpManager::OnRegisterReplyRecieved);
 }
 
 void HttpManager::OnRegisterReplyRecieved(){
@@ -49,7 +59,7 @@ void HttpManager::OnLoginReplyRecieved(){
 void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
     if(http_reply->error() == QNetworkReply::NoError){
         QByteArray reply = http_reply->readAll();
-        QFile file("../../members_fetched.json");
+        QFile file(FETCHED_FILE_PATH);
         if (file.open(QIODevice::WriteOnly)) {
             file.write(reply.data());
             file.close();
@@ -64,8 +74,12 @@ void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
 }
 
 void HttpManager::FetchMemberJsonData(){
-    PostHttpRequest("address_of_data", &HttpManager::OnFetchMemberJsonDataReplyRecieved);
+    PostHttpRequest("address_of_data", RequestOption::Get, &HttpManager::OnFetchMemberJsonDataReplyRecieved);
     emit http_reply->finished();
+}
+
+void HttpManager::PushMemberJsonData(){
+
 }
 
 QJsonObject HttpManager::ReadBody(){
