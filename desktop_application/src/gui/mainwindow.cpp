@@ -45,6 +45,7 @@ void MainWindow::OnMemberDataFetched(){
 }
 
 void MainWindow::OnGetButtonClicked(){
+    NewDialog("deneme mesaj");
     current_member = member_manager.GetMember(ui->member_name_line_edit->text());
     if(current_member){
         ui->message_text_browser->append("Member info has gotten: "
@@ -159,4 +160,11 @@ void MainWindow::DeleteExercisePlanTable() {
         exercise_day_tab->removeTab(0);
         delete tab;
     }
+}
+
+void MainWindow::NewDialog(const QString &message, const QString &title){
+    if(dialog)
+        delete dialog;
+    dialog = new InfoDialog(message, title);
+    dialog->exec();
 }

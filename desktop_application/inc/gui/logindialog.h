@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include "../network/httpmanager.h"
+#include "../gui/infodialog.h"
 
 enum Screen{
     loginScreen,
@@ -31,6 +32,7 @@ private slots:
 private:
     Ui::LoginDialog *ui;
     HttpManager *http_manager_;
+    InfoDialog *dialog{nullptr};
 };
 
 #endif // LOGINDIALOG_H

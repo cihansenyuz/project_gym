@@ -63,8 +63,11 @@ void LoginDialog::OnCreatePushButtonClicked() {
 }
 
 void LoginDialog::OnLoginAttempt(bool success){
+    if(dialog)
+        delete dialog;
+
     if(success)
         this->destroy();
     else
-        ui->login_fail_message->setText("Invalid email or wrong password!");
+        dialog = new InfoDialog("Invalid email or wrong password!", "Login Error");
 }

@@ -35,11 +35,13 @@ private slots:
 private:
     void FillExercisePlanTable();
     void DeleteExercisePlanTable();
+    void NewDialog(const QString &message, const QString &title = "");
 
     Ui::MainWindow *ui;
     HttpManager *http_manager_;
     MemberManager member_manager;
     Member* current_member{nullptr};
     QTabWidget *exercise_day_tab{nullptr};
+    InfoDialog *dialog{nullptr};
 };
 #endif // MAINWINDOW_H
