@@ -457,7 +457,7 @@
   </action>
   <action name="delete_action">
    <property name="text">
-    <string>Delete an existing member</string>
+    <string>Delete currently viewed member</string>
    </property>
   </action>
   <action name="actionAdd_new_measurements">

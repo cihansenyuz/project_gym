@@ -29,6 +29,7 @@ private slots:
     void OnMemberDataFetched();
     void OnGetButtonClicked();
     void OnSaveChangesAction();
+    void OnDeleteAction();
 
 private:
     void FillExercisePlanTable();
@@ -37,7 +38,7 @@ private:
     Ui::MainWindow *ui;
     HttpManager *http_manager_;
     MemberManager member_manager;
-    Member* current_member;
+    Member* current_member{nullptr};
     QTabWidget *exercise_day_tab{nullptr};
 };
 #endif // MAINWINDOW_H

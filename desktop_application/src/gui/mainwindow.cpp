@@ -14,6 +14,8 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
             this, &MainWindow::OnGetButtonClicked);
     connect(ui->save_changes_action, &QAction::triggered,
             this, &MainWindow::OnSaveChangesAction);
+    connect(ui->delete_action, &QAction::triggered,
+            this, &MainWindow::OnDeleteAction);
 
     //////// TEST & DEBUG SECTION /////////
 
@@ -79,6 +81,15 @@ void MainWindow::OnGetButtonClicked(){
 
 void MainWindow::OnSaveChangesAction(){
     http_manager_->PushMemberJsonData(member_manager.GetMemberArrayData());
+}
+
+void MainWindow::OnDeleteAction(){
+    if(!current_member){
+        ui->message_text_browser->append("Currently no member selected.");
+        return;
+    }
+    member_manager.DeleteMember(current_member->GetName());
+    ui->message_text_browser->append("Member is removed from database!");
 }
 
 void MainWindow::FillExercisePlanTable(){
