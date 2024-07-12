@@ -9,6 +9,7 @@
 #include "../member/member.h"
 #include "../json/membermanager.h"
 #include "../network/httpmanager.h"
+#include "../gui/infodialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {

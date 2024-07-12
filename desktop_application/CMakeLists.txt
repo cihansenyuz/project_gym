@@ -16,6 +16,7 @@ set(PROJECT_SOURCES
         src/main.cpp
         src/gui/mainwindow.cpp
         src/gui/logindialog.cpp
+        src/gui/infodialog.cpp
         src/member/member.cpp
         src/member/measurement.cpp
         src/member/subscription.cpp
@@ -31,6 +32,7 @@ set(PROJECT_SOURCES
 
         inc/gui/mainwindow.h
         inc/gui/logindialog.h
+        inc/gui/infodialog.h
         inc/member/member.h
         inc/member/measurement.h
         inc/member/subscription.h
@@ -46,6 +48,7 @@ set(PROJECT_SOURCES
 
         ui/mainwindow.ui
         ui/logindialog.ui
+        ui/infodialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
