@@ -25,9 +25,6 @@ LoginDialog::~LoginDialog()
 }
 
 void LoginDialog::OnLoginPushButtonClicked() {
-    if(ui->email_line_edit->text() == "admin")
-        emit http_manager_->LoginAttempt(true);
-
     http_manager_->LoginRequest(ui->email_line_edit->text(),
                               ui->password_line_edit->text());
     connect(this->http_manager_, &HttpManager::LoginAttempt,

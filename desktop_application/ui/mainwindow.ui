@@ -6,120 +6,231 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>706</width>
-    <height>530</height>
+    <width>726</width>
+    <height>772</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout_3">
+   <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,2,1">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
+     <layout class="QHBoxLayout" name="first_bar" stretch="0,0,0,0">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout" stretch="0">
-        <item>
-         <widget class="QGroupBox" name="groupBox">
-          <property name="title">
-           <string>Member Info</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout">
+       <widget class="QGroupBox" name="member_info_group">
+        <property name="title">
+         <string>Member Info</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_3">
-             <item>
-              <widget class="QLabel" name="member_name_label">
-               <property name="text">
-                <string>Member name:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="member_name_line_edit"/>
-             </item>
-             <item>
-              <widget class="QPushButton" name="get_button">
-               <property name="text">
-                <string>Get</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QLabel" name="member_name_label">
+             <property name="text">
+              <string>Member name:</string>
+             </property>
+            </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_15">
-             <item>
-              <widget class="QLabel" name="label_6">
-               <property name="text">
-                <string>Age:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="age_label">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QLineEdit" name="member_name_line_edit"/>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_17">
-             <item>
-              <widget class="QLabel" name="label_8">
-               <property name="text">
-                <string>Gender:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="gender_label">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QPushButton" name="get_button">
+             <property name="text">
+              <string>Get</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_15">
+           <item>
+            <widget class="QLabel" name="label_6">
+             <property name="text">
+              <string>Age:</string>
+             </property>
+            </widget>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="horizontalLayout_18">
-             <item>
-              <widget class="QLabel" name="label_9">
-               <property name="text">
-                <string>Phone:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="phone_label">
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <widget class="QLabel" name="age_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer">
+            <spacer name="horizontalSpacer_2">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Horizontal</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
-               <width>20</width>
-               <height>40</height>
+               <width>40</width>
+               <height>20</height>
               </size>
              </property>
             </spacer>
            </item>
           </layout>
-         </widget>
-        </item>
-       </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_17">
+           <item>
+            <widget class="QLabel" name="label_8">
+             <property name="text">
+              <string>Gender:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="gender_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_3">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_18">
+           <item>
+            <widget class="QLabel" name="label_9">
+             <property name="text">
+              <string>Phone:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="phone_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_4">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
       </item>
       <item>
-       <widget class="QGroupBox" name="groupBox_2">
+       <widget class="QGroupBox" name="subcription_group">
+        <property name="title">
+         <string>Subscription Details</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0,0">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_14">
+           <item>
+            <widget class="QLabel" name="label_10">
+             <property name="text">
+              <string>Start date:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="sub_start_date_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_13">
+           <item>
+            <widget class="QLabel" name="label_4">
+             <property name="text">
+              <string>End date:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="sub_end_date_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_8">
+           <item>
+            <widget class="QLabel" name="label_2">
+             <property name="text">
+              <string>Remaining Months:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="remaining_months_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QGroupBox" name="last_measurements_group">
         <property name="title">
          <string>Last Measurements</string>
         </property>
@@ -294,82 +405,14 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="1,2">
+     <layout class="QHBoxLayout" name="second_bar">
       <item>
-       <widget class="QGroupBox" name="groupBox_3">
+       <widget class="QGroupBox" name="exercise_plan_group">
         <property name="title">
-         <string>Subscription Details</string>
+         <string>Exercise Plan</string>
         </property>
-        <layout class="QVBoxLayout" name="verticalLayout_5" stretch="0,0,0">
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_14">
-           <item>
-            <widget class="QLabel" name="sub_start_date_label">
-             <property name="text">
-              <string>Start date:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="subs_start_date">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_13">
-           <item>
-            <widget class="QLabel" name="sub_end_date_label">
-             <property name="text">
-              <string>End date:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="subs_end_date">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_8">
-           <item>
-            <widget class="QLabel" name="label_2">
-             <property name="text">
-              <string>Remaining Months:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="remaining_months_label">
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </item>
-        </layout>
+        <layout class="QVBoxLayout" name="verticalLayout_4"/>
        </widget>
-      </item>
-      <item>
-       <spacer name="horizontalSpacer_2">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>40</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </item>
@@ -383,7 +426,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>706</width>
+     <width>726</width>
      <height>22</height>
     </rect>
    </property>

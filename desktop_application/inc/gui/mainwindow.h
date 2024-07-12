@@ -3,6 +3,9 @@
 
 #include <QMainWindow>
 #include <QtNetwork>
+#include <QTableWidget>
+#include <memory>
+
 #include "../member/member.h"
 #include "../json/membermanager.h"
 #include "../network/httpmanager.h"
@@ -10,6 +13,7 @@
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
+
 }
 QT_END_NAMESPACE
 
@@ -27,8 +31,13 @@ private slots:
     void OnSaveChangesAction();
 
 private:
+    void FillExercisePlanTable();
+    void DeleteExercisePlanTable();
+
     Ui::MainWindow *ui;
     HttpManager *http_manager_;
     MemberManager member_manager;
+    Member* current_member;
+    QTabWidget *exercise_day_tab{nullptr};
 };
 #endif // MAINWINDOW_H

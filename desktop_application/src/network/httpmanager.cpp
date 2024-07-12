@@ -73,7 +73,7 @@ void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
         if (file.open(QIODevice::WriteOnly)) {
             file.write(reply.data());
             file.close();
-            qDebug() << "JSON file created successfully.";
+            qDebug() << "JSON file fetched to local.";
             emit MemberJsonFetched();
         } else {
             qDebug() << "Unable to open file for writing.";
