@@ -53,17 +53,20 @@ void HttpManager::OnRegisterReplyRecieved(){
 }
 
 void HttpManager::OnLoginReplyRecieved(){
-    if(http_reply->error() == QNetworkReply::NoError){
+    QJsonObject message;
+    message = ReadBody();
 
-        QJsonObject message;
-        message = ReadBody();
-        if(message["code"] == UserFound)
-            emit LoginAttempt(true);
-        else
-            emit LoginAttempt(false);
-    }
+    if(message["code"] == UserFound)
+        emit LoginAttempt(true);
+    else if (message["code"] == NoUserFound ||
+             message["code"] == IncorrectPassword ||
+             message["code"] == BadRequest)
+        emit LoginAttempt(false);
     else
         qDebug() << "login error: " << http_reply->error();
+
+    for(auto &key : message.keys())
+        qDebug() << key << message[key];
 }
 
 void HttpManager::OnFetchMemberJsonDataReplyRecieved(){
