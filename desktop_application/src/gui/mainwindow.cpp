@@ -45,7 +45,6 @@ void MainWindow::OnMemberDataFetched(){
 }
 
 void MainWindow::OnGetButtonClicked(){
-    NewDialog("deneme mesaj");
     current_member = member_manager.GetMember(ui->member_name_line_edit->text());
     if(current_member){
         ui->message_text_browser->append("Member info has gotten: "

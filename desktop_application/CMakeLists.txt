@@ -29,6 +29,10 @@ set(PROJECT_SOURCES
         src/json/jsonparser.cpp
         src/json/jsoncontainer.cpp
         src/network/httpmanager.cpp
+        src/network/networkcore.cpp
+        src/network/postrequest.cpp
+        src/network/getrequest.cpp
+        src/network/putrequest.cpp
 
         inc/gui/mainwindow.h
         inc/gui/logindialog.h
@@ -45,6 +49,10 @@ set(PROJECT_SOURCES
         inc/json/jsonparser.h
         inc/json/jsoncontainer.h
         inc/network/httpmanager.h
+        inc/network/networkcore.h
+        inc/network/postrequest.h
+        inc/network/getrequest.h
+        inc/network/putrequest.h
 
         ui/mainwindow.ui
         ui/logindialog.ui
