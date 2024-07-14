@@ -42,3 +42,7 @@ void JsonContainer::LoadFromFile(){
 QJsonArray* JsonContainer::GetMemberArrayData(){
     return &members_array;
 }
+
+void JsonContainer::SetMemberArrayData(QJsonArray* fetched){
+    members_array = *fetched;
+}

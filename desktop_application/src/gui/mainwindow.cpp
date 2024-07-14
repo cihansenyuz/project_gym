@@ -40,7 +40,7 @@ MainWindow::~MainWindow(){
 }
 
 void MainWindow::OnMemberDataFetched(){
-    member_manager.LoadFromFile();
+    member_manager.SetMemberArrayData(http_manager_->GetFetchedMemberJsonArray());
     this->show();
 }
 

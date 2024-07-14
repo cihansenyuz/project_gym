@@ -19,8 +19,7 @@ LoginDialog::LoginDialog(HttpManager *http_manager, QWidget *parent)
 
 }
 
-LoginDialog::~LoginDialog()
-{
+LoginDialog::~LoginDialog(){
     if(dialog)
         delete dialog;
     delete ui;
@@ -70,7 +69,7 @@ void LoginDialog::OnCreatePushButtonClicked() {
 
 void LoginDialog::OnLoginAttempt(bool success){
     if(dialog){
-        dialog->close();
+        dialog->close;
         delete dialog;
     }
 

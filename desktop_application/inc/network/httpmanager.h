@@ -11,6 +11,7 @@ class HttpManager : public PostRequest,
 {
 public:
     HttpManager() = default;
+    QJsonArray* GetFetchedMemberJsonArray();
 
 };
 
