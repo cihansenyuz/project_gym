@@ -21,6 +21,8 @@ LoginDialog::LoginDialog(HttpManager *http_manager, QWidget *parent)
 
 LoginDialog::~LoginDialog()
 {
+    if(dialog)
+        delete dialog;
     delete ui;
 }
 
@@ -29,6 +31,10 @@ void LoginDialog::OnLoginPushButtonClicked() {
                               ui->password_line_edit->text());
     connect(this->http_manager_, &HttpManager::LoginAttempt,
             this, &LoginDialog::OnLoginAttempt);
+    connect(http_manager_, &HttpManager::LoginRequestSent, [this](){
+            if(dialog)
+                delete dialog;
+            dialog = new InfoDialog("Connecting to server, kindly wait a while", "Information");});
 }
 
 void LoginDialog::OnRegisterPushButtonClicked() {
@@ -63,8 +69,10 @@ void LoginDialog::OnCreatePushButtonClicked() {
 }
 
 void LoginDialog::OnLoginAttempt(bool success){
-    if(dialog)
+    if(dialog){
+        dialog->close();
         delete dialog;
+    }
 
     if(success)
         this->destroy();

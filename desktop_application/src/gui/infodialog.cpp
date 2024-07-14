@@ -6,11 +6,13 @@ InfoDialog::InfoDialog(const QString &message, const QString &title, QWidget *pa
     , ui(new Ui::InfoDialog)
 {
     ui->setupUi(this);
-    ui->message_label->setWindowTitle(title);
+    this->setWindowTitle(title);
     ui->message_label->setText(message);
 
     connect(ui->ok_button, &QPushButton::clicked,
             this, &InfoDialog::OnOkButtonClicked);
+
+    this->exec();
 }
 
 InfoDialog::~InfoDialog()

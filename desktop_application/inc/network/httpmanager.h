@@ -8,7 +8,7 @@
 #define API_LOGIN_ADRESS "login"
 #define API_REGISTER_ADRESS "register"
 #define API_FETCH_ADRESS "users"
-#define API_PUSH_ADRESS ""
+#define API_PUSH_ADRESS "users"
 
 #define FETCHED_FILE_PATH "../../members.json"
 
@@ -29,7 +29,7 @@ class HttpManager : public QObject
 {
     Q_OBJECT
 public:
-    HttpManager();
+    HttpManager() = default;
     void LoginRequest(const QString &email, const QString password);
     void RegisterRequest(const QString &email, const QString password);
     void FetchMemberJsonData();
@@ -38,6 +38,7 @@ public:
 signals:
     void LoginAttempt(bool success);
     void MemberJsonFetched();
+    void LoginRequestSent();
 
 private slots:
     void OnRegisterReplyRecieved();
@@ -52,6 +53,7 @@ private:
     QNetworkAccessManager http_acces_manager;
     QNetworkReply *http_reply;
     QJsonDocument http_body_data;
+    QString token{""};
 };
 
 #endif // HTTPMANAGER_H

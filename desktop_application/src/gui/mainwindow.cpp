@@ -166,5 +166,4 @@ void MainWindow::NewDialog(const QString &message, const QString &title){
     if(dialog)
         delete dialog;
     dialog = new InfoDialog(message, title);
-    dialog->exec();
 }

@@ -1,11 +1,11 @@
 #include "../../inc/network/httpmanager.h"
 
-HttpManager::HttpManager() {}
-
 void HttpManager::PostHttpRequest(const QString &api_adress, RequestOption selection, void (HttpManager::*slot_function)()){
     QUrl http_url(QString(API_ROOT_ADRESS) + api_adress);
     QNetworkRequest http_request(http_url);
     http_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    if(token.size())
+        http_request.setRawHeader("Authorization", "Bearer " + token.toUtf8());
 
     switch(selection){
         case Put:{
@@ -21,6 +21,7 @@ void HttpManager::PostHttpRequest(const QString &api_adress, RequestOption selec
         case Post:{
             http_reply = http_acces_manager.post(http_request, http_body_data.toJson());
             qDebug() << "post request done";
+            emit LoginRequestSent();
             break;
         }
     }
@@ -56,8 +57,10 @@ void HttpManager::OnLoginReplyRecieved(){
     QJsonObject message;
     message = ReadBody();
 
-    if(message["code"] == UserFound)
+    if(message["code"] == UserFound){
+        token = message["Authorization"].toString();
         emit LoginAttempt(true);
+    }
     else if (message["code"] == NoUserFound ||
              message["code"] == IncorrectPassword ||
              message["code"] == BadRequest)
