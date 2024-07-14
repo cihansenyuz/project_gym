@@ -15,6 +15,9 @@ signals:
 
 private slots:
     void OnFetchMemberJsonDataReplyRecieved();
+
+private:
+    QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;
 };
 
 #endif // GETREQUEST_H

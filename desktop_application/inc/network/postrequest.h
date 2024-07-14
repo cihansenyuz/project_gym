@@ -18,6 +18,9 @@ signals:
 private slots:
     void OnRegisterReplyRecieved();
     void OnLoginReplyRecieved();
+
+private:
+    QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;
 };
 
 #endif // POSTREQUEST_H

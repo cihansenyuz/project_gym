@@ -12,6 +12,9 @@ public:
 
 private slots:
     void OnPushMemberJsonDataReplyRecieved();
+
+private:
+    QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;
 };
 
 #endif // PUTREQUEST_H

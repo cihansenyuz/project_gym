@@ -20,6 +20,10 @@ void GetRequest::OnFetchMemberJsonDataReplyRecieved(){
 }
 
 void GetRequest::FetchMemberJsonData(){
-    PostHttpRequest(API_FETCH_ADRESS, RequestOption::Get,
-                    this, &GetRequest::OnFetchMemberJsonDataReplyRecieved);
+    SendHttpRequest(API_FETCH_ADRESS, this, &GetRequest::OnFetchMemberJsonDataReplyRecieved);
+}
+
+QNetworkReply* GetRequest::GetHttpReply(const QNetworkRequest &request){
+    qDebug() << "get request done";
+    return http_access_manager.get(request, http_body_data.toJson());
 }

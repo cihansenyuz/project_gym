@@ -7,8 +7,7 @@ void PostRequest::LoginRequest(const QString &email, const QString password){
     user_info["email"] = email;
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
-    PostHttpRequest(API_LOGIN_ADRESS, RequestOption::Post,
-                    this, &PostRequest::OnLoginReplyRecieved);
+    SendHttpRequest(API_LOGIN_ADRESS, this, &PostRequest::OnLoginReplyRecieved);
     emit LoginRequestSent();
 }
 
@@ -17,8 +16,7 @@ void PostRequest::RegisterRequest(const QString &email, const QString password){
     user_info["email"] = email;
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
-    PostHttpRequest(API_REGISTER_ADRESS, RequestOption::Post,
-                    this, &PostRequest::OnRegisterReplyRecieved);
+    SendHttpRequest(API_REGISTER_ADRESS, this, &PostRequest::OnRegisterReplyRecieved);
 }
 
 void PostRequest::OnRegisterReplyRecieved(){
@@ -45,4 +43,9 @@ void PostRequest::OnLoginReplyRecieved(){
 
     for(auto &key : message.keys())
         qDebug() << key << message[key];
+}
+
+QNetworkReply* PostRequest::GetHttpReply(const QNetworkRequest &request){
+    qDebug() << "post request done";
+    return http_access_manager.post(request, http_body_data.toJson());
 }
