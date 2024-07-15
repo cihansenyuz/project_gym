@@ -10,9 +10,9 @@ class HttpManager : public PostRequest,
                     public PutRequest
 {
 public:
-    HttpManager() = default;
-    QJsonArray* GetFetchedMemberJsonArray();
+    HttpManager();
 
+    QString token{""};
 };
 
 #endif // HTTPMANAGER_H

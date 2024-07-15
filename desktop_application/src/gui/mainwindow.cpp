@@ -27,9 +27,10 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
     daily_plan.AddNewExercise(exercise);
     daily_plan.AddNewExercise(exercise2);
     daily_plan.AddNewExercise(exercise3);
-    daily_plan.SetCooldownPeriod(3);
+    daily_plan.SetCooldownPeriod(3);*/
 
-    member_manager.SaveChangesOnCurrentMember();*/
+    //current_member->SetAge(20);
+    //member_manager.SaveChangesOnMember(*current_member);
 
     ///////////////////////////////////////
 }
@@ -39,8 +40,8 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
-void MainWindow::OnMemberDataFetched(){
-    member_manager.SetMemberArrayData(http_manager_->GetFetchedMemberJsonArray());
+void MainWindow::OnMemberDataFetched(QJsonArray* fetched_data){
+    member_manager.SetMemberArrayData(fetched_data);
     this->show();
 }
 

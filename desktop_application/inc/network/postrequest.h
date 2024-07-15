@@ -7,7 +7,7 @@ class PostRequest : public NetworkCore
 {
     Q_OBJECT
 public:
-    PostRequest();
+    PostRequest(HttpManager *parent = nullptr);
     void LoginRequest(const QString &email, const QString password);
     void RegisterRequest(const QString &email, const QString password);
 
@@ -21,6 +21,7 @@ private slots:
 
 private:
     QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;
+    HttpManager *parent_;
 };
 
 #endif // POSTREQUEST_H

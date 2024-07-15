@@ -7,7 +7,7 @@ class PutRequest : public NetworkCore
 {
     Q_OBJECT
 public:
-    PutRequest();
+    PutRequest(HttpManager *parent = nullptr);
     void PushMemberJsonData(const QJsonArray* data_to_push);
 
 private slots:
@@ -15,6 +15,7 @@ private slots:
 
 private:
     QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;
+    HttpManager *parent_;
 };
 
 #endif // PUTREQUEST_H

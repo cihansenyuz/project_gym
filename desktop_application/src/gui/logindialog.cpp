@@ -69,7 +69,7 @@ void LoginDialog::OnCreatePushButtonClicked() {
 
 void LoginDialog::OnLoginAttempt(bool success){
     if(dialog){
-        dialog->close;
+        dialog->close();
         delete dialog;
     }
 

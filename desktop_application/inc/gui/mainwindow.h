@@ -27,7 +27,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void OnMemberDataFetched();
+    void OnMemberDataFetched(QJsonArray* fetched_data);
     void OnGetButtonClicked();
     void OnSaveChangesAction();
     void OnDeleteAction();

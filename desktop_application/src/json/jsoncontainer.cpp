@@ -45,4 +45,5 @@ QJsonArray* JsonContainer::GetMemberArrayData(){
 
 void JsonContainer::SetMemberArrayData(QJsonArray* fetched){
     members_array = *fetched;
+    delete fetched;
 }
