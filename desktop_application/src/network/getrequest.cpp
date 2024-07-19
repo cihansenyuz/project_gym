@@ -27,24 +27,20 @@ void GetRequest::OnFetchMemberJsonDataReplyRecieved(){
         QByteArray reply = http_reply->readAll();
         http_body_data = QJsonDocument::fromJson(reply.data());
 
-        /*if(http_reply->header(QNetworkRequest::ContentTypeHeader).toString() !="application/json"){
-            qDebug() << "Reply does not a json file";
-            qDebug() << "#########################################";
-            return;
-        }*/
-
-        if (http_body_data.isNull()) {
-            qDebug() << "Failed to create JSON doc.";
-            qDebug() << "#########################################";
-            return;
+        if(GetHttpStatusCode() == 200){
+            emit MemberJsonFetched(new QJsonArray(http_body_data.array()));
+            qDebug() << "member json array fetched successfully";
         }
-        if (!http_body_data.isArray()) {
+        else if(GetHttpStatusCode() == 204 && http_body_data.isNull()) {
+            emit MemberJsonFetched(new QJsonArray);
+            qDebug() << "fetched successfully, first time login";
+        }
+        else if(GetHttpStatusCode() == 401 || GetHttpStatusCode() == 403)
+            qDebug() << "fetch failed, unauthorized attempt";
+        else if(http_body_data.isNull())
+            qDebug() << "JSON array is null";
+        else if(!http_body_data.isArray())
             qDebug() << "JSON is not an array.";
-            qDebug() << "#########################################";
-            return;
-        }
-        emit MemberJsonFetched(new QJsonArray(http_body_data.array()));
-        qDebug() << "member json array fetched successfully";
     }
     else
         qDebug() << "fetch error: " << http_reply->error();

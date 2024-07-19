@@ -7,7 +7,10 @@ PutRequest::PutRequest(HttpManager *parent)
 void PutRequest::OnPushMemberJsonDataReplyRecieved(){
     qDebug() << "#### on push data(put) reply ####";
     if(http_reply->error() == QNetworkReply::NoError){
-        qDebug() << "data uploaded to the cloud";
+        if(GetHttpStatusCode() == 200)
+            qDebug() << "data uploaded to the cloud";
+        else if(GetHttpStatusCode() == 401 || GetHttpStatusCode() == 403)
+            qDebug() << "push failed, unauthorized attempt";
     }
     else
         qDebug() << "push error: " << http_reply->error();

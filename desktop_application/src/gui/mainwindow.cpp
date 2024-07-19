@@ -42,6 +42,11 @@ MainWindow::~MainWindow(){
 
 void MainWindow::OnMemberDataFetched(QJsonArray* fetched_data){
     member_manager.SetMemberArrayData(fetched_data);
+    if(member_manager.GetMemberArrayData()->isEmpty())
+        ui->message_text_browser->append("Welcome, this is your first time,"
+                                            "so no member registered in the system."
+                                            "\n You can start registering members "
+                                            "using 'Manage Database' menu on the menu bar");
     this->show();
 }
 

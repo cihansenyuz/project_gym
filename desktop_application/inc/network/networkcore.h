@@ -12,6 +12,32 @@
 
 #define FETCHED_FILE_PATH "../../members.json"
 
+/*
+ * implemented HTTP status codes in server side
+ * for API_LOGIN_ADRESS
+ *  POST request
+ *      200 OK, email password match, returns token with code: UserFound
+ *      400 Bad Request, no email or password, returns with code: BadRequest
+ *      404 Not Found, email doesnot match, returns with code: NoUserFound
+ *      404 Not Found, password doesnot match, returns with code: IncorrectPassword
+ *
+ * for API_REGISTER_ADRESS
+ *  POST request
+ *      201 Created
+ *      400 Bad Request, returns with code: BadRequest
+ *
+ * for API_FETCH_ADRESS && API_PUSH_ADRESS
+ *  GET request
+ *      200 OK, token verified
+ *      204 No Content, first time login
+ *      401 Unauthorized, token verify failed
+ *      403 Forbidden, no token given
+ *  PUT request
+ *      200 OK, token verified
+ *      401 Unauthorized, token verify failed
+ *      403 Forbidden, no token given
+ * */
+
 enum ReplyCode{
     BadRequest,
     UserFound,
@@ -51,6 +77,7 @@ public:
                 requester_object, slot_function);
     }
     QJsonObject ReadBody();
+    int GetHttpStatusCode();
 
     QNetworkAccessManager http_access_manager;
     QJsonDocument http_body_data;

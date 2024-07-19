@@ -22,24 +22,23 @@ void PostRequest::RegisterRequest(const QString &email, const QString password){
 }
 
 void PostRequest::OnRegisterReplyRecieved(){
-    if(http_reply->error() == QNetworkReply::NoError)
-        ;
+    if(GetHttpStatusCode() == 201)
+        ; // account created
     else
-        ;
+        qDebug() << "register error: " << http_reply->error();
 }
 
 void PostRequest::OnLoginReplyRecieved(){
     QJsonObject message;
     message = ReadBody();
 
-    if(message["code"] == UserFound){
+    if(GetHttpStatusCode() == 200 && message["code"] == UserFound){
         parent_->token = message["Authorization"].toString();
         emit LoginAttempt(true);
     }
-    else if (message["code"] == NoUserFound ||
-             message["code"] == IncorrectPassword ||
-             message["code"] == BadRequest)
+    else if (GetHttpStatusCode() == 404){
         emit LoginAttempt(false);
+    }
     else
         qDebug() << "login error: " << http_reply->error();
 
