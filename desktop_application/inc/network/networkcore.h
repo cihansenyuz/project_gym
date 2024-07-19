@@ -4,7 +4,7 @@
 #include <QObject>
 #include <QtNetwork>
 
-#define API_ROOT_ADRESS "https://www.cangorkemgunes.com/api/"
+#define API_ROOT_ADRESS "http://localhost:3000/api/"
 #define API_LOGIN_ADRESS "login"
 #define API_REGISTER_ADRESS "register"
 #define API_FETCH_ADRESS "users"

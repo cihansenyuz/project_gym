@@ -5,6 +5,7 @@ PutRequest::PutRequest(HttpManager *parent)
     : parent_(parent) {}
 
 void PutRequest::OnPushMemberJsonDataReplyRecieved(){
+    qDebug() << "#### on push data(put) reply ####";
     if(http_reply->error() == QNetworkReply::NoError){
         qDebug() << "data uploaded to the cloud";
     }

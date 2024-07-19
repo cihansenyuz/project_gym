@@ -44,6 +44,10 @@ QJsonArray* JsonContainer::GetMemberArrayData(){
 }
 
 void JsonContainer::SetMemberArrayData(QJsonArray* fetched){
+    QJsonArray empty;
+    members_array = empty;
     members_array = *fetched;
+    if(!members_array.size())
+        qDebug() << "recieved fetched array is empty";
     delete fetched;
 }

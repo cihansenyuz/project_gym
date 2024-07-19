@@ -27,6 +27,12 @@ void GetRequest::OnFetchMemberJsonDataReplyRecieved(){
         QByteArray reply = http_reply->readAll();
         http_body_data = QJsonDocument::fromJson(reply.data());
 
+        /*if(http_reply->header(QNetworkRequest::ContentTypeHeader).toString() !="application/json"){
+            qDebug() << "Reply does not a json file";
+            qDebug() << "#########################################";
+            return;
+        }*/
+
         if (http_body_data.isNull()) {
             qDebug() << "Failed to create JSON doc.";
             qDebug() << "#########################################";
@@ -38,6 +44,7 @@ void GetRequest::OnFetchMemberJsonDataReplyRecieved(){
             return;
         }
         emit MemberJsonFetched(new QJsonArray(http_body_data.array()));
+        qDebug() << "member json array fetched successfully";
     }
     else
         qDebug() << "fetch error: " << http_reply->error();
