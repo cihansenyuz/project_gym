@@ -4,12 +4,14 @@
 #include <QObject>
 #include <QtNetwork>
 
-#define USE_LOCAL_HOST 0 // 0: local host, 1: google cloud
+#define USE_LOCAL_HOST 1 // 0: local host, 1: google cloud
 
 #if USE_LOCAL_HOST
 #define API_ROOT_ADRESS "https://www.cangorkemgunes.com/api/"
+#pragma message("gCloud end point is in use")
 #else
 #define API_ROOT_ADRESS "http://localhost:3000/api/"
+#pragma message("local end point is in use")
 #endif
 
 #define API_LOGIN_ADRESS "login"

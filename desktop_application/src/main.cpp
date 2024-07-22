@@ -5,6 +5,8 @@
 #include <QApplication>
 #include <memory>
 
+#define SKIP_LOGIN 1 // 0: ask login, 1: skip
+
 int main(int argc, char *argv[])
 {
     QApplication application(argc, argv);
@@ -19,6 +21,9 @@ int main(int argc, char *argv[])
     };
 
     QObject::connect(http_manager.get(), &HttpManager::LoginAttempt, CreateMainWindow);
-
+#if SKIP_LOGIN
+    dialog.close();
+    CreateMainWindow(true);
+#endif
     return application.exec();
 }
