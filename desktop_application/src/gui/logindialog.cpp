@@ -19,16 +19,28 @@ LoginDialog::LoginDialog(std::shared_ptr<HttpManager> &http_manager, QWidget *pa
 
     connect(http_manager_.get(), &HttpManager::LoginAttempt,
             this, &LoginDialog::OnLoginAttempt);
-
-    connect(http_manager_.get(), &HttpManager::LoginRequestSent, this, [this](){
+    connect(http_manager_.get(), &HttpManager::RegisterAttempt, this, [this](bool success){
         std::lock_guard<std::mutex> lock(info_dialog_mutex);
-        if(login_fail_message){
-            login_fail_message->close();
-            login_fail_message.reset(nullptr);
+        if(action_message){
+            action_message->close();
+            action_message.reset(nullptr);
         }
 
-        login_fail_message = std::make_unique<InfoDialog>("Connecting to server, kindly wait a while", "Information");
+        if(success)
+            action_message = std::make_unique<InfoDialog>("Your account created successfully,\nGo back, and try logging in", "Success!");
+        else
+            action_message = std::make_unique<InfoDialog>("Registeration failed, kindly try again", "Error!");
     });
+    connect(http_manager_.get(), &HttpManager::ConnectionToServer, this, [this](){
+        std::lock_guard<std::mutex> lock(info_dialog_mutex);
+        if(action_message){
+            action_message->close();
+            action_message.reset(nullptr);
+        }
+
+        action_message = std::make_unique<InfoDialog>("Connecting to server, kindly wait a while", "Information");
+    });
+
 }
 
 LoginDialog::~LoginDialog(){
@@ -73,13 +85,13 @@ void LoginDialog::OnCreatePushButtonClicked() {
 
 void LoginDialog::OnLoginAttempt(bool success){
     std::lock_guard<std::mutex> lock(info_dialog_mutex);
-    if(login_fail_message){
-        login_fail_message->close();
-        login_fail_message.reset(nullptr);
+    if(action_message){
+        action_message->close();
+        action_message.reset(nullptr);
     }
 
     if(success)
         this->destroy();
     else
-        login_fail_message = std::make_unique<InfoDialog>("Invalid email or wrong password!", "Login Error");
+        action_message = std::make_unique<InfoDialog>("Invalid email or wrong password!", "Login Error");
 }

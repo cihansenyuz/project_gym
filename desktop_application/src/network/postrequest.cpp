@@ -9,7 +9,7 @@ void PostRequest::LoginRequest(const QString &email, const QString password){
     user_info["email"] = email;
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
-        emit LoginRequestSent();
+    emit ConnectionToServer();
     SendHttpRequest(API_LOGIN_ADRESS, parent_->token, this, &PostRequest::OnLoginReplyRecieved);
 }
 
@@ -18,14 +18,17 @@ void PostRequest::RegisterRequest(const QString &email, const QString password){
     user_info["email"] = email;
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
+    emit ConnectionToServer();
     SendHttpRequest(API_REGISTER_ADRESS, parent_->token, this, &PostRequest::OnRegisterReplyRecieved);
 }
 
 void PostRequest::OnRegisterReplyRecieved(){
     if(GetHttpStatusCode() == 201)
-        ; // account created
-    else
+        emit RegisterAttempt(true);
+    else{
+        emit RegisterAttempt(false);
         qDebug() << "register error: " << http_reply->error();
+    }
 }
 
 void PostRequest::OnLoginReplyRecieved(){

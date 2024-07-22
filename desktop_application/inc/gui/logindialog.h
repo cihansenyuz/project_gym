@@ -20,7 +20,8 @@ class LoginDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit LoginDialog(std::shared_ptr<HttpManager> &http_manager, QWidget *parent = nullptr);
+    explicit LoginDialog(std::shared_ptr<HttpManager> &http_manager,
+                         QWidget *parent = nullptr);
     ~LoginDialog();
 
 private slots:
@@ -33,7 +34,7 @@ private slots:
 private:
     Ui::LoginDialog *ui;
     std::shared_ptr<HttpManager> http_manager_;
-    std::unique_ptr<InfoDialog> login_fail_message;
+    std::unique_ptr<InfoDialog> action_message;
     std::mutex info_dialog_mutex;
 };
 
