@@ -9,6 +9,7 @@ void PostRequest::LoginRequest(const QString &email, const QString password){
     user_info["email"] = email;
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
+        emit LoginRequestSent();
     SendHttpRequest(API_LOGIN_ADRESS, parent_->token, this, &PostRequest::OnLoginReplyRecieved);
 }
 

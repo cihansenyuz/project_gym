@@ -34,6 +34,7 @@ private:
     Ui::LoginDialog *ui;
     HttpManager *http_manager_;
     std::unique_ptr<InfoDialog> login_fail_message;
+    std::mutex info_dialog_mutex;
 };
 
 #endif // LOGINDIALOG_H

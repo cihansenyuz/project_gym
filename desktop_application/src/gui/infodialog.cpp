@@ -12,7 +12,7 @@ InfoDialog::InfoDialog(const QString &message, const QString &title, QWidget *pa
     connect(ui->ok_button, &QPushButton::clicked,
             this, &InfoDialog::OnOkButtonClicked);
 
-    this->exec();
+    this->show();
 }
 
 InfoDialog::~InfoDialog()
