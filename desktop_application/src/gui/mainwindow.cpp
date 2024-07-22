@@ -104,7 +104,7 @@ void MainWindow::FillExercisePlanTable(){
     if(weekly_exercise_plan.size() == 0)
         return;
 
-    exercise_day_tab = new QTabWidget();
+    exercise_day_tabs = std::make_unique<QTabWidget>();
 
     int day_no = 1;
     for(auto &daily_plan : weekly_exercise_plan){
@@ -118,7 +118,7 @@ void MainWindow::FillExercisePlanTable(){
                                                                 "Durition"});
         exercise_day_layout->addWidget(exercise_day_table);
         new_tab->setLayout(exercise_day_layout);
-        exercise_day_tab->addTab(new_tab, QString("Day %1\nCooldown: %2days").arg(day_no++).arg(daily_plan.GetCooldownPeriod()));
+        exercise_day_tabs->addTab(new_tab, QString("Day %1\nCooldown: %2days").arg(day_no++).arg(daily_plan.GetCooldownPeriod()));
 
         std::vector<Exercise*> all_exercises = daily_plan.GetDailyExercisePlan();
         for(int i=0; i < all_exercises.size(); i++){
@@ -145,23 +145,23 @@ void MainWindow::FillExercisePlanTable(){
         }
     }
 
-    ui->verticalLayout_4->addWidget(exercise_day_tab);
+    ui->verticalLayout_4->addWidget(exercise_day_tabs.get());
     ui->exercise_plan_group->setLayout(ui->verticalLayout_4);
 }
 
 void MainWindow::DeleteExercisePlanTable() {
-    if(!exercise_day_tab)
+    if(!exercise_day_tabs)
         return;
 
-    while (exercise_day_tab->count() > 0) {
-        QWidget *tab = exercise_day_tab->widget(0);
+    while (exercise_day_tabs->count() > 0) {
+        QWidget *tab = exercise_day_tabs->widget(0);
         if (tab) {
             QTableWidget *tableWidget = tab->findChild<QTableWidget *>();
             if (tableWidget) {
                 tableWidget->clear();
             }
         }
-        exercise_day_tab->removeTab(0);
+        exercise_day_tabs->removeTab(0);
         delete tab;
     }
 }
