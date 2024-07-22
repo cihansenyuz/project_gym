@@ -13,7 +13,6 @@ public:
 
 signals:
     void LoginAttempt(bool success);
-    void LoginRequestSent();
 
 private slots:
     void OnRegisterReplyRecieved();

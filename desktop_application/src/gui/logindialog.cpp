@@ -17,32 +17,11 @@ LoginDialog::LoginDialog(HttpManager *http_manager, QWidget *parent)
     connect(ui->cancel_push_button, &QPushButton::clicked,
             this, &LoginDialog::OnCancelPushButtonClicked);
 
-
-    connect(http_manager_, &PostRequest::LoginRequestSent, this, [this](){
-        //std::lock_guard<std::mutex> lock(status_mutex);
-        qDebug() << "emit catched status";
-        if(dialog != nullptr){
-            dialog->close();
-            qDebug() << "dialog closed status";
-            delete dialog;
-        }
-        else {
-            qDebug() << "dialog was nullptr status";
-        }
-        status_info_created.notify_one();
-        dialog = new InfoDialog("Connecting to server, kindly wait a while", "Information");
-
-        qDebug() << "New dialog created status";});
     connect(this->http_manager_, &PostRequest::LoginAttempt,
             this, &LoginDialog::OnLoginAttempt);
-
 }
 
 LoginDialog::~LoginDialog(){
-    if(dialog){
-        dialog->close();
-        delete dialog;
-    }
     delete ui;
 }
 
@@ -83,22 +62,13 @@ void LoginDialog::OnCreatePushButtonClicked() {
 }
 
 void LoginDialog::OnLoginAttempt(bool success){
-    qDebug() << "emit catched login before lock";
-    std::unique_lock<std::mutex> lock(status_mutex);
-    status_info_created.wait(lock);
-    qDebug() << "emit catched login after lock";
-    if(dialog != nullptr){
-        dialog->close();
-        qDebug() << "dialog closed login";
-        delete dialog;
-    }        else {
-        qDebug() << "dialog was nullptr login";
+    if(login_fail_message){
+        login_fail_message->close();
+        login_fail_message.reset(nullptr);
     }
 
     if(success)
         this->destroy();
-    else{
-        dialog = new InfoDialog("Invalid email or wrong password!", "Login Error");
-        qDebug() << "New dialog created login";
-    }
+    else
+        login_fail_message = std::make_unique<InfoDialog>("Invalid email or wrong password!", "Login Error");
 }
