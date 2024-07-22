@@ -2,6 +2,7 @@
 #define GETREQUEST_H
 
 #include "networkcore.h"
+#include "memory"
 
 class GetRequest : public NetworkCore
 {
@@ -11,7 +12,7 @@ public:
     void FetchMemberJsonData();
 
 signals:
-    void MemberJsonFetched(QJsonArray* fetched_data);
+    void MemberJsonFetched(std::shared_ptr<QJsonArray> &fetched_data);
 
 private slots:
     void OnFetchMemberJsonDataReplyRecieved();

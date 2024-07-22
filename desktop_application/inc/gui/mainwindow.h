@@ -27,7 +27,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void OnMemberDataFetched(QJsonArray* fetched_data);
+    void OnMemberDataFetched(std::shared_ptr<QJsonArray> &fetched_data);
     void OnGetButtonClicked();
     void OnSaveChangesAction();
     void OnDeleteAction();
