@@ -90,11 +90,12 @@ void MainWindow::OnSaveChangesAction(){
 
 void MainWindow::OnDeleteAction(){
     if(!current_member){
-        ui->message_text_browser->append("Currently no member selected.");
+        message_dialog = std::make_unique<InfoDialog>("No member viewed,\nPlease, use Get button first");
         return;
     }
-    member_manager.DeleteMember(current_member->GetName());
-    ui->message_text_browser->append("Member is removed from database!");
+    QString member_name = current_member->GetName();
+    member_manager.DeleteMember(member_name);
+    message_dialog = std::make_unique<InfoDialog>("Member '"+member_name+"' is deleted");
 }
 
 void MainWindow::FillExercisePlanTable(){
