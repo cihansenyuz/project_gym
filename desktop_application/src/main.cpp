@@ -5,6 +5,8 @@
 #include <QApplication>
 #include <memory>
 
+#define USE_LOCAL_HOST 0 // 1: local host, 0: google cloud
+
 int main(int argc, char *argv[])
 {
     QApplication application(argc, argv);
