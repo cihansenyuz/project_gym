@@ -44,7 +44,7 @@ void GetRequest::OnFetchMemberJsonDataReplyRecieved(){
     }
     else
         qDebug() << "fetch error: " << http_reply->error();
-    qDebug() << "#########################################";
+    qDebug() << "#########################################\n";
 }
 
 void GetRequest::FetchMemberJsonData(){

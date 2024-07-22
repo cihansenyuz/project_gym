@@ -21,13 +21,13 @@ MemberManager::~MemberManager(){
     delete subscription_maintain_thread;
 }
 
-Member* MemberManager::GetMember(const QString &name){
+std::unique_ptr<Member> MemberManager::GetMember(const QString &name){
     std::lock_guard<std::mutex> lock(members_array_mutex);
     for (int i = 0; i < members_array.size(); ++i) {
         QJsonObject member_json = members_array[i].toObject();
 
         if (member_json["name"].toString() == name) {
-            return parser.ParseMemberFromJson(member_json);
+            return std::move(parser.ParseMemberFromJson(member_json));
         }
     }
     return nullptr;
@@ -37,7 +37,6 @@ void MemberManager::RegisterNewMember(const Member &member){
     std::lock_guard<std::mutex> lock(members_array_mutex);
     QJsonObject member_json = member.toJson();
     members_array.append(member_json);
-    SaveToFile();
 }
 
 void MemberManager::SaveChangesOnMember(const Member &member){
@@ -49,7 +48,7 @@ void MemberManager::SaveChangesOnMember(const Member &member){
             members_array[i] = QJsonValue(member.toJson());
         }
     }
-    SaveToFile();
+    //SaveToFile(); // saves to local
 }
 
 void MemberManager::DeleteMember(const QString &name){
@@ -61,25 +60,19 @@ void MemberManager::DeleteMember(const QString &name){
             members_array.removeAt(i);
         }
     }
-    SaveToFile();
 }
 
 void MemberManager::MaintainExpiredSubscriptions(){
     std::lock_guard<std::mutex> lock(members_array_mutex);
-    bool has_changes = false;
-
     for (int i = 0; i < members_array.size(); ++i) {
         QJsonObject member_json = members_array[i].toObject();
 
         if (member_json["subscription"].toBool() == true) {
             if (QDate::fromString(member_json["subscription_end_date"].toString(), Qt::ISODate) < QDate::currentDate()){
-                Member* member_to_be_updated = parser.ParseMemberFromJson(member_json);
+                std::unique_ptr<Member> member_to_be_updated = parser.ParseMemberFromJson(member_json);
                 member_to_be_updated->EndSubscription(false);
                 members_array[i] = member_to_be_updated->toJson();
-                has_changes = true;
             }
         }
     }
-    if(has_changes)
-        SaveToFile();
 }

@@ -1,27 +1,27 @@
 #include "../../inc/json/jsonparser.h"
 
-Member* JsonParser::ParseMemberFromJson(QJsonObject &member_json){
-    Member *member_ptr = new Member();
-    member_ptr->SetName(member_json["name"].toString());
-    member_ptr->SetAge(member_json["age"].toInt());
+std::unique_ptr<Member> JsonParser::ParseMemberFromJson(QJsonObject &member_json){
+    member_to_be_parsed = std::make_unique<Member>();
+    member_to_be_parsed->SetName(member_json["name"].toString());
+    member_to_be_parsed->SetAge(member_json["age"].toInt());
 
-    ParseMeasurements(member_ptr, member_json["measurements"].toArray());
+    ParseMeasurements(member_json["measurements"].toArray());
 
-    member_ptr->SetSubscriptionPeriod(QDate::fromString(member_json["subscription_start_date"].toString(), Qt::ISODate),
+    member_to_be_parsed->SetSubscriptionPeriod(QDate::fromString(member_json["subscription_start_date"].toString(), Qt::ISODate),
                                       QDate::fromString(member_json["subscription_end_date"].toString(), Qt::ISODate));
-    ParseSubscriptions(member_ptr, member_json["archived_subscriptions"].toArray());
+    ParseSubscriptions(member_json["archived_subscriptions"].toArray());
 
     if (member_json.contains("exercise_plan")) {
-        ParseWeeklyExercisePlan(member_ptr, member_json["exercise_plan"].toObject());
+        ParseWeeklyExercisePlan(member_json["exercise_plan"].toObject());
     }
 
     QJsonObject exercise_plan_json = member_json["archived_exercise_plans"].toObject();
-    ParseArchivedWeeklyExercisePlans(member_ptr, exercise_plan_json["archived_exercise_plans"].toArray());
+    ParseArchivedWeeklyExercisePlans(exercise_plan_json["archived_exercise_plans"].toArray());
 
-    return member_ptr;
+    return std::move(member_to_be_parsed);
 }
 
-void JsonParser::ParseMeasurements(Member *member, const QJsonArray &measurements_array){
+void JsonParser::ParseMeasurements(const QJsonArray &measurements_array){
     for (int i = 0; i < measurements_array.size(); ++i) {
         QJsonObject measurement_json = measurements_array[i].toObject();
         Measurement recorded_measurement(QDate::fromString(measurement_json["taken_date"].toString(), Qt::ISODate),
@@ -32,24 +32,24 @@ void JsonParser::ParseMeasurements(Member *member, const QJsonArray &measurement
                                          measurement_json["belly"].toDouble(),
                                          measurement_json["hip"].toDouble(),
                                          measurement_json["leg"].toDouble());
-        member->AddMeasurement(recorded_measurement);
+        member_to_be_parsed->AddMeasurement(recorded_measurement);
     }
 }
 
-void JsonParser::ParseSubscriptions(Member *member, const QJsonArray &subscriptions_array) {
+void JsonParser::ParseSubscriptions(const QJsonArray &subscriptions_array) {
     for (int i = 0; i < subscriptions_array.size(); ++i) {
         QJsonObject subscription_json = subscriptions_array[i].toObject();
         Subscription archived_subscription(
             QDate::fromString(subscription_json["subscription_start_date"].toString(), Qt::ISODate),
             QDate::fromString(subscription_json["subscription_end_date"].toString(), Qt::ISODate),
             false); // since archived subscriptions are not valid anymore
-        member->AddSubscriptionToArchive(archived_subscription);
+        member_to_be_parsed->AddSubscriptionToArchive(archived_subscription);
     }
 }
 
-void JsonParser::ParseWeeklyExercisePlan(Member *member, const QJsonObject &weekly_exercise_plan_json){
+void JsonParser::ParseWeeklyExercisePlan(const QJsonObject &weekly_exercise_plan_json){
     std::vector<DailyExercisePlan> current_weekly_exercises;
-    member->SetWeeklyExercisePlanPeriod(QDate::fromString(weekly_exercise_plan_json["start_date"].toString(), Qt::ISODate),
+    member_to_be_parsed->SetWeeklyExercisePlanPeriod(QDate::fromString(weekly_exercise_plan_json["start_date"].toString(), Qt::ISODate),
                                         QDate::fromString(weekly_exercise_plan_json["end_date"].toString(), Qt::ISODate));
 
     QJsonArray daily_exercise_plan_array = weekly_exercise_plan_json["weekly_exercise_plan"].toArray();
@@ -67,10 +67,10 @@ void JsonParser::ParseWeeklyExercisePlan(Member *member, const QJsonObject &week
         current_daily_exercise.SetDailyExecisePlan(current_daily_exercises);
         current_weekly_exercises.push_back(current_daily_exercise);
     }
-    member->SetWeeklyExercisePlan(current_weekly_exercises);
+    member_to_be_parsed->SetWeeklyExercisePlan(current_weekly_exercises);
 }
 
-void JsonParser::ParseArchivedWeeklyExercisePlans(Member *member, const QJsonArray &archived_weekly_exercise_plans_array){
+void JsonParser::ParseArchivedWeeklyExercisePlans(const QJsonArray &archived_weekly_exercise_plans_array){
     for (int i = 0; i < archived_weekly_exercise_plans_array.size(); ++i){
         QJsonObject weekly_exercise_plan_json = archived_weekly_exercise_plans_array[i].toObject();
         std::vector<DailyExercisePlan> weekly_exercise_plan;
@@ -95,7 +95,7 @@ void JsonParser::ParseArchivedWeeklyExercisePlans(Member *member, const QJsonArr
             weekly_exercise_plan.push_back(daily_exercise);
         }
         archivedWeeklyExercisePlan.SetWeeklyExercisePlan(weekly_exercise_plan);
-        member->AddExercisePlanToArchive(archivedWeeklyExercisePlan);
+        member_to_be_parsed->AddExercisePlanToArchive(archivedWeeklyExercisePlan);
     }
 }
 

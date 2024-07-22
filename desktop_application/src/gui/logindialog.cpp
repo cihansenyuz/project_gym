@@ -1,7 +1,7 @@
 #include "../../inc/gui/logindialog.h"
 #include "../../ui/ui_logindialog.h"
 
-LoginDialog::LoginDialog(HttpManager *http_manager, QWidget *parent)
+LoginDialog::LoginDialog(std::shared_ptr<HttpManager> &http_manager, QWidget *parent)
     : http_manager_(http_manager), QDialog(parent)
     , ui(new Ui::LoginDialog)
 {
@@ -17,22 +17,18 @@ LoginDialog::LoginDialog(HttpManager *http_manager, QWidget *parent)
     connect(ui->cancel_push_button, &QPushButton::clicked,
             this, &LoginDialog::OnCancelPushButtonClicked);
 
-    connect(http_manager_, &PostRequest::LoginRequestSent, this, [this](){
+    connect(http_manager_.get(), &HttpManager::LoginAttempt,
+            this, &LoginDialog::OnLoginAttempt);
+
+    connect(http_manager_.get(), &HttpManager::LoginRequestSent, this, [this](){
         std::lock_guard<std::mutex> lock(info_dialog_mutex);
-        qDebug() << "emit catched status";
         if(login_fail_message){
             login_fail_message->close();
-            qDebug() << "dialog closed status";
             login_fail_message.reset(nullptr);
         }
-        else {
-            qDebug() << "dialog was nullptr status";
-        }
-        login_fail_message = std::make_unique<InfoDialog>("Connecting to server, kindly wait a while", "Information");
 
-        qDebug() << "New dialog created status";});
-    connect(this->http_manager_, &PostRequest::LoginAttempt,
-            this, &LoginDialog::OnLoginAttempt);
+        login_fail_message = std::make_unique<InfoDialog>("Connecting to server, kindly wait a while", "Information");
+    });
 }
 
 LoginDialog::~LoginDialog(){
@@ -77,10 +73,8 @@ void LoginDialog::OnCreatePushButtonClicked() {
 
 void LoginDialog::OnLoginAttempt(bool success){
     std::lock_guard<std::mutex> lock(info_dialog_mutex);
-    qDebug() << "login attempt";
     if(login_fail_message){
         login_fail_message->close();
-        qDebug() << "login attempt reset";
         login_fail_message.reset(nullptr);
     }
 

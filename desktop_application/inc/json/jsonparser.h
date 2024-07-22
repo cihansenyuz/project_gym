@@ -18,6 +18,7 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QJsonValue>
+#include <memory>
 
 #include "../member/member.h"
 #include "../member/exercise/cardioworkout.h"
@@ -27,14 +28,16 @@ class JsonParser
 {
 public:
     JsonParser() = default;
-    Member* ParseMemberFromJson(QJsonObject &member_json);
+    std::unique_ptr<Member> ParseMemberFromJson(QJsonObject &member_json);
 
 private:
-    void ParseMeasurements(Member *member, const QJsonArray &measurements_array);
-    void ParseSubscriptions(Member *member, const QJsonArray &subscriptions_array);
-    void ParseWeeklyExercisePlan(Member *member, const QJsonObject &weekly_exercise_plan_json);
-    void ParseArchivedWeeklyExercisePlans(Member *member, const QJsonArray &archived_weekly_exercise_plans_array);
+    void ParseMeasurements(const QJsonArray &measurements_array);
+    void ParseSubscriptions(const QJsonArray &subscriptions_array);
+    void ParseWeeklyExercisePlan(const QJsonObject &weekly_exercise_plan_json);
+    void ParseArchivedWeeklyExercisePlans(const QJsonArray &archived_weekly_exercise_plans_array);
     Exercise* ParseExercise(const QJsonObject &exercise_json);
+
+    std::unique_ptr<Member> member_to_be_parsed;
 };
 
 #endif // JSONPARSER_H
