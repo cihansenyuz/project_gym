@@ -26,15 +26,15 @@ void GetRequest::OnFetchMemberJsonDataReplyRecieved(){
     if(http_reply->error() == QNetworkReply::NoError){
         QByteArray reply = http_reply->readAll();
         http_body_data = QJsonDocument::fromJson(reply.data());
-        std::shared_ptr<QJsonArray> fetched_data;
+        std::unique_ptr<QJsonArray> fetched_data;
 
         if(GetHttpStatusCode() == 200){
-            fetched_data = std::make_shared<QJsonArray>(http_body_data.array());
+            fetched_data = std::make_unique<QJsonArray>(http_body_data.array());
             emit MemberJsonFetched(fetched_data);
             qDebug() << "member json array fetched successfully";
         }
         else if(GetHttpStatusCode() == 204 && http_body_data.isNull()) {
-            fetched_data = std::make_shared<QJsonArray>();
+            fetched_data = std::make_unique<QJsonArray>();
             emit MemberJsonFetched(fetched_data);
             qDebug() << "fetched successfully, first time login";
         }

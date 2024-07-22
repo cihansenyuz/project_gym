@@ -39,8 +39,8 @@ MainWindow::~MainWindow(){
     delete ui;
 }
 
-void MainWindow::OnMemberDataFetched(std::shared_ptr<QJsonArray> &fetched_data){
-    member_manager.SetMemberArrayData(std::move(fetched_data));
+void MainWindow::OnMemberDataFetched(const std::unique_ptr<QJsonArray> &fetched_data){
+    member_manager.SetMemberArrayData(fetched_data);
     if(member_manager.GetMemberArrayData()->isEmpty())
         ui->message_text_browser->append("Welcome, this is your first time,"
                                             "so no member registered in the system."

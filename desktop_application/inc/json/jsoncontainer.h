@@ -31,7 +31,7 @@ public:
     friend class MemberManager;
     void LoadFromFile();
     QJsonArray* GetMemberArrayData();
-    void SetMemberArrayData(std::shared_ptr<QJsonArray> fetched);
+    void SetMemberArrayData(const std::unique_ptr<QJsonArray> &fetched);
 
 private:
     bool SaveToFile();

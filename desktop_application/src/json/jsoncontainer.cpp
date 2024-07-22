@@ -43,7 +43,7 @@ QJsonArray* JsonContainer::GetMemberArrayData(){
     return &members_array;
 }
 
-void JsonContainer::SetMemberArrayData(std::shared_ptr<QJsonArray> fetched){
+void JsonContainer::SetMemberArrayData(const std::unique_ptr<QJsonArray> &fetched){
     QJsonArray empty;
     members_array = empty;
     members_array = *fetched;

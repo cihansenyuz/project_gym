@@ -12,7 +12,7 @@ public:
     void FetchMemberJsonData();
 
 signals:
-    void MemberJsonFetched(std::shared_ptr<QJsonArray> &fetched_data);
+    void MemberJsonFetched(const std::unique_ptr<QJsonArray> &fetched_data);
 
 private slots:
     void OnFetchMemberJsonDataReplyRecieved();
