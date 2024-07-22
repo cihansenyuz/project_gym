@@ -1,12 +1,12 @@
 #include "../../inc/gui/mainwindow.h"
 #include "../../ui/ui_mainwindow.h"
 
-MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
+MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *parent)
     : http_manager_(http_manager), QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(http_manager_, &HttpManager::MemberJsonFetched,
+    connect(http_manager_.get(), &HttpManager::MemberJsonFetched,
             this, &MainWindow::OnMemberDataFetched);
     http_manager_->FetchMemberJsonData();
 
@@ -36,7 +36,6 @@ MainWindow::MainWindow(HttpManager *http_manager, QWidget *parent)
 }
 
 MainWindow::~MainWindow(){
-    delete http_manager_;
     delete ui;
 }
 

@@ -23,7 +23,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(HttpManager *http_manager, QWidget *parent = nullptr);
+    MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
@@ -38,7 +38,7 @@ private:
     void NewDialog(const QString &message, const QString &title = "");
 
     Ui::MainWindow *ui;
-    HttpManager *http_manager_;
+    std::shared_ptr<HttpManager> http_manager_;
     MemberManager member_manager;
     Member* current_member{nullptr};
     QTabWidget *exercise_day_tab{nullptr};

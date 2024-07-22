@@ -1,7 +1,7 @@
 #include "../../inc/gui/logindialog.h"
 #include "../../ui/ui_logindialog.h"
 
-LoginDialog::LoginDialog(HttpManager *http_manager, QWidget *parent)
+LoginDialog::LoginDialog(std::shared_ptr<HttpManager> &http_manager, QWidget *parent)
     : http_manager_(http_manager), QDialog(parent)
     , ui(new Ui::LoginDialog)
 {
@@ -17,7 +17,11 @@ LoginDialog::LoginDialog(HttpManager *http_manager, QWidget *parent)
     connect(ui->cancel_push_button, &QPushButton::clicked,
             this, &LoginDialog::OnCancelPushButtonClicked);
 
-    connect(this->http_manager_, &PostRequest::LoginAttempt,
+    if (!http_manager_) {
+        qWarning("http_manager_ is nullptr before connection");
+    }else
+        qWarning("http_manager_ is not nullptr before connection");
+    connect(http_manager_.get(), &HttpManager::LoginAttempt,
             this, &LoginDialog::OnLoginAttempt);
 }
 
