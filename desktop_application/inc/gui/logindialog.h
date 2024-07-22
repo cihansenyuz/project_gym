@@ -4,6 +4,8 @@
 #include <QDialog>
 #include "../network/httpmanager.h"
 #include "../gui/infodialog.h"
+#include <mutex>
+#include <condition_variable>
 
 enum Screen{
     loginScreen,
@@ -33,6 +35,9 @@ private:
     Ui::LoginDialog *ui;
     HttpManager *http_manager_;
     InfoDialog *dialog{nullptr};
+
+    std::mutex status_mutex;
+    std::condition_variable status_info_created;
 };
 
 #endif // LOGINDIALOG_H

@@ -74,7 +74,8 @@ public:
 
         http_reply = GetHttpReply(http_request);
         connect(http_reply, &QNetworkReply::finished,
-                requester_object, slot_function);
+                requester_object, slot_function,
+                Qt::SingleShotConnection);
     }
     QJsonObject ReadBody();
     int GetHttpStatusCode();
