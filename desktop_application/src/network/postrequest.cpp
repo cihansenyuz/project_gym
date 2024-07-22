@@ -44,7 +44,7 @@ void PostRequest::OnLoginReplyRecieved(){
     qDebug() << "#### on login(post) reply, http body fields ####";
     for(auto &key : message.keys())
         qDebug() << key << message[key];
-    qDebug() << "#########################################";
+    qDebug() << "#########################################\n";
 }
 
 QNetworkReply* PostRequest::GetHttpReply(const QNetworkRequest &request){

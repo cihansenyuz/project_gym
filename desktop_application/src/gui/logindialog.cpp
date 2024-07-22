@@ -17,10 +17,6 @@ LoginDialog::LoginDialog(std::shared_ptr<HttpManager> &http_manager, QWidget *pa
     connect(ui->cancel_push_button, &QPushButton::clicked,
             this, &LoginDialog::OnCancelPushButtonClicked);
 
-    if (!http_manager_) {
-        qWarning("http_manager_ is nullptr before connection");
-    }else
-        qWarning("http_manager_ is not nullptr before connection");
     connect(http_manager_.get(), &HttpManager::LoginAttempt,
             this, &LoginDialog::OnLoginAttempt);
 }

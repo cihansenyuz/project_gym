@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QtNetwork>
 
+#define USE_LOCAL_HOST 0 // 0: local host, 1: google cloud
+
 #if USE_LOCAL_HOST
 #define API_ROOT_ADRESS "https://www.cangorkemgunes.com/api/"
 #else
