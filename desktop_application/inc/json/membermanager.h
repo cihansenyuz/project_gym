@@ -25,13 +25,14 @@
 #include <thread>
 #include <chrono>
 #include <mutex>
+#include <memory>
 
 class MemberManager : public JsonContainer
 {
 public:
     MemberManager();
     ~MemberManager();
-    Member* GetMember(const QString &name);
+    std::unique_ptr<Member> GetMember(const QString &name);
     void RegisterNewMember(const Member &member) override;
     void SaveChangesOnMember(const Member &member) override;
     void DeleteMember(const QString &name) override;

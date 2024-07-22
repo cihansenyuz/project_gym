@@ -40,8 +40,8 @@ private:
     Ui::MainWindow *ui;
     std::shared_ptr<HttpManager> http_manager_;
     MemberManager member_manager;
-    Member* current_member{nullptr};
+    std::unique_ptr<Member> current_member;
     QTabWidget *exercise_day_tab{nullptr};
-    InfoDialog *dialog{nullptr};
+    std::unique_ptr<InfoDialog> message_dialog;
 };
 #endif // MAINWINDOW_H

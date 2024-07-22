@@ -167,7 +167,7 @@ void MainWindow::DeleteExercisePlanTable() {
 }
 
 void MainWindow::NewDialog(const QString &message, const QString &title){
-    if(dialog)
-        delete dialog;
-    dialog = new InfoDialog(message, title);
+    if(message_dialog)
+        message_dialog.reset(nullptr);
+    message_dialog = std::make_unique<InfoDialog>(message, title);
 }
