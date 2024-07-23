@@ -18,7 +18,7 @@ void PutRequest::OnPushMemberJsonDataReplyRecieved(){
 
 void PutRequest::PushMemberJsonData(const QJsonArray* data_to_push){
     http_body_data = QJsonDocument(*data_to_push);
-    SendHttpRequest(API_PUSH_ADRESS, parent_->token, this, &PutRequest::OnPushMemberJsonDataReplyRecieved);
+    SendHttpRequest(API_PUSH_ADDRESS, parent_->token, this, &PutRequest::OnPushMemberJsonDataReplyRecieved);
 }
 
 QNetworkReply* PutRequest::GetHttpReply(const QNetworkRequest &request){

@@ -5,7 +5,7 @@
 #include "getrequest.h"
 #include "putrequest.h"
 
-#define GIVE_PRETAKEN_TOKEN 1
+#define DEV_MODE_USE_PRETAKEN_TOKEN 1   // 1: dev mode, 0: user mode
 #define TOKEN "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluIiwiaWQiOiIwIiwiaWF0IjoxNzIxNjYyMDUzLCJleHAiOjE3MjE3MDUyNTN9.Ct13wZ_UVO3YxaZPffAW-6h7Dnw6iC7qOJm3E_ZzXSE"
 
 class HttpManager : public PostRequest,
@@ -14,7 +14,7 @@ class HttpManager : public PostRequest,
 {
 public:
     HttpManager();
-#if GIVE_PRETAKEN_TOKEN
+#if DEV_MODE_USE_PRETAKEN_TOKEN
     QString token{TOKEN};
 #else
     QString token{""};

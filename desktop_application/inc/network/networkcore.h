@@ -4,38 +4,38 @@
 #include <QObject>
 #include <QtNetwork>
 
-#define USE_LOCAL_HOST 1 // 0: local host, 1: google cloud
+#define DEV_MODE_USE_LOCAL_HOST 1 // 1: local host, 0: google cloud
 
-#if USE_LOCAL_HOST
-#define API_ROOT_ADRESS "https://www.cangorkemgunes.com/api/"
-#pragma message("gCloud end point is in use")
-#else
-#define API_ROOT_ADRESS "http://localhost:3000/api/"
+#if DEV_MODE_USE_LOCAL_HOST
+#define API_ROOT_ADDRESS "http://localhost:3000/api/"
 #pragma message("local end point is in use")
-#endif
+#else
+#define API_ROOT_ADDRESS "https://www.cangorkemgunes.com/api/"
+#pragma message("gCloud end point is in use")
+#endif // DEV_MODE_USE_LOCAL_HOST
 
-#define API_LOGIN_ADRESS "login"
-#define API_REGISTER_ADRESS "register"
-#define API_FETCH_ADRESS "users"
-#define API_PUSH_ADRESS "users"
+#define API_LOGIN_ADDRESS "login"
+#define API_REGISTER_ADDRESS "register"
+#define API_FETCH_ADDRESS "users"
+#define API_PUSH_ADDRESS "users"
 
 #define FETCHED_FILE_PATH "../../members.json"
 
 /*
  * implemented HTTP status codes in server side
- * for API_LOGIN_ADRESS
+ * for API_LOGIN_ADDRESS
  *  POST request
  *      200 OK, email password match, returns token with code: UserFound
  *      400 Bad Request, no email or password, returns with code: BadRequest
  *      404 Not Found, email doesnot match, returns with code: NoUserFound
  *      404 Not Found, password doesnot match, returns with code: IncorrectPassword
  *
- * for API_REGISTER_ADRESS
+ * for API_REGISTER_ADDRESS
  *  POST request
  *      201 Created
  *      400 Bad Request, returns with code: BadRequest
  *
- * for API_FETCH_ADRESS && API_PUSH_ADRESS
+ * for API_FETCH_ADDRESS && API_PUSH_ADDRESS
  *  GET request
  *      200 OK, token verified
  *      204 No Content, first time login
@@ -63,11 +63,11 @@ public:
     NetworkCore() = default;
     virtual QNetworkReply* GetHttpReply(const QNetworkRequest &request) = 0;
     template<typename T>
-    void SendHttpRequest(const QString &api_adress,
+    void SendHttpRequest(const QString &api_address,
                          const QString &token,
                          T* requester_object,
                          void (T::*slot_function)()){
-        QUrl http_url(QString(API_ROOT_ADRESS) + api_adress);
+        QUrl http_url(QString(API_ROOT_ADDRESS) + api_address);
         QNetworkRequest http_request(http_url);
         http_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 

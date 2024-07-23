@@ -51,7 +51,7 @@ void GetRequest::OnFetchMemberJsonDataReplyRecieved(){
 }
 
 void GetRequest::FetchMemberJsonData(){
-    SendHttpRequest(API_FETCH_ADRESS, parent_->token, this, &GetRequest::OnFetchMemberJsonDataReplyRecieved);
+    SendHttpRequest(API_FETCH_ADDRESS, parent_->token, this, &GetRequest::OnFetchMemberJsonDataReplyRecieved);
 }
 
 QNetworkReply* GetRequest::GetHttpReply(const QNetworkRequest &request){

@@ -10,7 +10,7 @@ void PostRequest::LoginRequest(const QString &email, const QString password){
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
     emit ConnectionToServer();
-    SendHttpRequest(API_LOGIN_ADRESS, parent_->token, this, &PostRequest::OnLoginReplyRecieved);
+    SendHttpRequest(API_LOGIN_ADDRESS, parent_->token, this, &PostRequest::OnLoginReplyRecieved);
 }
 
 void PostRequest::RegisterRequest(const QString &email, const QString password){
@@ -19,7 +19,7 @@ void PostRequest::RegisterRequest(const QString &email, const QString password){
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
     emit ConnectionToServer();
-    SendHttpRequest(API_REGISTER_ADRESS, parent_->token, this, &PostRequest::OnRegisterReplyRecieved);
+    SendHttpRequest(API_REGISTER_ADDRESS, parent_->token, this, &PostRequest::OnRegisterReplyRecieved);
 }
 
 void PostRequest::OnRegisterReplyRecieved(){
