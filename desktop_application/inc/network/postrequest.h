@@ -10,6 +10,7 @@ public:
     PostRequest(HttpManager *parent = nullptr);
     void LoginRequest(const QString &email, const QString password);
     void RegisterRequest(const QString &email, const QString password);
+    void ReconnectRequest(const QString password);
 
 signals:
     void LoginAttempt(bool success);
@@ -19,6 +20,7 @@ signals:
 private slots:
     void OnRegisterReplyRecieved();
     void OnLoginReplyRecieved();
+    void OnReconnectReplyRecieved();
 
 private:
     QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;

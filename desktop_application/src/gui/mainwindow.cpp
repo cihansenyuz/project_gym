@@ -7,7 +7,9 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
 {
     ui->setupUi(this);
     connect(http_manager_.get(), &HttpManager::TokenNotValid,
-            this, &MainWindow::OnTokenNotValid);
+            this, [this](){
+        http_manager_->ReconnectRequest("123");
+    });
     connect(http_manager_.get(), &HttpManager::MemberJsonFetched,
             this, &MainWindow::OnMemberDataFetched);
     http_manager_->FetchMemberJsonData();
@@ -173,10 +175,4 @@ void MainWindow::NewDialog(const QString &message, const QString &title){
     if(message_dialog)
         message_dialog.reset(nullptr);
     message_dialog = std::make_unique<InfoDialog>(message, title);
-}
-
-void MainWindow::OnTokenNotValid(){
-    /* create a new login dialog here
-        then get new token
-    */
 }

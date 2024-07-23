@@ -31,7 +31,6 @@ private slots:
     void OnGetButtonClicked();
     void OnSaveChangesAction();
     void OnDeleteAction();
-    void OnTokenNotValid();
 
 private:
     void FillExercisePlanTable();

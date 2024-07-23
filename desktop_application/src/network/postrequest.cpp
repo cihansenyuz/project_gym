@@ -56,3 +56,32 @@ QNetworkReply* PostRequest::GetHttpReply(const QNetworkRequest &request){
     qDebug() << "post request done";
     return http_access_manager.post(request, http_body_data.toJson());
 }
+
+void PostRequest::ReconnectRequest(const QString password){
+    QJsonObject user_info;
+    user_info["email"] = "admin";//parent_->session_email;
+    user_info["password"] = password;
+    http_body_data = QJsonDocument(user_info);
+    //emit ConnectionToServer();
+    SendHttpRequest(API_LOGIN_ADDRESS, "", this, &PostRequest::OnReconnectReplyRecieved);
+}
+
+void PostRequest::OnReconnectReplyRecieved(){
+    QJsonObject message;
+    message = ReadBody();
+
+    if(GetHttpStatusCode() == 200 && message["code"] == UserFound){
+        parent_->session_token = message["Authorization"].toString();
+        //emit LoginAttempt(true);
+    }
+    else if (GetHttpStatusCode() == 404){
+        //emit LoginAttempt(false);
+    }
+    else
+        qDebug() << "reconnect error: " << http_reply->error();
+
+    qDebug() << "#### on reconnect(post) reply, http body fields ####";
+    for(auto &key : message.keys())
+        qDebug() << key << message[key];
+    qDebug() << "#########################################\n";
+}
