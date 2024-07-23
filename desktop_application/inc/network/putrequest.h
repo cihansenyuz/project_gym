@@ -9,13 +9,13 @@ class PutRequest : public NetworkCore
 public:
     PutRequest(HttpManager *parent = nullptr);
     void PushMemberJsonData(const QJsonArray* data_to_push);
-
+    HttpManager *parent_;
 private slots:
     void OnPushMemberJsonDataReplyRecieved();
 
 private:
     QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;
-    HttpManager *parent_;
+
 };
 
 #endif // PUTREQUEST_H

@@ -10,7 +10,7 @@ class GetRequest : public NetworkCore
 public:
     GetRequest(HttpManager *parent = nullptr);
     void FetchMemberJsonData();
-
+    HttpManager *parent_;
 signals:
     void MemberJsonFetched(const std::unique_ptr<QJsonArray> &fetched_data);
     void TokenNotValid();
@@ -20,7 +20,7 @@ private slots:
 
 private:
     QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;
-    HttpManager *parent_;
+
 };
 
 #endif // GETREQUEST_H

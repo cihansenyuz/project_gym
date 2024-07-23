@@ -35,6 +35,7 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
     //member_manager.SaveChangesOnMember(*current_member);
 
     ///////////////////////////////////////
+
 }
 
 MainWindow::~MainWindow(){
@@ -176,7 +177,18 @@ void MainWindow::NewDialog(const QString &message, const QString &title){
 }
 
 void MainWindow::OnTokenNotValid(){
-    /* create a new login dialog here
-        then get new token
-    */
+    auto lambda = [this](const QString &password){
+        qDebug() << "pass:" << password;
+            http_manager_->ReconnectRequest("123");
+            /*connect(http_manager_.get(), &HttpManager::ReconnectAttempt, this, [this](bool success){
+                        if(success)
+                            return;
+                    }, Qt::SingleShotConnection);*/
+        };
+    dialog = new ReconnectDialog("hata mesajı");
+    connect(dialog, &ReconnectDialog::Reconnect, this, &MainWindow::OnReconnect);
+}
+
+void MainWindow::OnReconnect(){
+    http_manager_->ReconnectRequest("123");
 }

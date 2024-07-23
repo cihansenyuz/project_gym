@@ -10,19 +10,22 @@ public:
     PostRequest(HttpManager *parent = nullptr);
     void LoginRequest(const QString &email, const QString password);
     void RegisterRequest(const QString &email, const QString password);
-
+    void ReconnectRequest(const QString &password);
+    HttpManager *parent_;
 signals:
     void LoginAttempt(bool success);
     void RegisterAttempt(bool success);
+    void ReconnectAttempt(bool success);
     void ConnectionToServer();
 
 private slots:
     void OnRegisterReplyRecieved();
     void OnLoginReplyRecieved();
+    void OnReconnectReplyRecieved();
 
 private:
     QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;
-    HttpManager *parent_;
+
 };
 
 #endif // POSTREQUEST_H

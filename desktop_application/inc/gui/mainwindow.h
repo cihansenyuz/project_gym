@@ -10,6 +10,7 @@
 #include "../json/membermanager.h"
 #include "../network/httpmanager.h"
 #include "../gui/infodialog.h"
+#include "../gui/reconnectdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -32,6 +33,7 @@ private slots:
     void OnSaveChangesAction();
     void OnDeleteAction();
     void OnTokenNotValid();
+    void OnReconnect();
 
 private:
     void FillExercisePlanTable();
@@ -44,5 +46,6 @@ private:
     std::unique_ptr<Member> current_member;
     std::unique_ptr<QTabWidget> exercise_day_tabs;
     std::unique_ptr<InfoDialog> message_dialog;
+    ReconnectDialog *dialog;
 };
 #endif // MAINWINDOW_H
