@@ -7,6 +7,20 @@
 
 #define DEV_MODE_SKIP_LOGIN 1 // 0: ask login, 1: skip
 
+#if DEV_MODE_SKIP_LOGIN
+#pragma message("login dialog will be skipped")
+#endif
+
+#if DEV_MODE_USE_PRETAKEN_TOKEN
+#pragma message("pretaken token will be used: be sure it's valid")
+#endif
+
+#if DEV_MODE_USE_LOCAL_HOST
+#pragma message("api URL is local host")
+#else
+#pragma message("api URL is gCloud")
+#endif
+
 int main(int argc, char *argv[])
 {
     QApplication application(argc, argv);
