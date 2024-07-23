@@ -45,13 +45,16 @@ void GetRequest::OnFetchMemberJsonDataReplyRecieved(){
         else if(!http_body_data.isArray())
             qDebug() << "JSON is not an array.";
     }
+    else if(http_reply->error() == QNetworkReply::AuthenticationRequiredError){
+        emit TokenNotValid();
+    }
     else
         qDebug() << "fetch error: " << http_reply->error();
     qDebug() << "#########################################\n";
 }
 
 void GetRequest::FetchMemberJsonData(){
-    SendHttpRequest(API_FETCH_ADDRESS, parent_->token, this, &GetRequest::OnFetchMemberJsonDataReplyRecieved);
+    SendHttpRequest(API_FETCH_ADDRESS, parent_->session_token, this, &GetRequest::OnFetchMemberJsonDataReplyRecieved);
 }
 
 QNetworkReply* GetRequest::GetHttpReply(const QNetworkRequest &request){

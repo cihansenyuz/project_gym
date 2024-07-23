@@ -14,8 +14,9 @@ class HttpManager : public PostRequest,
 {
 public:
     HttpManager();
+    QString session_email;
 #if DEV_MODE_USE_PRETAKEN_TOKEN
-    QString token{TOKEN};
+    QString session_token{TOKEN};
 #else
     QString token{""};
 #endif

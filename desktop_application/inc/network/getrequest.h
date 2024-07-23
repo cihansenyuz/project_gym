@@ -13,6 +13,7 @@ public:
 
 signals:
     void MemberJsonFetched(const std::unique_ptr<QJsonArray> &fetched_data);
+    void TokenNotValid();
 
 private slots:
     void OnFetchMemberJsonDataReplyRecieved();

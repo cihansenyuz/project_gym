@@ -9,8 +9,9 @@ void PostRequest::LoginRequest(const QString &email, const QString password){
     user_info["email"] = email;
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
+    parent_->session_email = email;
     emit ConnectionToServer();
-    SendHttpRequest(API_LOGIN_ADDRESS, parent_->token, this, &PostRequest::OnLoginReplyRecieved);
+    SendHttpRequest(API_LOGIN_ADDRESS, parent_->session_token, this, &PostRequest::OnLoginReplyRecieved);
 }
 
 void PostRequest::RegisterRequest(const QString &email, const QString password){
@@ -19,7 +20,7 @@ void PostRequest::RegisterRequest(const QString &email, const QString password){
     user_info["password"] = password;
     http_body_data = QJsonDocument(user_info);
     emit ConnectionToServer();
-    SendHttpRequest(API_REGISTER_ADDRESS, parent_->token, this, &PostRequest::OnRegisterReplyRecieved);
+    SendHttpRequest(API_REGISTER_ADDRESS, parent_->session_token, this, &PostRequest::OnRegisterReplyRecieved);
 }
 
 void PostRequest::OnRegisterReplyRecieved(){
@@ -36,7 +37,7 @@ void PostRequest::OnLoginReplyRecieved(){
     message = ReadBody();
 
     if(GetHttpStatusCode() == 200 && message["code"] == UserFound){
-        parent_->token = message["Authorization"].toString();
+        parent_->session_token = message["Authorization"].toString();
         emit LoginAttempt(true);
     }
     else if (GetHttpStatusCode() == 404){
