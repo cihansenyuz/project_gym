@@ -18,6 +18,8 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
             this, &MainWindow::OnSaveChangesAction);
     connect(ui->delete_action, &QAction::triggered,
             this, &MainWindow::OnDeleteAction);
+    connect(ui->new_measurements_action, &QAction::triggered,
+            this, &MainWindow::OnAddNewMeasurementsAction);
 
     //////// TEST & DEBUG SECTION /////////
 
@@ -196,4 +198,8 @@ void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
         qDebug() << "register reset";
         register_dialog.reset(nullptr);
     }*/
+}
+
+void MainWindow::OnAddNewMeasurementsAction(){
+
 }
