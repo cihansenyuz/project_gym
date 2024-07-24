@@ -27,9 +27,15 @@ LoginDialog::LoginDialog(std::shared_ptr<HttpManager> &http_manager, QWidget *pa
         }
 
         if(success)
-            action_message = std::make_unique<InfoDialog>("Your account created successfully,\nGo back, and try logging in", "Success!");
+            action_message = std::make_unique<InfoDialog>("Your account created successfully,\n"
+                                                          "You may log in now",
+                                                          "Success!",
+                                                          this);
         else
-            action_message = std::make_unique<InfoDialog>("Registeration failed, kindly try again", "Error!");
+            action_message = std::make_unique<InfoDialog>("Registeration failed, kindly try again",
+                                                          "Error!",
+                                                          this);
+        action_message->exec();
     });
     connect(http_manager_.get(), &HttpManager::ConnectionToServer, this, [this](){
         std::lock_guard<std::mutex> lock(info_dialog_mutex);
@@ -38,7 +44,9 @@ LoginDialog::LoginDialog(std::shared_ptr<HttpManager> &http_manager, QWidget *pa
             action_message.reset(nullptr);
         }
 
-        action_message = std::make_unique<InfoDialog>("Connecting to server, kindly wait a while", "Information");
+        action_message = std::make_unique<InfoDialog>("Connecting to server, kindly wait a while",
+                                                      "Information",
+                                                      this);
     });
 
 }
@@ -92,6 +100,10 @@ void LoginDialog::OnLoginAttempt(bool success){
 
     if(success)
         this->destroy();
-    else
-        action_message = std::make_unique<InfoDialog>("Invalid email or wrong password!", "Login Error");
+    else{
+        action_message = std::make_unique<InfoDialog>("Invalid email or wrong password!",
+                                                      "Login Error",
+                                                      this);
+        action_message->exec();
+    }
 }

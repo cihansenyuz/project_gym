@@ -1,7 +1,9 @@
 #include "../../inc/gui/infodialog.h"
 #include "../../ui/ui_infodialog.h"
 
-InfoDialog::InfoDialog(const QString &message, const QString &title, QWidget *parent)
+InfoDialog::InfoDialog(const QString &message,
+                       const QString &title,
+                       QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::InfoDialog)
 {
@@ -11,8 +13,6 @@ InfoDialog::InfoDialog(const QString &message, const QString &title, QWidget *pa
 
     connect(ui->ok_button, &QPushButton::clicked,
             this, &InfoDialog::OnOkButtonClicked);
-
-    this->show();
 }
 
 InfoDialog::~InfoDialog()
@@ -21,5 +21,5 @@ InfoDialog::~InfoDialog()
 }
 
 void InfoDialog::OnOkButtonClicked(){
-    this->destroy();
+    this->accept();
 }
