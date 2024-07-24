@@ -41,7 +41,7 @@ public:
 
     void SetName(const QString &name);
     void SetAge(int age);
-    void AddMeasurement(Measurement &new_measurement);
+    void AddMeasurement(const Measurement &new_measurement);
     void AddSubscriptionToArchive(const Subscription &archived);
     void EndSubscription(bool update_end_date = true);
     void AddExercisePlanToArchive(const WeeklyExercisePlan &archived);

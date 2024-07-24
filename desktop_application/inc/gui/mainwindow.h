@@ -11,6 +11,7 @@
 #include "../network/httpmanager.h"
 #include "../gui/infodialog.h"
 #include "../gui/registerdialog.h"
+#include "../gui/newmeasurementsdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -33,7 +34,9 @@ private slots:
     void OnRegisterAction();
     void OnSaveChangesAction();
     void OnDeleteAction();
+    void OnAddNewMeasurementsAction();
     void OnNewMemberCreated(const std::unique_ptr<Member> &new_member);
+    void OnNewMeasurementsAdded(const Measurement &new_measurements);
 
 private:
     void ClearViewedMemberInfos();
@@ -48,5 +51,6 @@ private:
     std::unique_ptr<QTabWidget> exercise_day_tabs;
     std::unique_ptr<InfoDialog> message_dialog;
     std::unique_ptr<RegisterDialog> register_dialog;
+    std::unique_ptr<NewMeasurementsDialog> measurements_dialog;
 };
 #endif // MAINWINDOW_H

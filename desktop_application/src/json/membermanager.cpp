@@ -37,6 +37,7 @@ void MemberManager::RegisterNewMember(const Member &member){
     std::lock_guard<std::mutex> lock(members_array_mutex);
     QJsonObject member_json = member.toJson();
     members_array.append(member_json);
+    qDebug() << "new member appended to the array";
 }
 
 void MemberManager::SaveChangesOnMember(const Member &member){

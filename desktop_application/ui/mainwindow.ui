@@ -379,13 +379,6 @@
            </item>
           </layout>
          </item>
-         <item>
-          <widget class="QPushButton" name="new_measurements_button">
-           <property name="text">
-            <string>New Measurements</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
@@ -442,7 +435,7 @@
     <property name="title">
      <string>Manage Member</string>
     </property>
-    <addaction name="actionAdd_new_measurements"/>
+    <addaction name="new_measurements_action"/>
     <addaction name="actionShow_progress_of_the_member"/>
     <addaction name="actionShow_all_previous_subscriptions"/>
    </widget>
@@ -460,7 +453,7 @@
     <string>Delete currently viewed member</string>
    </property>
   </action>
-  <action name="actionAdd_new_measurements">
+  <action name="new_measurements_action">
    <property name="text">
     <string>Add new measurements</string>
    </property>

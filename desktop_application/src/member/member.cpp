@@ -7,7 +7,7 @@ void Member::SetName(const QString &name){ name_ = name; }
 
 void Member::SetAge(int age){ age_ = age; }
 
-void Member::AddMeasurement(Measurement &new_measurement){
+void Member::AddMeasurement(const Measurement &new_measurement){
     all_measurements_.push_back(new_measurement);
 }
 
