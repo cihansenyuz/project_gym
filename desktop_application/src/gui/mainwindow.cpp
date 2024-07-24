@@ -100,12 +100,13 @@ void MainWindow::OnSaveChangesAction(){
 
 void MainWindow::OnDeleteAction(){
     if(!current_member){
-        message_dialog = std::make_unique<InfoDialog>("No member viewed,\nPlease, use Get button first");
+        NewDialog("No member viewed,\nPlease, use Get button first", "Error!");
         return;
     }
     QString member_name = current_member->GetName();
     member_manager.DeleteMember(member_name);
-    message_dialog = std::make_unique<InfoDialog>("Member '"+member_name+"' is deleted");
+    NewDialog("Member '"+member_name+"' is deleted", "Success!");
+    ClearViewedMemberInfos();
 }
 
 void MainWindow::FillExercisePlanTable(){
@@ -177,10 +178,14 @@ void MainWindow::DeleteExercisePlanTable() {
     }
 }
 
-void MainWindow::NewDialog(const QString &message, const QString &title){
+void MainWindow::NewDialog(const QString &message, const QString &title, bool is_modal){
     if(message_dialog)
         message_dialog.reset(nullptr);
-    message_dialog = std::make_unique<InfoDialog>(message, title);
+    message_dialog = std::make_unique<InfoDialog>(message, title, this);
+    if(is_modal)
+        message_dialog->exec();
+    else
+        message_dialog->show();
 }
 
 void MainWindow::OnRegisterAction(){
@@ -196,4 +201,27 @@ void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
         qDebug() << "register reset";
         register_dialog.reset(nullptr);
     }*/
+}
+
+void MainWindow::ClearViewedMemberInfos(){
+    // info view
+    ui->member_name_line_edit->clear();
+    ui->age_label->clear();
+    ui->gender_label->clear();
+    ui->phone_label->clear();
+    // subscription view
+    ui->sub_start_date_label->clear();
+    ui->sub_end_date_label->clear();
+    ui->remaining_months_label->clear();
+    // measurements view
+    ui->shoulder_label->clear();
+    ui->chest_label->clear();
+    ui->arm_label->clear();
+    ui->belly_label->clear();
+    ui->hip_label->clear();
+    ui->leg_label->clear();
+    ui->weight_label->clear();
+    ui->taken_date_label->clear();
+    // exercise plan view
+    DeleteExercisePlanTable();
 }

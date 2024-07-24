@@ -36,9 +36,10 @@ private slots:
     void OnNewMemberCreated(const std::unique_ptr<Member> &new_member);
 
 private:
+    void ClearViewedMemberInfos();
     void FillExercisePlanTable();
     void DeleteExercisePlanTable();
-    void NewDialog(const QString &message, const QString &title = "");
+    void NewDialog(const QString &message, const QString &title = "", bool is_modal = true);
 
     Ui::MainWindow *ui;
     std::shared_ptr<HttpManager> http_manager_;
