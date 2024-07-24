@@ -10,6 +10,7 @@
 #include "../json/membermanager.h"
 #include "../network/httpmanager.h"
 #include "../gui/infodialog.h"
+#include "../gui/registerdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -29,6 +30,7 @@ public:
 private slots:
     void OnMemberDataFetched(const std::unique_ptr<QJsonArray> &fetched_data);
     void OnGetButtonClicked();
+    void OnRegisterAction();
     void OnSaveChangesAction();
     void OnDeleteAction();
 
@@ -43,5 +45,6 @@ private:
     std::unique_ptr<Member> current_member;
     std::unique_ptr<QTabWidget> exercise_day_tabs;
     std::unique_ptr<InfoDialog> message_dialog;
+    std::unique_ptr<RegisterDialog> register_dialog;
 };
 #endif // MAINWINDOW_H

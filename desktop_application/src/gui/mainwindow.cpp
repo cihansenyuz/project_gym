@@ -10,6 +10,8 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
             this, &MainWindow::OnMemberDataFetched);
     http_manager_->FetchMemberJsonData();
 
+    connect(ui->register_action, &QAction::triggered,
+            this, &MainWindow::OnRegisterAction);
     connect(ui->get_button, &QPushButton::clicked,
             this, &MainWindow::OnGetButtonClicked);
     connect(ui->save_changes_action, &QAction::triggered,
@@ -171,4 +173,9 @@ void MainWindow::NewDialog(const QString &message, const QString &title){
     if(message_dialog)
         message_dialog.reset(nullptr);
     message_dialog = std::make_unique<InfoDialog>(message, title);
+}
+
+void MainWindow::OnRegisterAction(){
+    register_dialog = std::make_unique<RegisterDialog>();
+    register_dialog->show();
 }

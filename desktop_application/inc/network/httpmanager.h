@@ -6,7 +6,7 @@
 #include "putrequest.h"
 
 #define DEV_MODE_USE_PRETAKEN_TOKEN 1   // 1: dev mode, 0: user mode
-#define TOKEN "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluIiwiaWQiOiIwIiwiaWF0IjoxNzIxNjYyMDUzLCJleHAiOjE3MjE3MDUyNTN9.Ct13wZ_UVO3YxaZPffAW-6h7Dnw6iC7qOJm3E_ZzXSE"
+#define TOKEN "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluIiwiaWQiOiIwIiwiaWF0IjoxNzIxODAzNDE5LCJleHAiOjE3MjE4NDY2MTl9.hY5GRvgZ0F_ILEXG_HAIYGq0zJ_08rm-GtOGGuL6UOo"
 
 class HttpManager : public PostRequest,
                     public GetRequest,
