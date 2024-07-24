@@ -187,13 +187,14 @@ void MainWindow::NewDialog(const QString &message, const QString &title){
 
 void MainWindow::OnRegisterAction(){
     register_dialog = std::make_unique<RegisterDialog>();
-    register_dialog->show();
     connect(register_dialog.get(), &RegisterDialog::MemberCreated,
             this, &MainWindow::OnNewMemberCreated);
+    register_dialog->exec();
 }
 
 void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
     member_manager.RegisterNewMember(*new_member);
+    ui->message_text_browser->append("New member registered: "+new_member->GetName());
     /*if(register_dialog){
         qDebug() << "register reset";
         register_dialog.reset(nullptr);
@@ -201,5 +202,14 @@ void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
 }
 
 void MainWindow::OnAddNewMeasurementsAction(){
+    measurements_dialog = std::make_unique<NewMeasurementsDialog>();
+    connect(measurements_dialog.get(), &NewMeasurementsDialog::NewMeasurements,
+            this, &MainWindow::OnNewMeasurementsAdded);
+    measurements_dialog->exec();
+}
 
+void MainWindow::OnNewMeasurementsAdded(const Measurement &new_measurements){
+    current_member->AddMeasurement(new_measurements);
+    member_manager.SaveChangesOnMember(*current_member);
+    ui->message_text_browser->append("New measurements recorded for the current member");
 }

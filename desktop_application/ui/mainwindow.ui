@@ -379,13 +379,6 @@
            </item>
           </layout>
          </item>
-         <item>
-          <widget class="QPushButton" name="new_measurements_button">
-           <property name="text">
-            <string>New Measurements</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
