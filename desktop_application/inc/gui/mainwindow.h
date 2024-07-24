@@ -33,6 +33,7 @@ private slots:
     void OnRegisterAction();
     void OnSaveChangesAction();
     void OnDeleteAction();
+    void OnNewMemberCreated(const std::unique_ptr<Member> &new_member);
 
 private:
     void FillExercisePlanTable();

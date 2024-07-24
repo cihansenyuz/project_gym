@@ -35,6 +35,10 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
     //member_manager.SaveChangesOnMember(*current_member);
 
     ///////////////////////////////////////
+    /*if(register_dialog)
+        qDebug() << "register is not null";
+    else
+        qDebug() << "register is null";*/
 }
 
 MainWindow::~MainWindow(){
@@ -52,6 +56,10 @@ void MainWindow::OnMemberDataFetched(const std::unique_ptr<QJsonArray> &fetched_
 }
 
 void MainWindow::OnGetButtonClicked(){
+    /*if(register_dialog)
+        qDebug() << "register is not null";
+    else
+        qDebug() << "register is null";*/
     current_member = member_manager.GetMember(ui->member_name_line_edit->text());
     if(current_member){
         ui->message_text_browser->append("Member info has gotten: "
@@ -178,4 +186,14 @@ void MainWindow::NewDialog(const QString &message, const QString &title){
 void MainWindow::OnRegisterAction(){
     register_dialog = std::make_unique<RegisterDialog>();
     register_dialog->show();
+    connect(register_dialog.get(), &RegisterDialog::MemberCreated,
+            this, &MainWindow::OnNewMemberCreated);
+}
+
+void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
+    member_manager.RegisterNewMember(*new_member);
+    /*if(register_dialog){
+        qDebug() << "register reset";
+        register_dialog.reset(nullptr);
+    }*/
 }

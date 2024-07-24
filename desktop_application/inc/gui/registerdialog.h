@@ -2,6 +2,14 @@
 #define REGISTERDIALOG_H
 
 #include <QDialog>
+#include <memory>
+#include "../../inc/member/member.h"
+
+enum RegisterScreen{
+    Info,
+    Subscription,
+    Payment
+};
 
 namespace Ui {
 class RegisterDialog;
@@ -15,8 +23,17 @@ public:
     explicit RegisterDialog(QWidget *parent = nullptr);
     ~RegisterDialog();
 
+signals:
+    void MemberCreated(const std::unique_ptr<Member> &new_member);
+
+private slots:
+    void OnNextButtonInfoClicked();
+    void OnNextButtonSubClicked();
+    void OnSaveButtonClicked();
+
 private:
     Ui::RegisterDialog *ui;
+    std::unique_ptr<Member> new_member_;
 };
 
 #endif // REGISTERDIALOG_H

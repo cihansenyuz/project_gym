@@ -25,7 +25,6 @@
 #include "measurement.h"
 #include "subscription.h"
 #include "exercise/weeklyexerciseplan.h"
-#include "exercise/exercise.h"
 
 /**
  *  @note In case any property changes done to the class,
