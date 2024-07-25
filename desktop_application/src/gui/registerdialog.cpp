@@ -41,7 +41,6 @@ void RegisterDialog::OnNextButtonInfoClicked()
 void RegisterDialog::OnNextButtonSubClicked()
 {
     int period = radio_button_group->id(radio_button_group->checkedButton());
-    qDebug() << "period: " << period;
     new_member_->SetSubscriptionPeriod(ui->start_date_calender->selectedDate(),
                                       ui->start_date_calender->selectedDate().addMonths(period));
 
@@ -51,9 +50,11 @@ void RegisterDialog::OnNextButtonSubClicked()
 
 void RegisterDialog::OnSaveButtonClicked()
 {
-    new_member_->SetPayment(Payment(ui->price_line_edit->text().toInt(),
-                                    ui->installments_spin_box->value(),
-                                    new_member_->GetSubscriptionStartDate()));
+    Payment payment(ui->price_line_edit->text().toInt(),
+                    ui->installments_spin_box->value(),
+                    new_member_->GetSubscriptionStartDate());
+    new_member_->SetPayment(payment);
+    new_member_->SetRemainingPaymentQuantity(ui->price_line_edit->text().toInt());
 
     emit MemberCreated(new_member_);
     close();

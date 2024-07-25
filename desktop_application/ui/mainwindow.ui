@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>726</width>
+    <width>882</width>
     <height>772</height>
    </rect>
   </property>
@@ -16,11 +16,11 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_3" stretch="0,2,1">
     <item>
-     <layout class="QHBoxLayout" name="first_bar" stretch="0,0,0,0">
+     <layout class="QHBoxLayout" name="first_bar" stretch="0,0,0,0,0">
       <item>
        <widget class="QGroupBox" name="member_info_group">
         <property name="title">
-         <string>Member Info</string>
+         <string>Personal Information</string>
         </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
@@ -383,6 +383,110 @@
        </widget>
       </item>
       <item>
+       <widget class="QGroupBox" name="payment_group">
+        <property name="title">
+         <string>Payment Details</string>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_6">
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout">
+           <item>
+            <widget class="QLabel" name="label_12">
+             <property name="text">
+              <string>Total Price</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="total_price_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QLabel" name="label_16">
+             <property name="text">
+              <string>Payment:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="payment_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_16">
+           <item>
+            <widget class="QLabel" name="label_14">
+             <property name="font">
+              <font>
+               <pointsize>11</pointsize>
+              </font>
+             </property>
+             <property name="text">
+              <string>Remaining:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="remaining_payment_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_19">
+           <item>
+            <widget class="QLabel" name="label_18">
+             <property name="text">
+              <string>Installments:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="installments_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_20">
+           <item>
+            <widget class="QLabel" name="label_19">
+             <property name="text">
+              <string>Remaining:</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="installments_remaining_label">
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
        <spacer name="horizontalSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -419,7 +523,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>726</width>
+     <width>882</width>
      <height>22</height>
     </rect>
    </property>

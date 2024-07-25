@@ -40,9 +40,12 @@ void JsonParser::ParseMeasurements(const QJsonArray &measurements_array){
 }
 
 void JsonParser::ParsePayment(const QJsonObject &payment_object){
-    member_to_be_parsed->SetPayment(Payment(payment_object["total_payment"].toInt(),
-                                            payment_object["installments"].toInt(),
-                                            member_to_be_parsed->GetSubscriptionStartDate()));
+    Payment payment(payment_object["total_payment"].toInt(),
+                    payment_object["installments"].toInt(),
+                    member_to_be_parsed->GetSubscriptionStartDate());
+    member_to_be_parsed->SetRemainingInstallments(payment_object["remaining_installments"].toInt());
+    member_to_be_parsed->SetRemainingPaymentQuantity(payment_object["remaining_payment"].toDouble());
+    member_to_be_parsed->SetPayment(payment);
 }
 
 void JsonParser::ParseSubscriptions(const QJsonArray &subscriptions_array) {

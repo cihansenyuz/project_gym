@@ -94,6 +94,13 @@ void MainWindow::OnGetButtonClicked(){
             ui->sub_end_date_label->setText(current_member->GetSubscriptionEndDate().toString(Qt::ISODate));
             ui->remaining_months_label->setText(QString::number(current_member->GetSubscriptionEndDate().month()
                                                                     - QDate::currentDate().month()));
+
+            qDebug() << current_member->GetRemainingPaymentQuantity();
+            ui->total_price_label->setText(QString::number(current_member->GetTotalPayment()));
+            ui->payment_label->setText(QString::number(current_member->GetPaymentQuantity()));
+            ui->remaining_payment_label->setText(QString::number(current_member->GetRemainingPaymentQuantity()));
+            ui->installments_label->setText(QString::number(current_member->GetInstallments()));
+            ui->installments_remaining_label->setText(QString::number(current_member->GetRemainingInstallments()));
         }
 
         FillExercisePlanTable();
@@ -244,6 +251,12 @@ void MainWindow::ClearViewedMemberInfos(){
     ui->leg_label->clear();
     ui->weight_label->clear();
     ui->taken_date_label->clear();
+    // payment view
+    ui->total_price_label->clear();
+    ui->remaining_payment_label->clear();
+    ui->installments_label->clear();
+    ui->installments_remaining_label->clear();
+    ui->payment_label->clear();
     // exercise plan view
     DeleteExercisePlanTable();
 }
