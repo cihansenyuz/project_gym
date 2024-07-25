@@ -59,10 +59,10 @@ TEST_F(SubscriptionTestFixture, ToJson) {
     QJsonObject json = subscription->toJson();
     EXPECT_EQ(json["subscription_start_date"].toString(), startDate.toString(Qt::ISODate));
     EXPECT_EQ(json["subscription_end_date"].toString(), endDate.toString(Qt::ISODate));
-    EXPECT_TRUE(json["subscription"].toBool());
+    EXPECT_TRUE(json["status"].toBool());
 
     QJsonObject archivedJson = subscription->toJson(true);
     EXPECT_EQ(archivedJson["subscription_start_date"].toString(), startDate.toString(Qt::ISODate));
     EXPECT_EQ(archivedJson["subscription_end_date"].toString(), endDate.toString(Qt::ISODate));
-    EXPECT_FALSE(archivedJson.contains("subscription"));
+    EXPECT_FALSE(archivedJson.contains("status"));
 }

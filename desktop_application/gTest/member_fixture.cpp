@@ -95,17 +95,15 @@ TEST_F(MemberFixture, TestExtendSubscriptionEndDate) {
 
 TEST_F(MemberFixture, ToJsonAfterSubscriptionSetPeriod) {
     member->SetSubscriptionPeriod(QDate::currentDate().addDays(-7), QDate::currentDate().addDays(7));
-    QJsonObject json = member->toJson();
+    QJsonObject json = member->Subscription::toJson();
     EXPECT_EQ(json["subscription_end_date"].toString(), QDate::currentDate().addDays(7).toString(Qt::ISODate));
-    EXPECT_TRUE(json["subscription"].toBool());
+    EXPECT_TRUE(json["status"].toBool());
 }
 
 TEST_F(MemberFixture, ToJson) {
     QJsonObject json = member->toJson();
     EXPECT_EQ(json["name"].toString(), "John Doe");
     EXPECT_EQ(json["age"].toInt(), 30);
-    EXPECT_EQ(json["subscription_end_date"].toString(), "");
-    EXPECT_FALSE(json["subscription"].toBool());
 
     QJsonArray measurementsArray = json["measurements"].toArray();
     EXPECT_EQ(measurementsArray.size(), 1);
