@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>463</width>
-    <height>415</height>
+    <width>479</width>
+    <height>344</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,7 +17,7 @@
    <item>
     <widget class="QStackedWidget" name="register_stacked_widget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="info_page">
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -148,24 +148,6 @@
              </layout>
             </widget>
            </item>
-           <item>
-            <widget class="QGroupBox" name="groupBox_2">
-             <property name="title">
-              <string>Subscription End Date</string>
-             </property>
-             <layout class="QVBoxLayout" name="verticalLayout_3">
-              <item>
-               <widget class="QCalendarWidget" name="end_date_calender">
-                <property name="font">
-                 <font>
-                  <pointsize>7</pointsize>
-                 </font>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </item>
           </layout>
          </item>
          <item>
@@ -183,6 +165,43 @@
          </item>
          <item>
           <layout class="QVBoxLayout" name="verticalLayout_8">
+           <item>
+            <widget class="QGroupBox" name="period_group_box">
+             <property name="title">
+              <string>Period</string>
+             </property>
+             <layout class="QVBoxLayout" name="verticalLayout_3">
+              <item>
+               <widget class="QRadioButton" name="radio_button_1">
+                <property name="text">
+                 <string>1 Month</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radio_button_3">
+                <property name="text">
+                 <string>3 Months</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radio_button_6">
+                <property name="text">
+                 <string>6 Months</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QRadioButton" name="radio_button_12">
+                <property name="text">
+                 <string>1 Year</string>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
            <item>
             <spacer name="verticalSpacer_3">
              <property name="orientation">

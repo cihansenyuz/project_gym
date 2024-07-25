@@ -2,6 +2,7 @@
 #define REGISTERDIALOG_H
 
 #include <QDialog>
+#include <QButtonGroup>
 #include <memory>
 #include "../../inc/member/member.h"
 
@@ -34,6 +35,7 @@ private slots:
 private:
     Ui::RegisterDialog *ui;
     std::unique_ptr<Member> new_member_;
+    std::unique_ptr<QButtonGroup> radio_button_group;
 };
 
 #endif // REGISTERDIALOG_H

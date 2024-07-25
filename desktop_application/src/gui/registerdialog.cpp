@@ -14,6 +14,12 @@ RegisterDialog::RegisterDialog(QWidget *parent)
             this, &RegisterDialog::OnNextButtonSubClicked);
     connect(ui->save_push_button, &QPushButton::clicked,
             this, &RegisterDialog::OnSaveButtonClicked);
+
+    radio_button_group = std::make_unique<QButtonGroup>(this);
+    radio_button_group->addButton(ui->radio_button_1, 1);
+    radio_button_group->addButton(ui->radio_button_3, 3);
+    radio_button_group->addButton(ui->radio_button_6, 6);
+    radio_button_group->addButton(ui->radio_button_12, 12);
 }
 
 RegisterDialog::~RegisterDialog()
@@ -32,8 +38,10 @@ void RegisterDialog::OnNextButtonInfoClicked()
 
 void RegisterDialog::OnNextButtonSubClicked()
 {
+    int period = radio_button_group->id(radio_button_group->checkedButton());
+    qDebug() << "period: " << period;
     new_member_->SetSubscriptionPeriod(ui->start_date_calender->selectedDate(),
-                                      ui->end_date_calender->selectedDate());
+                                      ui->start_date_calender->selectedDate().addMonths(period));
 
     ui->register_stacked_widget->setCurrentIndex(PaymentPage);
 }

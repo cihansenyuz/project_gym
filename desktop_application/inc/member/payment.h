@@ -21,8 +21,8 @@ public:
     void SetPaymentPlan(const std::map<std::pair<QDate, float>, bool> payment_plan);
 
 private:
-    int total_payment_;
-    int installments_;
+    int total_payment_{0};
+    int installments_{0};
     std::map<std::pair<QDate, float>, bool> payment_plan_;
 };
 

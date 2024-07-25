@@ -63,9 +63,9 @@ void MainWindow::OnGetButtonClicked(){
 
     //////// TEST & DEBUG SECTION /////////
 
-    current_member->SetPayment(Payment(10000, 4, QDate::currentDate()));
+    /*current_member->SetPayment(Payment(10000, 4, QDate::currentDate()));
     qDebug() << current_member->GetTotalPayment();
-    member_manager.SaveChangesOnMember(*current_member);
+    member_manager.SaveChangesOnMember(*current_member);*/
 
     ///////////////////////////////////////
 
