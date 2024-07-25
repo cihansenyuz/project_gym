@@ -197,7 +197,7 @@ void MainWindow::NewDialog(const QString &message, const QString &title, bool is
 }
 
 void MainWindow::OnRegisterAction(){
-    register_dialog = std::make_unique<RegisterDialog>();
+    register_dialog = std::make_unique<RegisterDialog>(this);
     connect(register_dialog.get(), &RegisterDialog::MemberCreated,
             this, &MainWindow::OnNewMemberCreated);
     register_dialog->exec();
@@ -213,7 +213,7 @@ void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
 }
 
 void MainWindow::OnAddNewMeasurementsAction(){
-    measurements_dialog = std::make_unique<NewMeasurementsDialog>();
+    measurements_dialog = std::make_unique<NewMeasurementsDialog>(this);
     connect(measurements_dialog.get(), &NewMeasurementsDialog::NewMeasurements,
             this, &MainWindow::OnNewMeasurementsAdded);
     measurements_dialog->exec();
