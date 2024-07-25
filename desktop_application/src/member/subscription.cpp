@@ -29,6 +29,13 @@ QJsonObject Subscription::toJson(bool is_archived) const {
     json["subscription_start_date"] = start_date_.toString(Qt::ISODate);
     json["subscription_end_date"] = end_date_.toString(Qt::ISODate);
     if(!is_archived)
-        json["subscription"] = status_;
+        json["status"] = status_;
+    json["payment"] = Payment::toJson();
     return json;
+}
+
+void Subscription::SetPayment(const Payment &payment){
+    SetTotalPayment(payment.GetTotalPayment());
+    SetInstallments(payment.GetInstallments());
+    SetPaymentPlan(payment.GetPaymentPlan());
 }

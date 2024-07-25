@@ -5,7 +5,7 @@
 #include <QApplication>
 #include <memory>
 
-#define DEV_MODE_SKIP_LOGIN 0 // 0: ask login, 1: skip
+#define DEV_MODE_SKIP_LOGIN 1 // 0: ask login, 1: skip
 
 #if DEV_MODE_SKIP_LOGIN
 #pragma message("login dialog will be skipped")

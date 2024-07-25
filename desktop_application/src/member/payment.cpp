@@ -36,3 +36,12 @@ QJsonObject Payment::toJson() const{
     json["payment_plan"] = jsonArray;
     return json;
 }
+
+int Payment::GetTotalPayment() const { return total_payment_; }
+void Payment::SetTotalPayment(const int total_payment) { total_payment_ = total_payment; }
+int Payment::GetInstallments() const { return installments_; }
+void Payment::SetInstallments(const int installments) { installments_ = installments; }
+std::map<std::pair<QDate, float>, bool> Payment::GetPaymentPlan() const { return payment_plan_; }
+void Payment::SetPaymentPlan(const std::map<std::pair<QDate, float>, bool> payment_plan){
+    payment_plan_ = payment_plan;
+}

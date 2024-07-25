@@ -32,6 +32,7 @@ public:
 
 private:
     void ParseMeasurements(const QJsonArray &measurements_array);
+    void ParsePayment(const QJsonObject &payment_object);
     void ParseSubscriptions(const QJsonArray &subscriptions_array);
     void ParseWeeklyExercisePlan(const QJsonObject &weekly_exercise_plan_json);
     void ParseArchivedWeeklyExercisePlans(const QJsonArray &archived_weekly_exercise_plans_array);

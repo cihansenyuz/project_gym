@@ -6,7 +6,7 @@ RegisterDialog::RegisterDialog(QWidget *parent)
     , ui(new Ui::RegisterDialog)
 {
     ui->setupUi(this);
-    ui->register_stacked_widget->setCurrentIndex(Info);
+    ui->register_stacked_widget->setCurrentIndex(InfoPage);
 
     connect(ui->next_push_button_info, &QPushButton::clicked,
             this, &RegisterDialog::OnNextButtonInfoClicked);
@@ -26,7 +26,7 @@ void RegisterDialog::OnNextButtonInfoClicked()
     new_member_ = std::make_unique<Member>(ui->name_line_edit->text(),
                                           ui->age_line_edit->text().toInt());
 
-    ui->register_stacked_widget->setCurrentIndex(Subscription);
+    ui->register_stacked_widget->setCurrentIndex(SubscriptionPage);
 }
 
 
@@ -35,7 +35,7 @@ void RegisterDialog::OnNextButtonSubClicked()
     new_member_->SetSubscriptionPeriod(ui->start_date_calender->selectedDate(),
                                       ui->end_date_calender->selectedDate());
 
-    ui->register_stacked_widget->setCurrentIndex(Payment);
+    ui->register_stacked_widget->setCurrentIndex(PaymentPage);
 }
 
 

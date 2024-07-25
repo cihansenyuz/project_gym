@@ -21,10 +21,7 @@ QJsonObject Member::toJson() const{
         measurementsArray.append(measurement.toJson());
     }
     json["measurements"] = measurementsArray;
-
-    json["subscription"] = HasSubscription();   /* for the last one */
-    json["subscription_start_date"] = GetSubscriptionStartDate().toString(Qt::ISODate);
-    json["subscription_end_date"] = GetSubscriptionEndDate().toString(Qt::ISODate);
+    json["latest_subscription"] = Subscription::toJson();  /* for the latest one */
 
     if(archived_subscriptions_.size()){  /* for archived ones */
         QJsonArray subscriptions_array;

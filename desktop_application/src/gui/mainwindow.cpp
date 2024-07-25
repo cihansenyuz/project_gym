@@ -36,11 +36,12 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
     //current_member->SetAge(20);
     //member_manager.SaveChangesOnMember(*current_member);
 
-    ///////////////////////////////////////
     /*if(register_dialog)
         qDebug() << "register is not null";
     else
         qDebug() << "register is null";*/
+
+    ///////////////////////////////////////
 }
 
 MainWindow::~MainWindow(){
@@ -58,11 +59,16 @@ void MainWindow::OnMemberDataFetched(const std::unique_ptr<QJsonArray> &fetched_
 }
 
 void MainWindow::OnGetButtonClicked(){
-    /*if(register_dialog)
-        qDebug() << "register is not null";
-    else
-        qDebug() << "register is null";*/
     current_member = member_manager.GetMember(ui->member_name_line_edit->text());
+
+    //////// TEST & DEBUG SECTION /////////
+
+    current_member->SetPayment(Payment(10000, 4, QDate::currentDate()));
+    qDebug() << current_member->GetTotalPayment();
+    member_manager.SaveChangesOnMember(*current_member);
+
+    ///////////////////////////////////////
+
     if(current_member){
         ui->message_text_browser->append("Member info has gotten: "
                                          + current_member->GetName());

@@ -7,6 +7,7 @@
 #include <memory>
 
 #include "../member/member.h"
+#include "../member/payment.h"
 #include "../json/membermanager.h"
 #include "../network/httpmanager.h"
 #include "../gui/infodialog.h"

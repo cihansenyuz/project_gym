@@ -6,9 +6,9 @@
 #include "../../inc/member/member.h"
 
 enum RegisterScreen{
-    Info,
-    Subscription,
-    Payment
+    InfoPage,
+    SubscriptionPage,
+    PaymentPage
 };
 
 namespace Ui {
