@@ -16,12 +16,12 @@
 
 #include <QDate>
 #include <QJsonObject>
-#include "payment.h"
+#include "paymentplan.h"
 
-class Subscription : public Payment
+class Subscription : public PaymentPlan
 {
 public:
-    Subscription() = default; // no use
+    Subscription() = default;
     Subscription(const QDate &start_date, const QDate &end_date, bool status);
     void SetSubscriptionPeriod(const QDate &start_date, const QDate &end_date);
     void ExtendSubscriptionEndDate(const QDate &end_date);
@@ -30,7 +30,6 @@ public:
     QDate GetSubscriptionStartDate() const;
     QDate GetSubscriptionEndDate() const;
     QJsonObject toJson(bool is_archived = false) const;
-    void SetPayment(const Payment &payment);
 
 private:
     QDate start_date_;

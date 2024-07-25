@@ -95,12 +95,11 @@ void MainWindow::OnGetButtonClicked(){
             ui->remaining_months_label->setText(QString::number(current_member->GetSubscriptionEndDate().month()
                                                                     - QDate::currentDate().month()));
 
-            qDebug() << current_member->GetRemainingPaymentQuantity();
-            ui->total_price_label->setText(QString::number(current_member->GetTotalPayment()));
-            ui->payment_label->setText(QString::number(current_member->GetPaymentQuantity()));
-            ui->remaining_payment_label->setText(QString::number(current_member->GetRemainingPaymentQuantity()));
-            ui->installments_label->setText(QString::number(current_member->GetInstallments()));
-            ui->installments_remaining_label->setText(QString::number(current_member->GetRemainingInstallments()));
+            ui->total_price_label->setText(QString::number(current_member->GetPrice()));
+            ui->payment_label->setText(QString::number(current_member->OneInstallmentQuantity()));
+            ui->remaining_payment_label->setText(QString::number(current_member->RemainingPaymentsTotal()));
+            ui->installments_label->setText(QString::number(current_member->GetNumOfInstallments()));
+            ui->installments_remaining_label->setText(QString::number(current_member->RemainingInstallmentQuantity()));
         }
 
         FillExercisePlanTable();

@@ -24,6 +24,7 @@ set(PROJECT_SOURCES
         src/member/measurement.cpp
         src/member/subscription.cpp
         src/member/payment.cpp
+        src/member/paymentplan.cpp
         src/member/exercise/exercise.cpp
         src/member/exercise/strengthworkout.cpp
         src/member/exercise/cardioworkout.cpp
@@ -47,6 +48,7 @@ set(PROJECT_SOURCES
         inc/member/measurement.h
         inc/member/subscription.h
         inc/member/payment.h
+        inc/member/paymentplan.h
         inc/member/exercise/exercise.h
         inc/member/exercise/strengthworkout.h
         inc/member/exercise/cardioworkout.h

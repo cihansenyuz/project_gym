@@ -50,11 +50,11 @@ void RegisterDialog::OnNextButtonSubClicked()
 
 void RegisterDialog::OnSaveButtonClicked()
 {
-    Payment payment(ui->price_line_edit->text().toInt(),
+    /*Payment payment(ui->price_line_edit->text().toInt(),
                     ui->installments_spin_box->value(),
                     new_member_->GetSubscriptionStartDate());
     new_member_->SetPayment(payment);
-    new_member_->SetRemainingPaymentQuantity(ui->price_line_edit->text().toInt());
+    new_member_->SetRemainingPaymentQuantity(ui->price_line_edit->text().toInt());*/
 
     emit MemberCreated(new_member_);
     close();

@@ -7,12 +7,12 @@ std::unique_ptr<Member> JsonParser::ParseMemberFromJson(QJsonObject &member_json
 
     ParseMeasurements(member_json["measurements"].toArray());
 
-    QJsonObject subs_json_obj = member_json["latest_subscription"].toObject();
+    /*QJsonObject subs_json_obj = member_json["latest_subscription"].toObject();
     member_to_be_parsed->SetSubscriptionPeriod(QDate::fromString(subs_json_obj["subscription_start_date"].toString(), Qt::ISODate),
                                                QDate::fromString(subs_json_obj["subscription_end_date"].toString(), Qt::ISODate));
 
     ParsePayment(subs_json_obj["payment"].toObject());
-    ParseSubscriptions(member_json["archived_subscriptions"].toArray());
+    ParseSubscriptions(member_json["archived_subscriptions"].toArray());*/
 
     if (member_json.contains("exercise_plan")) {
         ParseWeeklyExercisePlan(member_json["exercise_plan"].toObject());
@@ -40,12 +40,12 @@ void JsonParser::ParseMeasurements(const QJsonArray &measurements_array){
 }
 
 void JsonParser::ParsePayment(const QJsonObject &payment_object){
-    Payment payment(payment_object["total_payment"].toInt(),
+    /*Payment payment(payment_object["total_payment"].toInt(),
                     payment_object["installments"].toInt(),
                     member_to_be_parsed->GetSubscriptionStartDate());
     member_to_be_parsed->SetRemainingInstallments(payment_object["remaining_installments"].toInt());
     member_to_be_parsed->SetRemainingPaymentQuantity(payment_object["remaining_payment"].toDouble());
-    member_to_be_parsed->SetPayment(payment);
+    member_to_be_parsed->SetPayment(payment);*/
 }
 
 void JsonParser::ParseSubscriptions(const QJsonArray &subscriptions_array) {
@@ -55,10 +55,10 @@ void JsonParser::ParseSubscriptions(const QJsonArray &subscriptions_array) {
             QDate::fromString(subscription_json["subscription_start_date"].toString(), Qt::ISODate),
             QDate::fromString(subscription_json["subscription_end_date"].toString(), Qt::ISODate),
             false); // since archived subscriptions are not valid anymore
-        QJsonObject payment_json = subscription_json["payment"].toObject();
+        /*QJsonObject payment_json = subscription_json["payment"].toObject();
         archived_subscription.SetPayment(Payment(payment_json["total_payment"].toInt(),
                                                  payment_json["installments"].toInt(),
-                                                 QDate::fromString(subscription_json["subscription_start_date"].toString(), Qt::ISODate)));
+                                                 QDate::fromString(subscription_json["subscription_start_date"].toString(), Qt::ISODate)));*/
         member_to_be_parsed->AddSubscriptionToArchive(archived_subscription);
     }
 }
