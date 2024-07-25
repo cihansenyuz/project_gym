@@ -31,6 +31,7 @@ private slots:
     void OnNextButtonInfoClicked();
     void OnNextButtonSubClicked();
     void OnSaveButtonClicked();
+    void OnInstallmentsValueChanged(const int installment_quantity);
 
 private:
     Ui::RegisterDialog *ui;

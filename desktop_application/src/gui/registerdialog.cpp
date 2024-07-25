@@ -14,6 +14,8 @@ RegisterDialog::RegisterDialog(QWidget *parent)
             this, &RegisterDialog::OnNextButtonSubClicked);
     connect(ui->save_push_button, &QPushButton::clicked,
             this, &RegisterDialog::OnSaveButtonClicked);
+    connect(ui->installments_spin_box, &QSpinBox::valueChanged,
+            this, &RegisterDialog::OnInstallmentsValueChanged);
 
     radio_button_group = std::make_unique<QButtonGroup>(this);
     radio_button_group->addButton(ui->radio_button_1, 1);
@@ -49,9 +51,15 @@ void RegisterDialog::OnNextButtonSubClicked()
 
 void RegisterDialog::OnSaveButtonClicked()
 {
-    // read inputs from the page
+    new_member_->SetPayment(Payment(ui->price_line_edit->text().toInt(),
+                                    ui->installments_spin_box->value(),
+                                    new_member_->GetSubscriptionStartDate()));
 
     emit MemberCreated(new_member_);
     close();
 }
 
+void RegisterDialog::OnInstallmentsValueChanged(const int installment_quantity){
+    float monthly_payment = ui->price_line_edit->text().toInt() / installment_quantity;
+    ui->payment_label->setText(QString::number(monthly_payment));
+}
