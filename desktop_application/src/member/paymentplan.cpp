@@ -5,31 +5,63 @@ PaymentPlan::PaymentPlan(int price, int num_of_installments, const QDate start_d
 
     float payment_quantity = price / num_of_installments;
     do{
-        payment_plan.push_back(Payment(payment_quantity,
+        payment_plan_.push_back(Payment(payment_quantity,
                                        start_date.addMonths(--num_of_installments)));
     }while(num_of_installments);
 }
 
-float PaymentPlan::OneInstallmentQuantity() { return payment_plan.end()->GetQuantity(); }
-int PaymentPlan::GetNumOfInstallments() { return num_of_installments_; }
-int PaymentPlan::GetPrice() { return price_; }
+float PaymentPlan::OneInstallmentQuantity() const { return payment_plan_.back().GetQuantity(); }
+int PaymentPlan::GetNumOfInstallments() const { return num_of_installments_; }
+int PaymentPlan::GetPrice() const { return price_; }
+std::vector<Payment> PaymentPlan::GetPaymentsList() const { return payment_plan_; }
 
-int PaymentPlan::RemainingInstallmentQuantity(){
+void PaymentPlan::ReplaceDefaultPayments(const std::vector<Payment> &updated_payments){
+    payment_plan_ = updated_payments;
+    qDebug() << "replacing: " << updated_payments.back().GetQuantity();
+    qDebug() << "replacing: " << payment_plan_.back().GetQuantity();
+}
+
+void PaymentPlan::SetPaymentPlan(const PaymentPlan &payment_plan){
+    this->price_ = payment_plan.GetPrice();
+    this->num_of_installments_ = payment_plan.GetNumOfInstallments();
+    this->payment_plan_ = payment_plan.GetPaymentsList();
+    qDebug() << "setting: " << payment_plan.GetPaymentsList().back().GetQuantity();
+    qDebug() << "setting: " << this->GetPaymentsList().back().GetQuantity();
+}
+
+int PaymentPlan::RemainingInstallmentQuantity() const{
     int remaining = 0;
-    for(auto &payment : payment_plan)
-        if(payment.IsPaid())
+    for(auto &payment : payment_plan_)
+        if(!payment.IsPaid())
             remaining++;
     return remaining;
 }
 
-float PaymentPlan::RemainingPaymentsTotal(){
+float PaymentPlan::RemainingPaymentsTotal() const{
     float remaining = 0;
-    for(auto &payment : payment_plan)
+    for(auto &payment : payment_plan_)
         if(!payment.IsPaid())
             remaining += payment.GetQuantity();
     return remaining;
 }
 
-QJsonObject PaymentPlan::toJson() const{
+void PaymentPlan::Pay(){
+    for(auto &payment : payment_plan_)
+        if(!payment.IsPaid()){
+            payment.MakePaid();
+            return;
+        }
+}
 
+QJsonObject PaymentPlan::toJson() const{
+    QJsonObject json;
+    json["price"] = price_;
+    json["num_of_installments"] = num_of_installments_;
+
+    QJsonArray json_arr;
+    for(auto &payment : payment_plan_)
+        json_arr.append(payment.toJson());
+
+    json["payments"] = json_arr;
+    return json;
 }
