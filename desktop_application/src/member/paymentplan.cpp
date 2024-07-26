@@ -17,16 +17,12 @@ std::vector<Payment> PaymentPlan::GetPaymentsList() const { return payment_plan_
 
 void PaymentPlan::ReplaceDefaultPayments(const std::vector<Payment> &updated_payments){
     payment_plan_ = updated_payments;
-    qDebug() << "replacing: " << updated_payments.back().GetQuantity();
-    qDebug() << "replacing: " << payment_plan_.back().GetQuantity();
 }
 
 void PaymentPlan::SetPaymentPlan(const PaymentPlan &payment_plan){
     this->price_ = payment_plan.GetPrice();
     this->num_of_installments_ = payment_plan.GetNumOfInstallments();
     this->payment_plan_ = payment_plan.GetPaymentsList();
-    qDebug() << "setting: " << payment_plan.GetPaymentsList().back().GetQuantity();
-    qDebug() << "setting: " << this->GetPaymentsList().back().GetQuantity();
 }
 
 int PaymentPlan::RemainingInstallmentQuantity() const{

@@ -15,9 +15,8 @@
 #ifndef PAYMENTPLAN_H
 #define PAYMENTPLAN_H
 
-#include <QDate>
+#include <QJsonArray>
 #include "payment.h"
-#include "QJsonArray"
 
 class PaymentPlan
 {

@@ -16,8 +16,6 @@
 #ifndef DAILYEXERCISEPLAN_H
 #define DAILYEXERCISEPLAN_H
 
-#include <vector>
-#include <QJsonObject>
 #include <QJsonArray>
 #include "exercise.h"
 

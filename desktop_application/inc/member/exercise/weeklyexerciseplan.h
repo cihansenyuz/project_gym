@@ -17,10 +17,6 @@
 #ifndef WEEKLYEXERCISEPLAN_H
 #define WEEKLYEXERCISEPLAN_H
 
-#include <vector>
-#include <QJsonObject>
-#include <QJsonArray>
-#include <QDate>
 #include "dailyexerciseplan.h"
 
 class WeeklyExercisePlan

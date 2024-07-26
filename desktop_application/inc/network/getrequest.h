@@ -15,7 +15,6 @@
 #define GETREQUEST_H
 
 #include "networkcore.h"
-#include "memory"
 
 class GetRequest : public NetworkCore
 {

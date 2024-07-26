@@ -15,17 +15,10 @@
 #ifndef MEMBERMANAGER_H
 #define MEMBERMANAGER_H
 
-#include "../member/member.h"
-#include "../json/jsoncontainer.h"
-#include "../network/httpmanager.h"
-
-#include <QJsonObject>
-#include <QJsonValue>
-#include <QDebug>
 #include <thread>
-#include <chrono>
 #include <mutex>
-#include <memory>
+#include "../json/jsoncontainer.h"
+#include "../json/jsonparser.h"
 
 class MemberManager : public JsonContainer
 {
