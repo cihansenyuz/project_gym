@@ -40,6 +40,9 @@ set (PROJECT_SOURCES
   payment_fixture.cpp
   ../src/member/payment.cpp
   ../inc/member/payment.h
+  paymentplan_fixture.cpp
+  ../src/member/paymentplan.cpp
+  ../inc/member/paymentplan.h
 )
 
 add_executable(desktop_app_test ${PROJECT_SOURCES})

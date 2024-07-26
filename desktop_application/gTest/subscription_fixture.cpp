@@ -66,3 +66,24 @@ TEST_F(SubscriptionTestFixture, ToJson) {
     EXPECT_EQ(archivedJson["subscription_end_date"].toString(), endDate.toString(Qt::ISODate));
     EXPECT_FALSE(archivedJson.contains("status"));
 }
+
+TEST_F(SubscriptionTestFixture, PaymentPlanIntegration) {
+
+    subscription->SetPaymentPlan(PaymentPlan(1200, 12, startDate));
+
+    EXPECT_EQ(subscription->GetPrice(), 1200);
+    EXPECT_EQ(subscription->GetNumOfInstallments(), 12);
+
+    auto payments = subscription->GetPaymentsList();
+    EXPECT_EQ(payments.size(), 12);
+
+    for (int i = 0; i < 12; ++i) {
+        EXPECT_EQ(payments[i].GetDueDate(), startDate.addMonths(11-i));
+        EXPECT_FLOAT_EQ(payments[i].GetQuantity(), 1200 / 12);
+        EXPECT_FALSE(payments[i].IsPaid());
+    }
+
+    subscription->Pay();
+    EXPECT_EQ(subscription->RemainingInstallmentQuantity(), 11);
+    EXPECT_FLOAT_EQ(subscription->RemainingPaymentsTotal(), 1200 - (1200 / 12));
+}
