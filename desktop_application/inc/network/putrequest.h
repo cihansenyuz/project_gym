@@ -1,3 +1,15 @@
+/**
+  ******************************************************************************
+  * @file    putrequest.hpp
+  * @author  Cihan Senyuz
+  * @date    14.07.2024
+  * @brief   Header for PutRequest class.
+  *          This file contains the definition of the PutRequest class, which
+  *          extends NetworkCore to manage HTTP PUT requests for pushing member
+  *          JSON data.
+  ******************************************************************************
+  */
+
 #ifndef PUTREQUEST_H
 #define PUTREQUEST_H
 

@@ -1,3 +1,17 @@
+/**
+  ******************************************************************************
+  * @file    logindialog.hpp
+  * @author  Cihan Senyuz
+  * @date    08.07.2024
+  * @brief   Header for LoginDialog class.
+  *          This file contains the definition of the LoginDialog class, which
+  *          represents a dialog for user login and registration. The class includes
+  *          methods for handling login, registration, and related interactions with
+  *          the `HttpManager`. It also manages informational dialogs.
+  *
+  ******************************************************************************
+  */
+
 #ifndef LOGINDIALOG_H
 #define LOGINDIALOG_H
 

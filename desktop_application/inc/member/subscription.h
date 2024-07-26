@@ -5,8 +5,9 @@
   * @date    23.06.2024
   * @brief   Header for subscription.cpp file.
   *                 Manages subscriptions for members, including start and end dates,
-  *          and handles archived subscriptions.Provides methods for adding,
-  *          updating, and retrieving subscription information.
+  *          and handles archived subscriptions. Provides methods for adding,
+  *          updating, and retrieving subscription information. Inherets PaymentPlan
+  *          to manage payments of the subscription.
   *
   ******************************************************************************
   */

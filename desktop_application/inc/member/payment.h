@@ -1,3 +1,17 @@
+/**
+  ******************************************************************************
+  * @file    payment.hpp
+  * @author  Cihan Senyuz
+  * @date    26.07.2024
+  * @brief   Header for Payment class.
+  *          This file contains the definition of the Payment class, which
+  *          represents a payment with a specified quantity, due date, and
+  *          payment status. The class includes methods to convert to JSON and
+  *          update the payment status.
+  *
+  ******************************************************************************
+  */
+
 #ifndef PAYMENT_H
 #define PAYMENT_H
 

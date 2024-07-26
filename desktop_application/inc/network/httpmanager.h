@@ -1,3 +1,18 @@
+/**
+  ******************************************************************************
+  * @file    httpmanager.hpp
+  * @author  Cihan Senyuz
+  * @date    12.07.2024
+  * @brief   Header for HttpManager class.
+  *          This file contains the definition of the HttpManager class, which
+  *          inherits from PostRequest, GetRequest, and PutRequest classes to
+  *          manage various HTTP requests using a single interface.
+  *
+  * @note    define DEV_MODE_USE_PRETAKEN_TOKEN and TOKEN to skip getting a new
+  *          token upon each log in.
+  ******************************************************************************
+  */
+
 #ifndef HTTPMANAGER_H
 #define HTTPMANAGER_H
 

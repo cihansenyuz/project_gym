@@ -1,3 +1,16 @@
+/**
+  ******************************************************************************
+  * @file    getrequest.hpp
+  * @author  Cihan Senyuz
+  * @date    14.07.2024
+  * @brief   Header for GetRequest class.
+  *          This file contains the definition of the GetRequest class, which
+  *          extends NetworkCore to manage HTTP GET requests specifically for
+  *          fetching member JSON data.
+  *
+  ******************************************************************************
+  */
+
 #ifndef GETREQUEST_H
 #define GETREQUEST_H
 

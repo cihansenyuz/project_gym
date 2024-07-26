@@ -1,3 +1,16 @@
+/**
+  ******************************************************************************
+  * @file    networkcore.hpp
+  * @author  Cihan Senyuz
+  * @date    14.07.2024
+  * @brief   Header for NetworkCore class.
+  *          This file contains the definition of the NetworkCore class, which
+  *          manages HTTP network communications. The class includes methods for
+  *          sending HTTP requests and handling responses.
+  *
+  ******************************************************************************
+  */
+
 #ifndef NETWORKCORE_H
 #define NETWORKCORE_H
 

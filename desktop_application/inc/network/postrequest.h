@@ -1,3 +1,15 @@
+/**
+  ******************************************************************************
+  * @file    postrequest.hpp
+  * @author  Cihan Senyuz
+  * @date    14.07.2024
+  * @brief   Header for PostRequest class.
+  *          This file contains the definition of the PostRequest class, which
+  *          extends NetworkCore to manage HTTP POST requests for login and
+  *          registration functionalities.
+  ******************************************************************************
+  */
+
 #ifndef POSTREQUEST_H
 #define POSTREQUEST_H
 

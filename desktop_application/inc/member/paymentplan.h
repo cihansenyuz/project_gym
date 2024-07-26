@@ -1,3 +1,17 @@
+/**
+  ******************************************************************************
+  * @file    paymentplan.hpp
+  * @author  Cihan Senyuz
+  * @date    26.07.2024
+  * @brief   Header for PaymentPlan class.
+  *          This file contains the definition of the PaymentPlan class, which
+  *          represents a payment plan with a specified price, number of installments,
+  *          and a list of payments. The class includes methods for managing payments
+  *          and calculating remaining installments and payments.
+  *
+  ******************************************************************************
+  */
+
 #ifndef PAYMENTPLAN_H
 #define PAYMENTPLAN_H
 

@@ -1,3 +1,17 @@
+/**
+  ******************************************************************************
+  * @file    infodialog.hpp
+  * @author  Cihan Senyuz
+  * @date    12.07.2024
+  * @brief   Header for InfoDialog class.
+  *          This file contains the definition of the InfoDialog class, which
+  *          represents a dialog for displaying informational messages to the user.
+  *          The class includes methods for initializing the dialog with a message
+  *          and title, and handling the OK button click event.
+  *
+  ******************************************************************************
+  */
+
 #ifndef INFODIALOG_H
 #define INFODIALOG_H
 

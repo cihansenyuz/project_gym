@@ -1,3 +1,16 @@
+/**
+  ******************************************************************************
+  * @file    registerdialog.hpp
+  * @author  Cihan Senyuz
+  * @date    24.07.2024
+  * @brief   Header for RegisterDialog class.
+  *          This file contains the definition of the RegisterDialog class, which
+  *          represents a dialog for user registration. The class includes methods
+  *          for navigating through registration pages and saving new member details.
+  *
+  ******************************************************************************
+  */
+
 #ifndef REGISTERDIALOG_H
 #define REGISTERDIALOG_H
 

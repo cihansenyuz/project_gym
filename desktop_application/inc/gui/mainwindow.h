@@ -1,3 +1,18 @@
+/**
+  ******************************************************************************
+  * @file    mainwindow.hpp
+  * @author  Cihan Senyuz
+  * @date    10.07.2024
+  * @brief   Header for MainWindow class.
+  *          This file contains the definition of the MainWindow class, which
+  *          represents the main window of the application. The class includes methods
+  *          for managing and interacting with various dialogs and network operations,
+  *          as well as handling user actions related to member data, exercise plans,
+  *          and more.
+  *
+  ******************************************************************************
+  */
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 

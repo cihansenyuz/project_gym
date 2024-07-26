@@ -1,3 +1,17 @@
+/**
+  ******************************************************************************
+  * @file    newmeasurementsdialog.hpp
+  * @author  Cihan Senyuz
+  * @date    24.07.2024
+  * @brief   Header for NewMeasurementsDialog class.
+  *          This file contains the definition of the NewMeasurementsDialog class,
+  *          which represents a dialog for inputting new measurements. The class
+  *          includes a signal for notifying when new measurements are saved and
+  *          methods for handling user interactions.
+  *
+  ******************************************************************************
+  */
+
 #ifndef NEWMEASUREMENTSDIALOG_H
 #define NEWMEASUREMENTSDIALOG_H
 
