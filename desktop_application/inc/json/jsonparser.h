@@ -15,15 +15,7 @@
 #ifndef JSONPARSER_H
 #define JSONPARSER_H
 
-#include <QJsonDocument>
-#include <QJsonObject>
-#include <QJsonValue>
-#include <memory>
-
 #include "../member/member.h"
-#include "../member/payment.h"
-#include "../member/exercise/cardioworkout.h"
-#include "../member/exercise/strengthworkout.h"
 
 class JsonParser
 {

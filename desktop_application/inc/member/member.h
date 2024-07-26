@@ -19,9 +19,6 @@
 #ifndef MEMBER_H
 #define MEMBER_H
 
-#include <QString>
-#include <QJsonObject>
-#include <QJsonArray>
 #include "measurement.h"
 #include "subscription.h"
 #include "exercise/weeklyexerciseplan.h"

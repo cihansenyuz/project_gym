@@ -17,7 +17,6 @@
 #define CARDIOWORKOUT_H
 
 #include "exercise.h"
-#include <QJsonObject>
 
 class CardioWorkout : public Exercise
 {

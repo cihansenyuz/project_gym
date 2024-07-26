@@ -15,7 +15,6 @@
 #ifndef PAYMENT_H
 #define PAYMENT_H
 
-#include <QDate>
 #include <QJsonObject>
 
 class Payment

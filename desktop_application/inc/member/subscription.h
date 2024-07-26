@@ -15,8 +15,6 @@
 #ifndef SUBSCRIPTION_H
 #define SUBSCRIPTION_H
 
-#include <QDate>
-#include <QJsonObject>
 #include "paymentplan.h"
 
 class Subscription : public PaymentPlan

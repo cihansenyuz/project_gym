@@ -1,4 +1,6 @@
 #include "../../inc/json/jsonparser.h"
+#include "../../inc/member/exercise/cardioworkout.h"
+#include "../../inc/member/exercise/strengthworkout.h"
 
 std::unique_ptr<Member> JsonParser::ParseMemberFromJson(QJsonObject &member_json){
     member_to_be_parsed = std::make_unique<Member>();

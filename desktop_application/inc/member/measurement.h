@@ -14,9 +14,7 @@
 #ifndef MEASUREMENT_H
 #define MEASUREMENT_H
 
-#include <QDate>
 #include <QJsonObject>
-#include <QJsonArray>
 
 class Measurement
 {

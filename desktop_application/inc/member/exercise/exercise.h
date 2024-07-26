@@ -15,8 +15,6 @@
 #ifndef EXERCISE_H
 #define EXERCISE_H
 
-#include <map>
-#include <QString>
 #include <QJsonObject>
 
 enum ExerciseType{
