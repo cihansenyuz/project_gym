@@ -171,8 +171,9 @@ void MainWindow::FillExercisePlanTable(){
                 item_repeat->setTextAlignment(Qt::AlignCenter);
                 exercise_day_table->setItem(i, 2, item_repeat);
             }
-            //for(int j=1; j<4; j++)
-            //   exercise_day_table->itemAt(i, j)->setTextAlignment(Qt::AlignCenter);
+            for (int col = 0; col < exercise_day_table->columnCount(); ++col) {
+                exercise_day_table->resizeColumnToContents(col);
+            }
         }
     }
 
@@ -247,14 +248,14 @@ void MainWindow::ClearViewedMemberInfos(){
     ui->sub_end_date_label->clear();
     ui->remaining_months_label->clear();
     // measurements view
-    ui->shoulder_label->clear();
+    /*ui->shoulder_label->clear();
     ui->chest_label->clear();
     ui->arm_label->clear();
     ui->belly_label->clear();
     ui->hip_label->clear();
     ui->leg_label->clear();
     ui->weight_label->clear();
-    ui->taken_date_label->clear();
+    ui->taken_date_label->clear();*/
     // payment view
     ui->total_price_label->clear();
     ui->remaining_payment_label->clear();
