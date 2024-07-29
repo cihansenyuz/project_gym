@@ -137,8 +137,8 @@ void MainWindow::FillExercisePlanTable(){
     for(auto &daily_plan : weekly_exercise_plan){
         QWidget *new_tab = new QWidget;
         QVBoxLayout *exercise_day_layout = new QVBoxLayout(new_tab);
-        QTableWidget *exercise_day_table = new QTableWidget(5, daily_plan.GetDailyExercisePlan().size(), new_tab);
-        exercise_day_table->setVerticalHeaderLabels(QStringList{"Type",
+        QTableWidget *exercise_day_table = new QTableWidget(daily_plan.GetDailyExercisePlan().size(), 4, new_tab);
+        exercise_day_table->setHorizontalHeaderLabels(QStringList{"Type",
                                                                 "Name",
                                                                 "Sets",
                                                                 "Repeats",
@@ -149,26 +149,30 @@ void MainWindow::FillExercisePlanTable(){
 
         std::vector<Exercise*> all_exercises = daily_plan.GetDailyExercisePlan();
         for(int i=0; i < all_exercises.size(); i++){
-            QTableWidgetItem *header_item = new QTableWidgetItem(QString("Exercise %1").arg(i+1));
-            exercise_day_table->setHorizontalHeaderItem(i, header_item);
+            QTableWidgetItem *header_item = new QTableWidgetItem(Exercise::toString(all_exercises[i]->GetName()));
+            exercise_day_table->setVerticalHeaderItem(i, header_item);
 
             ExerciseType type = all_exercises[i]->GetType();
             QTableWidgetItem *item_type = new QTableWidgetItem(Exercise::toString(type));
-            exercise_day_table->setItem(0, i, item_type);
-            QTableWidgetItem *item_name = new QTableWidgetItem(Exercise::toString(all_exercises[i]->GetName()));
-            exercise_day_table->setItem(1, i, item_name);
+            exercise_day_table->setItem(i, 0, item_type);
+
             if(type == Cardio){
                 CardioWorkout* casted_exercise = dynamic_cast<CardioWorkout*>(all_exercises[i]);
                 QTableWidgetItem *item_durition = new QTableWidgetItem(QString::number(casted_exercise->GetDurition()));
-                exercise_day_table->setItem(4, i, item_durition);
+                item_durition->setTextAlignment(Qt::AlignCenter);
+                exercise_day_table->setItem(i, 3, item_durition);
             }
             else{
                 StrengthWorkout* casted_exercise = dynamic_cast<StrengthWorkout*>(all_exercises[i]);
                 QTableWidgetItem *item_set = new QTableWidgetItem(QString::number(casted_exercise->GetSet()));
-                exercise_day_table->setItem(2, i, item_set);
+                item_set->setTextAlignment(Qt::AlignCenter);
+                exercise_day_table->setItem(i, 1, item_set);
                 QTableWidgetItem *item_repeat = new QTableWidgetItem(QString::number(casted_exercise->GetRepeat()));
-                exercise_day_table->setItem(3, i, item_repeat);
+                item_repeat->setTextAlignment(Qt::AlignCenter);
+                exercise_day_table->setItem(i, 2, item_repeat);
             }
+            //for(int j=1; j<4; j++)
+            //   exercise_day_table->itemAt(i, j)->setTextAlignment(Qt::AlignCenter);
         }
     }
 
