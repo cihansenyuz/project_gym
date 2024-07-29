@@ -22,14 +22,14 @@ set(PROJECT_SOURCES
         src/gui/newmeasurementsdialog.cpp
         src/member/member.cpp
         src/member/measurement.cpp
-        src/member/subscription.cpp
-        src/member/payment.cpp
-        src/member/paymentplan.cpp
         src/member/exercise/exercise.cpp
         src/member/exercise/strengthworkout.cpp
         src/member/exercise/cardioworkout.cpp
         src/member/exercise/dailyexerciseplan.cpp
         src/member/exercise/weeklyexerciseplan.cpp
+        src/member/subscription/subscription.cpp
+        src/member/subscription/payment.cpp
+        src/member/subscription/paymentplan.cpp
         src/json/membermanager.cpp
         src/json/jsonparser.cpp
         src/json/jsoncontainer.cpp
@@ -46,14 +46,14 @@ set(PROJECT_SOURCES
         inc/gui/newmeasurementsdialog.h
         inc/member/member.h
         inc/member/measurement.h
-        inc/member/subscription.h
-        inc/member/payment.h
-        inc/member/paymentplan.h
         inc/member/exercise/exercise.h
         inc/member/exercise/strengthworkout.h
         inc/member/exercise/cardioworkout.h
         inc/member/exercise/dailyexerciseplan.h
         inc/member/exercise/weeklyexerciseplan.h
+        inc/member/subscription/subscription.h
+        inc/member/subscription/payment.h
+        inc/member/subscription/paymentplan.h
         inc/json/membermanager.h
         inc/json/jsonparser.h
         inc/json/jsoncontainer.h
