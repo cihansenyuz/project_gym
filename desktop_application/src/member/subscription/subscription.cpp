@@ -1,4 +1,4 @@
-#include "../../inc/member/subscription.h"
+#include "../../../inc/member/subscription/subscription.h"
 
 Subscription::Subscription(const QDate &start_date, const QDate &end_date, bool status)
     : start_date_(start_date), end_date_(end_date), status_(status) {}

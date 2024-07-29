@@ -20,7 +20,7 @@
 #define MEMBER_H
 
 #include "measurement.h"
-#include "subscription.h"
+#include "subscription/subscription.h"
 #include "exercise/weeklyexerciseplan.h"
 
 /**

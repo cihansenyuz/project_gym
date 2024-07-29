@@ -1,4 +1,4 @@
-#include "../../inc/member/payment.h"
+#include "../../../inc/member/subscription/payment.h"
 
 Payment::Payment(float quantity, QDate due_date, bool is_paid)
     : quantity_(quantity), due_date_(due_date), paid(is_paid) {}

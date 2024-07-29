@@ -1,4 +1,4 @@
-#include "../../inc/member/paymentplan.h"
+#include "../../../inc/member/subscription/paymentplan.h"
 
 PaymentPlan::PaymentPlan(int price, int num_of_installments, const QDate start_date)
     : price_(price), num_of_installments_(num_of_installments) {
