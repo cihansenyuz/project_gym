@@ -2,6 +2,7 @@
 #include "../../ui/ui_mainwindow.h"
 #include "../../inc/member/exercise/cardioworkout.h"
 #include "../../inc/member/exercise/strengthworkout.h"
+#include "../../exerciseplantable.h"
 
 MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *parent)
     : http_manager_(http_manager), QMainWindow(parent)
@@ -137,44 +138,13 @@ void MainWindow::FillExercisePlanTable(){
     for(auto &daily_plan : weekly_exercise_plan){
         QWidget *new_tab = new QWidget;
         QVBoxLayout *exercise_day_layout = new QVBoxLayout(new_tab);
-        QTableWidget *exercise_day_table = new QTableWidget(daily_plan.GetDailyExercisePlan().size(), 4, new_tab);
-        exercise_day_table->setHorizontalHeaderLabels(QStringList{"Type",
-                                                                "Name",
-                                                                "Sets",
-                                                                "Repeats",
-                                                                "Durition"});
+        ExercisePlanTable *exercise_day_table = new ExercisePlanTable(daily_plan.GetDailyExercisePlan(),
+                                                                      daily_plan.GetDailyExercisePlan().size(),
+                                                                      4, new_tab);
+
         exercise_day_layout->addWidget(exercise_day_table);
         new_tab->setLayout(exercise_day_layout);
         exercise_day_tabs->addTab(new_tab, QString("Day %1\nCooldown: %2days").arg(day_no++).arg(daily_plan.GetCooldownPeriod()));
-
-        std::vector<Exercise*> all_exercises = daily_plan.GetDailyExercisePlan();
-        for(int i=0; i < all_exercises.size(); i++){
-            QTableWidgetItem *header_item = new QTableWidgetItem(Exercise::toString(all_exercises[i]->GetName()));
-            exercise_day_table->setVerticalHeaderItem(i, header_item);
-
-            ExerciseType type = all_exercises[i]->GetType();
-            QTableWidgetItem *item_type = new QTableWidgetItem(Exercise::toString(type));
-            exercise_day_table->setItem(i, 0, item_type);
-
-            if(type == Cardio){
-                CardioWorkout* casted_exercise = dynamic_cast<CardioWorkout*>(all_exercises[i]);
-                QTableWidgetItem *item_durition = new QTableWidgetItem(QString::number(casted_exercise->GetDurition()));
-                item_durition->setTextAlignment(Qt::AlignCenter);
-                exercise_day_table->setItem(i, 3, item_durition);
-            }
-            else{
-                StrengthWorkout* casted_exercise = dynamic_cast<StrengthWorkout*>(all_exercises[i]);
-                QTableWidgetItem *item_set = new QTableWidgetItem(QString::number(casted_exercise->GetSet()));
-                item_set->setTextAlignment(Qt::AlignCenter);
-                exercise_day_table->setItem(i, 1, item_set);
-                QTableWidgetItem *item_repeat = new QTableWidgetItem(QString::number(casted_exercise->GetRepeat()));
-                item_repeat->setTextAlignment(Qt::AlignCenter);
-                exercise_day_table->setItem(i, 2, item_repeat);
-            }
-            for (int col = 0; col < exercise_day_table->columnCount(); ++col) {
-                exercise_day_table->resizeColumnToContents(col);
-            }
-        }
     }
 
     ui->verticalLayout_4->addWidget(exercise_day_tabs.get());
