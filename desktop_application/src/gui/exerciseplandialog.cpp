@@ -59,6 +59,7 @@ void ExercisePlanDialog::FillExercisePlanTable(){
 
     exercise_day_tabs = std::make_unique<ExerciseWeekView>(new_weekly_exercise_plan);
     ui->exercise_view_layout->addWidget(exercise_day_tabs.get());
+    exercise_day_tabs->setCurrentIndex(current_day);
 }
 
 void ExercisePlanDialog::DeleteExercisePlanTable() {
