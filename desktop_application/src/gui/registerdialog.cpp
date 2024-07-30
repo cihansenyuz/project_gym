@@ -54,9 +54,7 @@ void RegisterDialog::OnSaveButtonClicked()
                      ui->installments_spin_box->value(),
                      new_member_->GetSubscriptionStartDate());
 
-    qDebug() << "register window plan: " << plan.GetPrice();
     new_member_->SetPaymentPlan(plan);
-    qDebug() << "register window member: " << new_member_->GetPrice();
     emit MemberCreated(new_member_);
     close();
 }

@@ -25,13 +25,16 @@ signals:
 private slots:
     void OnAddButtonClicked();
     void OnRemoveButtonClicked();
+    void OnNewDayButtonClicked();
     void OnApplyButtonClicked();
     void OnCancelButtonClicked();
 
 private:
     Ui::ExercisePlanDialog *ui;
+    DailyExercisePlan new_daily_plan;
     std::unique_ptr<ExerciseWeekView> exercise_day_tabs;
     std::vector<DailyExercisePlan> new_weekly_exercise_plan;
+    int current_day{0};
 };
 
 #endif // EXERCISEPLANDIALOG_H

@@ -130,6 +130,19 @@
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
+      <spacer name="verticalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>40</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
       <widget class="QPushButton" name="add_push_button">
        <property name="text">
         <string>Add &gt;&gt;</string>
@@ -140,6 +153,13 @@
       <widget class="QPushButton" name="remove_push_button">
        <property name="text">
         <string>Remove &lt;&lt;</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="new_day_push_button">
+       <property name="text">
+        <string>Next Day</string>
        </property>
       </widget>
      </item>
