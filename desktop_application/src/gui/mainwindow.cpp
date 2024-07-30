@@ -130,19 +130,7 @@ void MainWindow::FillExercisePlanTable(){
     if(weekly_exercise_plan.size() == 0)
         return;
 
-    exercise_day_tabs = std::make_unique<QTabWidget>();
-
-    int day_no = 1;
-    for(auto &daily_plan : weekly_exercise_plan){
-        QWidget *new_tab = new QWidget;
-        QVBoxLayout *exercise_day_layout = new QVBoxLayout(new_tab);
-        ExercisePlanTable *exercise_day_table = new ExercisePlanTable(daily_plan.GetDailyExercisePlan(),
-                                                                      new_tab);
-
-        exercise_day_layout->addWidget(exercise_day_table);
-        new_tab->setLayout(exercise_day_layout);
-        exercise_day_tabs->addTab(new_tab, QString("Day %1\nCooldown: %2days").arg(day_no++).arg(daily_plan.GetCooldownPeriod()));
-    }
+    exercise_day_tabs = std::make_unique<ExercisePlanTabs>(weekly_exercise_plan);
 
     ui->verticalLayout_4->addWidget(exercise_day_tabs.get());
     ui->exercise_plan_group->setLayout(ui->verticalLayout_4);

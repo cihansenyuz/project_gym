@@ -1,10 +1,16 @@
 #ifndef EXERCISEPLANTABS_H
 #define EXERCISEPLANTABS_H
 
-class ExercisePlanTabs
+#include "exerciseplantable.h"
+#include "../../member/exercise/dailyexerciseplan.h"
+
+class ExercisePlanTabs : public QTabWidget
 {
 public:
-    ExercisePlanTabs();
+    ExercisePlanTabs(const std::vector<DailyExercisePlan> &weekly_exercise_plan);
+
+private:
+    ExercisePlanTable *exercise_day_table;
 };
 
 #endif // EXERCISEPLANTABS_H

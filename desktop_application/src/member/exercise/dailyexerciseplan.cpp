@@ -30,6 +30,6 @@ short DailyExercisePlan::GetCooldownPeriod() const{
     return cooldown_period_;
 }
 
-std::vector<Exercise*> DailyExercisePlan::GetDailyExercisePlan(){
+std::vector<Exercise*> DailyExercisePlan::GetDailyExercisePlan() const{
     return daily_plan_;
 }

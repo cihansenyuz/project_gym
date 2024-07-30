@@ -24,6 +24,7 @@
 #include "../gui/infodialog.h"
 #include "../gui/registerdialog.h"
 #include "../gui/newmeasurementsdialog.h"
+#include "../gui/components/exerciseplantabs.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -60,7 +61,7 @@ private:
     std::shared_ptr<HttpManager> http_manager_;
     MemberManager member_manager;
     std::unique_ptr<Member> current_member;
-    std::unique_ptr<QTabWidget> exercise_day_tabs;
+    std::unique_ptr<ExercisePlanTabs> exercise_day_tabs;
     std::unique_ptr<InfoDialog> message_dialog;
     std::unique_ptr<RegisterDialog> register_dialog;
     std::unique_ptr<NewMeasurementsDialog> measurements_dialog;
