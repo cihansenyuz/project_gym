@@ -1,6 +1,6 @@
-#include "exerciseplantable.h"
-#include "inc/member/exercise/cardioworkout.h"
-#include "inc/member/exercise/strengthworkout.h"
+#include "../../../inc/gui/components/exerciseplantable.h"
+#include "../../../inc/member/exercise/cardioworkout.h"
+#include "../../../inc/member/exercise/strengthworkout.h"
 
 ExercisePlanTable::ExercisePlanTable(std::vector<Exercise*> daily_exercises, QWidget *parent)
     : QTableWidget(daily_exercises.size(), 4, parent) {

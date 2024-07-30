@@ -15,11 +15,15 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Network)
 
 set(PROJECT_SOURCES
         src/main.cpp
+
         src/gui/mainwindow.cpp
         src/gui/logindialog.cpp
         src/gui/infodialog.cpp
         src/gui/registerdialog.cpp
         src/gui/newmeasurementsdialog.cpp
+        src/gui/components/exerciseplantable.cpp
+        src/gui/components/exerciseplantabs.cpp
+
         src/member/member.cpp
         src/member/measurement.cpp
         src/member/exercise/exercise.cpp
@@ -30,9 +34,11 @@ set(PROJECT_SOURCES
         src/member/subscription/subscription.cpp
         src/member/subscription/payment.cpp
         src/member/subscription/paymentplan.cpp
+
         src/json/membermanager.cpp
         src/json/jsonparser.cpp
         src/json/jsoncontainer.cpp
+
         src/network/httpmanager.cpp
         src/network/networkcore.cpp
         src/network/postrequest.cpp
@@ -44,6 +50,9 @@ set(PROJECT_SOURCES
         inc/gui/infodialog.h
         inc/gui/registerdialog.h
         inc/gui/newmeasurementsdialog.h
+        inc/gui/components/exerciseplantable.h
+        inc/gui/components/exerciseplantabs.h
+
         inc/member/member.h
         inc/member/measurement.h
         inc/member/exercise/exercise.h
@@ -54,9 +63,11 @@ set(PROJECT_SOURCES
         inc/member/subscription/subscription.h
         inc/member/subscription/payment.h
         inc/member/subscription/paymentplan.h
+
         inc/json/membermanager.h
         inc/json/jsonparser.h
         inc/json/jsoncontainer.h
+
         inc/network/httpmanager.h
         inc/network/networkcore.h
         inc/network/postrequest.h
@@ -74,7 +85,6 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
     qt_add_executable(desktop_application
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
-        exerciseplantable.h exerciseplantable.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET desktop_application APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

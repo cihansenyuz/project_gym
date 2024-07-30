@@ -2,7 +2,7 @@
 #define EXERCISEPLANTABLE_H
 
 #include <QTableWidget>
-#include "inc/member/exercise/exercise.h"
+#include "../../member/exercise/exercise.h"
 
 #define EXERCISE_TYPE_TABLE_HEADER 0
 #define SET_QUANTITY_TABLE_HEADER 1

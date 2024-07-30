@@ -1,8 +1,6 @@
 #include "../../inc/gui/mainwindow.h"
 #include "../../ui/ui_mainwindow.h"
-#include "../../inc/member/exercise/cardioworkout.h"
-#include "../../inc/member/exercise/strengthworkout.h"
-#include "../../exerciseplantable.h"
+#include "../../inc/gui/components/exerciseplantable.h"
 
 MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *parent)
     : http_manager_(http_manager), QMainWindow(parent)
