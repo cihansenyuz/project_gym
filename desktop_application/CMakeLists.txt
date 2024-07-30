@@ -21,6 +21,7 @@ set(PROJECT_SOURCES
         src/gui/infodialog.cpp
         src/gui/registerdialog.cpp
         src/gui/newmeasurementsdialog.cpp
+        src/gui/exerciseplandialog.cpp
         src/gui/components/exercisedayview.cpp
         src/gui/components/exerciseweekview.cpp
 
@@ -50,6 +51,7 @@ set(PROJECT_SOURCES
         inc/gui/infodialog.h
         inc/gui/registerdialog.h
         inc/gui/newmeasurementsdialog.h
+        inc/gui/exerciseplandialog.h
         inc/gui/components/exercisedayview.h
         inc/gui/components/exerciseweekview.h
 
@@ -79,6 +81,7 @@ set(PROJECT_SOURCES
         ui/infodialog.ui
         ui/registerdialog.ui
         ui/newmeasurementsdialog.ui
+        ui/exerciseplandialog.ui
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
