@@ -1,8 +1,8 @@
-#include "../../../inc/gui/components/exerciseplantabs.h"
+#include "../../../inc/gui/components/exerciseweekview.h"
 #include <QWidget>
 #include <QVBoxLayout>
 
-ExercisePlanTabs::ExercisePlanTabs(const std::vector<DailyExercisePlan> &weekly_exercise_plan)
+ExerciseWeekView::ExerciseWeekView(const std::vector<DailyExercisePlan> &weekly_exercise_plan)
     : QTabWidget() {
 
     int day_no = 1;

@@ -129,7 +129,7 @@ void MainWindow::FillExercisePlanTable(){
     if(weekly_exercise_plan.size() == 0)
         return;
 
-    exercise_day_tabs = std::make_unique<ExercisePlanTabs>(weekly_exercise_plan);
+    exercise_day_tabs = std::make_unique<ExerciseWeekView>(weekly_exercise_plan);
 
     ui->verticalLayout_4->addWidget(exercise_day_tabs.get());
     ui->exercise_plan_group->setLayout(ui->verticalLayout_4);

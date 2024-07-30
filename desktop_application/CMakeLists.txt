@@ -22,7 +22,7 @@ set(PROJECT_SOURCES
         src/gui/registerdialog.cpp
         src/gui/newmeasurementsdialog.cpp
         src/gui/components/exercisedayview.cpp
-        src/gui/components/exerciseplantabs.cpp
+        src/gui/components/exerciseweekview.cpp
 
         src/member/member.cpp
         src/member/measurement.cpp
@@ -51,7 +51,7 @@ set(PROJECT_SOURCES
         inc/gui/registerdialog.h
         inc/gui/newmeasurementsdialog.h
         inc/gui/components/exercisedayview.h
-        inc/gui/components/exerciseplantabs.h
+        inc/gui/components/exerciseweekview.h
 
         inc/member/member.h
         inc/member/measurement.h
