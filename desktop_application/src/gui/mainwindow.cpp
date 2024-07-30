@@ -233,7 +233,7 @@ void MainWindow::OnNewWeeklyExerciseActionTriggered(){
     if(!IsCurrentMemberSelected())
         return;
 
-    new_exercise_plan_dialog = std::make_unique<ExercisePlanDialog>(current_member->GetWeeklyExercisePlan(), this);
+    new_exercise_plan_dialog = std::make_unique<ExercisePlanDialog>(this);
     connect(new_exercise_plan_dialog.get(), &ExercisePlanDialog::NewWeeklyPlanReady,
             this, &MainWindow::OnNewWeeklyPlanReadyCreated);
     new_exercise_plan_dialog->exec();

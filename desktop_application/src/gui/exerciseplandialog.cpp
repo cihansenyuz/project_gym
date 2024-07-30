@@ -3,7 +3,7 @@
 #include "../../inc/member/exercise/cardioworkout.h"
 #include "../../inc/member/exercise/strengthworkout.h"
 
-ExercisePlanDialog::ExercisePlanDialog(const std::vector<DailyExercisePlan> &old_weekly_exercise_plan, QWidget *parent)
+ExercisePlanDialog::ExercisePlanDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::ExercisePlanDialog)
 {
@@ -42,8 +42,10 @@ ExercisePlanDialog::ExercisePlanDialog(const std::vector<DailyExercisePlan> &old
     ui->name_combo_box->addItem("Dumbbell Lateral Raise");
 
     new_weekly_exercise_plan.push_back(new_daily_plan);
-    //new_weekly_exercise_plan = old_weekly_exercise_plan;
-    //FillExercisePlanTable();
+    ui->start_date_edit->setDate(QDate::currentDate());
+    ui->end_date_edit->setDate(QDate::currentDate());
+    ui->add_daily_push_button->setEnabled(false);
+    ui->apply_push_button->setEnabled(false);
 }
 
 ExercisePlanDialog::~ExercisePlanDialog()
@@ -110,6 +112,9 @@ void ExercisePlanDialog::OnSaveDailyButtonClicked(){
     new_weekly_exercise_plan.at(current_day) = new_daily_plan;
     new_daily_plan.Clear();
     FillExercisePlanTable();
+    ui->add_daily_push_button->setEnabled(true);
+    ui->apply_push_button->setEnabled(true);
+    ui->save_daily_push_button->setEnabled(false);
 }
 
 void ExercisePlanDialog::OnAddDailyButtonClicked(){
@@ -117,6 +122,9 @@ void ExercisePlanDialog::OnAddDailyButtonClicked(){
     new_daily_plan.Clear();
     new_weekly_exercise_plan.push_back(new_daily_plan);
     FillExercisePlanTable();
+    ui->add_daily_push_button->setEnabled(false);
+    ui->apply_push_button->setEnabled(false);
+    ui->save_daily_push_button->setEnabled(true);
 }
 
 void ExercisePlanDialog::OnApplyButtonClicked(){

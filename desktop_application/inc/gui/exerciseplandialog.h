@@ -13,8 +13,7 @@ class ExercisePlanDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ExercisePlanDialog(const std::vector<DailyExercisePlan> &old_weekly_exercise_plan,
-                                QWidget *parent = nullptr);
+    explicit ExercisePlanDialog(QWidget *parent = nullptr);
     ~ExercisePlanDialog();
     void FillExercisePlanTable();
     void DeleteExercisePlanTable();
