@@ -1,5 +1,5 @@
-#ifndef EXERCISEPLANTABLE_H
-#define EXERCISEPLANTABLE_H
+#ifndef EXERCISEDAYVIEW_H
+#define EXERCISEDAYVIEW_H
 
 #include <QTableWidget>
 #include "../../member/exercise/exercise.h"
@@ -9,10 +9,10 @@
 #define REPEAT_QUANTITY_TABLE_HEADER 2
 #define DURITION_TABLE_HEADER 3
 
-class ExercisePlanTable : public QTableWidget
+class ExerciseDayView : public QTableWidget
 {
 public:
-    ExercisePlanTable(std::vector<Exercise*> daily_exercises,
+    ExerciseDayView(std::vector<Exercise*> daily_exercises,
                       QWidget *parent = nullptr);
 
 private:
@@ -23,4 +23,4 @@ private:
                                       "Durition"};
 };
 
-#endif // EXERCISEPLANTABLE_H
+#endif // EXERCISEDAYVIEW_H

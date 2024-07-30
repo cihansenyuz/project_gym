@@ -9,7 +9,7 @@ ExercisePlanTabs::ExercisePlanTabs(const std::vector<DailyExercisePlan> &weekly_
     for(auto &daily_plan : weekly_exercise_plan){
         QWidget *new_tab = new QWidget;
         QVBoxLayout *exercise_day_layout = new QVBoxLayout(new_tab);
-        exercise_day_table = new ExercisePlanTable(daily_plan.GetDailyExercisePlan(),
+        exercise_day_table = new ExerciseDayView(daily_plan.GetDailyExercisePlan(),
                                                                       new_tab);
 
         exercise_day_layout->addWidget(exercise_day_table);
