@@ -139,8 +139,7 @@ void MainWindow::FillExercisePlanTable(){
         QWidget *new_tab = new QWidget;
         QVBoxLayout *exercise_day_layout = new QVBoxLayout(new_tab);
         ExercisePlanTable *exercise_day_table = new ExercisePlanTable(daily_plan.GetDailyExercisePlan(),
-                                                                      daily_plan.GetDailyExercisePlan().size(),
-                                                                      4, new_tab);
+                                                                      new_tab);
 
         exercise_day_layout->addWidget(exercise_day_table);
         new_tab->setLayout(exercise_day_layout);
