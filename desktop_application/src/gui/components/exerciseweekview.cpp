@@ -17,3 +17,4 @@ ExerciseWeekView::ExerciseWeekView(const std::vector<DailyExercisePlan> &weekly_
         addTab(new_tab, QString("Day %1\nCooldown: %2days").arg(day_no++).arg(daily_plan.GetCooldownPeriod()));
     }
 }
+

@@ -12,8 +12,10 @@ ExercisePlanDialog::ExercisePlanDialog(const std::vector<DailyExercisePlan> &old
             this, &ExercisePlanDialog::OnAddButtonClicked);
     connect(ui->remove_push_button, &QPushButton::clicked,
             this, &ExercisePlanDialog::OnRemoveButtonClicked);
-    connect(ui->new_day_push_button, &QPushButton::clicked,
-            this, &ExercisePlanDialog::OnNewDayButtonClicked);
+    connect(ui->save_daily_push_button, &QPushButton::clicked,
+            this, &ExercisePlanDialog::OnSaveDailyButtonClicked);
+    connect(ui->add_daily_push_button, &QPushButton::clicked,
+            this, &ExercisePlanDialog::OnAddDailyButtonClicked);
     connect(ui->apply_push_button, &QPushButton::clicked,
             this, &ExercisePlanDialog::OnApplyButtonClicked);
     connect(ui->cancel_push_button, &QPushButton::clicked,
@@ -102,7 +104,14 @@ void ExercisePlanDialog::OnRemoveButtonClicked(){
 
 }
 
-void ExercisePlanDialog::OnNewDayButtonClicked(){
+void ExercisePlanDialog::OnSaveDailyButtonClicked(){
+    new_daily_plan.SetCooldownPeriod(ui->cooldown_spin_box->value());
+    new_weekly_exercise_plan.at(current_day) = new_daily_plan;
+    new_daily_plan.Clear();
+    FillExercisePlanTable();
+}
+
+void ExercisePlanDialog::OnAddDailyButtonClicked(){
     current_day++;
     new_daily_plan.Clear();
     new_weekly_exercise_plan.push_back(new_daily_plan);
@@ -110,7 +119,9 @@ void ExercisePlanDialog::OnNewDayButtonClicked(){
 }
 
 void ExercisePlanDialog::OnApplyButtonClicked(){
-    emit NewWeeklyPlanReady(new_weekly_exercise_plan);
+    emit NewWeeklyPlanReady(new_weekly_exercise_plan,
+                            ui->start_date_edit->date(),
+                            ui->end_date_edit->date());
     close();
 }
 

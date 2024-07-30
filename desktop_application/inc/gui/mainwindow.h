@@ -52,7 +52,8 @@ private slots:
     void OnNewMemberCreated(const std::unique_ptr<Member> &new_member);
     void OnNewMeasurementsAdded(const Measurement &new_measurements);
     void OnNewWeeklyExerciseActionTriggered();
-    void OnNewWeeklyPlanReadyCreated(std::vector<DailyExercisePlan> new_weekly_exercise_plan);
+    void OnNewWeeklyPlanReadyCreated(const std::vector<DailyExercisePlan> &new_weekly_exercise_plan,
+                                     const QDate &start, const QDate &end);
 
 private:
     void ClearViewedMemberInfos();

@@ -20,12 +20,14 @@ public:
     void DeleteExercisePlanTable();
 
 signals:
-    void NewWeeklyPlanReady(std::vector<DailyExercisePlan> new_weekly_exercise_plan);
+    void NewWeeklyPlanReady(const std::vector<DailyExercisePlan> &new_weekly_exercise_plan,
+                            const QDate &start, const QDate &end);
 
 private slots:
     void OnAddButtonClicked();
     void OnRemoveButtonClicked();
-    void OnNewDayButtonClicked();
+    void OnSaveDailyButtonClicked();
+    void OnAddDailyButtonClicked();
     void OnApplyButtonClicked();
     void OnCancelButtonClicked();
 

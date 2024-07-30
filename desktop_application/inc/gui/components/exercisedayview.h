@@ -17,7 +17,6 @@ public:
 
 private:
     QStringList horizontal_headers = {"Type",
-                                      "Name",
                                       "Sets",
                                       "Repeats",
                                       "Durition"};

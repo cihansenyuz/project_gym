@@ -239,6 +239,11 @@ void MainWindow::OnNewWeeklyExerciseActionTriggered(){
     new_exercise_plan_dialog->exec();
 }
 
-void MainWindow::OnNewWeeklyPlanReadyCreated(std::vector<DailyExercisePlan> new_weekly_exercise_plan){
-    qDebug() << "new plan recieved from mainwindow";
+void MainWindow::OnNewWeeklyPlanReadyCreated(const std::vector<DailyExercisePlan> &new_weekly_exercise_plan,
+                                             const QDate &start, const QDate &end){
+    current_member->EndExercisePlan();
+    current_member->SetWeeklyExercisePlan(new_weekly_exercise_plan);
+    current_member->SetWeeklyExercisePlanPeriod(start, end);
+    member_manager.SaveChangesOnMember(*current_member);
+    ui->message_text_browser->append("New weekly exercise plan saved for the current member");
 }

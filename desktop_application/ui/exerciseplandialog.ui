@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>583</width>
-    <height>446</height>
+    <height>512</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -110,7 +110,7 @@
      <item>
       <widget class="QGroupBox" name="groupBox_2">
        <property name="title">
-        <string> </string>
+        <string/>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
@@ -128,9 +128,16 @@
          </layout>
         </item>
         <item>
-         <widget class="QPushButton" name="new_day_push_button">
+         <widget class="QPushButton" name="save_daily_push_button">
           <property name="text">
-           <string>Next Day</string>
+           <string>Save Current Daily Plan</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="add_daily_push_button">
+          <property name="text">
+           <string>Add Empty Daily Plan</string>
           </property>
          </widget>
         </item>
@@ -153,7 +160,7 @@
      <item>
       <widget class="QGroupBox" name="groupBox_3">
        <property name="title">
-        <string> </string>
+        <string/>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_5">
         <item>
@@ -169,12 +176,12 @@
            <widget class="QDateEdit" name="start_date_edit">
             <property name="dateTime">
              <datetime>
-              <hour>0</hour>
+              <hour>18</hour>
               <minute>0</minute>
               <second>0</second>
-              <year>2024</year>
-              <month>1</month>
-              <day>1</day>
+              <year>2023</year>
+              <month>12</month>
+              <day>31</day>
              </datetime>
             </property>
            </widget>
@@ -194,12 +201,12 @@
            <widget class="QDateEdit" name="end_date_edit">
             <property name="dateTime">
              <datetime>
-              <hour>0</hour>
+              <hour>18</hour>
               <minute>0</minute>
               <second>0</second>
-              <year>2024</year>
-              <month>1</month>
-              <day>1</day>
+              <year>2023</year>
+              <month>12</month>
+              <day>31</day>
              </datetime>
             </property>
            </widget>
