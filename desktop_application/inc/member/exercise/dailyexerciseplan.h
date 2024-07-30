@@ -28,6 +28,7 @@ public:
     void SetDailyExecisePlan(const std::vector<Exercise*> &new_plan);
     QJsonObject toJson() const;
     void Clear();
+    void PopBack();
 
     short GetCooldownPeriod() const;
     std::vector<Exercise*> GetDailyExercisePlan() const;

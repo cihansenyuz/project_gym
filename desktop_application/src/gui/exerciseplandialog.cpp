@@ -104,7 +104,9 @@ void ExercisePlanDialog::OnAddButtonClicked(){
 }
 
 void ExercisePlanDialog::OnRemoveButtonClicked(){
-
+    new_daily_plan.PopBack();
+    new_weekly_exercise_plan.at(current_day) = new_daily_plan;
+    FillExercisePlanTable();
 }
 
 void ExercisePlanDialog::OnSaveDailyButtonClicked(){

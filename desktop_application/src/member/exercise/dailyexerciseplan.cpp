@@ -38,3 +38,7 @@ void DailyExercisePlan::Clear(){
     daily_plan_.clear();
     cooldown_period_ = 0;
 }
+
+void DailyExercisePlan::PopBack(){
+    daily_plan_.pop_back();
+}
