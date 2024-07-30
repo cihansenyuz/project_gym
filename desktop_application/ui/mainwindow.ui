@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>882</width>
+    <width>978</width>
     <height>772</height>
    </rect>
   </property>
@@ -524,7 +524,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>882</width>
+     <width>978</width>
      <height>22</height>
     </rect>
    </property>
@@ -541,6 +541,8 @@
      <string>Manage Member</string>
     </property>
     <addaction name="new_measurements_action"/>
+    <addaction name="new_weekly_exercise_plan_action"/>
+    <addaction name="separator"/>
     <addaction name="actionShow_progress_of_the_member"/>
     <addaction name="actionShow_all_previous_subscriptions"/>
    </widget>
@@ -576,6 +578,11 @@
   <action name="save_changes_action">
    <property name="text">
     <string>Save all changes to the cloud</string>
+   </property>
+  </action>
+  <action name="new_weekly_exercise_plan_action">
+   <property name="text">
+    <string>Create new weekly exercise plan</string>
    </property>
   </action>
  </widget>

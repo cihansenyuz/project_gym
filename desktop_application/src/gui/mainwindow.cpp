@@ -11,15 +11,17 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
     http_manager_->FetchMemberJsonData();
 
     connect(ui->register_action, &QAction::triggered,
-            this, &MainWindow::OnRegisterAction);
+            this, &MainWindow::OnRegisterActionTriggered);
     connect(ui->get_button, &QPushButton::clicked,
             this, &MainWindow::OnGetButtonClicked);
     connect(ui->save_changes_action, &QAction::triggered,
-            this, &MainWindow::OnSaveChangesAction);
+            this, &MainWindow::OnSaveChangesActionTriggered);
     connect(ui->delete_action, &QAction::triggered,
-            this, &MainWindow::OnDeleteAction);
+            this, &MainWindow::OnDeleteActionTriggered);
     connect(ui->new_measurements_action, &QAction::triggered,
-            this, &MainWindow::OnAddNewMeasurementsAction);
+            this, &MainWindow::OnAddNewMeasurementsActionTriggered);
+    connect(ui->new_weekly_exercise_plan_action, &QAction::triggered,
+            this, &MainWindow::OnNewWeeklyExerciseActionTriggered);
 
     //////// TEST & DEBUG SECTION /////////
 
@@ -46,6 +48,14 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
 
 MainWindow::~MainWindow(){
     delete ui;
+}
+
+bool MainWindow::IsCurrentMemberSelected(){
+    if(!current_member){
+        NewDialog("No member viewed,\nPlease, use Get button first", "Error!");
+        return false;
+    }
+    return true;
 }
 
 void MainWindow::OnMemberDataFetched(const std::unique_ptr<QJsonArray> &fetched_data){
@@ -107,15 +117,14 @@ void MainWindow::OnGetButtonClicked(){
         ui->message_text_browser->append("No member found!");
 }
 
-void MainWindow::OnSaveChangesAction(){
+void MainWindow::OnSaveChangesActionTriggered(){
     http_manager_->PushMemberJsonData(member_manager.GetMemberArrayData());
 }
 
-void MainWindow::OnDeleteAction(){
-    if(!current_member){
-        NewDialog("No member viewed,\nPlease, use Get button first", "Error!");
+void MainWindow::OnDeleteActionTriggered(){
+    if(!IsCurrentMemberSelected())
         return;
-    }
+
     QString member_name = current_member->GetName();
     member_manager.DeleteMember(member_name);
     NewDialog("Member '"+member_name+"' is deleted", "Success!");
@@ -162,7 +171,7 @@ void MainWindow::NewDialog(const QString &message, const QString &title, bool is
         message_dialog->show();
 }
 
-void MainWindow::OnRegisterAction(){
+void MainWindow::OnRegisterActionTriggered(){
     register_dialog = std::make_unique<RegisterDialog>(this);
     connect(register_dialog.get(), &RegisterDialog::MemberCreated,
             this, &MainWindow::OnNewMemberCreated);
@@ -178,7 +187,7 @@ void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
     }*/
 }
 
-void MainWindow::OnAddNewMeasurementsAction(){
+void MainWindow::OnAddNewMeasurementsActionTriggered(){
     measurements_dialog = std::make_unique<NewMeasurementsDialog>(this);
     connect(measurements_dialog.get(), &NewMeasurementsDialog::NewMeasurements,
             this, &MainWindow::OnNewMeasurementsAdded);
@@ -202,14 +211,14 @@ void MainWindow::ClearViewedMemberInfos(){
     ui->sub_end_date_label->clear();
     ui->remaining_months_label->clear();
     // measurements view
-    /*ui->shoulder_label->clear();
+    ui->shoulder_label->clear();
     ui->chest_label->clear();
     ui->arm_label->clear();
     ui->belly_label->clear();
     ui->hip_label->clear();
     ui->leg_label->clear();
     ui->weight_label->clear();
-    ui->taken_date_label->clear();*/
+    ui->taken_date_label->clear();
     // payment view
     ui->total_price_label->clear();
     ui->remaining_payment_label->clear();
@@ -218,4 +227,18 @@ void MainWindow::ClearViewedMemberInfos(){
     ui->payment_label->clear();
     // exercise plan view
     DeleteExercisePlanTable();
+}
+
+void MainWindow::OnNewWeeklyExerciseActionTriggered(){
+    if(!IsCurrentMemberSelected())
+        return;
+
+    new_exercise_plan_dialog = std::make_unique<ExercisePlanDialog>(current_member->GetWeeklyExercisePlan(), this);
+    connect(new_exercise_plan_dialog.get(), &ExercisePlanDialog::NewWeeklyPlanReady,
+            this, &MainWindow::OnNewWeeklyPlanReadyCreated);
+    new_exercise_plan_dialog->exec();
+}
+
+void MainWindow::OnNewWeeklyPlanReadyCreated(std::vector<DailyExercisePlan> new_weekly_exercise_plan){
+    qDebug() << "new plan recieved from mainwindow";
 }

@@ -25,6 +25,7 @@
 #include "../gui/registerdialog.h"
 #include "../gui/newmeasurementsdialog.h"
 #include "../gui/components/exerciseweekview.h"
+#include "../gui/exerciseplandialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -44,18 +45,21 @@ public:
 private slots:
     void OnMemberDataFetched(const std::unique_ptr<QJsonArray> &fetched_data);
     void OnGetButtonClicked();
-    void OnRegisterAction();
-    void OnSaveChangesAction();
-    void OnDeleteAction();
-    void OnAddNewMeasurementsAction();
+    void OnRegisterActionTriggered();
+    void OnSaveChangesActionTriggered();
+    void OnDeleteActionTriggered();
+    void OnAddNewMeasurementsActionTriggered();
     void OnNewMemberCreated(const std::unique_ptr<Member> &new_member);
     void OnNewMeasurementsAdded(const Measurement &new_measurements);
+    void OnNewWeeklyExerciseActionTriggered();
+    void OnNewWeeklyPlanReadyCreated(std::vector<DailyExercisePlan> new_weekly_exercise_plan);
 
 private:
     void ClearViewedMemberInfos();
     void FillExercisePlanTable();
     void DeleteExercisePlanTable();
     void NewDialog(const QString &message, const QString &title = "", bool is_modal = true);
+    bool IsCurrentMemberSelected();
 
     Ui::MainWindow *ui;
     std::shared_ptr<HttpManager> http_manager_;
@@ -65,5 +69,6 @@ private:
     std::unique_ptr<InfoDialog> message_dialog;
     std::unique_ptr<RegisterDialog> register_dialog;
     std::unique_ptr<NewMeasurementsDialog> measurements_dialog;
+    std::unique_ptr<ExercisePlanDialog> new_exercise_plan_dialog;
 };
 #endif // MAINWINDOW_H

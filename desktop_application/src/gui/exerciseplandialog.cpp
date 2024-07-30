@@ -1,7 +1,7 @@
 #include "../../inc/gui/exerciseplandialog.h"
 #include "../../ui/ui_exerciseplandialog.h"
 
-ExercisePlanDialog::ExercisePlanDialog(QWidget *parent)
+ExercisePlanDialog::ExercisePlanDialog(const std::vector<DailyExercisePlan> &old_weekly_exercise_plan, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::ExercisePlanDialog)
 {
@@ -15,6 +15,7 @@ ExercisePlanDialog::ExercisePlanDialog(QWidget *parent)
     connect(ui->cancel_push_button, &QPushButton::clicked,
             this, &ExercisePlanDialog::OnCancelButtonClicked);
 
+    new_weekly_exercise_plan = old_weekly_exercise_plan;
     FillExercisePlanTable();
 }
 
@@ -60,10 +61,11 @@ void ExercisePlanDialog::OnRemoveButtonClicked(){
 
 }
 
-void ExercisePlanDialog::OnAppyButtonClicked(){
-
+void ExercisePlanDialog::OnApplyButtonClicked(){
+    emit NewWeeklyPlanReady(new_weekly_exercise_plan);
+    close();
 }
 
 void ExercisePlanDialog::OnCancelButtonClicked(){
-
+    close();
 }
