@@ -5,20 +5,8 @@
 #include <QApplication>
 #include <memory>
 
-#define DEV_MODE_SKIP_LOGIN 1 // 0: ask login, 1: skip
-
-#if DEV_MODE_SKIP_LOGIN
-#pragma message("login dialog will be skipped")
-#endif
-
-#if DEV_MODE_USE_PRETAKEN_TOKEN
-#pragma message("pretaken token will be used: be sure it's valid")
-#endif
-
-#if DEV_MODE_USE_LOCAL_HOST
-#pragma message("api URL is local host")
-#else
-#pragma message("api URL is gCloud")
+#ifndef DEV_MODE
+    #define DEV_MODE 0 // 0: ask login, 1: skip
 #endif
 
 int main(int argc, char *argv[])
@@ -35,7 +23,7 @@ int main(int argc, char *argv[])
     };
 
     QObject::connect(http_manager.get(), &HttpManager::LoginAttempt, CreateMainWindow);
-#if DEV_MODE_SKIP_LOGIN
+#if DEV_MODE
     dialog.close();
     CreateMainWindow(true);
 #endif

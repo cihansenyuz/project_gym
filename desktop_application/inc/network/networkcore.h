@@ -17,13 +17,8 @@
 #include <QObject>
 #include <QtNetwork>
 
-#define DEV_MODE_USE_LOCAL_HOST 1 // 1: local host, 0: google cloud
-
-#if DEV_MODE_USE_LOCAL_HOST
-#define API_ROOT_ADDRESS "http://localhost:3000/api/"
-#else
-#define API_ROOT_ADDRESS "https://www.cangorkemgunes.com/api/"
-#endif // DEV_MODE_USE_LOCAL_HOST
+#ifndef HOST
+    #define HOST "https://www.cangorkemgunes.com/api/"
 
 #define API_LOGIN_ADDRESS "login"
 #define API_REGISTER_ADDRESS "register"
@@ -52,7 +47,7 @@ public:
                          const QString &token,
                          T* requester_object,
                          void (T::*slot_function)()){
-        QUrl http_url(QString(API_ROOT_ADDRESS) + api_address);
+        QUrl http_url(QString(HOST) + api_address);
         QNetworkRequest http_request(http_url);
         http_request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
 
