@@ -19,6 +19,7 @@
 
 #ifndef HOST
     #define HOST "https://www.cangorkemgunes.com/api/"
+#endif
 
 #define API_LOGIN_ADDRESS "login"
 #define API_REGISTER_ADDRESS "register"

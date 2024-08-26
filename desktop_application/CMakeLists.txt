@@ -107,6 +107,7 @@ else()
     endif()
 endif()
 
+target_compile_definitions(desktop_application PRIVATE DEV_MODE HOST="http://localhost:3000/" TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluIiwiaWQiOiIwIiwiaWF0IjoxNzI0NjQ3OTY2LCJleHAiOjE3MjQ2OTExNjZ9.Ew4Wxb3aJ2THurSLOKaq_eH6FjqFto0E6fA6rNQ8pPk")
 target_link_libraries(desktop_application PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
                                                     Qt${QT_VERSION_MAJOR}::Network)
 
