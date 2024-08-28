@@ -1,8 +1,11 @@
 To compile the project in developer mode,
 
-in main.cpp		define DEV_MODE_SKIP_LOGIN		1: dev mode, 0: user mode
-in httpmanager.h	define DEV_MODE_USE_PRETAKEN_TOKEN	1: dev mode, 0: user mode
-in networkcore.h	define DEV_MODE_USE_LOCAL_HOST		1: dev mode, 0: user mode
+in CMakeLists.txt,
+	provided DEV_MODE flag, the app will skip log in screen
+	provided HOST="http://localhost:3000/", the app will send http requests to provided host
+	provided TOKEN="blablabla", the app will use provided token for http request. Update it with a valid one.
+	
+target_compile_definitions(desktop_application PRIVATE DEV_MODE HOST="http://localhost:3000/" TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFkbWluIiwiaWQiOiIwIiwiaWF0IjoxNzI0NjQ3OTY2LCJleHAiOjE3MjQ2OTExNjZ9.Ew4Wxb3aJ2THurSLOKaq_eH6FjqFto0E6fA6rNQ8pPk")
 
 
 HTTP status codes returned by API
