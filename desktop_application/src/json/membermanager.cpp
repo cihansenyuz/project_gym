@@ -21,12 +21,12 @@ MemberManager::~MemberManager(){
     delete subscription_maintain_thread;
 }
 
-std::unique_ptr<Member> MemberManager::GetMember(const QString &name){
+std::unique_ptr<Member> MemberManager::GetMember(const QString &id){
     std::lock_guard<std::mutex> lock(members_array_mutex);
     for (int i = 0; i < members_array.size(); ++i) {
         QJsonObject member_json = members_array[i].toObject();
 
-        if (member_json["name"].toString() == name) {
+        if (member_json["id"].toString() == id) {
             return std::move(parser.ParseMemberFromJson(member_json));
         }
     }
@@ -44,20 +44,23 @@ void MemberManager::SaveChangesOnMember(const Member &member){
     for (int i = 0; i < members_array.size(); ++i) {
         QJsonObject member_json = members_array[i].toObject();
 
-        if (member_json["name"].toString() == member.GetName()) {
+        if (member_json["id"].toString() == member.GetId()) {
             members_array[i] = QJsonValue(member.toJson());
+            return;
         }
     }
     //SaveToFile(); // saves to local
 }
 
-void MemberManager::DeleteMember(const QString &name){
+void MemberManager::DeleteMember(const QString &id){
     std::lock_guard<std::mutex> lock(members_array_mutex);
     for (int i = 0; i < members_array.size(); ++i) {
         QJsonObject member_json = members_array[i].toObject();
 
-        if (member_json["name"].toString() == name) {
+        if (member_json["id"].toString() == id) {
             members_array.removeAt(i);
+            // update id-name map
+            return;
         }
     }
 }
@@ -75,4 +78,15 @@ void MemberManager::MaintainExpiredSubscriptions(){
             }
         }
     }
+}
+
+QString MemberManager::GenerateId(){
+    bool unique = false;
+    QString id;
+    while(!unique){
+        int randomNumber = QRandomGenerator::global()->bounded(1000, 10000);  // Upper bound is exclusive
+        id = QString::number(randomNumber);
+        id_name_map.find(id) == id_name_map.end() ? unique = true : ;
+    }
+    return id;
 }

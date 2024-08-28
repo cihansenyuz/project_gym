@@ -17,6 +17,7 @@
 
 #include <thread>
 #include <mutex>
+#include <map>
 #include "../json/jsoncontainer.h"
 #include "../json/jsonparser.h"
 
