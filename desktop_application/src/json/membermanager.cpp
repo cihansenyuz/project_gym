@@ -80,13 +80,17 @@ void MemberManager::MaintainExpiredSubscriptions(){
     }
 }
 
-QString MemberManager::GenerateId(){
+void MemberManager::GenerateId(const QString &name){
     bool unique = false;
     QString id;
     while(!unique){
         int randomNumber = QRandomGenerator::global()->bounded(1000, 10000);  // Upper bound is exclusive
         id = QString::number(randomNumber);
-        id_name_map.find(id) == id_name_map.end() ? unique = true : ;
+        id_name_map.find(id) == id_name_map.end() ? unique = true : id_name_map[id] = name;
     }
-    return id;
+}
+
+void MemberManager::RemoveId(const QString &id){
+    auto it = id_name_map.find(id);
+    id_name_map.erase(it);
 }

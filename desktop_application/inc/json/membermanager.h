@@ -26,13 +26,16 @@ class MemberManager : public JsonContainer
 public:
     MemberManager();
     ~MemberManager();
-    std::unique_ptr<Member> GetMember(const QString &name);
+    std::unique_ptr<Member> GetMember(const QString &id);
     void RegisterNewMember(const Member &member) override;
     void SaveChangesOnMember(const Member &member) override;
-    void DeleteMember(const QString &name) override;
+    void DeleteMember(const QString &id) override;
     void MaintainExpiredSubscriptions();
+    void GenerateId(const QString &name);
+    void RemoveId(const QString &id);
 
 private:
+    std::map<QString, QString> id_name_map;
     JsonParser parser;
     QDate yesterday{QDate::currentDate()}; // to invoke MaintainExpiredSubscriptions at first run
     std::thread* subscription_maintain_thread;
