@@ -1,4 +1,5 @@
 #include "../../inc/json/membermanager.h"
+#include <QRandomGenerator>
 
 MemberManager::MemberManager() {
     auto IsNextDay = [this](){
@@ -86,8 +87,10 @@ void MemberManager::GenerateId(const QString &name){
     while(!unique){
         int randomNumber = QRandomGenerator::global()->bounded(1000, 10000);  // Upper bound is exclusive
         id = QString::number(randomNumber);
-        id_name_map.find(id) == id_name_map.end() ? unique = true : id_name_map[id] = name;
+        if(id_name_map.find(id) == id_name_map.end())
+            unique = true;
     }
+    id_name_map[id] = name;
 }
 
 void MemberManager::RemoveId(const QString &id){
