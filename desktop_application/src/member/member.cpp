@@ -3,8 +3,8 @@
 Member::Member(const QString &name, int age)
     : name_(name), age_(age) {}
 
+void Member::SetId(const QString &id) { id_ = id; }
 void Member::SetName(const QString &name){ name_ = name; }
-
 void Member::SetAge(int age){ age_ = age; }
 
 void Member::AddMeasurement(const Measurement &new_measurement){
@@ -55,6 +55,7 @@ float Member::GetBelly() const { return all_measurements_.back().GetBelly(); }
 float Member::GetHip() const { return all_measurements_.back().GetHip(); }
 float Member::GetLeg() const { return all_measurements_.back().GetLeg(); }
 QDate Member::GetTakenDate() const{ return all_measurements_.back().GetTakenDate(); }
+QString Member::GetId() const { return id_; }
 QString Member::GetName() const { return name_; }
 int Member::GetAge() const { return age_; }
 std::vector<Measurement> Member::GetAllMeasurements() const { return all_measurements_; }

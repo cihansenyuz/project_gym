@@ -36,6 +36,7 @@ public:
     Member(const QString &name, int age);
     QJsonObject toJson() const;
 
+    void SetId(const QString &id);
     void SetName(const QString &name);
     void SetAge(int age);
     void AddMeasurement(const Measurement &new_measurement);
@@ -52,6 +53,7 @@ public:
     float GetHip() const;
     float GetLeg() const;
     QDate GetTakenDate() const;
+    QString GetId() const;
     QString GetName() const;
     int GetAge() const;
     Measurement GetLastMeasurements() const;
@@ -59,6 +61,7 @@ public:
     std::vector<Subscription> GetAllArchivedSubscriptions();
 
 private:
+    QString id_;
     QString name_;
     int age_;
     std::vector<Measurement> all_measurements_;
