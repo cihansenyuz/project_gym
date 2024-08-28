@@ -69,7 +69,7 @@ void MainWindow::OnMemberDataFetched(const std::unique_ptr<QJsonArray> &fetched_
 }
 
 void MainWindow::OnGetButtonClicked(){
-    current_member = member_manager.GetMember(ui->member_name_line_edit->text());
+    current_member = member_manager.GetMember(ui->member_id_line_edit->text());
 
     //////// TEST & DEBUG SECTION /////////
 
@@ -201,7 +201,8 @@ void MainWindow::OnNewMeasurementsAdded(const Measurement &new_measurements){
 
 void MainWindow::ClearViewedMemberInfos(){
     // info view
-    ui->member_name_line_edit->clear();
+    ui->member_id_line_edit->clear();
+    ui->member_name_label->clear();
     ui->age_label->clear();
     ui->gender_label->clear();
     ui->phone_label->clear();
