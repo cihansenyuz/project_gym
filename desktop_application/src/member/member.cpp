@@ -13,6 +13,7 @@ void Member::AddMeasurement(const Measurement &new_measurement){
 
 QJsonObject Member::toJson() const{
     QJsonObject json;
+    json["id"] = id_;
     json["name"] = name_;
     json["age"] = age_;
 
