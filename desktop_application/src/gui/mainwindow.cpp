@@ -80,7 +80,8 @@ void MainWindow::OnGetButtonClicked(){
 
     if(current_member){
         ui->message_text_browser->append("Member info has gotten: "
-                                         + current_member->GetName());
+                                         + current_member->GetId());
+        ui->name_label->setText(current_member->GetName());
         ui->age_label->setText(QString::number(current_member->GetAge()));
         //ui->gender_label->setText();
         //ui->phone_label->setText();
@@ -178,8 +179,9 @@ void MainWindow::OnRegisterActionTriggered(){
 }
 
 void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
+    member_manager.GenerateId(new_member->GetName());
     member_manager.RegisterNewMember(*new_member);
-    ui->message_text_browser->append("New member registered: "+new_member->GetName());
+    ui->message_text_browser->append("New member registered, ID: "+new_member->GetId());
     /*if(register_dialog){
         qDebug() << "register reset";
         register_dialog.reset(nullptr);
@@ -202,7 +204,7 @@ void MainWindow::OnNewMeasurementsAdded(const Measurement &new_measurements){
 void MainWindow::ClearViewedMemberInfos(){
     // info view
     ui->member_id_line_edit->clear();
-    ui->member_name_label->clear();
+    ui->name_label->clear();
     ui->age_label->clear();
     ui->gender_label->clear();
     ui->phone_label->clear();
