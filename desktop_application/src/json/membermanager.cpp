@@ -60,7 +60,7 @@ void MemberManager::DeleteMember(const QString &id){
 
         if (member_json["id"].toString() == id) {
             members_array.removeAt(i);
-            // update id-name map
+            RemoveId(id);
             return;
         }
     }

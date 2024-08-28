@@ -124,10 +124,9 @@ void MainWindow::OnSaveChangesActionTriggered(){
 void MainWindow::OnDeleteActionTriggered(){
     if(!IsCurrentMemberSelected())
         return;
-
-    QString member_name = current_member->GetName();
-    member_manager.DeleteMember(member_name);
-    NewDialog("Member '"+member_name+"' is deleted", "Success!");
+    QString member_id = current_member->GetId();
+    member_manager.DeleteMember(member_id);
+    NewDialog("Member '"+member_id+"' is deleted", "Success!");
     ClearViewedMemberInfos();
 }
 
