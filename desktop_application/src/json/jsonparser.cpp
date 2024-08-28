@@ -4,6 +4,7 @@
 
 std::unique_ptr<Member> JsonParser::ParseMemberFromJson(QJsonObject &member_json){
     member_to_be_parsed = std::make_unique<Member>();
+    member_to_be_parsed->SetId(member_json["id"].toString());
     member_to_be_parsed->SetName(member_json["name"].toString());
     member_to_be_parsed->SetAge(member_json["age"].toInt());
 
