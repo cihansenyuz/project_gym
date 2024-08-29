@@ -31,7 +31,7 @@ public:
     void SaveChangesOnMember(const Member &member) override;
     void DeleteMember(const QString &id) override;
     void MaintainExpiredSubscriptions();
-    void GenerateId(const QString &name);
+    void GenerateId(Member &member);
     void RemoveId(const QString &id);
 
 private:

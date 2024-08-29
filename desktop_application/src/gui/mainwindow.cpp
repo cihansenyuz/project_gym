@@ -179,7 +179,7 @@ void MainWindow::OnRegisterActionTriggered(){
 }
 
 void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
-    member_manager.GenerateId(new_member->GetName());
+    member_manager.GenerateId(*new_member);
     member_manager.RegisterNewMember(*new_member);
     ui->message_text_browser->append("New member registered, ID: "+new_member->GetId());
     /*if(register_dialog){
