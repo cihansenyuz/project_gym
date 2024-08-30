@@ -20,7 +20,7 @@ class PutRequest : public NetworkCore
     Q_OBJECT
 public:
     PutRequest(HttpManager *parent = nullptr);
-    void PushMemberJsonData(const QJsonArray* data_to_push);
+    void PushMemberJsonData(const QJsonObject &data_to_push);
 
 private slots:
     void OnPushMemberJsonDataReplyRecieved();

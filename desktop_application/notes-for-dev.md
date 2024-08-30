@@ -9,17 +9,17 @@ target_compile_definitions(desktop_application PRIVATE DEV_MODE HOST="http://loc
 
 
 HTTP status codes returned by API
-for API_LOGIN_ADDRESS
+for API_LOGIN_ADDRESS // login
 	POST request
 		200 OK, email password match, returns token with code: UserFound
 		400 Bad Request, no email or password, returns with code: BadRequest
 		404 Not Found, email doesnot match, returns with code: NoUserFound
 		404 Not Found, password doesnot match, returns with code: IncorrectPassword
- for API_REGISTER_ADDRESS
+ for API_REGISTER_ADDRESS // register
  	POST request
 		201 Created
 		400 Bad Request, returns with code: BadRequest
-for API_FETCH_ADDRESS && API_PUSH_ADDRESS
+for API_FETCH_ADDRESS && API_PUSH_ADDRESS // users
 	GET request
 		200 OK, token verified
 		204 No Content, first time login

@@ -119,7 +119,7 @@ void MainWindow::OnGetButtonClicked(){
 }
 
 void MainWindow::OnSaveChangesActionTriggered(){
-    http_manager_->PushMemberJsonData(member_manager.GetMemberArrayData());
+    http_manager_->PushMemberJsonData(current_member->toJson());
 }
 
 void MainWindow::OnDeleteActionTriggered(){
@@ -127,6 +127,9 @@ void MainWindow::OnDeleteActionTriggered(){
         return;
     QString member_id = current_member->GetId();
     member_manager.DeleteMember(member_id);
+    http_manager_->PushMemberJsonData(QJsonObject{
+                                        {"id", member_id}
+                                    });
     NewDialog("Member '"+member_id+"' is deleted", "Success!");
     ClearViewedMemberInfos();
 }
@@ -179,8 +182,9 @@ void MainWindow::OnRegisterActionTriggered(){
 }
 
 void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
-    member_manager.GenerateId(*new_member);
+    //member_manager.GenerateId(*new_member); will be moved to server side
     member_manager.RegisterNewMember(*new_member);
+    // post new member over http_manager
     ui->message_text_browser->append("New member registered, ID: "+new_member->GetId());
     /*if(register_dialog){
         qDebug() << "register reset";

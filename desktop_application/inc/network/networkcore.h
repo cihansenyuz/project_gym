@@ -23,8 +23,8 @@
 
 #define API_LOGIN_ADDRESS "login"
 #define API_REGISTER_ADDRESS "register"
-#define API_FETCH_ADDRESS "users"
-#define API_PUSH_ADDRESS "users"
+#define API_FETCH_ADDRESS "members"
+#define API_PUSH_ADDRESS "members"
 
 #define FETCHED_FILE_PATH "../../members.json"
 

@@ -31,11 +31,11 @@ public:
     void SaveChangesOnMember(const Member &member) override;
     void DeleteMember(const QString &id) override;
     void MaintainExpiredSubscriptions();
-    void GenerateId(Member &member);
-    void RemoveId(const QString &id);
+    //void GenerateId(Member &member); will be moved to client side
+    //void RemoveId(const QString &id); will be moved to client side
 
 private:
-    std::map<QString, QString> id_name_map;
+    //std::map<QString, QString> id_name_map; will be moved to client side
     JsonParser parser;
     QDate yesterday{QDate::currentDate()}; // to invoke MaintainExpiredSubscriptions at first run
     std::thread* subscription_maintain_thread;
