@@ -45,6 +45,7 @@ set(PROJECT_SOURCES
         src/network/postrequest.cpp
         src/network/getrequest.cpp
         src/network/putrequest.cpp
+        src/network/deleterequest.cpp
 
         inc/gui/mainwindow.h
         inc/gui/logindialog.h
@@ -75,6 +76,7 @@ set(PROJECT_SOURCES
         inc/network/postrequest.h
         inc/network/getrequest.h
         inc/network/putrequest.h
+        inc/network/deleterequest.h
 
         ui/mainwindow.ui
         ui/logindialog.ui

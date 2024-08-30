@@ -129,9 +129,7 @@ void MainWindow::OnDeleteActionTriggered(){
         return;
     QString member_id = current_member->GetId();
     member_manager.DeleteMember(member_id);             // delete from the local cache
-    http_manager_->PushMemberJsonData(QJsonObject{      // delete from the cloud
-                                        {"id", member_id}
-                                    });
+    http_manager_->DeleteMember(member_id);             // delete from the cloud
     NewDialog("Member '"+member_id+"' is deleted", "Success!");
     ClearViewedMemberInfos();
 }
