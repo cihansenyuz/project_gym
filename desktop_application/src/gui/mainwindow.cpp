@@ -18,7 +18,7 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
             this, &MainWindow::OnGetButtonClicked);
     connect(ui->save_changes_action, &QAction::triggered,
             this, &MainWindow::OnSaveChangesActionTriggered);
-    connect(ui->delete_action, &QAction::triggered,
+    connect(ui->delete_action_, &QAction::triggered,
             this, &MainWindow::OnDeleteActionTriggered);
     connect(ui->new_measurements_action, &QAction::triggered,
             this, &MainWindow::OnAddNewMeasurementsActionTriggered);
@@ -121,15 +121,15 @@ void MainWindow::OnGetButtonClicked(){
 }
 
 void MainWindow::OnSaveChangesActionTriggered(){
-
+    http_manager_->PushMemberJsonData(current_member->toJson());
 }
 
 void MainWindow::OnDeleteActionTriggered(){
     if(!IsCurrentMemberSelected())
         return;
     QString member_id = current_member->GetId();
-    member_manager.DeleteMember(member_id);
-    http_manager_->PushMemberJsonData(QJsonObject{
+    member_manager.DeleteMember(member_id);             // delete from the local cache
+    http_manager_->PushMemberJsonData(QJsonObject{      // delete from the cloud
                                         {"id", member_id}
                                     });
     NewDialog("Member '"+member_id+"' is deleted", "Success!");
