@@ -60,7 +60,7 @@ void MemberManager::DeleteMember(const QString &id){
 
         if (member_json["id"].toString() == id) {
             members_array.removeAt(i);
-            RemoveId(id);
+            //RemoveId(id);
             return;
         }
     }
@@ -81,7 +81,7 @@ void MemberManager::MaintainExpiredSubscriptions(){
     }
 }
 
-void MemberManager::GenerateId(Member &member){
+/*void MemberManager::GenerateId(Member &member){
     bool unique = false;
     QString id;
     while(!unique){
@@ -98,4 +98,4 @@ void MemberManager::GenerateId(Member &member){
 void MemberManager::RemoveId(const QString &id){
     auto it = id_name_map.find(id);
     id_name_map.erase(it);
-}
+}*/

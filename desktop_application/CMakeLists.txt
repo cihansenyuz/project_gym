@@ -45,6 +45,7 @@ set(PROJECT_SOURCES
         src/network/postrequest.cpp
         src/network/getrequest.cpp
         src/network/putrequest.cpp
+        src/network/deleterequest.cpp
 
         inc/gui/mainwindow.h
         inc/gui/logindialog.h
@@ -75,6 +76,7 @@ set(PROJECT_SOURCES
         inc/network/postrequest.h
         inc/network/getrequest.h
         inc/network/putrequest.h
+        inc/network/deleterequest.h
 
         ui/mainwindow.ui
         ui/logindialog.ui
@@ -108,9 +110,9 @@ else()
 endif()
 
 target_compile_definitions(desktop_application PRIVATE
-                            DEV_MODE
-                            HOST="http://localhost:3000/api/"
-                            TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbmdvcmtlbWd1bmVzQGdtYWlsLmNvbSIsImlkIjoiMSIsImlhdCI6MTcyNDkwNzMzOSwiZXhwIjoxNzI0OTUwNTM5fQ.qEWY6zk20YsrmWCKmfC2WidYtHWtXRPa-2bNpbheXa8"
+                            #DEV_MODE
+                            #HOST="http://localhost:3000/api/"
+                            #TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbmdvcmtlbWd1bmVzQGdtYWlsLmNvbSIsImlkIjoiMSIsImlhdCI6MTcyNDkwNzMzOSwiZXhwIjoxNzI0OTUwNTM5fQ.qEWY6zk20YsrmWCKmfC2WidYtHWtXRPa-2bNpbheXa8"
                         )
 target_link_libraries(desktop_application PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
                                                     Qt${QT_VERSION_MAJOR}::Network)
