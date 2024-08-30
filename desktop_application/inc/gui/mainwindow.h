@@ -54,6 +54,7 @@ private slots:
     void OnNewWeeklyExerciseActionTriggered();
     void OnNewWeeklyPlanReadyCreated(const std::vector<DailyExercisePlan> &new_weekly_exercise_plan,
                                      const QDate &start, const QDate &end);
+    void OnMemberAddedToCloudReply(const QString &id);
 
 private:
     void ClearViewedMemberInfos();

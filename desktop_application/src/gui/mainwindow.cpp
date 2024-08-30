@@ -8,6 +8,8 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
     ui->setupUi(this);
     connect(http_manager_.get(), &HttpManager::MemberJsonFetched,
             this, &MainWindow::OnMemberDataFetched);
+    connect(http_manager_.get(), &HttpManager::MemberAddedCloud,
+            this, &MainWindow::OnMemberAddedToCloudReply);
     http_manager_->FetchMemberJsonData();
 
     connect(ui->register_action, &QAction::triggered,
@@ -119,7 +121,7 @@ void MainWindow::OnGetButtonClicked(){
 }
 
 void MainWindow::OnSaveChangesActionTriggered(){
-    http_manager_->PushMemberJsonData(current_member->toJson());
+
 }
 
 void MainWindow::OnDeleteActionTriggered(){
@@ -183,8 +185,8 @@ void MainWindow::OnRegisterActionTriggered(){
 
 void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
     //member_manager.GenerateId(*new_member); will be moved to server side
-    member_manager.RegisterNewMember(*new_member);
-    // post new member over http_manager
+    member_manager.RegisterNewMember(*new_member);                  // saves to local cache
+    http_manager_->AddNewMemberToCloud(current_member->toJson());   // saves to cloud
     ui->message_text_browser->append("New member registered, ID: "+new_member->GetId());
     /*if(register_dialog){
         qDebug() << "register reset";
@@ -252,4 +254,8 @@ void MainWindow::OnNewWeeklyPlanReadyCreated(const std::vector<DailyExercisePlan
     current_member->SetWeeklyExercisePlanPeriod(start, end);
     member_manager.SaveChangesOnMember(*current_member);
     ui->message_text_browser->append("New weekly exercise plan saved for the current member");
+}
+
+void MainWindow::OnMemberAddedToCloudReply(const QString &id){
+    current_member->SetId(id);
 }

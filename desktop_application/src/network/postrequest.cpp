@@ -22,6 +22,12 @@ void PostRequest::RegisterRequest(const QString &email, const QString password){
     SendHttpRequest(API_REGISTER_ADDRESS, parent_->token, this, &PostRequest::OnRegisterReplyRecieved);
 }
 
+void PostRequest::AddNewMemberToCloud(const QJsonObject &member){
+    http_body_data = QJsonDocument(member);
+    emit ConnectionToServer();
+    SendHttpRequest(API_PUSH_ADDRESS, parent_->token, this, &PostRequest::OnNewMemberAddReplyRecieved);
+}
+
 void PostRequest::OnRegisterReplyRecieved(){
     if(GetHttpStatusCode() == 201)
         emit RegisterAttempt(true);
@@ -46,6 +52,25 @@ void PostRequest::OnLoginReplyRecieved(){
         qDebug() << "login error: " << http_reply->error();
 
     qDebug() << "#### on login(post) reply, http body fields ####";
+    for(auto &key : message.keys())
+        qDebug() << key << message[key];
+    qDebug() << "#########################################\n";
+}
+
+void PostRequest::OnNewMemberAddReplyRecieved(){
+    QJsonObject message;
+    message = ReadBody();
+
+    if(GetHttpStatusCode() == 200){
+        emit MemberAddedCloud(message["id"].toString());
+    }
+    else if (GetHttpStatusCode() == 404){
+        emit MemberAddedCloud("");
+    }
+    else
+        qDebug() << "POST error: " << http_reply->error();
+
+    qDebug() << "#### on member add(post) reply, http body fields ####";
     for(auto &key : message.keys())
         qDebug() << key << message[key];
     qDebug() << "#########################################\n";
