@@ -69,6 +69,7 @@ private:
     std::unique_ptr<Member> current_member;
     std::unique_ptr<ExerciseWeekView> exercise_day_tabs;
     std::unique_ptr<InfoDialog> message_dialog;
+    std::mutex message_dialog_mutex;
     std::unique_ptr<RegisterDialog> register_dialog;
     std::unique_ptr<NewMeasurementsDialog> measurements_dialog;
     std::unique_ptr<ExercisePlanDialog> new_exercise_plan_dialog;

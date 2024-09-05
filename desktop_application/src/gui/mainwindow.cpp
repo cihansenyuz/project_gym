@@ -6,6 +6,10 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(http_manager_.get(), &HttpManager::ConnectionToServer,
+            this, [this](){
+                NewDialog("Connecting to server, kindly wait a while", "Information", false);
+            });
     connect(http_manager_.get(), &HttpManager::MemberJsonFetched,
             this, &MainWindow::OnMemberDataFetched);
     connect(http_manager_.get(), &HttpManager::MemberAddedCloud,
@@ -165,8 +169,12 @@ void MainWindow::DeleteExercisePlanTable() {
 }
 
 void MainWindow::NewDialog(const QString &message, const QString &title, bool is_modal){
-    if(message_dialog)
+    std::lock_guard<std::mutex> lock(message_dialog_mutex);
+    if(message_dialog){
+        message_dialog->close();
         message_dialog.reset(nullptr);
+    }
+
     message_dialog = std::make_unique<InfoDialog>(message, title, this);
     if(is_modal)
         message_dialog->exec();
@@ -258,10 +266,12 @@ void MainWindow::OnMemberAddedToCloudReply(const QString &id){
     if(id != ""){
         current_member->SetId(id);
         member_manager.SaveChangesOnMember(*current_member);
-        ui->message_text_browser->append("New member registered, ID: "+current_member->GetId());
+        ui->message_text_browser->append("New member registered, ID: "+id);
+        NewDialog("Registeration is done!\nID of the member: "+id, "Success!", false);
     }
     else{
         member_manager.DeleteMember(DEFAULT_ID);
         current_member.reset();
+        NewDialog("Registeration is failed due to network problem!\nKindly, try again.", "Fail!");
     }
 }
