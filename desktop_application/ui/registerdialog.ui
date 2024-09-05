@@ -17,7 +17,7 @@
    <item>
     <widget class="QStackedWidget" name="register_stacked_widget">
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="info_page">
       <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -28,7 +28,7 @@
            <item>
             <spacer name="verticalSpacer_2">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -48,7 +48,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="name_line_edit"/>
+              <widget class="QLineEdit" name="name_line_edit">
+               <property name="text">
+                <string>Test</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -62,7 +66,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="age_line_edit"/>
+              <widget class="QLineEdit" name="age_line_edit">
+               <property name="text">
+                <string>22</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -76,7 +84,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="gender_line_edit"/>
+              <widget class="QLineEdit" name="gender_line_edit">
+               <property name="text">
+                <string>Male</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -90,7 +102,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="phone_line_edit"/>
+              <widget class="QLineEdit" name="phone_line_edit">
+               <property name="text">
+                <string>+90555</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -101,7 +117,7 @@
            <item>
             <spacer name="verticalSpacer">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -153,7 +169,7 @@
          <item>
           <spacer name="horizontalSpacer">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -175,6 +191,9 @@
                <widget class="QRadioButton" name="radio_button_1">
                 <property name="text">
                  <string>1 Month</string>
+                </property>
+                <property name="checked">
+                 <bool>true</bool>
                 </property>
                </widget>
               </item>
@@ -205,7 +224,7 @@
            <item>
             <spacer name="verticalSpacer_3">
              <property name="orientation">
-              <enum>Qt::Vertical</enum>
+              <enum>Qt::Orientation::Vertical</enum>
              </property>
              <property name="sizeHint" stdset="0">
               <size>
@@ -240,7 +259,11 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="price_line_edit"/>
+          <widget class="QLineEdit" name="price_line_edit">
+           <property name="text">
+            <string>5555</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </item>
@@ -286,7 +309,7 @@
        <item>
         <spacer name="verticalSpacer_4">
          <property name="orientation">
-          <enum>Qt::Vertical</enum>
+          <enum>Qt::Orientation::Vertical</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>

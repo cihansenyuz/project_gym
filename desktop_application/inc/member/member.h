@@ -23,6 +23,8 @@
 #include "subscription/subscription.h"
 #include "exercise/weeklyexerciseplan.h"
 
+#define DEFAULT_ID "0000"
+
 /**
  *  @note In case any property changes done to the class,
  *  toJson behaviour must be revised. Also, fromJsonObject
@@ -61,7 +63,7 @@ public:
     std::vector<Subscription> GetAllArchivedSubscriptions();
 
 private:
-    QString id_;
+    QString id_= DEFAULT_ID;
     QString name_;
     int age_;
     std::vector<Measurement> all_measurements_;

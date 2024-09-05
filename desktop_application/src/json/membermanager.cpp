@@ -45,7 +45,8 @@ void MemberManager::SaveChangesOnMember(const Member &member){
     for (int i = 0; i < members_array.size(); ++i) {
         QJsonObject member_json = members_array[i].toObject();
 
-        if (member_json["id"].toString() == member.GetId()) {
+        if (member_json["id"].toString() == member.GetId()
+            || member_json["id"].toString() == "0000") {
             members_array[i] = QJsonValue(member.toJson());
             return;
         }

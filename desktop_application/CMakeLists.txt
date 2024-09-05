@@ -110,9 +110,9 @@ else()
 endif()
 
 target_compile_definitions(desktop_application PRIVATE
-                            #DEV_MODE
-                            #HOST="http://localhost:3000/api/"
-                            #TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImNhbmdvcmtlbWd1bmVzQGdtYWlsLmNvbSIsImlkIjoiMSIsImlhdCI6MTcyNDkwNzMzOSwiZXhwIjoxNzI0OTUwNTM5fQ.qEWY6zk20YsrmWCKmfC2WidYtHWtXRPa-2bNpbheXa8"
+                            DEV_MODE
+                            HOST="http://localhost:3000/api/"
+                            TOKEN="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imh1c29AaHVzby5jb20iLCJpZCI6InVNUG9uTG1pNHlkTGphZXZqVGRNIiwiaWF0IjoxNzI1NTIxMTI3LCJleHAiOjE3MjgxMTMxMjd9.3AFlxmtHcD4xGR7snIWC7x_HbCv2xzBGd9U6SEsl-7M"
                         )
 target_link_libraries(desktop_application PRIVATE Qt${QT_VERSION_MAJOR}::Widgets
                                                     Qt${QT_VERSION_MAJOR}::Network)

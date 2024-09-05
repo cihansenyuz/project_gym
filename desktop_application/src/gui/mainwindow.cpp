@@ -184,8 +184,8 @@ void MainWindow::OnRegisterActionTriggered(){
 void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
     //member_manager.GenerateId(*new_member); will be moved to server side
     member_manager.RegisterNewMember(*new_member);                  // saves to local cache
-    http_manager_->AddNewMemberToCloud(current_member->toJson());   // saves to cloud
-    ui->message_text_browser->append("New member registered, ID: "+new_member->GetId());
+    current_member = member_manager.GetMember(DEFAULT_ID);
+    http_manager_->AddNewMemberToCloud(current_member->toJson());       // saves to cloud
     /*if(register_dialog){
         qDebug() << "register reset";
         register_dialog.reset(nullptr);
@@ -255,5 +255,13 @@ void MainWindow::OnNewWeeklyPlanReadyCreated(const std::vector<DailyExercisePlan
 }
 
 void MainWindow::OnMemberAddedToCloudReply(const QString &id){
-    current_member->SetId(id);
+    if(id != ""){
+        current_member->SetId(id);
+        member_manager.SaveChangesOnMember(*current_member);
+        ui->message_text_browser->append("New member registered, ID: "+current_member->GetId());
+    }
+    else{
+        member_manager.DeleteMember(DEFAULT_ID);
+        current_member.reset();
+    }
 }

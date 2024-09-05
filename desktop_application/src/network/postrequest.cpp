@@ -61,8 +61,8 @@ void PostRequest::OnNewMemberAddReplyRecieved(){
     QJsonObject message;
     message = ReadBody();
 
-    if(GetHttpStatusCode() == 200){
-        emit MemberAddedCloud(message["id"].toString());
+    if(GetHttpStatusCode() == 201){
+        emit MemberAddedCloud(QString::number(message["id"].toDouble()));
     }
     else if (GetHttpStatusCode() == 404){
         emit MemberAddedCloud("");
