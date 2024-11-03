@@ -20,12 +20,12 @@ for API_LOGIN_ADDRESS // login
 		201 Created
 		400 Bad Request, returns with code: BadRequest
 for API_FETCH_ADDRESS && API_PUSH_ADDRESS // users
-	GET request
+	GET request	(retrieves members of the user as json array)
 		200 OK, token verified
 		204 No Content, first time login
 		401 Unauthorized, token verify failed
 		403 Forbidden, no token given
-	PUT request
+	PUT request (adds a member to database of the user as json object, if the object only holds member id, deletes the member in the database)
 		200 OK, token verified
 		401 Unauthorized, token verify failed
 		403 Forbidden, no token given

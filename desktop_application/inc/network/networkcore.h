@@ -18,7 +18,7 @@
 #include <QtNetwork>
 
 #ifndef HOST
-    #define HOST "https://www.cangorkemgunes.com/api/"
+    #define HOST "https://gym-api-154736113831.europe-north1.run.app/api/"
 #endif
 
 #define API_LOGIN_ADDRESS "login"
