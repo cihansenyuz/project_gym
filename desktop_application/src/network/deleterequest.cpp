@@ -11,6 +11,8 @@ void DeleteRequest::OnDeleteMemberReplyRecieved(){
             qDebug() << "member deleted on the cloud";
         else if(GetHttpStatusCode() == 401 || GetHttpStatusCode() == 403)
             qDebug() << "delete failed, unauthorized attempt";
+        else if(GetHttpStatusCode() == 500)
+            qDebug() << "delete failed, internal server error on API side";
     }
     else
         qDebug() << "delete error: " << http_reply->error();

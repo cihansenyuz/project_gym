@@ -26,7 +26,8 @@ for API_FETCH_ADDRESS && API_PUSH_ADDRESS // users
 		401 Unauthorized, token verify failed
 		403 Forbidden, no token given
 	PUT request (adds a member to database of the user as json object, if the object only holds member id, deletes the member in the database)
-		200 OK, token verified
+		200 OK, token verified, action taken(ADD/DELETE)
 		401 Unauthorized, token verify failed
 		403 Forbidden, no token given
+		500 Internal Server Error, API couldnot manage the request
 
