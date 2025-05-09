@@ -54,6 +54,7 @@ private slots:
     void OnNewWeeklyExerciseActionTriggered();
     void OnNewWeeklyPlanReadyCreated(const std::vector<DailyExercisePlan> &new_weekly_exercise_plan,
                                      const QDate &start, const QDate &end);
+    void OnMemberAddedToCloudReply(const QString &id);
 
 private:
     void ClearViewedMemberInfos();
@@ -68,6 +69,7 @@ private:
     std::unique_ptr<Member> current_member;
     std::unique_ptr<ExerciseWeekView> exercise_day_tabs;
     std::unique_ptr<InfoDialog> message_dialog;
+    std::mutex message_dialog_mutex;
     std::unique_ptr<RegisterDialog> register_dialog;
     std::unique_ptr<NewMeasurementsDialog> measurements_dialog;
     std::unique_ptr<ExercisePlanDialog> new_exercise_plan_dialog;

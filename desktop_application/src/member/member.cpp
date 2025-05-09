@@ -44,7 +44,6 @@ QJsonObject Member::toJson() const{
         }
         json["archived_exercise_plans"] = exercise_plans_array;
     }
-
     return json;
 }
 

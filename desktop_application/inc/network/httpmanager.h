@@ -19,6 +19,7 @@
 #include "postrequest.h"
 #include "getrequest.h"
 #include "putrequest.h"
+#include "deleterequest.h"
 
 #ifndef TOKEN
     #define TOKEN ""
@@ -26,7 +27,8 @@
 
 class HttpManager : public PostRequest,
                     public GetRequest,
-                    public PutRequest
+                    public PutRequest,
+                    public DeleteRequest
 {
 public:
     HttpManager();

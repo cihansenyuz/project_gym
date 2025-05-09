@@ -16,8 +16,8 @@ void PutRequest::OnPushMemberJsonDataReplyRecieved(){
         qDebug() << "push error: " << http_reply->error();
 }
 
-void PutRequest::PushMemberJsonData(const QJsonArray* data_to_push){
-    http_body_data = QJsonDocument(*data_to_push);
+void PutRequest::PushMemberJsonData(const QJsonObject &data_to_push){
+    http_body_data = QJsonDocument(data_to_push);
     SendHttpRequest(API_PUSH_ADDRESS, parent_->token, this, &PutRequest::OnPushMemberJsonDataReplyRecieved);
 }
 

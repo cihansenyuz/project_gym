@@ -22,15 +22,18 @@ public:
     PostRequest(HttpManager *parent = nullptr);
     void LoginRequest(const QString &email, const QString password);
     void RegisterRequest(const QString &email, const QString password);
+    void AddNewMemberToCloud(const QJsonObject &member);
 
 signals:
     void LoginAttempt(bool success);
     void RegisterAttempt(bool success);
+    void MemberAddedCloud(const QString &id);
     void ConnectionToServer();
 
 private slots:
     void OnRegisterReplyRecieved();
     void OnLoginReplyRecieved();
+    void OnNewMemberAddReplyRecieved();
 
 private:
     QNetworkReply* GetHttpReply(const QNetworkRequest &request) override;

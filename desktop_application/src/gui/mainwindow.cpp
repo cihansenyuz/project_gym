@@ -6,8 +6,14 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    connect(http_manager_.get(), &HttpManager::ConnectionToServer,
+            this, [this](){
+                NewDialog("Connecting to server, kindly wait a while", "Information", false);
+            });
     connect(http_manager_.get(), &HttpManager::MemberJsonFetched,
             this, &MainWindow::OnMemberDataFetched);
+    connect(http_manager_.get(), &HttpManager::MemberAddedCloud,
+            this, &MainWindow::OnMemberAddedToCloudReply);
     http_manager_->FetchMemberJsonData();
 
     connect(ui->register_action, &QAction::triggered,
@@ -16,7 +22,7 @@ MainWindow::MainWindow(std::shared_ptr<HttpManager> &http_manager, QWidget *pare
             this, &MainWindow::OnGetButtonClicked);
     connect(ui->save_changes_action, &QAction::triggered,
             this, &MainWindow::OnSaveChangesActionTriggered);
-    connect(ui->delete_action, &QAction::triggered,
+    connect(ui->delete_action_, &QAction::triggered,
             this, &MainWindow::OnDeleteActionTriggered);
     connect(ui->new_measurements_action, &QAction::triggered,
             this, &MainWindow::OnAddNewMeasurementsActionTriggered);
@@ -119,14 +125,15 @@ void MainWindow::OnGetButtonClicked(){
 }
 
 void MainWindow::OnSaveChangesActionTriggered(){
-    http_manager_->PushMemberJsonData(member_manager.GetMemberArrayData());
+    http_manager_->PushMemberJsonData(current_member->toJson());
 }
 
 void MainWindow::OnDeleteActionTriggered(){
     if(!IsCurrentMemberSelected())
         return;
     QString member_id = current_member->GetId();
-    member_manager.DeleteMember(member_id);
+    member_manager.DeleteMember(member_id);             // delete from the local cache
+    http_manager_->DeleteMember(member_id);             // delete from the cloud
     NewDialog("Member '"+member_id+"' is deleted", "Success!");
     ClearViewedMemberInfos();
 }
@@ -162,8 +169,12 @@ void MainWindow::DeleteExercisePlanTable() {
 }
 
 void MainWindow::NewDialog(const QString &message, const QString &title, bool is_modal){
-    if(message_dialog)
+    std::lock_guard<std::mutex> lock(message_dialog_mutex);
+    if(message_dialog){
+        message_dialog->close();
         message_dialog.reset(nullptr);
+    }
+
     message_dialog = std::make_unique<InfoDialog>(message, title, this);
     if(is_modal)
         message_dialog->exec();
@@ -179,9 +190,10 @@ void MainWindow::OnRegisterActionTriggered(){
 }
 
 void MainWindow::OnNewMemberCreated(const std::unique_ptr<Member> &new_member){
-    member_manager.GenerateId(*new_member);
-    member_manager.RegisterNewMember(*new_member);
-    ui->message_text_browser->append("New member registered, ID: "+new_member->GetId());
+    //member_manager.GenerateId(*new_member); will be moved to server side
+    member_manager.RegisterNewMember(*new_member);                  // saves to local cache
+    current_member = member_manager.GetMember(DEFAULT_ID);
+    http_manager_->AddNewMemberToCloud(current_member->toJson());       // saves to cloud
     /*if(register_dialog){
         qDebug() << "register reset";
         register_dialog.reset(nullptr);
@@ -248,4 +260,18 @@ void MainWindow::OnNewWeeklyPlanReadyCreated(const std::vector<DailyExercisePlan
     current_member->SetWeeklyExercisePlanPeriod(start, end);
     member_manager.SaveChangesOnMember(*current_member);
     ui->message_text_browser->append("New weekly exercise plan saved for the current member");
+}
+
+void MainWindow::OnMemberAddedToCloudReply(const QString &id){
+    if(id != ""){
+        current_member->SetId(id);
+        member_manager.SaveChangesOnMember(*current_member);
+        ui->message_text_browser->append("New member registered, ID: "+id);
+        NewDialog("Registeration is done!\nID of the member: "+id, "Success!", false);
+    }
+    else{
+        member_manager.DeleteMember(DEFAULT_ID);
+        current_member.reset();
+        NewDialog("Registeration is failed due to network problem!\nKindly, try again.", "Fail!");
+    }
 }

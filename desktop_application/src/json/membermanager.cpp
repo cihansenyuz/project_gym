@@ -45,7 +45,8 @@ void MemberManager::SaveChangesOnMember(const Member &member){
     for (int i = 0; i < members_array.size(); ++i) {
         QJsonObject member_json = members_array[i].toObject();
 
-        if (member_json["id"].toString() == member.GetId()) {
+        if (member_json["id"].toString() == member.GetId()
+            || member_json["id"].toString() == "0000") {
             members_array[i] = QJsonValue(member.toJson());
             return;
         }
@@ -60,7 +61,7 @@ void MemberManager::DeleteMember(const QString &id){
 
         if (member_json["id"].toString() == id) {
             members_array.removeAt(i);
-            RemoveId(id);
+            //RemoveId(id);
             return;
         }
     }
@@ -81,7 +82,7 @@ void MemberManager::MaintainExpiredSubscriptions(){
     }
 }
 
-void MemberManager::GenerateId(Member &member){
+/*void MemberManager::GenerateId(Member &member){
     bool unique = false;
     QString id;
     while(!unique){
@@ -98,4 +99,4 @@ void MemberManager::GenerateId(Member &member){
 void MemberManager::RemoveId(const QString &id){
     auto it = id_name_map.find(id);
     id_name_map.erase(it);
-}
+}*/

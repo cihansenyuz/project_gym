@@ -9,24 +9,25 @@ target_compile_definitions(desktop_application PRIVATE DEV_MODE HOST="http://loc
 
 
 HTTP status codes returned by API
-for API_LOGIN_ADDRESS
+for API_LOGIN_ADDRESS // login
 	POST request
 		200 OK, email password match, returns token with code: UserFound
 		400 Bad Request, no email or password, returns with code: BadRequest
 		404 Not Found, email doesnot match, returns with code: NoUserFound
 		404 Not Found, password doesnot match, returns with code: IncorrectPassword
- for API_REGISTER_ADDRESS
+ for API_REGISTER_ADDRESS // register
  	POST request
 		201 Created
 		400 Bad Request, returns with code: BadRequest
-for API_FETCH_ADDRESS && API_PUSH_ADDRESS
-	GET request
+for API_FETCH_ADDRESS && API_PUSH_ADDRESS // users
+	GET request	(retrieves members of the user as json array)
 		200 OK, token verified
 		204 No Content, first time login
 		401 Unauthorized, token verify failed
 		403 Forbidden, no token given
-	PUT request
-		200 OK, token verified
+	PUT request (adds a member to database of the user as json object, if the object only holds member id, deletes the member in the database)
+		200 OK, token verified, action taken(ADD/DELETE)
 		401 Unauthorized, token verify failed
 		403 Forbidden, no token given
+		500 Internal Server Error, API couldnot manage the request
 
